@@ -1,0 +1,51 @@
+#header {
+    font-size: large;
+    background-color: lightblue;
+    border-bottom: 1px solid black;
+    margin-bottom: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr
+}
+
+#navbar {
+    font-size: 1em;
+    margin: 0.67em;
+    margin-left: 1em;
+    margin-right: 0.5em;
+}
+
+#header h1 {
+    margin-left: .5em;
+    margin-right: .5em;
+    font-size: 1em;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1em;
+    text-align: center;
+}
+
+@media screen and (min-width: 800px) {
+    #navbar {
+        font-size: 1.25em;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+    }
+
+    #navbar a {
+        margin: .25em;
+    }
+
+    #header h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: .5em;
+        margin-right: .5em;
+        font-size: 1.5em;
+    }
+}

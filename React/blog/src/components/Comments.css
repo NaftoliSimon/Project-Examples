@@ -1,0 +1,13 @@
+.commentsDisplay {
+    background-color: white;
+}
+
+.commentName {
+    text-align: left;
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+.commentsButton {
+    margin: 1em;
+}

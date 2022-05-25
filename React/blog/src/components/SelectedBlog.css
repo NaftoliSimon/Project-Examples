@@ -1,0 +1,18 @@
+.selectedBlog {
+    border: 1px solid black;
+    padding: .5em;
+    text-align: center;
+    border-radius: .25em;
+    background-color: lightblue;
+
+    font-size: xx-large;
+    max-width: none;
+    margin: auto;
+    margin-left: .5em;
+    margin-right: .5em;
+}
+
+.selectedBlogName {
+    text-transform: uppercase;
+    font-size: xxx-large;
+}

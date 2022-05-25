@@ -1,0 +1,11 @@
+.errorMsg {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.home {
+    font-weight: 400;
+    margin-top: 5em;
+}

@@ -1,0 +1,70 @@
+/*This file is for any component that has a list (ie Comments, PostsList, ect)*/
+.bulletlessList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.postsDisplay,
+.commentsDisplay {
+    border: 1px solid black;
+    padding: .5em;
+    margin: 1em;
+    max-width: 100em;
+    text-align: center;
+    border-radius: .25em;
+    background-color: lightblue;
+}
+
+.blogDisplay span,
+.postsDisplay span,
+.selectedBlog span {
+    display: block;
+}
+
+/*Layout display based on screen size*/
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (min-width: 600px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .blogDisplay {
+        font-size: 1em;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .blogDisplay {
+        max-width: 15em;
+        font-size: 1.25em;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .blogDisplay {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
