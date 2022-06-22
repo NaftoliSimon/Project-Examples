@@ -1,0 +1,2 @@
+const API_KEY = 'OmZmZmI0NDA4NDEzOTQzYzJiODA4OTU3ZGY2MDk1Yzk3'; //api key is the sandbox version from: https://docs.intrinio.com/documentation/api_v2/getting_started (Sandbox version is free)
+export default API_KEY;
