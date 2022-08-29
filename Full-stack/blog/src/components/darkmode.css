@@ -1,0 +1,40 @@
+/* Dark mode css */
+
+/*TODO: Use SASS instead of lightmode/darkmode.css and instead of backgroundColors.js*/
+
+body {
+    background-color: black;
+    color: black;
+}
+.hover {
+    color: rgb(0 0 0 / 75%);
+    padding-left: 0em;
+}
+
+.hover:hover {
+    color: rgb(60 60 60 / 75%);
+}
+.blog:hover {
+    opacity: 85%;
+}
+.list-group-item:hover {
+    color: black;
+  }
+  .list-group-item {
+    color: black;
+  }
+  .btn {
+    opacity: 85%;
+    color: black;
+}
+
+.btn:hover {
+    opacity: 100%;
+    color: black;
+}
+.about {
+    color: white;
+}
+.border {
+    border-color: black;
+}

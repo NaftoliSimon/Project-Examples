@@ -1,0 +1,40 @@
+/* Light mode css */
+
+/*TODO: Use SASS instead of lightmode/darkmode.css and instead of backgroundColors.js*/
+body {
+    background-color: white;
+    color: white;
+}
+
+.hover {
+    color: white;
+    padding-left: 0em;
+}
+
+.hover:hover {
+    color: #d1e7dd;
+}
+
+.list-group-item:hover {
+    color: white;
+}
+.list-group-item {
+    color: white;
+}
+.post-btn:hover  {
+    color: black;
+    background-color: #d1e7dd;
+    font-weight: 500;
+}
+.post-btn{
+    color: black;
+    background-color: white;
+}
+.post-btn:active, .post-btn:focus {
+    color: black;
+    background-color: #d1e7dd;
+}
+.blog:hover {
+    opacity: 85%;
+    color: #d1e7dd;
+}
