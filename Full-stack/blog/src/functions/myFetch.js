@@ -1,18 +1,27 @@
+const headers = {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  }
+}
+
 //Simple Basic standard fetch
-async function myFetch(url, successCallback, errorCallback) {
+async function myFetch(url, successCallback, errorCallback = false) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, headers);
     if (!response.ok) {
       throw new Error(`Bad Fetch - ${response.status}`);
     }
     const data = await response.json();
-    // console.log('data[0]:', data[0]);
+    // console.log('data:', data);
     successCallback(data);
     return data;
   }
   catch (error) {
     console.error(`${error}. Could not get data from ${url}`);
-    errorCallback(error);
+    if (errorCallback) {
+      errorCallback(error);
+    }
   }
 }
 

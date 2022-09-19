@@ -7,10 +7,10 @@ export default function Comments({ commentsArr }) {
   }
 
   return (
-    <ul className='bulletlessList'>
+    <ul className='list-group'>
       {commentsArr.map(comment => {
         const { id, postId, body, name } = comment;
-        return <li className={`list-group-item-${bgColor} p-2 m-3 rounded`} key={`${postId}/${id}`}>
+        return <li className={`list-group-item-${bgColor} comment p-2 m-3 rounded`} key={`${postId}/${id}`}>
           <figure>
             <blockquote className="blockquote">
               <p>{body}</p>

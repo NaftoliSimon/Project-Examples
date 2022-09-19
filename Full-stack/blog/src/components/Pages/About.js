@@ -9,15 +9,10 @@ export default function About() {
             <h3>About This Website</h3>
             <p className='d-block'>
                 <span className='d-block'>
-                    This Project, when completed, will be a full stack blog website with node.js back-end & CRUD features.
-                    {/* This Project is a full stack blog website that displays */}
-                    {/* <a className='link' href={aboutURL} target="_blank" rel="noreferrer">
-                        {aboutURL}
-                    </a> */}
-                    {/* The fake data fetched from the Api gives 10 blogs, 10 posts per blog, and 6 comments per post. */}
+                    This Project, is a full stack blog website with node.js back-end. I have built my own blogApi that fetches SQL data from my local machine.
                 </span>
                 <span className='d-block'>
-                    This website is built with React, React Router (v6), and Functional Components with hooks.
+                    This website is built with React, React Router, and Functional Components with hooks.
                 </span>
                 <span className='d-block'>
                     Was built using Visual Studio Code.
@@ -25,6 +20,9 @@ export default function About() {
                 <strong className='d-block text-uppercase'>
                     This website is currently under construction.
                 </strong>
+                <span className='d-block'>
+                    FUTURE UPDATE: Node.js backend with full CRUD features and user login.
+                </span>
                 <span className='d-block'>
                     This project was made by Naftoli Simon.
                 </span>

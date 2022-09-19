@@ -6,12 +6,12 @@ body {
     color: white;
 }
 
-.hover {
+.nav-link {
     color: white;
     padding-left: 0em;
 }
 
-.hover:hover {
+.nav-link:hover {
     color: #d1e7dd;
 }
 

@@ -3,6 +3,7 @@ import bgColor from '../../../../../data/backgroundColor';
 import myFetch from '../../../../../functions/myFetch';
 import Comments from './Comments/Comments';
 import center from '../../../../../data/center';
+import baseUrl from '../../../../../data/URLpaths';
 
 export default function Post({ post, selectedPostId, changeSelectedPost }) {
   const [commentsArr, setCommentsArr] = useState([]);
@@ -20,7 +21,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost }) {
   }, [selectedPostId]); //when Comments button is clicked selectedPostId changes
 
   function fetchComments(postId) {
-    const commentsUrl = `https://jsonplaceholder.typicode.com/comments?postId=${postId}`;
+    const commentsUrl = `${baseUrl}/comments/${postId}`;
     myFetch(commentsUrl, setCommentsArr);
   }
 

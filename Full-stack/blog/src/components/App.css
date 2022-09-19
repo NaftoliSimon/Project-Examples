@@ -1,11 +1,17 @@
 .post {
-    width: 100%; /*Post List on 'blogs/id' page*/
+    width: 100%;
+    /*Post List on 'blogs/id' page*/
+}
+.list-group {
+    list-style-type: none;
 }
 @media screen and (min-width: 1200px) {
     .blog {
-        width: 46%; /*Blog List on 'blogs' page: Width is set for two column layout, and 50% bootstrap default + padding & margin is too big*/
+        width: 46%;
+        /*Blog List on 'blogs' page: Width is set for two column layout, and 50% bootstrap default + padding & margin is too big*/
     }
+
     .post {
         width: 75%;
     }
-  }
+}

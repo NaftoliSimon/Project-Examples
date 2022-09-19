@@ -6,12 +6,12 @@ body {
     background-color: black;
     color: black;
 }
-.hover {
+.nav-link {
     color: rgb(0 0 0 / 75%);
     padding-left: 0em;
 }
 
-.hover:hover {
+.nav-link:hover {
     color: rgb(60 60 60 / 75%);
 }
 .blog:hover {
