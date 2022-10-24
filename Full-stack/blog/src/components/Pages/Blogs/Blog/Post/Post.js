@@ -4,6 +4,7 @@ import myFetch from '../../../../../functions/myFetch';
 import Comments from './Comments/Comments';
 import center from '../../../../../data/center';
 import baseUrl from '../../../../../data/URLpaths';
+import commentsBtnStyle from '../../../../../data/commentsBtnStyle';
 
 export default function Post({ post, selectedPostId, changeSelectedPost }) {
   const [commentsArr, setCommentsArr] = useState([]);
@@ -33,6 +34,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost }) {
   //bootstrap style
   const liStyle = `list-group-item list-group-item-action bg-${bgColor} p-3 m-2 rounded border ${center}`;
   const titleStyle = `h6 text-capitalize text-decoration-underline`;
+  
 
   return (<>
     <li className={`${liStyle}`}>
@@ -40,9 +42,9 @@ export default function Post({ post, selectedPostId, changeSelectedPost }) {
         <span className={`d-block text-center ${titleStyle}`}>{title}</span>
         <span className='d-block text-center'>{body}</span>
         <div className={`${center} p-2`}>
-          <button className={`d-block btn post-btn list-group-item-${bgColor}`} onClick={() => handleButtonClick(postId)}>{btnText}</button>
+          <button className={`${commentsBtnStyle}`} onClick={() => handleButtonClick(postId)}>{btnText}</button>
         </div>
-        {postId == selectedPostId && <Comments commentsArr={commentsArr} />}
+        {postId == selectedPostId && <Comments commentsArr={commentsArr} postId={postId}/>}
       </div>
     </li>
   </>)

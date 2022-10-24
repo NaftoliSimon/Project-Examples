@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import bgColor from '../../../../../../data/backgroundColor';
+import AddComment from './AddComment';
+import AddCommentBtn from './AddCommentBtn';
 
-export default function Comments({ commentsArr }) {
+export default function Comments({ commentsArr, postId }) {
+  const [addingComment, setAddingComment] = useState(false);
+  
+  const closeAddComment = () => setAddingComment(false);
+  const openAddComment = () => setAddingComment(true);
+
+  //Either show the button to add a comment or show the add comment input
+  const commentsContent = addingComment ? 
+  <AddComment closeAddComment={closeAddComment} postId={postId}/> : 
+  <AddCommentBtn openAddComment={openAddComment}/>;
+
   if (!commentsArr.length) {
-    return null;
+    return (<>
+      <div className={`text-center p-4 fs-1`}>No Comments</div>
+      {commentsContent}
+    </>);
   }
 
-  return (
+  return (<>
     <ul className='list-group'>
       {commentsArr.map(comment => {
         const { id, postId, body, name } = comment;
@@ -23,5 +38,6 @@ export default function Comments({ commentsArr }) {
         </li>
       })}
     </ul>
-  )
+    {commentsContent}
+  </>)
 }

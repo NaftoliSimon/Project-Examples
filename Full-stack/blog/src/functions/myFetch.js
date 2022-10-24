@@ -1,14 +1,7 @@
-const headers = {
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  }
-}
-
 //Simple Basic standard fetch
 async function myFetch(url, successCallback, errorCallback = false) {
   try {
-    const response = await fetch(url, headers);
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Bad Fetch - ${response.status}`);
     }

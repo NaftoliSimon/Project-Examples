@@ -9,8 +9,9 @@ const pool = mysql.createPool({
     database: 'nodeuser2'
 });
 
-pool.on('acquire', function (connection) {
-    console.log('pool - Connection %d acquired', connection.threadId);
+//For Debugging
+/* pool.on('acquire', function (connection) {
+    console.log('pool - Connection %d acquired', connection.threadId); //use debug instead of console.log
 });
 
 pool.on('connection', function (connection) {
@@ -23,6 +24,6 @@ pool.on('enqueue', function () {
 
 pool.on('release', function (connection) {
     console.log('pool - Connection %d released', connection.threadId);
-});
+}); */
 
 module.exports = pool;
