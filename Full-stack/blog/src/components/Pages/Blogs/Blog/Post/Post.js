@@ -37,7 +37,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost }) {
   
 
   return (<>
-    <li className={`${liStyle}`}>
+    <li className={`${liStyle}`} id={`post-${postId}`}>
       <div>
         <span className={`d-block text-center ${titleStyle}`}>{title}</span>
         <span className='d-block text-center'>{body}</span>

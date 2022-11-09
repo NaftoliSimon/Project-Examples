@@ -12,27 +12,20 @@ body {
 }
 
 .nav-link:hover {
-    color: #d1e7dd;
+    color: #d1e7dd; /* this is the color that is bootstrap's default light version of green, taken from 'list-group-item-success' */
 }
 
-.list-group-item:hover {
-    color: white;
-}
-.list-group-item {
+.list-group-item, .list-group-item:hover {
     color: white;
 }
 .post-btn:hover  {
     color: black;
-    background-color: #d1e7dd;
-    font-weight: 500;
+    background-color: #d1e7dd !important;
 }
-.post-btn{
+
+.post-btn, .post-btn:active, .post-btn:focus {
     color: black;
     background-color: white;
-}
-.post-btn:active, .post-btn:focus {
-    color: black;
-    background-color: #d1e7dd;
 }
 .blog:hover {
     opacity: 85%;

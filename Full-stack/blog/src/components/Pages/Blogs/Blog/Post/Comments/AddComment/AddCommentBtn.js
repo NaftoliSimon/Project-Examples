@@ -1,5 +1,5 @@
 import React from 'react'
-import center from '../../../../../../data/center'
+import center from '../../../../../../../data/center'
 import CommentsBtn from './CommentsBtn'
 
 export default function AddCommentBtn({openAddComment}) {

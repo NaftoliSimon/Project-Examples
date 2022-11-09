@@ -1,5 +1,5 @@
 import React from 'react'
-import commentsBtnStyle from '../../../../../../data/commentsBtnStyle'
+import commentsBtnStyle from '../../../../../../../data/commentsBtnStyle'
 
 export default function CommentsBtn({ text, handleClick}) {
     return (
