@@ -24,6 +24,7 @@ export default function About() {
                 <span className='d-block'>
                     This project was made by Naftoli Simon.
                 </span>
+                <hr/>
                 <ul className='d-block pt-3 pb-0 list-group list-group-flush'>
                     <h5><u>FUTURE UPDATES</u></h5>
                     <li className={li}>Edit Comments ability - currently working on</li>
@@ -34,6 +35,7 @@ export default function About() {
                     <li className={li}>Add joi validation</li>
                 </ul>
             </p>
+            <hr/>
             <ButtonLink text='Return to Blogs' link="/blogs"></ButtonLink>
         </div >
     )
