@@ -4,13 +4,14 @@ https://react-bootstrap.github.io/components/modal/#vertically-centered
 */
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import bgColor from '../../../../../../../data/backgroundColor';
 import baseUrl from '../../../../../../../data/URLpaths';
 
 export default function MyVerticallyCenteredModal(props) {
-   const {blogId, commentId} = props;
+   const {blogId, commentId, ...rest} = props;
     return (
         <Modal
-            {...props}
+            {...rest}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
@@ -26,28 +27,9 @@ export default function MyVerticallyCenteredModal(props) {
                 </p>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="success" onClick={props.onHide} href={`${baseUrl}/${blogId}/deleteComment/${commentId}`}>Delete Comment</Button>
-                <Button variant="success" onClick={props.onHide}>Cancel</Button>
+                <Button variant={bgColor} onClick={props.onHide} href={`${baseUrl}/${blogId}/deleteComment/${commentId}`}>Delete Comment</Button>
+                <Button variant={bgColor} onClick={props.onHide}>Cancel</Button>
             </Modal.Footer>
         </Modal>
     );
 }
-
-// function App() {
-//   const [modalShow, setModalShow] = React.useState(false);
-
-//   return (
-//     <>
-//       <Button variant="primary" onClick={() => setModalShow(true)}>
-//         Launch vertically centered modal
-//       </Button>
-
-//       <MyVerticallyCenteredModal
-//         show={modalShow}
-//         onHide={() => setModalShow(false)}
-//       />
-//     </>
-//   );
-// }
-
-// render(<App />);

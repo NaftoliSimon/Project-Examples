@@ -2,6 +2,8 @@ import React from 'react';
 import bgColor from '../../../data/backgroundColor';
 import center from '../../../data/center';
 
+//TODO: For organizational consitanty move the 'blog' folder to 'pages' folder as it is a seperate page from blogslist 
+
 export default function BlogList({ blogsArr }) {
   return (<>
     <h4 className={`text-center text-${bgColor}`}>Please Select a Blog</h4>

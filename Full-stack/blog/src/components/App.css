@@ -7,10 +7,18 @@
     list-style-type: none;
 }
 
+.edit-input { /*'edit input' can be found in the EditComment.js file in the Comments folder*/
+    margin: 2px; /*margin is set to amount of hover and active's border, so that border stays in place */
+}
+.edit-input:hover, .edit-input:active {
+    margin: 0px; /*margin is removed and replaced by border*/
+    border: 2px solid black !important;
+}
+
 @media screen and (min-width: 1200px) {
     .blog {
         width: 46%;
-        /*Blog List on 'blogs' page: Width is set for two column layout, and 50% bootstrap default + padding & margin is too big*/
+        /*Blog List on 'blogs' page: Width is set for two column layout, and 50% bootstrap default + padding & margin is too big. Therefore width is set here at 46%. (Padding + Margin = 4px)*/
     }
 
     .post {

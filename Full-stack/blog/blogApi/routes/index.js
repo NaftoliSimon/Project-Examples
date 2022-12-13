@@ -93,14 +93,16 @@ router.route('/:blogID/deleteComment/:commentID')
 /* TODO: get edit comment to work */
 router.route('/editComment/:commentID')
   .post((req, res, next) => {
-    pool.query('UPDATE comments SET body = ?, name = ? WHERE id = ?'),
-      [req.body.body, req.body.name, req.params.commentID],
+    console.log(`req.body.body: "${req.body.body}", req.body.name: "${req.body.name}"`); //data is being recieved from front end, but isn't udating the SQL server
+    pool.query('UPDATE comments SET name = ?, body = ? WHERE id = ?'),
+      [req.body.name, req.body.body, req.params.commentID],
       (error, results, fields) => {
         if (error) {
-          return res.sendStatus(500);//TODO: create a more spacific error for user
+          console.log(`Unable to update contact - ${error.message}`)
+          return res.sendStatus(500);//TODO: create a more specific error for user
         }
         res.redirect(`${origin}/blogs`) //TODO: update redirect to go to comment
-        // res.sendStatus(200);
+        return res.sendStatus(200);
       }
   })
 

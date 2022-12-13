@@ -3,12 +3,11 @@ import bgColor from '../../data/backgroundColor';
 import ButtonLink from '../ButtonLink';
 
 export default function About() {
-    const aboutURL = 'https://jsonplaceholder.typicode.com/';
     const li = `list-group-item text-${bgColor} border-0 pt-0`;
     return (
         <div className={`text-center text-${bgColor}`}>
             <h3>About This Website</h3>
-            <p className='d-block'>
+            <div className='d-block'>
                 <span className='d-block'>
                     This Project, is a full stack blog website with node.js back-end & CRUD features. I have built my own blog Api that fetches SQL data from my local machine.
                 </span>
@@ -33,8 +32,9 @@ export default function About() {
                     <li className={li}>Launch Website</li>
                     <li className={li}>Update CSS to SASS</li>
                     <li className={li}>Add joi validation</li>
+                    <li className={li}>Fetch and display limited amount of data at one time</li>
                 </ul>
-            </p>
+            </div>
             <hr/>
             <ButtonLink text='Return to Blogs' link="/blogs"></ButtonLink>
         </div >

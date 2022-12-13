@@ -1,4 +1,5 @@
-/* Light mode css */
+/* Light Mode CSS */
+/*This file displays the color scheme for the entire website that can't be done by just bootstrap, see 'data/backgroundColor.js' for details*/
 
 /*TODO: Use SASS instead of lightmode/darkmode.css and instead of backgroundColors.js*/
 body {

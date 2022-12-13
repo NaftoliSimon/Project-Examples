@@ -3,7 +3,7 @@ import bgColor from '../../../../../../data/backgroundColor';
 import AddComment from './AddComment/AddComment';
 import AddCommentBtn from './AddComment/AddCommentBtn';
 import CommentDisplay from './CommentDisplay/CommentDisplay';
-import EditComment from './EditComment'
+import EditComment from './EditComment/EditComment'
 
 export default function Comments({ commentsArr, postId }) {
   const [addingComment, setAddingComment] = useState(false);
