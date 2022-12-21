@@ -18,14 +18,14 @@ function BasicExample({ commentId, postId, changeSelectedComment }) {
 
       <Dropdown.Menu>
         <Dropdown.Item onClick={() => changeSelectedComment(commentId)}>Edit</Dropdown.Item>
-        <Dropdown.Item onClick={() => setModalShow(true)}>Delete</Dropdown.Item> {/* TODO: Add an "Are you sure?" popup to stop accidental deletes */}
+        <Dropdown.Item onClick={() => setModalShow(true)}>Delete</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
 
-      <MyVerticallyCenteredModal commentId={commentId} blogId={blogId}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+    <MyVerticallyCenteredModal commentId={commentId} blogId={blogId}
+      show={modalShow}
+      onHide={() => setModalShow(false)}
+    />
 
   </>);
 }

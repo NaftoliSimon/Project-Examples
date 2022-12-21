@@ -4,7 +4,7 @@ import NavLink from './NavLink';
 
 export default function Navbar() {
     return (
-        <ul className="col-sm nav">
+        <ul className={`col col-sm nav p-0`}>
             <Icon/>
             <NavLink text='Blogs' link={"/blogs"} />
             <NavLink text='About' link={"/about"} />

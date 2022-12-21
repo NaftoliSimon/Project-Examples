@@ -1,6 +1,5 @@
 .post {
-    width: 100%;
-    /*Post List on 'blogs/id' page*/
+    width: 100%; /*Post List on 'blogs/id' page*/
 }
 
 .list-group {
@@ -14,7 +13,10 @@
     margin: 0px; /*margin is removed and replaced by border*/
     border: 2px solid black !important;
 }
-
+.author {
+    width: 97px;
+    margin-left: auto;
+}
 @media screen and (min-width: 1200px) {
     .blog {
         width: 46%;

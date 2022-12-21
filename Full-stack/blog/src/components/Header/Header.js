@@ -1,16 +1,17 @@
 import React from 'react'
-import Navbar from './Navbar'
 import bgColor from '../../data/backgroundColor';
+import TwoColDisplay from './Layout/TwoColDisplay';
+import OneColDisplay from './Layout/OneColDisplay';
 export default function Header() {
+
+  //TODO: get rid of title display on two seperate lines for all screen sizes
+
   return (<>
-    <header className={`sticky-top p-3 mb-2 bg-${bgColor} border-bottom`}>
-      <div className='container-fluid'>
-        <div className='row'>
-          <Navbar />
-          <h1 className='col text-center'>My Blog Website</h1>
-          <div className='col text-end d-none d-sm-block'>Naftoli Simon</div>
-        </div>
-      </div>
+    <header className={`sticky-top ps-3 pe-3 mb-2 bg-${bgColor} border-bottom`}>
+
+      <TwoColDisplay /> {/* Two column layout for smaller screens */}
+      <OneColDisplay /> {/* One column layout for bigger screens */}
+
     </header>
   </>)
 }
