@@ -1,8 +1,8 @@
 import React from 'react'
+import linkedinProfile from '../../../data/linkedinUrl'
 
 export default function Author() {
-  const linkednProfile = 'https://www.linkedin.com/in/naftoli-simon-174b20206/';
   return (
-    <a className={`col text-end nav-link pt-2`}  href={linkednProfile}>Naftoli Simon</a>
+    <a className={`col text-end nav-link pt-2 me-2`}  href={linkedinProfile}>Naftoli Simon</a>
   )
 }

@@ -36,6 +36,7 @@ function App() {
         <Route path="/" element={<Outlet />}>
           <Route path="blogs" element={<BlogList blogsArr={blogsArr} />}></Route>
           <Route path="blogs/:blogId/" element={<Blog blogsArr={blogsArr} />} />
+          <Route path="blogs/:blogId/:postId" element={<Blog blogsArr={blogsArr} />} /> {/* postId is optional (v6 removed optional support therefore two seperate paths are needed) */}
           <Route path="about" element={<About />} />
           <Route
             path="*"

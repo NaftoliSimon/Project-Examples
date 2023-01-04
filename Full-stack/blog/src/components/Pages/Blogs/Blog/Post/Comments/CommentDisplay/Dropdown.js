@@ -1,14 +1,12 @@
 /* This file uses react-bootstrap instead of regular bootstrap. */
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import MyVerticallyCenteredModal from './Modal';
 
 function BasicExample({ commentId, postId, changeSelectedComment }) {
   const [modalShow, setModalShow] = React.useState(false);
-
-  const location = useLocation();
-  const blogId = location.pathname.split('/').pop();
+  const { blogId } = useParams();
 
   return (<>
     <Dropdown>
@@ -22,7 +20,7 @@ function BasicExample({ commentId, postId, changeSelectedComment }) {
       </Dropdown.Menu>
     </Dropdown>
 
-    <MyVerticallyCenteredModal commentId={commentId} blogId={blogId}
+    <MyVerticallyCenteredModal commentId={commentId} blogId={blogId} postId={postId}
       show={modalShow}
       onHide={() => setModalShow(false)}
     />

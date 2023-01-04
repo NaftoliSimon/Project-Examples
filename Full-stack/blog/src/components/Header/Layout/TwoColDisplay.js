@@ -11,7 +11,7 @@ export default function TwoColDisplay() {
                 <Navbar />
                 <Author />
             </div>
-            <div className={`row pe-2`}>
+            <div className={`row`}>
                 <Title />
             </div>
         </div>

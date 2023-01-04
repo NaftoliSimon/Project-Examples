@@ -76,7 +76,7 @@ router.route('/comments/:postID')
       }
   })
 
-router.route('/:blogID/deleteComment/:commentID')
+router.route('/:blogID/deleteComment/:commentID/:postID')
   .get(function (req, res, next) {
     pool.query('DELETE FROM comments WHERE id = ?', [req.params.commentID], (error, results, fields) => { //post has primary id and also user id which is blogs' primary key
       if (error) {
@@ -85,31 +85,31 @@ router.route('/:blogID/deleteComment/:commentID')
       if (!results.affectedRows) {
         return res.sendStatus(404)
       }
-
-      res.redirect(`${origin}/blogs/${req.params.blogID}`) //TODO: update redirect to go to post (and show comments?)
+      // res.redirect(`${origin}/blogs/${req.params.blogID}/${req.params.postID}`) //postID is added to url only for reselecting the selected posts to open the comments after deleting one of its comments (see PostsList.js)
+      res.redirect(`${origin}/blogs/${req.params.blogID}`)
     })
   })
 
-/* TODO: get edit comment to work */
 router.route('/editComment/:commentID')
   .post((req, res, next) => {
-    console.log(`req.body.body: "${req.body.body}", req.body.name: "${req.body.name}"`); //data is being recieved from front end, but isn't udating the SQL server
-    pool.query('UPDATE comments SET name = ?, body = ? WHERE id = ?'),
+    pool.query('UPDATE comments SET name = ?, body = ? WHERE id = ?',
       [req.body.name, req.body.body, req.params.commentID],
       (error, results, fields) => {
         if (error) {
           console.log(`Unable to update contact - ${error.message}`)
           return res.sendStatus(500);//TODO: create a more specific error for user
         }
-        res.redirect(`${origin}/blogs`) //TODO: update redirect to go to comment
-        return res.sendStatus(200);
+        res.sendStatus(200)
       }
-  })
+    )
+  });
+
 
 /*TODO: 
 Comments: add Update features
 Blogs & Posts: add Insert, Update, and delete features
 Add a login
+Make adding & editing comments and posts automatically update without refreshing the page
 */
 
 module.exports = router;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import baseUrl from '../../../../data/URLpaths';
 import myFetch from '../../../../functions/myFetch';
 import PostsList from './PostsList';
@@ -9,8 +9,8 @@ export default function Blog({ blogsArr }) { //This component is linked from Blo
 
   //Posts are fetched from the url id (see App.js). 
   //Web page is not reliant on button click to fetch data. Link can be shared and will fetch the data.
-  const location = useLocation();
-  const url_id = location.pathname.split('/').pop();
+  const params = useParams(); //url parameters
+  const {blogId: url_id} = params;
 
   const [postsArr, setPostsArr] = useState([]);
   let selectedBlog = blogsArr.find(blog => blog.id == url_id)

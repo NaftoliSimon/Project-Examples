@@ -8,7 +8,7 @@ import bgColor from '../../../../../../../data/backgroundColor';
 import baseUrl from '../../../../../../../data/URLpaths';
 
 export default function MyVerticallyCenteredModal(props) {
-   const {blogId, commentId, ...rest} = props;
+   const {blogId, postId, commentId, ...rest} = props;
     return (
         <Modal
             {...rest}
@@ -27,7 +27,7 @@ export default function MyVerticallyCenteredModal(props) {
                 </p>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant={bgColor} onClick={props.onHide} href={`${baseUrl}/${blogId}/deleteComment/${commentId}`}>Delete Comment</Button>
+                <Button variant={bgColor} onClick={props.onHide} href={`${baseUrl}/${blogId}/deleteComment/${commentId}/${postId}`}>Delete Comment</Button>
                 <Button variant={bgColor} onClick={props.onHide}>Cancel</Button>
             </Modal.Footer>
         </Modal>
