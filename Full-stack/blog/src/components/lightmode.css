@@ -15,6 +15,9 @@ body {
 .nav-link:hover {
     color: #d1e7dd; /* this is the color that is bootstrap's default light version of green, taken from 'list-group-item-success' */
 }
+.author-link {
+    width: fit-content;
+}
 
 .list-group-item, .list-group-item:hover {
     color: white;
