@@ -1,7 +1,7 @@
 import React from 'react'
 import bgColor from '../../data/backgroundColor';
 import ButtonLink from '../ButtonLink';
-import linkedinProfile from '../../data/linkedinUrl';
+import linkedinProfile from '../../data/links/linkedinUrl';
 
 export default function About() {
     const li = `list-group-item text-${bgColor} border-0 pt-0`;
@@ -24,7 +24,7 @@ export default function About() {
                 <span className='d-block'>
                     This website was made by <a href={linkedinProfile}>Naftoli Simon</a>.
                 </span>
-                <hr/>
+                <hr />
                 <ul className='d-block pt-3 pb-0 list-group list-group-flush'>
                     <h5><u>FUTURE UPDATES</u></h5>
                     <li className={li}>CRUD features for Blogs and Posts</li>
@@ -35,7 +35,7 @@ export default function About() {
                     <li className={li}>Fetch and display limited amount of data at one time</li>
                 </ul>
             </div>
-            <hr/>
+            <hr />
             <ButtonLink text='Return to Blogs' link="/blogs"></ButtonLink>
         </div >
     )

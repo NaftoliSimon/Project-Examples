@@ -12,6 +12,7 @@ import FourOhFour from './Pages/FourOhFour';
 import About from './Pages/About';
 import bgColor from '../data/backgroundColor';
 import baseUrl from '../data/URLpaths';
+import Footer from './Footer';
 
 function App() {
   //creates a state with an array of blogs
@@ -44,6 +45,7 @@ function App() {
           />
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

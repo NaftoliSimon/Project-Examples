@@ -1,5 +1,5 @@
 import React from 'react'
-import linkedinProfile from '../../../data/linkedinUrl'
+import linkedinProfile from '../../../data/links/linkedinUrl'
 
 export default function Author() {
   return (
