@@ -1,9 +1,10 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import linkedinProfile from '../data/links/linkedinUrl';
+import linkedinProfile from '../data/external-links/linkedinUrl';
+import NavLink from './Header/Layout/Navbar/NavLink';
 
 const Footer = () => (
-    <footer className="bg-light text-dark py-3 mt-5">
+    <footer className="bgColor-primary color-secondary-reverse py-5 mt-5">
         <Container>
             <Row>
                 <Col md={3}>
@@ -13,18 +14,17 @@ const Footer = () => (
                 <Col md={3}>
                     <h5>Quick Links</h5>
                     <ul className="list-unstyled">
-                        <li><a href="/blogs">Home</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <NavLink text='Home' link='/blogs'/>
+                        <NavLink text='About' link='/about'/>
+                        <NavLink text='Contact' link="/fakeNonExistantLink"/>
                     </ul>
                 </Col>
                 <Col md={3}>
                     <h5>Follow Us</h5>
                     <ul className="list-unstyled">
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href={linkedinProfile}>Linkedin</a></li>
+                        <NavLink text={'Facebook'} link="/fakeNonExistantLink"/>
+                        <NavLink text={'Instagram'} link="/fakeNonExistantLink"/>
+                        <NavLink text={'LinkedIn'} link={linkedinProfile}/>
                     </ul>
                 </Col>
                 <Col md={3}>
@@ -39,3 +39,5 @@ const Footer = () => (
 );
 
 export default Footer;
+
+//The footer's text takes a few extra seconds to show on the about page

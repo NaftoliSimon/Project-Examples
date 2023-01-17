@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import bgColor from '../../../../../../../data/backgroundColor';
-import center from '../../../../../../../data/center';
+import center from '../../../../../../../data/Bootstrap/center';
 import baseUrl from '../../../../../../../data/URLpaths';
 import myPostFetch from '../../../../../../../functions/myPostFetch';
 import CommentsBtn from './CommentsBtn';
@@ -8,7 +7,7 @@ import CommentsBtn from './CommentsBtn';
 export default function AddComment({ closeAddComment, postId }) {
     const [commentBody, setCommentBody] = useState('');
     const [commentName, setCommentName] = useState('');
-    
+
     const url = `${baseUrl}/comments/${postId}`;
     const headers = {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -22,10 +21,10 @@ export default function AddComment({ closeAddComment, postId }) {
         closeAddComment();
     }
 
-    const textInputStyle = `w-100 list-group-item-${bgColor} rounded border-0`;
+    const textInputStyle = `input w-100 bgColor-primaryLight rounded border-0`;
     return (
         <div className='border p-2 rounded'>
-            <div className={`list-group-item-${bgColor} comment p-2 m-3 rounded`}>
+            <div className={`bgColor-primaryLight comment p-2 m-3 rounded`}>
                 <textarea className={textInputStyle} placeholder="Comment goes here..." value={commentBody} onChange={e => setCommentBody(e.target.value)}></textarea>
                 <input className={textInputStyle} placeholder='name' value={commentName} onChange={e => setCommentName(e.target.value)}></input>
             </div>

@@ -1,12 +1,11 @@
 import React from 'react'
-import bgColor from '../../data/backgroundColor';
 import ButtonLink from '../ButtonLink';
-import linkedinProfile from '../../data/links/linkedinUrl';
+import linkedinProfile from '../../data/external-links/linkedinUrl';
 
 export default function About() {
-    const li = `list-group-item text-${bgColor} border-0 pt-0`;
+    const li = `list-group-item bgColor-primaryLight dark border-0 pt-0`;
     return (
-        <div className={`text-center text-${bgColor}`}>
+        <div className={`text-center dark`}>
             <h3>About This Website</h3>
             <div className='d-block'>
                 <span className='d-block'>
@@ -22,7 +21,7 @@ export default function About() {
                     This website is currently under construction.
                 </strong>
                 <span className='d-block'>
-                    This website was made by <a href={linkedinProfile}>Naftoli Simon</a>.
+                    This website was made by <a className="link-color fst-italic" href={linkedinProfile}>Naftoli Simon</a>.
                 </span>
                 <hr />
                 <ul className='d-block pt-3 pb-0 list-group list-group-flush'>
@@ -30,7 +29,6 @@ export default function About() {
                     <li className={li}>CRUD features for Blogs and Posts</li>
                     <li className={li}>User Login</li>
                     <li className={li}>Launch Website</li>
-                    <li className={li}>Update CSS to SASS</li>
                     <li className={li}>Add joi validation</li>
                     <li className={li}>Fetch and display limited amount of data at one time</li>
                 </ul>

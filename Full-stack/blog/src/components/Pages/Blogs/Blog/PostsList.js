@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Post from './Post/Post';
-import center from '../../../../data/center';
+import center from '../../../../data/Bootstrap/center';
 import { useParams } from 'react-router-dom';
 
 export default function PostsList({ postsArr }) {

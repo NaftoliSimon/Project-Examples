@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import bgColor from '../../../../../data/backgroundColor';
 import myFetch from '../../../../../functions/myFetch';
 import Comments from './Comments/Comments';
-import center from '../../../../../data/center';
+import center from '../../../../../data/Bootstrap/center';
 import baseUrl from '../../../../../data/URLpaths';
-import commentsBtnStyle from '../../../../../data/commentsBtnStyle';
+import commentsBtnStyle from '../../../../../data/Bootstrap/commentsBtnStyle';
 
 export default function Post({ post, selectedPostId, changeSelectedPost }) {
   const [commentsArr, setCommentsArr] = useState([]);
@@ -32,7 +31,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost }) {
   }
 
   //bootstrap style
-  const liStyle = `list-group-item list-group-item-action bg-${bgColor} p-3 m-2 rounded border ${center}`;
+  const liStyle = ` bgColor-primary color-secondary-reverse p-3 m-2 rounded border ${center}`;
   const titleStyle = `h6 text-capitalize text-decoration-underline`;
 
 

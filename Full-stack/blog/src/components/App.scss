@@ -1,0 +1,38 @@
+/* Layout related CSS is in this file */
+/*This file displays layout features that can't be done by just bootstrap*/
+/*For all color related CSS see Colors.scss*/
+.post {
+    width: 100%;
+    /*Post List on 'blogs/id' page*/
+}
+
+.list-group {
+    list-style-type: none;
+}
+
+.nav-link {
+    padding-left: 0em;
+    text-decoration: none;
+    font-style: italic; //for nav-link colors see Colors.scss
+}
+
+.nav-link:hover {
+    text-decoration: underline; //for nav-link colors see Colors.scss
+}
+
+.input,
+.button {
+    border-width: 1px !important;
+    border-style: solid !important; //for border-color see Colors.scss
+}
+
+@media screen and (min-width: 1200px) {
+    .blog {
+        width: 46%;
+        /*Blog List on 'blogs' page: Width is set for two column layout, and 50% bootstrap default + padding & margin is too big. Therefore width is set here at 46%. (Padding + Margin = 4px)*/
+    }
+
+    .post {
+        width: 75%;
+    }
+}

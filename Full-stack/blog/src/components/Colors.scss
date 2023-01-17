@@ -1,0 +1,110 @@
+/*Color related CSS in this file*/
+/*This file displays the color scheme for the entire website (that can't be done by just bootstrap defaul colors)*/
+/*For all non-color related CSS see App.scss*/
+
+//Primary colors: 
+$blue: #0d6efd;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
+//PrimaryLight colors:
+$lightBlue: #b6d1fa;
+$lightIndigo: #c8b4ee;
+$lightOrange: #ffd8bb;
+$lightYellow: #f0e7cc;
+$lightGreen: #defcee;
+//Secondary colors:
+$lightGrey: #dddddd;
+$darkGrey: #343a40;
+$white: white;
+$black: black;
+
+//Darker primary colors need $secondary to be a dark color (ie dark grey). Lighter primary colors need $secondary to be a light color (ie white)
+$primary: $indigo;
+$primaryLight: $lightIndigo;
+$secondary: $darkGrey; //swap this color with secondary-reverse's color (see above comment)
+$secondary-reverse: $white; //swap this color with econdary's color (see above comment)
+$dark: $primary; //if primary color is a dark color set $dark to $primary, else set it to black
+
+.bgColor-primary {
+    background-color: $primary;
+}
+.color-primary {
+    color: $primary;
+}
+
+.color-secondary {
+    color: $secondary;
+}
+
+.color-secondary-reverse, .blog {
+    color: $secondary-reverse;
+}
+
+.dark {
+    color: $dark;
+}
+
+.blog:hover {
+    opacity: 85%;
+    color: $secondary-reverse;
+}
+
+.footer {
+    background-color: $secondary;
+    color: $secondary-reverse;
+}
+.bgColor-primaryLight, body, .dropdown:hover{
+    background-color: $primaryLight;
+}
+
+.input {
+    /*'input' can be found in the EditComment.js file in the Comments folder*/
+    border-color: $primaryLight !important;
+}
+
+.input:hover,
+.input:active {
+    border-color: $black !important;
+}
+.edit {
+    border-color: $primary;
+}
+
+//Links
+.nav-link, .nav-link:hover{
+    color: $secondary-reverse;
+}
+
+.link-color {
+    color: $primary; //dark color link (see SelectedBlog.js for usage)
+}
+
+.link-color:hover {
+    color: $primary;
+    opacity: 75%;
+}
+
+//buttons
+.button,  .button:hover{
+    background-color: $primary; //dark colored button (edit & delete comment buttons)
+    color: $secondary-reverse;
+    border-color: $primaryLight;
+}
+
+.button:hover {
+    border-color: $black;
+}
+
+.post-btn,
+.post-btn:active,
+.post-btn:focus, .post-btn:hover {
+    color: $black; //light colored button (show/hide & add commnents btn)
+    background-color: $primaryLight;
+}
