@@ -11,6 +11,10 @@ export default function PostsList({ postsArr }) {
   //   startingSelectedPostId = params.postId;
   // }
   const [selectedPostId, changeSelectedPost] = useState(startingSelectedPostId);
+  if (!postsArr.length) {
+    return (<>
+      <div className={`text-center p-4 fs-1`}>No Posts</div>
+    </>)};
   return (<div className={center}>
     <ul className={`list-group post d-flex flex-row flex-wrap ${center}`}>
       {postsArr.map(post => {

@@ -1,17 +1,18 @@
 import React from 'react'
+import center from '../../../../data/Bootstrap/center';
 
-//TODO: Make icon a link?
+// import { navbarColor } from '../../../Colors.scss'
 
 export default function Icon() {
+
+    //If primary background color is dark, set 'color = white' else set 'color = black' (see Colors.css $secondary for details). 
+    const color = 'white'; 
+    // const color = 'black';
+
     return (
-        <div className='me-3'>
-            <img src="../../Icons/blog-icon-black.png" alt="Blog-Logo" width="50" height="50" className='img-thumbnail bgColor-primaryLight mr-3' />
-        </div>
+        <a href='/blogs' className={`me-3 ${center}`}>
+            <img src={`../../Icons/blog-icon-${color}.png`} alt="Blog-Logo" width="50" height="50" className='img-thumbnail bgColor-primary border-0 mr-3' />
+        </a>
     )
 }
-/* If the primary background color of the website is a lighter color use blog-icon-black.png,
-    if the color is a dark color (ie blue, green, ect), switch from black to primary color (spacific color icons may not exist yet)
-
-    Default color name (ie 'blog-icon-black.png') means there is no fill color in the icon (will be background color), 
-    If '-fill' is added before '.png', the inside of icon is filled as solid white (maybe black).
-*/
+//

@@ -29,8 +29,12 @@ $black: black;
 $primary: $indigo;
 $primaryLight: $lightIndigo;
 $secondary: $darkGrey; //swap this color with secondary-reverse's color (see above comment)
-$secondary-reverse: $white; //swap this color with econdary's color (see above comment)
-$dark: $primary; //if primary color is a dark color set $dark to $primary, else set it to black
+$secondary-reverse: $white; //swap this color with secondary's color (see above comment)
+$dark: $black; //if primary color is a dark color set $dark to $primary, else set it to black
+
+:export {
+    navbarColor: $secondary;
+}
 
 .bgColor-primary {
     background-color: $primary;
@@ -96,6 +100,14 @@ $dark: $primary; //if primary color is a dark color set $dark to $primary, else 
     background-color: $primary; //dark colored button (edit & delete comment buttons)
     color: $secondary-reverse;
     border-color: $primaryLight;
+}
+.header-button {
+    background-color: $primary;
+    color: $secondary-reverse;
+    // border-color: $secondary-reverse;
+}
+.header-button:hover, .header-button:active, .header-button:focus {
+    background-color: $primary;
 }
 
 .button:hover {

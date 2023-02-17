@@ -34,7 +34,6 @@ export default function Post({ post, selectedPostId, changeSelectedPost }) {
   const liStyle = ` bgColor-primary color-secondary-reverse p-3 m-2 rounded border ${center}`;
   const titleStyle = `h6 text-capitalize text-decoration-underline`;
 
-
   return (<>
     <li className={`${liStyle}`} id={`post-${postId}`}>
       <div className='w-100'>

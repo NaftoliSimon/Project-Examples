@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import linkedinProfile from '../data/external-links/linkedinUrl';
+import { links } from '../data/URLpaths';
 import NavLink from './Header/Layout/Navbar/NavLink';
 
 const Footer = () => (
@@ -14,9 +15,10 @@ const Footer = () => (
                 <Col md={3}>
                     <h5>Quick Links</h5>
                     <ul className="list-unstyled">
-                        <NavLink text='Home' link='/blogs'/>
+                        {Object.entries(links).map(([name, link]) =>  <NavLink key={name} text={name} link={link}/>)}
+                        {/* <NavLink text='Home' link='/blogs'/>
                         <NavLink text='About' link='/about'/>
-                        <NavLink text='Contact' link="/fakeNonExistantLink"/>
+                        <NavLink text='Contact' link="/fakeNonExistantLink"/> */}
                     </ul>
                 </Col>
                 <Col md={3}>
