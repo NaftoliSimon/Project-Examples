@@ -8,7 +8,9 @@ const pool = mysql.createPool({
     //$Env:sqlpassword='replaceWithActualPassword'      Run on server's command line to set environment variable
     database: 'nodeuser2'
 });
-
+if(!process.env.sqlpassword) {
+    console.log('Error: No SQL Password');
+}
 //For Debugging
 /* pool.on('acquire', function (connection) {
     console.log('pool - Connection %d acquired', connection.threadId); //use debug instead of console.log

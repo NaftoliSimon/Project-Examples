@@ -2,7 +2,7 @@ import React from 'react';
 import center from '../../../data/Bootstrap/center';
 import hide, { show } from '../../../data/Bootstrap/hide';
 
-//TODO: For organizational consitanty move the 'blog' folder to 'pages' folder as it is a seperate page from blogslist 
+//TODO: For organizational consistently move the 'blog' folder to 'pages' folder as it is a seperate page from blogslist 
 
 export default function BlogList({ blogsArr }) {
   if (!blogsArr.length) {
