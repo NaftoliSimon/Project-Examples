@@ -3,14 +3,14 @@ import './App.scss';
 import './Colors.scss';
 import BlogList from './Pages/Blogs/BlogList';
 import { useEffect, useRef, useState } from 'react';
-import Header from './Header/Header'
+import Header from './Header&Footer/Header'
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom"; // React Router (v6) 
 import Blog from './Pages/Blogs/Blog/Blog';
 import myFetch from '../functions/myFetch';
 import FourOhFour from './Pages/FourOhFour';
 import About from './Pages/About';
-import baseUrl from '../data/URLpaths';
-import Footer from './Footer';
+import baseUrl, { links } from '../data/URLpaths';
+import Footer from './Header&Footer/Footer';
 
 function App() {
   //creates a state with an array of blogs
@@ -23,20 +23,22 @@ function App() {
       myFetch(blogsLink, setBlogsArr);
       hasFetchedData.current = true;
     }
-  }, [])
+  }, []);
 
   //sets all of the routs for the url
+  const {Blogs : home, About : about} = links;
+  // const About = "/about"
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Navigate replace to="/blogs" />}></Route> {/*this is a redirect*/}
+        <Route path="/" element={<Navigate replace to={home} />}></Route> {/*this is a redirect*/}
 
         <Route path="/" element={<Outlet />}>
-          <Route path="/blogs" element={<BlogList blogsArr={blogsArr} />}></Route>
-          <Route path="/blogs/:blogId/" element={<Blog blogsArr={blogsArr} />} />
-          <Route path="/blogs/:blogId/:postId" element={<Blog blogsArr={blogsArr} />} /> {/* postId is optional (v6 removed optional support, therefore two seperate paths are needed) */}
-          <Route path="/about" element={<About />} />
+          <Route path={home} element={<BlogList blogsArr={blogsArr} />}></Route>
+          <Route path={`${home}/:blogId/`} element={<Blog blogsArr={blogsArr} />} />
+          <Route path={`${home}/:blogId/:postId`} element={<Blog blogsArr={blogsArr} />} /> {/* postId is optional (v6 removed optional support, therefore two seperate paths are needed) */}
+          <Route path={about} element={<About />} />
           <Route
             path="*"
             element={<FourOhFour />}

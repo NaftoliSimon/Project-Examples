@@ -1,5 +1,5 @@
 //This file is for using the bootstrap hidden display properties. Size combinations can be added if need. 
-//The _only sizes means it is only visible for that size. The regular sizes means it is hidden for only that size
+//The hide sizes means it is hidden only for that size. The regular show sizes means it is shown only for that size.
 
 const hide = {
   all: 'd-none',
@@ -8,7 +8,7 @@ const hide = {
   md: 'd-md-none d-lg-block',
   lg: 'd-lg-none d-xl-block',
   xl: 'd-xl-none',
-  xs_sm: 'd-none d-sm-block d-md-block',
+  xs_sm: 'd-none d-sm-block d-md-block', //hides for extra small and small sizes
   lg_xl: 'd-lg-none',
   none: 'd-block'
 }

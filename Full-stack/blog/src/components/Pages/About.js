@@ -1,6 +1,6 @@
 import React from 'react'
 import ButtonLink from '../ButtonLink';
-import linkedinProfile from '../../data/external-links/linkedinUrl';
+import { linkedinProfile, links } from '../../data/URLpaths';
 
 export default function About() {
     const li = `list-group-item bgColor-primaryLight dark border-0 pt-0`;
@@ -34,7 +34,7 @@ export default function About() {
                 </ul>
             </div>
             <hr />
-            <ButtonLink text='Return to Blogs' link="/blogs"></ButtonLink>
+            <ButtonLink text='Return to Blogs' link={links.Blogs}></ButtonLink>
         </div >
     )
 }

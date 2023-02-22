@@ -1,17 +1,22 @@
-//Url paths for fetching data from blogApi
-//easy to change the base URL url from 1 place
+//Url path for fetching data from blogApi
 const baseUrl = `http://localhost:3000`; //server's base url
 
 //Internal links for navigating the website
 const navBaseUrl = `http://localhost:3001`;
 const blogs = `/blogs`;
 const about = `/about`;
-
 const links = {
     Blogs: blogs,
     About: about,
-    Contact: `/fakeNonexistentLink`
+    // Contact: `/fakeNonexistentLink`,
 };
 
+//External links for navigating to other websites
+const linkedinProfile = 'https://www.linkedin.com/in/naftoli-simon-174b20206/';
+const socialMediaLinks = {
+    Facebook: '/fakeNonExistantLink',
+    LinkedIn: linkedinProfile
+}
+
 export default baseUrl;
-export {links, blogs, about, navBaseUrl};
+export { links, socialMediaLinks, linkedinProfile, navBaseUrl };

@@ -1,7 +1,7 @@
 import React from 'react'
-import Author from './Layout/Author';
-import Navbar from './Layout/Navbar/Navbar';
-import Title from './Layout/Title';
+import Author from '../Header&Footer/Layout/Author';
+import Navbar from '../Header&Footer/Layout/Navbar/Navbar';
+import Title from '../Header&Footer/Layout/Title';
 export default function Header() {
 
   //TODO: get rid of title display on two separate lines for all screen sizes

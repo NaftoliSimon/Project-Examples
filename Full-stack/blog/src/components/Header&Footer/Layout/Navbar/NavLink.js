@@ -1,5 +1,4 @@
 import React from 'react';
-import hide from '../../../../data/Bootstrap/hide';
 
 export default function NavLink({ text, link, style = ''}) { //style is for any additional bootstrap styling to add to the class
     return (

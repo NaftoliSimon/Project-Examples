@@ -9,7 +9,7 @@ const DropdownComponent = () => {
       className='btn header-button'
       href=""
       ref={ref}
-      onClick={(e) => {
+      onClick={e => {
         e.preventDefault();
         onClick(e);
       }}
@@ -26,6 +26,12 @@ const DropdownComponent = () => {
     ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
       const [value, setValue] = useState('');
 
+      const searchbarFilter = <Form.Control autoFocus placeholder="Type to filter..."
+        className="mx-3 my-2 w-auto"
+        onChange={e => setValue(e.target.value)}
+        value={value}
+      />
+
       return (
         <div
           ref={ref}
@@ -33,13 +39,8 @@ const DropdownComponent = () => {
           className={className}
           aria-labelledby={labeledBy}
         >
-          <Form.Control
-            autoFocus
-            className="mx-3 my-2 w-auto"
-            placeholder="Type to filter..."
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-          />
+          {/* {searchbarFilter} */}
+
           <ul className="list-unstyled">
             {React.Children.toArray(children).filter(
               (child) =>
@@ -50,8 +51,6 @@ const DropdownComponent = () => {
       );
     },
   );
-  // const linksAsArray = Object.entries(links);
-  // console.log('linksAsArray', linksAsArray);
   return (
     <Dropdown>
       <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
@@ -59,8 +58,8 @@ const DropdownComponent = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu as={CustomMenu}>
-        {Object.entries(links).map(([name, link]) => 
-        <Dropdown.Item key={name} className='dropdown' href={link}>{name}</Dropdown.Item>)}
+        {Object.entries(links).map(([name, link]) =>
+          <Dropdown.Item key={name} className='dropdown' href={link}>{name}</Dropdown.Item>)}
       </Dropdown.Menu>
     </Dropdown>
   );
