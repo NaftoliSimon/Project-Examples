@@ -11,10 +11,13 @@ import FourOhFour from './Pages/FourOhFour';
 import About from './Pages/About';
 import baseUrl, { links } from '../data/URLpaths';
 import Footer from './Header&Footer/Footer';
+import Login from './Pages/Login';
+import TermsAndConditions from './Header&Footer/Layout/Navbar/Login/TermsAndConditions';
 
 function App() {
   //creates a state with an array of blogs
   const [blogsArr, setBlogsArr] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false); //registered user logged in or not
 
   const blogsLink = `${baseUrl}/blogs`; //My API: (see \Project Examples\Full-stack\blog\blogApi)
   const hasFetchedData = useRef(false); //useRef to only fetch data once instead of twice (see https://stackoverflow.com/questions/72252358/useeffect-fetch-request-is-pulling-data-twice)
@@ -26,19 +29,20 @@ function App() {
   }, []);
 
   //sets all of the routs for the url
-  const {Blogs : home, About : about} = links;
-  // const About = "/about"
+  const {Blogs : home, About : about,  Login: login} = links;
   return (
     <BrowserRouter>
-      <Header />
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
       <Routes>
         <Route path="/" element={<Navigate replace to={home} />}></Route> {/*this is a redirect*/}
 
         <Route path="/" element={<Outlet />}>
           <Route path={home} element={<BlogList blogsArr={blogsArr} />}></Route>
           <Route path={`${home}/:blogId/`} element={<Blog blogsArr={blogsArr} />} />
-          <Route path={`${home}/:blogId/:postId`} element={<Blog blogsArr={blogsArr} />} /> {/* postId is optional (v6 removed optional support, therefore two seperate paths are needed) */}
+          <Route path={`${home}/:blogId/:postId`} element={<Blog blogsArr={blogsArr} />} /> {/* postId is optional (v6 removed optional support, therefore two separate paths are needed) */}
           <Route path={about} element={<About />} />
+          <Route path={`/login`} element={<Login/>} />
+          <Route path={`/termsandconditions`} element={<TermsAndConditions/>} />
           <Route
             path="*"
             element={<FourOhFour />}

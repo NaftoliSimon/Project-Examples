@@ -14,12 +14,19 @@
 
 .nav-link {
     padding-left: 0em;
+    padding-right: 0em;
+    margin-right: 1em;
     text-decoration: none;
     font-style: italic; //for nav-link colors see Colors.scss
+    border: none;
 }
 
-.nav-link:hover {
+.nav-link:hover, .nav-link:active {
     text-decoration: underline; //for nav-link colors see Colors.scss
+    border: none;
+}
+.tac-link:hover {
+    text-decoration: underline; //link to terms and condition (SignUpModal.js)
 }
 
 .input,

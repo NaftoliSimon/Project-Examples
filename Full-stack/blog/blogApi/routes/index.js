@@ -104,6 +104,59 @@ router.route('/editComment/:commentID')
     )
   });
 
+router.route('/signUp')
+  .post((req, res, next) => {
+    console.log('req.body:', req.body);
+    pool.query('INSERT INTO users(firstName, lastName, email, password) VALUES (?,?,?,?)',
+      [req.body.firstName, req.body.lastName, req.body.email, req.body.password],
+      (error, results, fields) => {
+        if (error) {
+          console.error(`User account failed to be created: ${error}`);
+          return res.sendStatus(500);
+        }
+        console.log(`User ${req.body.firstName} ${req.body.lastName} account created`);
+        return res.sendStatus(201);
+      }
+    );
+
+  })
+  .get(function (req, res, next) {
+    pool.query('SELECT email, password FROM users', (error, results, fields) => {
+      if (error) {
+        return res.sendStatus(500);//TODO: create a more specific error for user
+      }
+      return res.send(results);
+    })
+  })
+router.route('/login/:email')
+// .get(function (req, res, next) {
+//   pool.query('SELECT password FROM users WHERE email = ?',[req.params.email], (error, results, fields) => {
+//     if (error) {
+//       return res.sendStatus(500);//TODO: create a more specific error for user
+//     }
+//     return res.send(results);
+//   })
+// })
+.get(function (req, res, next) {
+  console.log('req.params.email:', req.params.email);
+  pool.query('SELECT password FROM users WHERE email = ?', [req.params.email], (error, results, fields) => {
+    if (error) {
+      console.error("Failed to fetch user password: ", error);
+      return res.status(500).json({ error: "Failed to fetch user password" });
+    }
+    return res.json(results);
+  })
+// .get(function (req, res, next) {
+//   console.log('req.params.email:', req.params.email);
+//   pool.query('SELECT * FROM users WHERE email = ?', [req.params.email], (error, results, fields) => {
+//     if (error) {
+//       console.error("Failed to fetch user password: ", error);
+//       return res.status(500).json({ error: "Failed to fetch user password" });
+//     }
+//     return res.json(results);
+//   })
+})
+
 
 /*TODO: 
 Comments: add Update features

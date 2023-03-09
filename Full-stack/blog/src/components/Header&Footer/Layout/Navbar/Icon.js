@@ -10,7 +10,7 @@ export default function Icon() {
 
     return (
         <a href={links.Blogs} className={`me-3 ${center}`}>
-            <img src={`../../Icons/blog-icon-${color}.png`} alt="Blog-Logo" width="50" height="50" className='img-thumbnail bgColor-primary border-0 mr-3' />
+            <img src={`../../Icons/blog-icon-${color}.png`} alt="Blog-Logo" width="50" height="50" className='img-thumbnail bgColor-primary border-0 mr-3 p-0' />
         </a>
     )
 }

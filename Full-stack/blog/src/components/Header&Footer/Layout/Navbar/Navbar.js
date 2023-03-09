@@ -7,12 +7,11 @@ import { links } from '../../../../data/URLpaths';
 import LinksList from './LinksList';
 
 export default function Navbar() {
-    const hideSize = show.lg_xl;
     return (
         <>
             <ul className={`col col-sm nav p-0`}>
                 <Icon />
-                <LinksList links={links} style={hideSize}/>
+                <LinksList links={links} style={show.lg_xl}/>
                 <div className={`${center} ${hide.lg_xl}`}>
                     <DropdownComponent />
                 </div>

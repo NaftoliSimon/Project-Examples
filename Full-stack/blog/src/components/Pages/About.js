@@ -31,6 +31,7 @@ export default function About() {
                     <li className={li}>Launch Website</li>
                     <li className={li}>Add joi validation</li>
                     <li className={li}>Fetch and display limited amount of data at one time</li>
+                    {/* <li className={li}>Add comment replies?</li> */}
                 </ul>
             </div>
             <hr />

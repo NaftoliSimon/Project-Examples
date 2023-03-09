@@ -1,5 +1,5 @@
 /*Color related CSS in this file*/
-/*This file displays the color scheme for the entire website (that can't be done by just bootstrap defaul colors)*/
+/*This file displays the color scheme for the entire website (that can't be done by just bootstrap default colors)*/
 /*For all non-color related CSS see App.scss*/
 
 //Primary colors: 
@@ -96,7 +96,7 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
 }
 
 //buttons
-.button,  .button:hover{
+.button,  .button:hover, .button:focus {
     background-color: $primary; //dark colored button (edit & delete comment buttons)
     color: $secondary-reverse;
     border-color: $primaryLight;

@@ -3,7 +3,6 @@ import myFetch from '../../../../../functions/myFetch';
 import Comments from './Comments/Comments';
 import center from '../../../../../data/Bootstrap/center';
 import baseUrl from '../../../../../data/URLpaths';
-import commentsBtnStyle from '../../../../../data/Bootstrap/commentsBtnStyle';
 
 export default function Post({ post, selectedPostId, changeSelectedPost }) {
   const [commentsArr, setCommentsArr] = useState([]);
@@ -26,13 +25,14 @@ export default function Post({ post, selectedPostId, changeSelectedPost }) {
   }
 
   function handleButtonClick(postId) {                           //Remember, we are mapping through every post
-    const selected = (selectedPostId == postId) ? null : postId; //Sets all non selected posts to null.This will hide the comments of a previouly selected post, whether a new post is selected, or if the same post is unselected. Sets the currently selected post
+    const selected = (selectedPostId == postId) ? null : postId; //Sets all non selected posts to null. This will hide the comments of a previously selected post, whether a new post is selected, or if the same post is unselected. Sets the currently selected post.
     changeSelectedPost(selected);
   }
 
   //bootstrap style
   const liStyle = ` bgColor-primary color-secondary-reverse p-3 m-2 rounded border ${center}`;
   const titleStyle = `h6 text-capitalize text-decoration-underline`;
+  const commentsBtnStyle = `d-block btn post-btn color-primaryLight`;
 
   return (<>
     <li className={`${liStyle}`} id={`post-${postId}`}>

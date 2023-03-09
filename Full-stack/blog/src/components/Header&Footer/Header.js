@@ -1,8 +1,8 @@
 import React from 'react'
-import Author from '../Header&Footer/Layout/Author';
+import Login from './Layout/Navbar/Login/Login.js';
 import Navbar from '../Header&Footer/Layout/Navbar/Navbar';
 import Title from '../Header&Footer/Layout/Title';
-export default function Header() {
+export default function Header({loggedIn, setLoggedIn}) {
 
   //TODO: get rid of title display on two separate lines for all screen sizes
 
@@ -11,7 +11,7 @@ export default function Header() {
       <div className={`row pb-1 ps-2 pe-2`}>
         <Navbar />
         <Title />
-        <Author />
+        <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       </div>
     </header>
   </>)
