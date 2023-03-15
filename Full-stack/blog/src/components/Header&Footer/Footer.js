@@ -20,7 +20,9 @@ export default function Footer() {
                     </Col>
                     <Col md={3}>
                         <h5>Follow Us</h5>
-                        <ul><LinksList links={socialMediaLinks} /></ul>
+                        <ul>{Object.entries(socialMediaLinks).map(([name, link]) =>  
+                        <a href={link} target="_blank" className='nav-link p-1' key={link}>{name}</a>
+                        )}</ul>
                     </Col>
                     <Col md={3}>
                         <h5>Contact Us</h5>

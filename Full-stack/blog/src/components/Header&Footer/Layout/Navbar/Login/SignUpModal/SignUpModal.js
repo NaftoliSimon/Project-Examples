@@ -2,40 +2,40 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { Link, Route, useNavigate } from 'react-router-dom';
 import Row1 from './Row1';
 import Row2 from './Row2';
 import baseUrl from '../../../../../../data/URLpaths';
 import myFetch from '../../../../../../functions/myFetch';
 import myPostFetch from '../../../../../../functions/myPostFetch'
+import useCustomNav from '../../../../../../hooks/navigate';
 
-export default function SignUpModal({ show, setShow, setShowLogin }) {
+export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [retypedPassword, setRetypedPassword] = useState('');
+
     const [savedEmails, setSavedEmails] = useState({});
+    const [takenEmail, setTakenEmail] = useState(false);
 
     const [validated, setValidated] = useState(false);
+    
+    //TODO: Add show hide password icon/button
+    //TODO: Add icons by inputs to make it look nicer
+
+    const passwordMsg = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
 
     const url = `${baseUrl}/signUp`;
-    const headers = {
+    const signUpData = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ firstName: firstName, lastName: lastName, email: email, password: password })
     };
-
-
     useEffect(() => {
         myFetch(url, setSavedEmails);
-        // const { savedEmails } = savedEmails;
-        // if (savedEmails) {
-        //     console.log('savedEmails:', savedEmails);
-        //     // alert(savedEmails);
-        // }
     }, [])
 
     const handleClose = () => {
@@ -56,14 +56,13 @@ export default function SignUpModal({ show, setShow, setShowLogin }) {
         setRetypedPassword('');
     }
 
-    const navigate = useNavigate()
-    const navigateToTermsAndConditions = () => navigate(`/termsandconditions`)
+    const navigate = useCustomNav()
+    const navigateToTermsAndConditions = () => navigate(`/termsandconditions`, true)
     function goToTermsAndConditionsPage() {
         handleClose();
         navigateToTermsAndConditions();
     }
 
-    const passwordMsg = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character"
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -73,16 +72,21 @@ export default function SignUpModal({ show, setShow, setShowLogin }) {
             //check if data already exists in server (ie email already exists in server)
             const emailAlreadyExists = savedEmails.some(obj => obj.email === email);
             if (emailAlreadyExists) {
-                alert('Email already has an account associated with it.')
+                event.preventDefault();
+                event.stopPropagation();
+                setTakenEmail(<span className='text-danger ps-3 '> Email is already taken</span>)
             } else {
-                // console.log('send data to server');
-                 myPostFetch(url, headers);
-                 //close sign up modal
-                 clearFields();
-                 handleClose();
-                 //log in to user account
+                //Log in requirements met - send sign up data to database
+                myPostFetch(url, signUpData);
+                //close sign up modal
+                clearFields();
+                handleClose();
+
+                //TODO: log in to user account 
+                alert('Sign Up Successful!!! You may now log in. Just click "Log In" in the top right corner of the website.')
+                
             }
-            
+
         }
         setValidated(true);
 
@@ -91,7 +95,7 @@ export default function SignUpModal({ show, setShow, setShowLogin }) {
         const passwordValue = event.target.value;
         setPassword(passwordValue);
         // setValidated(false);
-        console.log('Validated:', validated);
+        // console.log('Validated:', validated);
         if (passwordValue.length > 0) {
             const validPassword = validatePassword(passwordValue);
             if (validPassword) {
@@ -129,7 +133,7 @@ export default function SignUpModal({ show, setShow, setShowLogin }) {
                 </Modal.Header>
                 <Modal.Footer className='bgColor-primaryLight'>
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                        <Row1 firstName={firstName} lastName={lastName} email={email}
+                        <Row1 firstName={firstName} lastName={lastName} email={email} takenEmail={takenEmail}
                             setFirstName={setFirstName} setLastName={setLastName} setEmail={setEmail} />
 
                         <Row2 password={password} retypedPassword={retypedPassword} passwordMsg={passwordMsg}

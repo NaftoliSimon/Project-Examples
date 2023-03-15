@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Dropdown, Form } from 'react-bootstrap';
 import { links } from '../../../../data/URLpaths';
+import useCustomNav from '../../../../hooks/navigate';
 
 const DropdownComponent = () => {
   //TODO: add dark mode to dropdown
+  const navigate = useCustomNav();
+
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <button
       className='btn header-button'
@@ -59,7 +62,7 @@ const DropdownComponent = () => {
 
       <Dropdown.Menu as={CustomMenu}>
         {Object.entries(links).map(([name, link]) =>
-          <Dropdown.Item key={name} className='dropdown' href={link}>{name}</Dropdown.Item>)}
+          <Dropdown.Item key={name} className='dropdown' onClick={() => navigate(link, true)}>{name}</Dropdown.Item>)}
       </Dropdown.Menu>
     </Dropdown>
   );

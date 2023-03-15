@@ -4,11 +4,21 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import baseUrl from '../../../../../data/URLpaths';
 import myFetch from '../../../../../functions/myFetch';
+import { useNavigate } from 'react-router-dom';
+import useCustomNav from '../../../../../hooks/navigate';
 
-export default function LoginModal({ show, setShow, setShowSignUp, loggedIn, setLoggedIn }) {
+export default function LoginModal(params) {
+    const { show, setShow, setShowSignUp, loggedIn, setLoggedIn, showLogin: title } = params;
+    const modalTitle = typeof title === 'string' ? title : "Account Log In"; //showLogin (or title) is either true or a string
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [savedUser, setSavedUser] = useState({});
+    const [invalidPassword, setInvalidPassword] = useState(false);
+    const [invalidEmail, setInvalidEmail] = useState(false);
+    const [showPassword, setShowPassword] = useState(true);
+    //TODO: Add show hide password icon/button
+    //TODO: Add icons by inputs to make it look nicer
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -16,45 +26,33 @@ export default function LoginModal({ show, setShow, setShowSignUp, loggedIn, set
         handleClose();
         setShowSignUp(true);
     }
+    const navigate = useCustomNav();
     const url = `${baseUrl}/signUp`
     useEffect(() => {
         myFetch(url, setSavedUser); //combine this with Sign up's fetch?
     }, [])
     function handleLogin() {
-
         const validUser = savedUser.find(obj => obj.email === email);
-        console.log('validUser:', validUser);
-        console.log('email:', email);
-        console.log('password:', password);
-        if(validUser) {
+        if (validUser) {
+            setInvalidEmail(false);
             if (validUser.password === password) {
-                console.log('log in');
-                setLoggedIn(true);
+                setLoggedIn(validUser);
+                setInvalidPassword(false);
+                // history.push('/');
+                // navigate('#');
+                // window.location.reload(false);
             } else {
-                alert('Incorrect Password');
+                setInvalidPassword(<span className='text-danger ps-3 '> Password Is Incorrect</span>)
             }
         } else {
-            alert('Invalid Email. Does not have an account associated with it.')
+            setInvalidEmail(<span className='text-danger ps-3 '> Invalid Email</span>)
         }
-        // if (!validEmail.email) {
-        //     alert('Invalid Email. Does not have an account associated with it.')
-        // } else {
-        //     console.log('password:', password);
-            // myFetch(`${baseUrl}/login/${email}`, setSavedPassword)
-            // console.log('savedPassword:', savedPassword);
-            // if (savedPassword === password) {
-            //     console.log('log in');
-            //     alert('Password is Incorrect');
-            // }
-
-        //     //  myPostFetch(url, headers);
-        //     //close sign up modal
-        //     //  handleClose();
-        //     //log in to user account
-        // }
-        console.log('');
     }
-
+    const onKeyDown = ({ key }) => {
+        if (key === 'Enter') {
+            handleLogin();
+        }
+    };
     return (
         <>
             <Button variant="" className='color-secondary-reverse nav-link' onClick={handleShow}>
@@ -63,15 +61,16 @@ export default function LoginModal({ show, setShow, setShowSignUp, loggedIn, set
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton className='bgColor-primaryLight'>
-                    <Modal.Title>Account Log In</Modal.Title>
+                    <Modal.Title>{modalTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className='bgColor-primaryLight'>
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>Email address {invalidEmail}</Form.Label>
                             <Form.Control
                                 type="email"
-                                placeholder="name@example.com"
+                                // placeholder="name@example.com"
+                                placeholder="Enter Your Email"
                                 required
                                 autoFocus
                                 value={email}
@@ -79,15 +78,17 @@ export default function LoginModal({ show, setShow, setShowSignUp, loggedIn, set
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>Password {invalidPassword}</Form.Label>
                             <Form.Control
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 name="password"
-                                placeholder="Password"
+                                placeholder="Enter Your Password"
                                 required
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
+                                onKeyDown={onKeyDown}
                             />
+                            <i className='fa fa-eye fa-fw'></i>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

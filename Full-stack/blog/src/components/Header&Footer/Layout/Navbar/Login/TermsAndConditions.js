@@ -18,7 +18,7 @@ export default function TermsAndConditions() {
             <h2>6. Modifications</h2>
             <p>We reserve the right to modify these Terms and Conditions at any time. Your continued use of this website following any such modifications shall be deemed acceptance of those modifications.</p>
             <h2>7. Data & Privacy</h2>
-            <p>Your data (from the sign up form) will be sent to our server and we reserve the rights to them, to use as we see fit. We are not entitled to do anything about hacked or missing data. Sign up at your own risk. </p>
+            <p>We reserve the rights to your data, to use as we see fit. We are not entitled to do anything about hacked or missing data. Sign up at your own risk. </p>
             <h2>8. Governing Law</h2>
             <p>These Terms and Conditions shall be governed and construed in accordance with the laws of {country_or_state}. Any dispute arising out of or in connection with these Terms and Conditions shall be submitted to the exclusive jurisdiction of the courts of {country_or_state}.</p>
             <p>By using this website, you acknowledge that you have read, understood, and agreed to be bound by these Terms and Conditions. And if you made it this far, congratulations! You have officially read the terms and conditions of use for our website.</p>

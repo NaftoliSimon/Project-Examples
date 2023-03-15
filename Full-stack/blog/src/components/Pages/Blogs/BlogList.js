@@ -1,36 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import center from '../../../data/Bootstrap/center';
 import { show } from '../../../data/Bootstrap/hide';
 import { links } from '../../../data/URLpaths';
+import AddBlog from './AddBlog';
+import BlogItemLayout from './BlogItemLayout';
 
-//TODO: For organizational consistently move the 'blog' folder to 'pages' folder as it is a seperate page from blogslist 
+//TODO: For organizational consistently move the 'blog' folder to 'pages' folder as it is a separate page from blogslist 
 
-export default function BlogList({ blogsArr }) {
+export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
+  const [yourBlog, setYourBlog] = useState();
   if (!blogsArr.length) {
     return (<div className='pb-5 mb-5'>
       <div className={`text-center p-4 pb-2 fs-1`}>NO BLOGS</div>
       <div className='text-center m-4 fs-1'>Make Sure Server Is Connected</div>
-      <div className='pb-5 mb-3'></div> {/*This empty div is added to take up space so that footer appears at bottom - there are probably better ways to fix this issue */}
+      <div className='pb-5 mb-3'></div> {/*This empty div is added to take up space so that footer appears at bottom, since no data (from server) is taking up space  */}
     </div>)
   };
 
   return (<>
-    <h4 className={`text-center dark`}>Please Select a Blog</h4>
+    <AddBlog loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
+    <h4 className={`text-center dark`}>Please Select A Blog To Read</h4>
 
     <ul className={`list-group d-flex flex-row flex-wrap color-secondary-reverse ${center}`}>
-      {blogsArr.map(blog => {
-        const { id, name, website, companyName } = blog;
-        const liStyle = `blog list-group-item  bgColor-primary p-3 m-2 rounded color-secondary-reverse`;
-
-        return <a className={liStyle} key={id} href={`${links.Blogs}/${id}`}> {/*links to PostList.js */}
-          <span className='p-2 h4 d-block d-sm-none'>{name}</span>
-          <span className='p-2 h4 d-none d-sm-inline'>{name}</span>
-          <span className='p-2'>{companyName}</span>
-          <span className='p-2 fst-italic'>{website}</span>
-        </a>
-      })}
+      {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id}/>)}
     </ul>
-    {blogsArr.length <= 6 && <div className={`m-1 pb-1 invisible ${show.lg_xl} color-secondary`}> .</div>} 
+    {blogsArr.length <= 6 && <div className={`m-1 pb-1 invisible ${show.lg_xl} color-secondary`}> .</div>}
     {/* the line above is to fill up space with content so that footer reaches bottom of page */}
   </>)
 }

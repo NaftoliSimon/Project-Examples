@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Form, Row } from 'react-bootstrap'
 
-export default function Row1({firstName, lastName, email, setFirstName, setLastName, setEmail}) {
+export default function Row1({firstName, lastName, email, setFirstName, setLastName, setEmail, takenEmail}) {
     return (
         <Row className="mb-3">
             <Form.Group as={Col} md="3" controlId="validationCustom01">
@@ -29,7 +29,7 @@ export default function Row1({firstName, lastName, email, setFirstName, setLastN
             </Form.Group>
 
             <Form.Group as={Col} md="6" controlId="validationCustom05">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>Email {takenEmail}</Form.Label>
                 <Form.Control type="email"
                     placeholder="name@gmail.com"
                     required

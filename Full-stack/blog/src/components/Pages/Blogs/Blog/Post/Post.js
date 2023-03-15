@@ -4,7 +4,7 @@ import Comments from './Comments/Comments';
 import center from '../../../../../data/Bootstrap/center';
 import baseUrl from '../../../../../data/URLpaths';
 
-export default function Post({ post, selectedPostId, changeSelectedPost }) {
+export default function Post({ post, selectedPostId, changeSelectedPost, loggedIn, setShowLogin, setLoggedIn }) {
   const [commentsArr, setCommentsArr] = useState([]);
   const [btnText, changebtnText] = useState();
   const { id: postId, body, title } = post;
@@ -20,7 +20,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost }) {
   }, [selectedPostId]); //when Comments button is clicked selectedPostId changes
 
   function fetchComments(postId) {
-    const commentsUrl = `${baseUrl}/comments/${postId}`;
+    const commentsUrl = `${baseUrl}/comments/${postId}/${loggedIn.userId}`;
     myFetch(commentsUrl, setCommentsArr);
   }
 
@@ -34,15 +34,20 @@ export default function Post({ post, selectedPostId, changeSelectedPost }) {
   const titleStyle = `h6 text-capitalize text-decoration-underline`;
   const commentsBtnStyle = `d-block btn post-btn color-primaryLight`;
 
+  const showHideBtn = <div className={`${center} p-2`}>
+    <button className={`${commentsBtnStyle}`} onClick={() => handleButtonClick(postId)}>{btnText}</button>
+  </div>
+
   return (<>
     <li className={`${liStyle}`} id={`post-${postId}`}>
       <div className='w-100'>
         <span className={`d-block text-center ${titleStyle}`}>{title}</span>
         <span className='d-block text-center'>{body}</span>
-        <div className={`${center} p-2`}>
-          <button className={`${commentsBtnStyle}`} onClick={() => handleButtonClick(postId)}>{btnText}</button>
-        </div>
-        {postId == selectedPostId && <Comments commentsArr={commentsArr} postId={postId} />}
+        {showHideBtn}
+        {postId == selectedPostId && <Comments commentsArr={commentsArr} postId={postId}
+          loggedIn={loggedIn} setShowLogin={setShowLogin} setLoggedIn={setLoggedIn} />
+          }
+        {selectedPostId == postId && commentsArr.length != 0 && showHideBtn} 
       </div>
     </li>
   </>)

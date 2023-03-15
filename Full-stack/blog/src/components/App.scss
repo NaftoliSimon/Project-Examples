@@ -24,9 +24,13 @@
 .nav-link:hover, .nav-link:active {
     text-decoration: underline; //for nav-link colors see Colors.scss
     border: none;
+    cursor: pointer;
 }
 .tac-link:hover {
     text-decoration: underline; //link to terms and condition (SignUpModal.js)
+}
+.pointer {
+    cursor: pointer;
 }
 
 .input,

@@ -6,8 +6,15 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import baseUrl from '../../../../../../../data/URLpaths';
 
-export default function MyVerticallyCenteredModal(props) {
+export default function MyVerticallyCenteredModal(props) { //rename to DeleteCommentModal
+    //TODO: don't delete comment from server, only from front end. (Delete from server after 30 days?)
     const { blogId, postId, commentId, ...rest } = props;
+    const deleteCommentUrl = `${baseUrl}/${blogId}/deleteComment/${commentId}/${postId}`;
+
+    function deleteComment() {
+        props.onHide();
+        //TODO: log back in (page refreshes from href, and refreshing page logs out) or don't refresh page 
+    }
     return (
         <Modal
             {...rest}
@@ -26,7 +33,7 @@ export default function MyVerticallyCenteredModal(props) {
                 </p>
             </Modal.Body>
             <Modal.Footer className='bgColor-primaryLight'>
-                <Button  className='button' onClick={props.onHide} href={`${baseUrl}/${blogId}/deleteComment/${commentId}/${postId}`}>Delete Comment</Button>
+                <Button  className='button' onClick={deleteComment} href={deleteCommentUrl}>Delete Comment</Button>
                 <Button className='button' onClick={props.onHide}>Cancel</Button>
             </Modal.Footer>
         </Modal>

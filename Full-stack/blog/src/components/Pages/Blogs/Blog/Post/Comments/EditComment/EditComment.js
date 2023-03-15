@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import center from '../../../../../../../data/Bootstrap/center';
-import baseUrl from '../../../../../../../data/URLpaths';
+import baseUrl, { links } from '../../../../../../../data/URLpaths';
 import myPostFetch from '../../../../../../../functions/myPostFetch';
 import EditCommentBtn from './EditCommentBtn';
 
-export default function AddEditComment({ unSelectComment, comment }) {
+export default function AddEditComment({ unSelectComment, comment, setLoggedIn, loggedIn }) {
     const { id, body, name } = comment;
     const [commentBody, setCommentBody] = useState(body);
     const [commentName, setCommentName] = useState(name);
+
+    const savedLoggedIn = {...loggedIn};
 
     const url = `${baseUrl}/editComment/${id}`;
     const headers = {
@@ -20,6 +22,12 @@ export default function AddEditComment({ unSelectComment, comment }) {
     const submitComment = () => {
         myPostFetch(url, headers);
         unSelectComment();
+        //TODO: update page to show updated comment (but keep the user logged in)
+        
+        // navigate(`${links.Blogs}/${loggedIn.userId}`)
+        // window.location.reload(false);
+        // console.log('setLoggedIn:', setLoggedIn);
+        // setLoggedIn(savedLoggedIn);
     }
 
     const textInputStyle = `input w-100 bgColor-primaryLight rounded border-0`;

@@ -4,11 +4,13 @@ import baseUrl from '../../../../../../../data/URLpaths';
 import myPostFetch from '../../../../../../../functions/myPostFetch';
 import CommentsBtn from './CommentsBtn';
 
-export default function AddComment({ closeAddComment, postId }) {
-    const [commentBody, setCommentBody] = useState('');
-    const [commentName, setCommentName] = useState('');
+export default function AddComment({ closeAddComment, postId, loggedIn }) {
+    const {firstName, lastName, userId} = loggedIn;
 
-    const url = `${baseUrl}/comments/${postId}`;
+    const [commentBody, setCommentBody] = useState('');
+    const [commentName, setCommentName] = useState(`${firstName} ${lastName}`);
+
+    const url = `${baseUrl}/comments/${postId}/${userId}`;
     const headers = {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         headers: {

@@ -21,16 +21,18 @@ export default function About() {
                     This website is currently under construction.
                 </strong>
                 <span className='d-block'>
-                    This website was made by <a className="link-color fst-italic" href={linkedinProfile}>Naftoli Simon</a>.
+                    This website was made by <a className="link-color fst-italic" href={linkedinProfile} target="_blank">Naftoli Simon</a>.
                 </span>
                 <hr />
                 <ul className='d-block pt-3 pb-0 list-group list-group-flush'>
                     <h5><u>FUTURE UPDATES</u></h5>
                     <li className={li}>CRUD features for Blogs and Posts</li>
-                    <li className={li}>User Login</li>
                     <li className={li}>Launch Website</li>
                     <li className={li}>Add joi validation</li>
                     <li className={li}>Fetch and display limited amount of data at one time</li>
+                    <li className={li}>
+                        Add icons (on forms, header, footer, ect) and add images, background images, to make website look nicer
+                    </li>
                     {/* <li className={li}>Add comment replies?</li> */}
                 </ul>
             </div>

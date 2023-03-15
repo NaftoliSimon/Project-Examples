@@ -20,9 +20,9 @@ export default function Row2(params) {
             </Form.Group>
 
             <Form.Group as={Col} md="6" controlId="validationCustom04">
-                <Form.Label>Re-Type Password</Form.Label>
+                <Form.Label>Retype Password</Form.Label>
                 <Form.Control type="password"
-                    placeholder="Re-Type Password"
+                    placeholder="Retype Password"
                     required
                     value={retypedPassword}
                     onChange={e => handleRetypedPasswordChange(e)}

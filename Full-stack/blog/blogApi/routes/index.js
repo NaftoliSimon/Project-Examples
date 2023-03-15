@@ -21,7 +21,7 @@ router.route('/blogs')
   .get(function (req, res, next) {
     pool.query('SELECT * FROM blogs', (error, results, fields) => {
       if (error) {
-        return res.sendStatus(500);//TODO: create a more spacific error for user
+        return res.sendStatus(500);//TODO: create a more specific error for user
       }
       return res.send(results);
     })
@@ -38,9 +38,10 @@ router.route('/blogs')
   })
 router.route('/posts/:postID')
   .get(function (req, res, next) {
-    pool.query('SELECT * FROM posts WHERE userID = ?', [req.params.postID], (error, results, fields) => { //post has primary id and also user id which is blogs' primary key
+    console.log(req.params.postID);
+    pool.query('SELECT * FROM posts WHERE userId = ?', [req.params.postID], (error, results, fields) => { //post has primary id and also user id which is blogs' primary key
       if (error) {
-        return res.sendStatus(500);//TODO: create a more spacific error for user
+        return res.sendStatus(500);//TODO: create a more specific error for user
       }
       return res.send(results);
     })
@@ -56,18 +57,18 @@ router.route('/posts/:postID')
       }
   })
 
-router.route('/comments/:postID')
+router.route('/comments/:postID/:userId')
   .get(function (req, res, next) {
     pool.query('SELECT * FROM comments WHERE postId = ?', [req.params.postID], (error, results, fields) => { //post has primary id and also user id which is blogs' primary key
       if (error) {
-        return res.sendStatus(500);//TODO: create a more spacific error for user
+        return res.sendStatus(500);//TODO: create a more specific error for user
       }
       return res.send(results);
     })
   })
   .post((req, res, next) => {
-    pool.query('INSERT INTO comments(postId, name, body) VALUES (?,?,?)',
-      [req.params.postID, req.body.name, req.body.body]),
+    pool.query('INSERT INTO comments(postId, name, body, userId) VALUES (?,?,?,?)',
+      [req.params.postID, req.body.name, req.body.body, req.params.userId]),
       (error, results, fields) => {
         if (error) {
           return res.sendStatus(500);
@@ -106,7 +107,6 @@ router.route('/editComment/:commentID')
 
 router.route('/signUp')
   .post((req, res, next) => {
-    console.log('req.body:', req.body);
     pool.query('INSERT INTO users(firstName, lastName, email, password) VALUES (?,?,?,?)',
       [req.body.firstName, req.body.lastName, req.body.email, req.body.password],
       (error, results, fields) => {
@@ -121,7 +121,7 @@ router.route('/signUp')
 
   })
   .get(function (req, res, next) {
-    pool.query('SELECT email, password FROM users', (error, results, fields) => {
+    pool.query('SELECT * FROM users', (error, results, fields) => {
       if (error) {
         return res.sendStatus(500);//TODO: create a more specific error for user
       }
@@ -129,39 +129,53 @@ router.route('/signUp')
     })
   })
 router.route('/login/:email')
-// .get(function (req, res, next) {
-//   pool.query('SELECT password FROM users WHERE email = ?',[req.params.email], (error, results, fields) => {
-//     if (error) {
-//       return res.sendStatus(500);//TODO: create a more specific error for user
-//     }
-//     return res.send(results);
-//   })
-// })
-.get(function (req, res, next) {
-  console.log('req.params.email:', req.params.email);
-  pool.query('SELECT password FROM users WHERE email = ?', [req.params.email], (error, results, fields) => {
-    if (error) {
-      console.error("Failed to fetch user password: ", error);
-      return res.status(500).json({ error: "Failed to fetch user password" });
-    }
-    return res.json(results);
+  // .get(function (req, res, next) {
+  //   pool.query('SELECT password FROM users WHERE email = ?',[req.params.email], (error, results, fields) => {
+  //     if (error) {
+  //       return res.sendStatus(500);//TODO: create a more specific error for user
+  //     }
+  //     return res.send(results);
+  //   })
+  // })
+  .get(function (req, res, next) {
+    pool.query('SELECT password FROM users WHERE email = ?', [req.params.email], (error, results, fields) => {
+      if (error) {
+        console.error("Failed to fetch user password: ", error);
+        return res.status(500).json({ error: "Failed to fetch user password" });
+      }
+      return res.json(results);
+    })
   })
-// .get(function (req, res, next) {
-//   console.log('req.params.email:', req.params.email);
-//   pool.query('SELECT * FROM users WHERE email = ?', [req.params.email], (error, results, fields) => {
-//     if (error) {
-//       console.error("Failed to fetch user password: ", error);
-//       return res.status(500).json({ error: "Failed to fetch user password" });
-//     }
-//     return res.json(results);
-//   })
-})
-
+router.route('/blogInfo')
+  .post((req, res, next) => {
+    pool.query('INSERT INTO blogs(website, companyName, name, userId) VALUES (?,?,?,?)',
+      [req.body.website, req.body.companyName, req.body.name, req.body.userId],
+      (error, results, fields) => {
+        if (error) {
+          console.log(`Unable to create blog - ${error.message}`)
+          return res.sendStatus(500);//TODO: create a more specific error for user
+        }
+        // res.sendStatus(200)
+      }
+    )
+  });
+router.route('/blogInfo/edit')
+  .post((req, res, next) => {
+    pool.query('Update blogs SET website = ?, companyName = ? WHERE userId = ?',
+      [req.body.website, req.body.companyName, req.body.userId],
+      (error, results, fields) => {
+        if (error) {
+          console.log(`Unable to update blog info - ${error.message}`)
+          return res.sendStatus(500);//TODO: create a more specific error for user
+        }
+        // res.sendStatus(200)
+      }
+    )
+  });
 
 /*TODO: 
 Comments: add Update features
 Blogs & Posts: add Insert, Update, and delete features
-Add a login
 Make adding & editing comments and posts automatically update without refreshing the page
 */
 
