@@ -57,7 +57,7 @@ router.route('/posts/:postID')
       }
   })
 
-router.route('/comments/:postID/:userId')
+router.route('/comments/:postID/:userId') //TODO: make blogApi have separate url for not logged in, instead of combining the GET and POST to one url (see Post.js)
   .get(function (req, res, next) {
     pool.query('SELECT * FROM comments WHERE postId = ?', [req.params.postID], (error, results, fields) => { //post has primary id and also user id which is blogs' primary key
       if (error) {
@@ -166,6 +166,33 @@ router.route('/blogInfo/edit')
       (error, results, fields) => {
         if (error) {
           console.log(`Unable to update blog info - ${error.message}`)
+          return res.sendStatus(500);//TODO: create a more specific error for user
+        }
+        // res.sendStatus(200)
+      }
+    )
+  });
+
+  router.route('/postInfo')
+  .post((req, res, next) => {
+    pool.query('INSERT INTO posts(title, body, userId) VALUES (?,?,?)',
+      [req.body.title, req.body.body, req.body.userId],
+      (error, results, fields) => {
+        if (error) {
+          console.log(`Unable to create post - ${error.message}`)
+          return res.sendStatus(500);//TODO: create a more specific error for user
+        }
+        // res.sendStatus(200)
+      }
+    )
+  });
+router.route('/postInfo/edit')
+  .post((req, res, next) => {
+    pool.query('Update posts SET title = ?, body = ? WHERE userId = ?',
+      [req.body.title, req.body.body, req.body.userId],
+      (error, results, fields) => {
+        if (error) {
+          console.log(`Unable to update post info - ${error.message}`)
           return res.sendStatus(500);//TODO: create a more specific error for user
         }
         // res.sendStatus(200)

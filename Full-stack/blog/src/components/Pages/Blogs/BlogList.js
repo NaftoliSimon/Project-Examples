@@ -24,7 +24,8 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
     <ul className={`list-group d-flex flex-row flex-wrap color-secondary-reverse ${center}`}>
       {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id}/>)}
     </ul>
-    {blogsArr.length <= 6 && <div className={`m-1 pb-1 invisible ${show.lg_xl} color-secondary`}> .</div>}
-    {/* the line above is to fill up space with content so that footer reaches bottom of page */}
+    {blogsArr.length <= 2 && <div className={`m-4 p-4 invisible ${show.lg_xl} color-secondary`}> .</div>}
+    {blogsArr.length > 2 && blogsArr.length <= 4 && <div className={` invisible ${show.lg_xl} color-secondary`}> .</div>}
+    {/* the 2 line above are to fill up space with content so that footer reaches bottom of page */}
   </>)
 }

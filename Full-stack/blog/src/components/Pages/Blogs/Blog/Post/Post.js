@@ -20,7 +20,10 @@ export default function Post({ post, selectedPostId, changeSelectedPost, loggedI
   }, [selectedPostId]); //when Comments button is clicked selectedPostId changes
 
   function fetchComments(postId) {
-    const commentsUrl = `${baseUrl}/comments/${postId}/${loggedIn.userId}`;
+    let commentsUrl = `${baseUrl}/comments/${postId}/notLoggedIn`; //TODO: make blogApi have separate url for not logged in, instead of combining the GET and POST to one url 
+    if (loggedIn) {
+      commentsUrl = `${baseUrl}/comments/${postId}/${loggedIn.userId}`;
+    };
     myFetch(commentsUrl, setCommentsArr);
   }
 

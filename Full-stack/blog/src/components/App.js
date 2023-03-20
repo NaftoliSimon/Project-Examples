@@ -14,17 +14,14 @@ import Footer from './Header&Footer/Footer';
 import TermsAndConditions from './Header&Footer/Layout/Navbar/Login/TermsAndConditions';
 
 function App() {
-
+ //Get initial logged in user from Local Storage so that user stays logged in on page reloads (if logged in)
   const lsKey = 'loggedInUser'; //local storage key
-  // let loggedInUser = false; //if loading for first time there is no logged in user. If reloading it will be set with previous loggedInUser (from localstorage)
-  // loggedInUser = localStorage.getItem(lsKey);
+  let loggedInUser = JSON.parse(localStorage.getItem(lsKey));
 
-  //creates a state with an array of blogs
-  const [blogsArr, setBlogsArr] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false); //Registered website user logged in or not: If user is logged out 'loggedIn' is set to false. If user is logged in 'loggedIn' is set to an object with the user's info/data from the users table from the database (sign up data)
+  const [blogsArr, setBlogsArr] = useState([]); //state with an array of blogs to display to the user
+  const [loggedIn, setLoggedIn] = useState(loggedInUser); //Registered website user logged in or not: If user is logged out 'loggedIn' is set to false. If user is logged in 'loggedIn' is set to an object with the user's info/data from the users table from the database (sign up data)
   const [showLogin, setShowLogin] = useState(false); //Shows login popup modal form. If not showing, set to false, if showing set to modalTitle string (or true)
   //TODO: move showSign up here as well and add "set show sign up" to bottom of terms and conditions page?
-  //TODO: Keep user logged in when they click link to new page (ie their blog) or when page reloads.
 
   const blogsLink = `${baseUrl}/blogs`; //My API: (see \Project Examples\Full-stack\blog\blogApi)
   const hasFetchedData = useRef(false); //useRef to only fetch data once instead of twice (see https://stackoverflow.com/questions/72252358/useeffect-fetch-request-is-pulling-data-twice)
@@ -35,7 +32,9 @@ function App() {
     }
   }, []);
   useEffect(() => {
-    localStorage.setItem(lsKey, loggedIn);
+    if (loggedIn) {
+      localStorage.setItem(lsKey, JSON.stringify(loggedIn)); //call this line when you log in instead of here?
+    }
   }, [loggedIn])
 
   const blogElem = <Blog blogsArr={blogsArr} loggedIn={loggedIn} setShowLogin={setShowLogin} setLoggedIn={setLoggedIn} />
@@ -49,7 +48,7 @@ function App() {
         <Route path="/" element={<Navigate replace to={home} />}></Route> {/*this is a redirect*/}
 
         <Route path="/" element={<Outlet />}>
-          <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedIn} setShowLogin={setShowLogin}/>}></Route>
+          <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedIn} setShowLogin={setShowLogin} />}></Route>
           <Route path={`${home}/:blogId/`} element={blogElem} />
           <Route path={`${home}/:blogId/:postId`} element={blogElem} /> {/* postId is optional (v6 removed optional support, therefore two separate paths are needed) */}
           <Route path={about} element={<About />} />

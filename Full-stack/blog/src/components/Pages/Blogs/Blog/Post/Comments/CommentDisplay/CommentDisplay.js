@@ -8,7 +8,7 @@ export default function CommentDisplay({ comment, changeSelectedComment, loggedI
         <div className="col p-0 m-0">
             <CommentLayout body={body} name={name} />
         </div>
-        {loggedIn.userId === userId && 
+        {loggedIn && loggedIn.userId === userId && 
         <div className="col-auto p-0 m-0"> {/*only show dropdown if the logged in user id is the same as the comment's userId */}
             <Dropdown commentId={id} postId={postId} changeSelectedComment={changeSelectedComment} />
         </div>}

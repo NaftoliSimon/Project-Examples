@@ -11,7 +11,6 @@ export default function AddBlog({ loggedIn, setShowLogin, blogsArr }) {
     const openLoginModal = () => setShowLogin('You Must Log In To Blog');
     function openAddBlog() {
         setShow(true);
-        console.log('add blog');
         //TODO: open add Blog Modal form to add blog to database (companyName, website, ect, see db for details)
     }
     const handleClick = loggedIn ? openAddBlog : openLoginModal;
@@ -22,9 +21,7 @@ export default function AddBlog({ loggedIn, setShowLogin, blogsArr }) {
         }
     }, [loggedIn])
 
-    // console.log('loggedInUserBlog:', loggedInUserBlog);
-
-    const addBlogButton = <Button className='button text-uppercase fs-1' onClick={handleClick}>Your Own Blog</Button>
+    const addBlogButton = <Button className='button text-uppercase fs-1' onClick={handleClick}>Your Blog</Button>
     const blogDisplay = <BlogItemLayout blog={loggedInUserBlog} />
     //TODO: Add ability to edit logged in user's blog details (ie website, ect)
     return (<>

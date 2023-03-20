@@ -3,7 +3,7 @@ import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import baseUrl from '../../../data/URLpaths';
 import myPostFetch from '../../../functions/myPostFetch';
 
-export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData = false }) {
+export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData = false }) { //Add or edit Blog data Modal. For edit - pass the preexisting data to update, into the "savedUpdateData" object. For add - just leave it out of the props
     let initialCompanyName;
     let initialWebsite;
     let text = 'Add';
@@ -18,96 +18,97 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
     const [website, setWebsite] = useState(initialWebsite || '');
 
     const [validated, setValidated] = useState(false);
-    const { userId, firstName, lastName } = loggedIn;
+    if (loggedIn) {
+        const { userId, firstName, lastName } = loggedIn;
 
-    const blogData = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ companyName: companyName, website: website, name: `${firstName} ${lastName}`, userId: userId })
-    };
-    const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
+        const blogData = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ companyName: companyName, website: website, name: `${firstName} ${lastName}`, userId: userId })
+        };
+        const handleClose = () => setShow(false);
+        // const handleShow = () => setShow(true);
 
-    const clearFields = () => {
-        setCompanyName('');
-        setWebsite('')
-    }
-
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        } else {
-            console.log('blog data sent to server');
-            myPostFetch(url, blogData)
-            clearFields();
-            handleClose();
-
-            // event.preventDefault();
-            // event.stopPropagation();
+        const clearFields = () => {
+            setCompanyName('');
+            setWebsite('')
         }
-        // setValidated(true)
-    }
-    const onKeyDown = ({ key }) => {
-        if (key === 'Enter') {
-            handleSubmit();
+
+        const handleSubmit = (event) => {
+            const form = event.currentTarget;
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                console.log('blog data sent to server');
+                myPostFetch(url, blogData)
+                clearFields();
+                handleClose();
+
+                // event.preventDefault();
+                // event.stopPropagation();
+            }
+            // setValidated(true)
         }
-    };
-    return (
-        <>
-            {/* <div className={center}>
+        const onKeyDown = ({ key }) => {
+            if (key === 'Enter') {
+                handleSubmit();
+            }
+        };
+        return (
+            <>
+                {/* <div className={center}>
                 <Button variant="" className='button text-uppercase fs-1' onClick={handleShow}>
                     Become A Blogger
                 </Button>
             </div> */}
 
-            <Modal show={show} onHide={handleClose}>
+                <Modal show={show} onHide={handleClose}>
 
-                <Modal.Header closeButton className='bgColor-primaryLight'>
-                    <Modal.Title>{text} Your Blog Info</Modal.Title>
-                </Modal.Header>
-                <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                    <Modal.Body className='bgColor-primaryLight'>
+                    <Modal.Header closeButton className='bgColor-primaryLight'>
+                        <Modal.Title>{text} Your Blog Info</Modal.Title>
+                    </Modal.Header>
+                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                        <Modal.Body className='bgColor-primaryLight'>
 
-                        <Row>
-                            <Form.Group as={Col} md="6" controlId="validationCustom01">
-                                <Form.Label>Company Name</Form.Label>
-                                <Form.Control
-                                    required
-                                    autoFocus
-                                    type="text"
-                                    placeholder="Company Name"
-                                    value={companyName}
-                                    onChange={e => setCompanyName(e.target.value)}
-                                />
-                            </Form.Group>
-                            <Form.Group as={Col} md="6" controlId="validationCustom02">
-                                <Form.Label>Website</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    placeholder="Your Website"
-                                    value={website}
-                                    onChange={e => setWebsite(e.target.value)}
-                                    onKeyDown={onKeyDown}
-                                />
-                            </Form.Group>
-                        </Row>
+                            <Row>
+                                <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                    <Form.Label>Company Name</Form.Label>
+                                    <Form.Control
+                                        required
+                                        autoFocus
+                                        type="text"
+                                        placeholder="Company Name"
+                                        value={companyName}
+                                        onChange={e => setCompanyName(e.target.value)}
+                                    />
+                                </Form.Group>
+                                <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                    <Form.Label>Website</Form.Label>
+                                    <Form.Control
+                                        required
+                                        type="text"
+                                        placeholder="Your Website"
+                                        value={website}
+                                        onChange={e => setWebsite(e.target.value)}
+                                        onKeyDown={onKeyDown}
+                                    />
+                                </Form.Group>
+                            </Row>
 
-                    </Modal.Body>
-                    <Modal.Footer className='bgColor-primaryLight'>
+                        </Modal.Body>
+                        <Modal.Footer className='bgColor-primaryLight'>
 
-                        <div className='ms-1 d-flex'>
-                            <Button type="submit" className={`button`}>{text }</Button>
-                            <Button className='button mx-2' onClick={handleClose}>Cancel</Button>
-                        </div>
-                        {/* </Form> */}
-                    </Modal.Footer>
-                </Form>
-            </Modal>
-        </>
-    );
+                            <div className='ms-1 d-flex'>
+                                <Button type="submit" className={`button`}>{text}</Button>
+                                <Button className='button mx-2' onClick={handleClose}>Cancel</Button>
+                            </div>
+                        </Modal.Footer>
+                    </Form>
+                </Modal>
+            </>
+        );
+    }
 }

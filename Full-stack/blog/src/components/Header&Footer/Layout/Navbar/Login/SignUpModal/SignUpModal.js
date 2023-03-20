@@ -95,7 +95,6 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         const passwordValue = event.target.value;
         setPassword(passwordValue);
         // setValidated(false);
-        // console.log('Validated:', validated);
         if (passwordValue.length > 0) {
             const validPassword = validatePassword(passwordValue);
             if (validPassword) {

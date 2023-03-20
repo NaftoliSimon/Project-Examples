@@ -22,11 +22,10 @@ export default function AddEditComment({ unSelectComment, comment, setLoggedIn, 
     const submitComment = () => {
         myPostFetch(url, headers);
         unSelectComment();
-        //TODO: update page to show updated comment (but keep the user logged in)
+        window.location.reload(false); //Page reloads to load updated edited comment from db. TODO: make page scroll to edited comment, or update page without needing to reload
         
         // navigate(`${links.Blogs}/${loggedIn.userId}`)
         // window.location.reload(false);
-        // console.log('setLoggedIn:', setLoggedIn);
         // setLoggedIn(savedLoggedIn);
     }
 

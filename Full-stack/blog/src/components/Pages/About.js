@@ -26,9 +26,9 @@ export default function About() {
                 <hr />
                 <ul className='d-block pt-3 pb-0 list-group list-group-flush'>
                     <h5><u>FUTURE UPDATES</u></h5>
-                    <li className={li}>CRUD features for Blogs and Posts</li>
+                    <li className={li}>Delete features for Blogs and Posts</li>
                     <li className={li}>Launch Website</li>
-                    <li className={li}>Add joi validation</li>
+                    <li className={li}>Add joi validation, display to user limits (ie character length)</li>
                     <li className={li}>Fetch and display limited amount of data at one time</li>
                     <li className={li}>
                         Add icons (on forms, header, footer, ect) and add images, background images, to make website look nicer

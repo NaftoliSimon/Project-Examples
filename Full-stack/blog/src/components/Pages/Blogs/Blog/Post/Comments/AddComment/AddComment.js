@@ -27,7 +27,8 @@ export default function AddComment({ closeAddComment, postId, loggedIn }) {
     return (
         <div className='border p-2 rounded'>
             <div className={`bgColor-primaryLight comment p-2 m-3 rounded`}>
-                <textarea className={textInputStyle} placeholder="Comment goes here..." value={commentBody} onChange={e => setCommentBody(e.target.value)}></textarea>
+                <textarea className={textInputStyle} placeholder="Comment goes here..." value={commentBody} 
+                onChange={e => setCommentBody(e.target.value)} autoFocus></textarea>
                 <input className={textInputStyle} placeholder='name' value={commentName} onChange={e => setCommentName(e.target.value)}></input>
             </div>
             <div className={`container ${center}`}>
