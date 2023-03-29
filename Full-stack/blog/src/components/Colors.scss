@@ -35,6 +35,9 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
 :export {
     navbarColor: $secondary;
 }
+// body, * {
+//     color: $primaryLight !important;
+// }
 
 .bgColor-primary {
     background-color: $primary;
@@ -64,6 +67,9 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
     background-color: $secondary;
     color: $secondary-reverse;
 }
+.icon {
+    opacity: 70%;
+}
 .bgColor-primaryLight, body, .dropdown:hover{
     background-color: $primaryLight;
 }
@@ -85,6 +91,10 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
 .nav-link, .nav-link:hover{
     color: $secondary-reverse;
 }
+.nav-link:hover {
+    // opacity: 80%;
+    color: $primaryLight;
+}
 
 .link-color {
     color: $primary; //dark color link (see SelectedBlog.js for usage)
@@ -100,6 +110,11 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
     background-color: $primary; //dark colored button (edit & delete comment buttons)
     color: $secondary-reverse;
     border-color: $primaryLight;
+}
+.button:disabled {
+    background-color: $primaryLight;
+    border-color: $secondary-reverse;
+    opacity: 75%;
 }
 .header-button {
     background-color: $primary;

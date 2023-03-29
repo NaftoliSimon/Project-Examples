@@ -8,8 +8,10 @@ import baseUrl from '../../../../../../data/URLpaths';
 import myFetch from '../../../../../../functions/myFetch';
 import myPostFetch from '../../../../../../functions/myPostFetch'
 import useCustomNav from '../../../../../../hooks/navigate';
+import Icon from '../Icon';
+import { BsPerson, BsPersonAdd, BsPersonPlus } from 'react-icons/bs';
 
-export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }) {
+export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn, setShowSignUpPerson }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -18,9 +20,10 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
 
     const [savedEmails, setSavedEmails] = useState({});
     const [takenEmail, setTakenEmail] = useState(false);
-
     const [validated, setValidated] = useState(false);
-    
+    const [passwordValidated, setPasswordValidated] = useState(false);
+    // const [showSignUpPerson, setShowSignUpPerson] = useState(false);
+
     //TODO: Add show hide password icon/button
     //TODO: Add icons by inputs to make it look nicer
 
@@ -84,7 +87,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
 
                 //TODO: log in to user account 
                 alert('Sign Up Successful!!! You may now log in. Just click "Log In" in the top right corner of the website.')
-                
+
             }
 
         }
@@ -99,10 +102,12 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
             const validPassword = validatePassword(passwordValue);
             if (validPassword) {
                 event.target.setCustomValidity('');
+                setPasswordValidated(true);
             } else {
                 event.target.setCustomValidity('Please provide a valid password.');
+                setPasswordValidated(false);
             }
-        }
+        } else setPasswordValidated(false);
     }
     const validatePassword = (password) => {
         // Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character
@@ -119,10 +124,14 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
             event.target.setCustomValidity('');
         }
     }
-
     return (
         <>
-            <Button variant="" className='color-secondary-reverse nav-link' onClick={handleShow}>
+            <Button variant=""
+                className='color-secondary-reverse nav-link'
+                onClick={handleShow}
+                onMouseOver={() => setShowSignUpPerson(true)}
+                onMouseLeave={() => setShowSignUpPerson(false)}
+            >
                 Sign Up
             </Button>
 
@@ -136,12 +145,16 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
                             setFirstName={setFirstName} setLastName={setLastName} setEmail={setEmail} />
 
                         <Row2 password={password} retypedPassword={retypedPassword} passwordMsg={passwordMsg}
+                            validated={validated} passwordValidated={passwordValidated}
                             handlePasswordChange={handlePasswordChange} handleRetypedPasswordChange={handleRetypedPasswordChange} />
 
                         <Form.Group className="mb-3">
                             <Form.Check
                                 required
-                                label={<div>I accept and have not read the <span className='tac-link fst-italic' onClick={goToTermsAndConditionsPage}>terms and conditions</span></div>}
+                                label={<div>I accept and have not read the <span
+                                    className='tac-link fst-italic text-decoration-underline pointer'
+                                    onClick={goToTermsAndConditionsPage}>terms and conditions</span>
+                                </div>}
                                 // label={<div>I accept and have not read the <Link to={`/termsandconditions`} onClick={handleClose}>terms and conditions</Link></div>}
                                 feedback="You must accept before submitting"
                                 feedbackType="invalid"

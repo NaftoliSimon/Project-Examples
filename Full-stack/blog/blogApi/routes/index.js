@@ -39,7 +39,7 @@ router.route('/blogs')
 router.route('/posts/:postID')
   .get(function (req, res, next) {
     console.log(req.params.postID);
-    pool.query('SELECT * FROM posts WHERE userId = ?', [req.params.postID], (error, results, fields) => { //post has primary id and also user id which is blogs' primary key
+    pool.query('SELECT * FROM posts WHERE userId = ? ORDER BY id DESC;', [req.params.postID], (error, results, fields) => { //posts are fetched in descending order so that the newest post is displayed (first) on top
       if (error) {
         return res.sendStatus(500);//TODO: create a more specific error for user
       }
@@ -81,12 +81,12 @@ router.route('/:blogID/deleteComment/:commentID/:postID')
   .get(function (req, res, next) {
     pool.query('DELETE FROM comments WHERE id = ?', [req.params.commentID], (error, results, fields) => { //post has primary id and also user id which is blogs' primary key
       if (error) {
-        return res.sendStatus(500);//TODO: create a more spacific error for user
+        return res.sendStatus(500);//TODO: create a more specific error for user
       }
       if (!results.affectedRows) {
         return res.sendStatus(404)
       }
-      // res.redirect(`${origin}/blogs/${req.params.blogID}/${req.params.postID}`) //postID is added to url only for reselecting the selected posts to open the comments after deleting one of its comments (see PostsList.js)
+      // res.redirect(`${origin}/blogs/${req.params.blogID}/${req.params.postID}`) //postID is added to url only for re-selecting the selected posts to open the comments after deleting one of its comments (see PostsList.js)
       res.redirect(`${origin}/blogs/${req.params.blogID}`)
     })
   })
@@ -129,14 +129,6 @@ router.route('/signUp')
     })
   })
 router.route('/login/:email')
-  // .get(function (req, res, next) {
-  //   pool.query('SELECT password FROM users WHERE email = ?',[req.params.email], (error, results, fields) => {
-  //     if (error) {
-  //       return res.sendStatus(500);//TODO: create a more specific error for user
-  //     }
-  //     return res.send(results);
-  //   })
-  // })
   .get(function (req, res, next) {
     pool.query('SELECT password FROM users WHERE email = ?', [req.params.email], (error, results, fields) => {
       if (error) {
@@ -201,9 +193,11 @@ router.route('/postInfo/edit')
   });
 
 /*TODO: 
-Comments: add Update features
-Blogs & Posts: add Insert, Update, and delete features
+Posts: add Update features
+Blogs & Posts: add delete features
 Make adding & editing comments and posts automatically update without refreshing the page
+Limit data to x amount fetched and displayed at one time
+Separate above routs into separate files for organizational purposes
 */
 
 module.exports = router;

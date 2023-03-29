@@ -33,7 +33,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost, loggedI
   }
 
   //bootstrap style
-  const liStyle = ` bgColor-primary color-secondary-reverse p-3 m-2 rounded border ${center}`;
+  const liStyle = ` bgColor-primary color-secondary-reverse p-3 m-2 rounded border ${center} w-100`;
   const titleStyle = `h6 text-capitalize text-decoration-underline`;
   const commentsBtnStyle = `d-block btn post-btn color-primaryLight`;
 

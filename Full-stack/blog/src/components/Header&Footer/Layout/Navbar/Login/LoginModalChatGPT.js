@@ -6,8 +6,7 @@ import myFetch from '../../../../../functions/myFetch';
 import ModalBody from './LoginModal/ModalBody';
 import ModalFooter from './LoginModal/ModalFooter';
 
-export default function LoginModal(params) {
-    const { show, setShow, setShowSignUp, loggedIn, setLoggedIn, setShowLoginPerson, showLogin: title } = params;
+export default function LoginModal({ show, setShow, setShowSignUp, loggedIn, setLoggedIn, setShowLoginPerson, showLogin: title }) {
     const modalTitle = typeof title === 'string' ? title : "Account Log In"; //showLogin (or title) is either true or a string
 
     const [email, setEmail] = useState('');
@@ -20,14 +19,13 @@ export default function LoginModal(params) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const handleOpenSignUp = () => {
-        handleClose();
-        setShowSignUp(true);
-    }
-    const url = `${baseUrl}/signUp`
+    const handleOpenSignUp = () => setShowSignUp(true);
+
     useEffect(() => {
-        myFetch(url, setSavedUser); //combine this with Sign up's fetch?
+        const url = `${baseUrl}/signUp` // Use the correct endpoint for fetching user data
+        myFetch(url, setSavedUser);
     }, [])
+
     function handleLogin() {
         const validUser = savedUser.find(obj => obj.email === email);
         if (validUser) {
@@ -43,7 +41,10 @@ export default function LoginModal(params) {
         }
     }
 
+    const buttonText = 'Log In'; // Define buttonText
+    const handleAction = handleLogin; // Define handleAction
     const disabled = !email || !password; // Define disabled
+
     return (
         <>
             <Button variant=""
@@ -57,11 +58,9 @@ export default function LoginModal(params) {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton className='bgColor-primaryLight'><Modal.Title>{modalTitle}</Modal.Title></Modal.Header>
-
                 <ModalBody invalidEmail={invalidEmail} email={email} setEmail={setEmail} invalidPassword={invalidPassword}
                     setPassword={setPassword} password={password} handleLogin={handleLogin} />
-
-                <ModalFooter handleClose={handleClose} handleOpenSignUp={handleOpenSignUp} handleLogin={handleLogin} disabled={disabled} />
+                <ModalFooter handleClose={handleClose} handleOpenSignUp={handleOpenSignUp} disabled={disabled} />
             </Modal>
         </>
     );

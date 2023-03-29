@@ -44,7 +44,6 @@ export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) 
       {selectedBlog && <SelectedBlog selectedBlog={selectedBlog} loggedIn={loggedIn} />}
       {addPost}
       {!postsArr.length && <NoData selectedBlog={selectedBlog} />}
-      <AddPost/>
       <PostsList postsArr={postsArr} loggedIn={loggedIn} setShowLogin={setShowLogin} setLoggedIn={setLoggedIn} />
       <ButtonLink text='Return to Blogs' link={links.Blogs} large={true} />
     </>

@@ -34,6 +34,16 @@ export default function About() {
                         Add icons (on forms, header, footer, ect) and add images, background images, to make website look nicer
                     </li>
                     {/* <li className={li}>Add comment replies?</li> */}
+                    {/* <li className={li}>Automatically log user out after x time (ie remove user from localStorage if not logged in)</li> */}
+                    {/* <li className={li}>Add change password (& logged in account info)</li> */}
+                    {/* <li className={li}>Do all the TODOs throughout the project, or delete them if not applicable</li> */}
+                    {/* <li className={li}>Add date/time to posts & comments</li> */}
+                    {/* <li className={li}>Add a search bar for blogs</li> */}
+                    {/* <li className={li}>Add auto load when scrolling down to (fetch and) show more blogs, posts, or comments</li> */}
+                    {/*Icon's to add: 
+                    Forms: lock and unlock for passwords, blog/text for comments & posts, person icon for name, ect
+                    header/footer: social media icons, dropdown icon: bsJustify, list icon
+                    other: next and prev (arrows) for when fetching limited data at a time (if no auto-scrolling)*/}
                 </ul>
             </div>
             <hr />
