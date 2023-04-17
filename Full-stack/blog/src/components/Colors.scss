@@ -68,7 +68,8 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
     color: $secondary-reverse;
 }
 .icon {
-    opacity: 70%;
+    opacity: 80%;
+    color: $white;
 }
 .bgColor-primaryLight, body, .dropdown:hover{
     background-color: $primaryLight;
@@ -85,6 +86,10 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
 }
 .edit {
     border-color: $primary;
+}
+.inputGroup {
+    // background-color: rgb(232, 240, 254);
+    background-color: white;
 }
 
 //Links
@@ -126,7 +131,8 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
 }
 
 .button:hover {
-    border-color: $black;
+    // border-color: $black;
+    opacity: 90%;
 }
 
 .post-btn,

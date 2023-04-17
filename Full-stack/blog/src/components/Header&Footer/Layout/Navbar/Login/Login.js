@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { BsPerson, BsPersonAdd, BsPersonCheck, BsPersonCircle, BsPersonDown, BsPersonUp } from 'react-icons/bs';
 import center from '../../../../../data/Bootstrap/center';
 import Icon from './Icon';
-// import LoginModal from './LoginModal';
-import LoginModal from './LoginModalChatGPT'
+import LoginModal from './LoginModal';
+// import LoginModal from './LoginModalChatGPT'
 import LogOut from './LogOut';
 import SignUpModal from './SignUpModal/SignUpModal';
 

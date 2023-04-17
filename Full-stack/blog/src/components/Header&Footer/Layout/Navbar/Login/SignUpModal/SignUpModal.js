@@ -8,34 +8,27 @@ import baseUrl from '../../../../../../data/URLpaths';
 import myFetch from '../../../../../../functions/myFetch';
 import myPostFetch from '../../../../../../functions/myPostFetch'
 import useCustomNav from '../../../../../../hooks/navigate';
-import Icon from '../Icon';
-import { BsPerson, BsPersonAdd, BsPersonPlus } from 'react-icons/bs';
+import Row3 from './Row3';
 
 export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn, setShowSignUpPerson }) {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [retypedPassword, setRetypedPassword] = useState('');
+    const initialFormFields = { firstName: '', lastName: '', email: '', password: '', retypedPassword: '' }
+    const [fields, setFields] = useState(initialFormFields); //Form input fields
 
     const [savedEmails, setSavedEmails] = useState({});
     const [takenEmail, setTakenEmail] = useState(false);
     const [validated, setValidated] = useState(false);
     const [passwordValidated, setPasswordValidated] = useState(false);
-    // const [showSignUpPerson, setShowSignUpPerson] = useState(false);
+    const [attemptedSubmit, setAttemptedSubmit] = useState(false)
 
+    const setField = (fieldKeyAsString, value) => setFields({ ...fields, [fieldKeyAsString]: value })
+    const { firstName, lastName, email, password, retypedPassword } = fields;
     //TODO: Add show hide password icon/button
     //TODO: Add icons by inputs to make it look nicer
-
-    const passwordMsg = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
-
     const url = `${baseUrl}/signUp`;
     const signUpData = {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ firstName: firstName, lastName: lastName, email: email, password: password })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fields)
     };
     useEffect(() => {
         myFetch(url, setSavedEmails);
@@ -52,11 +45,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn, 
         setShowLogin(true);
     }
     const clearFields = () => {
-        setFirstName('');
-        setLastName('')
-        setEmail('');
-        setPassword('');
-        setRetypedPassword('');
+        setFields(initialFormFields);
     }
 
     const navigate = useCustomNav()
@@ -67,6 +56,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn, 
     }
 
     const handleSubmit = (event) => {
+        setAttemptedSubmit(true);
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -96,7 +86,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn, 
     };
     const handlePasswordChange = (event) => {
         const passwordValue = event.target.value;
-        setPassword(passwordValue);
+        setField('password', passwordValue);
         // setValidated(false);
         if (passwordValue.length > 0) {
             const validPassword = validatePassword(passwordValue);
@@ -109,14 +99,13 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn, 
             }
         } else setPasswordValidated(false);
     }
-    const validatePassword = (password) => {
-        // Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character
+    const validatePassword = (password) => { // Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
         return passwordRegex.test(password);
     }
     const handleRetypedPasswordChange = (event) => {
         const retypedPasswordValue = event.target.value;
-        setRetypedPassword(retypedPasswordValue);
+        setField('retypedPassword', retypedPasswordValue)
         // setValidated(false);
         if (retypedPasswordValue.length > 0 && password !== retypedPasswordValue) {
             event.target.setCustomValidity('Passwords do not match.');
@@ -141,13 +130,11 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn, 
                 </Modal.Header>
                 <Modal.Footer className='bgColor-primaryLight'>
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                        <Row1 firstName={firstName} lastName={lastName} email={email} takenEmail={takenEmail}
-                            setFirstName={setFirstName} setLastName={setLastName} setEmail={setEmail} />
-
-                        <Row2 password={password} retypedPassword={retypedPassword} passwordMsg={passwordMsg}
-                            validated={validated} passwordValidated={passwordValidated}
-                            handlePasswordChange={handlePasswordChange} handleRetypedPasswordChange={handleRetypedPasswordChange} />
-
+                        <Row1 firstName={firstName} lastName={lastName} setField={setField} />
+                        <Row2 email={email} takenEmail={takenEmail} setField={setField} />
+                        <Row3 password={password} retypedPassword={retypedPassword} validated={validated}
+                            handlePasswordChange={handlePasswordChange} handleRetypedPasswordChange={handleRetypedPasswordChange} 
+                            passwordValidated={passwordValidated} attemptedSubmit={attemptedSubmit}/>
                         <Form.Group className="mb-3">
                             <Form.Check
                                 required

@@ -26,7 +26,7 @@ export default function LoginModal(params) {
     }
     const url = `${baseUrl}/signUp`
     useEffect(() => {
-        myFetch(url, setSavedUser); //combine this with Sign up's fetch?
+        myFetch(url, setSavedUser); //TODO: combine this with Sign up's fetch?
     }, [])
     function handleLogin() {
         const validUser = savedUser.find(obj => obj.email === email);

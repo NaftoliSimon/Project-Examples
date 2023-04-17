@@ -41,13 +41,14 @@ export default function About() {
                     {/* <li className={li}>Add a search bar for blogs</li> */}
                     {/* <li className={li}>Add auto load when scrolling down to (fetch and) show more blogs, posts, or comments</li> */}
                     {/*Icon's to add: 
-                    Forms: lock and unlock for passwords, blog/text for comments & posts, person icon for name, ect
                     header/footer: social media icons, dropdown icon: bsJustify, list icon
-                    other: next and prev (arrows) for when fetching limited data at a time (if no auto-scrolling)*/}
+                    other: next and prev (arrows) for when fetching limited data at a time (if no auto-scrolling)*
+                    login/logout/signup: make login icon to click with dropdown menu to dropdown option to signup or login but if logged in show sign up, instead of just seperate link with icons hover/}
+                    {/*TODO: fix error where page extends with horizontal scrollbar on the 'blogs/id' page (remove scrollbar) */}
                 </ul>
             </div>
             <hr />
-            <ButtonLink text='Return to Blogs' link={links.Blogs}></ButtonLink>
+            <ButtonLink text='Return Home' link={links.Blogs}></ButtonLink>
         </div >
     )
 }

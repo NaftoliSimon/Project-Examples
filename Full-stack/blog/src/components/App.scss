@@ -3,9 +3,19 @@
 /*For all color related CSS see Colors.scss*/
 
 //TODO: fix bloglist display size on smaller screen
+
+$inputZindex: 4;
+
+body {
+    font-size: small;
+}
+
 .post {
     width: 100%;
     /*Post List on 'blogs/id' page*/
+}
+.bg-image {
+    background-image: url('../../public/Images/blogBackground.jpg');
 }
 
 .list-group {
@@ -37,17 +47,64 @@
     cursor: pointer;
 }
 
-.eye {
-    position: absolute;
-    right: 11px;
-    top: 5px;
-    z-index: 3;
-}
-
 .input,
 .button {
     border-width: 1px !important;
     border-style: solid !important; //for border-color see Colors.scss
+}
+
+// icons
+.password-input {
+    background-image: none !important; //removes default valid/invalid icons after submit attempt, because eye icon is in its place (see SignUpModal/Row3.js)
+}
+
+.input-icon {
+    z-index: 4;
+    position: relative;
+    left: 8px;
+    top: 27px;
+    margin-top: -29px; //this removes extra empty space from icons original position
+}
+
+.eye-icon {
+    position: absolute;
+    right: 11px;
+    top: 7px;
+    z-index: $inputZindex;
+}
+
+.password-login {
+    //login password icon
+    position: absolute;
+    left: 8px;
+    top: 5px;
+    z-index: $inputZindex;
+}
+
+//signUp icons
+.inputPadding {
+    padding-left: 2em; //ps-4 and ps-5 are both wrong lengths, need in between
+}
+
+.password-msg {
+    position: absolute;
+    // margin-top: -39px;
+    margin-top: -19px;
+}
+
+@media screen and (min-width: 576px) {
+    body {
+        font-size: medium;
+    }
+
+    .input-icon {
+        top: 30px;
+        margin-top: -33px;
+    }
+
+    .eye-icon {
+        top: 5px;
+    }
 }
 
 @media screen and (min-width: 1200px) {

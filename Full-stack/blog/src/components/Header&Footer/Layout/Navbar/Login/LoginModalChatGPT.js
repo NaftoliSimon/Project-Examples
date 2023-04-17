@@ -60,7 +60,7 @@ export default function LoginModal({ show, setShow, setShowSignUp, loggedIn, set
                 <Modal.Header closeButton className='bgColor-primaryLight'><Modal.Title>{modalTitle}</Modal.Title></Modal.Header>
                 <ModalBody invalidEmail={invalidEmail} email={email} setEmail={setEmail} invalidPassword={invalidPassword}
                     setPassword={setPassword} password={password} handleLogin={handleLogin} />
-                <ModalFooter handleClose={handleClose} handleOpenSignUp={handleOpenSignUp} disabled={disabled} />
+                <ModalFooter handleClose={handleClose} handleOpenSignUp={handleOpenSignUp} handleLogin={handleLogin} disabled={disabled} />
             </Modal>
         </>
     );

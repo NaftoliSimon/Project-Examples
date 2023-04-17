@@ -1,52 +1,27 @@
-import React, { useState } from 'react'
-import { Col, Form, InputGroup, Row } from 'react-bootstrap'
-import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import React from 'react'
+import { Col, Form, Row, InputGroup } from 'react-bootstrap'
+import { BsEnvelopeFill } from 'react-icons/bs'
+import focusOn from '../../../../../../functions/focusOn'
+import InputIcon from './InputIcon'
 
-export default function Row2(params) {
-    const { password, handlePasswordChange, passwordMsg, retypedPassword, handleRetypedPasswordChange, validated, passwordValidated } = params;
-    const [passwordVisible, setPasswordVisible] = useState(false);
-    const hidePassword = () => setPasswordVisible(false);
-    const showPassword = () => setPasswordVisible(true);
-
-    const bgColor = validated && !passwordValidated ? 'bg-white' : 'bg-transparent'; //set background color to white only to hide default validation warning symbol, otherwise make transparent to show default background color (which is usually white but can also be light grey when filling out the field from Chrome saved suggestion) TODO: fix the issue of different background color (white on grey) when hovering over Chrome tooltip suggestion
-    const eyeIcon = <div className={`eye ${bgColor}`}>
-        <BsEye size={20} className={`pointer`} onMouseDown={showPassword} onMouseUp={hidePassword} onMouseLeave={hidePassword} />
-    </div>
-    const eyeSlashIcon = <div className={`eye ${bgColor}`}>
-        <BsEyeSlash  size={20} className={`pointer`} onMouseDown={showPassword} onMouseUp={hidePassword} onMouseLeave={hidePassword} />
-    </div>
+export default function Row2({ email, setField, takenEmail }) {
     return (
         <Row className="mb-3">
-            <Form.Group as={Col} md="6" controlId="validationCustom03">
-                <Form.Label>Password</Form.Label>
-                <InputGroup className="mb-3">
-                    <Form.Control
-                        type={passwordVisible ? 'text' : 'password'}
-                        placeholder="Password"
+            <Form.Group as={Col} md="12" controlId="validationCustom05">
+                <Form.Label>Email {takenEmail}</Form.Label>
+                <InputIcon name={'email'} icon={<BsEnvelopeFill />}/>
+                    <Form.Control type="email"
+                        name='email'
+                        placeholder="name@gmail.com"
                         required
-                        value={password}
-                        onChange={e => handlePasswordChange(e)}
-                        aria-describedby="passwordHelpBlock"
-                    className={`rounded`}
+                        value={email}
+                        onChange={e => setField('email', e.target.value)}
+                        className={`inputPadding`}
                     />
-                    {passwordVisible ? eyeSlashIcon : eyeIcon}
-                    <Form.Control.Feedback type="invalid">
-                        {passwordMsg}
-                    </Form.Control.Feedback>
-                </InputGroup>
-            </Form.Group>
-
-            <Form.Group as={Col} md="6" controlId="validationCustom04">
-                <Form.Label>Retype Password</Form.Label>
-                <Form.Control type="password"
-                    placeholder="Retype Password"
-                    required
-                    value={retypedPassword}
-                    onChange={e => handleRetypedPasswordChange(e)}
-                />
-                <Form.Control.Feedback type="invalid">
-                    Does Not Match Password.
-                </Form.Control.Feedback>
+                    {/* <div className='email-signUp' onClick={() => focusOn(`email`)}><BsEnvelopeFill /></div> */}
+                {/* <Form.Control.Feedback type="invalid">
+                    Please provide a valid email.
+                </Form.Control.Feedback> */}
             </Form.Group>
         </Row>
     )

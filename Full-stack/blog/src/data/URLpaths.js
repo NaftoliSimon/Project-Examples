@@ -4,6 +4,7 @@ const baseUrl = `http://localhost:3000`; //server's base url
 //Internal links for navigating the website
 const navBaseUrl = `http://localhost:3001`;
 const links = {
+    Home: `/blogs`,
     Blogs: `/blogs`,
     About: `/about`,
     // Contact: `/fakeNonexistentLink`,

@@ -4,6 +4,7 @@ import { show } from '../../../data/Bootstrap/hide';
 import { links } from '../../../data/URLpaths';
 import AddBlog from './AddBlog';
 import BlogItemLayout from './BlogItemLayout';
+import Welcome from './welcome/Welcome';
 
 //TODO: For organizational consistently move the 'blog' folder to 'pages' folder as it is a separate page from blogslist 
 
@@ -18,11 +19,12 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
   };
 
   return (<>
+    <Welcome loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr}/>
     <AddBlog loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
     <h4 className={`text-center dark`}>Please Select A Blog To Read</h4>
 
     <ul className={`list-group d-flex flex-row flex-wrap color-secondary-reverse ${center}`}>
-      {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id}/>)}
+      {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id} />)}
     </ul>
     {blogsArr.length <= 2 && <div className={`m-4 p-4 invisible ${show.lg_xl} color-secondary`}> .</div>}
     {blogsArr.length > 2 && blogsArr.length <= 4 && <div className={` invisible ${show.lg_xl} color-secondary`}> .</div>}
