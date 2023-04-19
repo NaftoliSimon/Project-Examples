@@ -26,7 +26,7 @@ export default function AddBlog({ loggedIn, setShowLogin, blogsArr }) {
     //TODO: Add ability to edit logged in user's blog details (ie website, ect)
     return (<>
        {loggedIn && !loggedInUserBlog && <AddBlogModal show={show} setShow={setShow} loggedIn={loggedIn}/>} {/*if you are logged in but you don't have a blog yet */}
-        <div className={`${center} m-3 `}>
+        <div className={`${center} p-3 `}>
             {loggedInUserBlog ? blogDisplay : addBlogButton}
         </div>
     </>

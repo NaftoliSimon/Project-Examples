@@ -22,17 +22,17 @@ export default function MyVerticallyCenteredModal(props) { //rename to DeleteCom
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton className='bgColor-primaryLight'>
+            <Modal.Header closeButton className='bgColor-primaryLight backgroundImage-primary'>
                 <Modal.Title id="contained-modal-title-vcenter" className='dark'>
                     DELETE COMMENT
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body className='bgColor-primaryLight'>
+            <Modal.Body className='bgColor-primaryLight backgroundImage-primary'>
                 <p className='dark'>
                     Comment will be deleted permanently.
                 </p>
             </Modal.Body>
-            <Modal.Footer className='bgColor-primaryLight'>
+            <Modal.Footer className='bgColor-primaryLight backgroundImage-primary'>
                 <Button  className='button' onClick={deleteComment} href={deleteCommentUrl}>Delete Comment</Button>
                 <Button className='button' onClick={props.onHide}>Cancel</Button>
             </Modal.Footer>

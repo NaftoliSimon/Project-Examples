@@ -7,7 +7,7 @@ import DefaultCard from './Card';
 import { links } from '../../../../data/URLpaths';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function WriteABlogCard({ loggedIn, setShowLogin, blogsArr, displayComponent = false }) {
+export default function WriteABlogCard({ loggedIn, setShowLogin, blogsArr}) {
     const [loggedInUserBlog, setLoggedInUserBlog] = useState(null);
     const [show, setShow] = useState(null); //show add blog modal
     const navigate = useNavigate();

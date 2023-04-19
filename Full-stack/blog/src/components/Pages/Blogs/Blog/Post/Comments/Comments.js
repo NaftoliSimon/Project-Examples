@@ -32,7 +32,7 @@ export default function Comments({ commentsArr, postId, loggedIn, setShowLogin, 
     <ul className='list-group'>
       {commentsArr.map(comment => {
         const { id, postId } = comment;
-        return <li className={`bgColor-primaryLight text-dark comment p-2 m-3 rounded`} key={`${postId}/${id}`} id={`comment-${id}`}>
+        return <li className={`bgColor-primaryLight text-dark comment p-2 m-3 rounded backgroundImage-primary`} key={`${postId}/${id}`} id={`comment-${id}`}>
           <div className='container'>
             <div className="row">
               {id !== selectedComment && <CommentDisplay comment={comment} changeSelectedComment={changeSelectedComment} loggedIn={loggedIn}/>} {/* If comment is NOT selected, then show comment display */}

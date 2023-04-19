@@ -56,7 +56,7 @@ export default function LoginModal(params) {
             </Button>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton className='bgColor-primaryLight'><Modal.Title>{modalTitle}</Modal.Title></Modal.Header>
+                <Modal.Header closeButton className='bgColor-primaryLight backgroundImage-primary'><Modal.Title>{modalTitle}</Modal.Title></Modal.Header>
 
                 <ModalBody invalidEmail={invalidEmail} email={email} setEmail={setEmail} invalidPassword={invalidPassword}
                     setPassword={setPassword} password={password} handleLogin={handleLogin} />

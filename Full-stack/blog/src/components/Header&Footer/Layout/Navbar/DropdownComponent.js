@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Dropdown, Form } from 'react-bootstrap';
 import { links } from '../../../../data/URLpaths';
 import useCustomNav from '../../../../hooks/navigate';
+import blogListLocation from '../../../../data/scrollToHeight';
+
 
 const DropdownComponent = () => {
   //TODO: add dark mode to dropdown
   const navigate = useCustomNav();
+  // const scrollToHeight = text === 'Blogs' ? blogListLocation : null; //null defaults to top of page
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <button
@@ -61,8 +64,10 @@ const DropdownComponent = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu as={CustomMenu}>
-        {Object.entries(links).map(([name, link]) =>
-          <Dropdown.Item key={name} className='dropdown' onClick={() => navigate(link, true)}>{name}</Dropdown.Item>)}
+        {/* {Object.entries(links).map(([name, [link, icon]]) =>
+          <Dropdown.Item key={name} className='dropdown' onClick={() => navigate(link, name === 'Blogs' ? blogListLocation : null)}>
+            {icon}<span className='ps-1'>{name}</span>
+            </Dropdown.Item>)} */}
       </Dropdown.Menu>
     </Dropdown>
   );

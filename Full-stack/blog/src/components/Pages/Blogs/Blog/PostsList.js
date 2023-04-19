@@ -18,16 +18,18 @@ export default function PostsList({ postsArr, loggedIn, setShowLogin, setLoggedI
     localStorage.setItem(lsKey, selectedPostId)
   }, [selectedPostId])
 
-  return (<div className={`row ${center}`}>
-    {/* <div> */}
+  return (<div className='container'>
+    <div className={`row ${center}`}>
+      {/* <div> */}
       <AddPost />
-    {/* </div> */}
-    <ul className={`list-group post d-flex flex-row flex-wrap ${center}`}>
-      {postsArr.map(post => {
-        return <Post post={post} selectedPostId={selectedPostId} loggedIn={loggedIn} setShowLogin={setShowLogin}
-          changeSelectedPost={changeSelectedPost} key={`${post.id}`} setLoggedIn={setLoggedIn} />
-      })}
-    </ul>
+      {/* </div> */}
+      <ul className={`list-group post d-flex flex-row flex-wrap ${center}`}>
+        {postsArr.map(post => {
+          return <Post post={post} selectedPostId={selectedPostId} loggedIn={loggedIn} setShowLogin={setShowLogin}
+            changeSelectedPost={changeSelectedPost} key={`${post.id}`} setLoggedIn={setLoggedIn} />
+        })}
+      </ul>
+    </div>
   </div>
   )
 }

@@ -124,11 +124,11 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn, 
                 Sign Up
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton className='bgColor-primaryLight'>
+            <Modal show={show} onHide={handleClose}> {/* className='backgroundImage-primary' */}
+                <Modal.Header closeButton className='bgColor-primaryLight backgroundImage-primary'>
                     <Modal.Title>Create an Account</Modal.Title>
                 </Modal.Header>
-                <Modal.Footer className='bgColor-primaryLight'>
+                <Modal.Footer className='bgColor-primaryLight backgroundImage-primary'>
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <Row1 firstName={firstName} lastName={lastName} setField={setField} />
                         <Row2 email={email} takenEmail={takenEmail} setField={setField} />

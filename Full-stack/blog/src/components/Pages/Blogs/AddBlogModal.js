@@ -67,11 +67,11 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
 
                 <Modal show={show} onHide={handleClose}>
 
-                    <Modal.Header closeButton className='bgColor-primaryLight'>
+                    <Modal.Header closeButton className='bgColor-primaryLight backgroundImage-primary'>
                         <Modal.Title>{text} Your Blog Info</Modal.Title>
                     </Modal.Header>
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                        <Modal.Body className='bgColor-primaryLight'>
+                        <Modal.Body className='bgColor-primaryLight backgroundImage-primary'>
 
                             <Row>
                                 <Form.Group as={Col} md="6" controlId="validationCustom01">
@@ -99,7 +99,7 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
                             </Row>
 
                         </Modal.Body>
-                        <Modal.Footer className='bgColor-primaryLight'>
+                        <Modal.Footer className='bgColor-primaryLight backgroundImage-primary'>
 
                             <div className='ms-1 d-flex'>
                                 <Button type="submit" className={`button`}>{text}</Button>

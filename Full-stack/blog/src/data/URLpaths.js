@@ -13,8 +13,8 @@ const links = {
 //External links for navigating to other websites
 const linkedinProfile = 'https://www.linkedin.com/in/naftoli-simon-174b20206/';
 const socialMediaLinks = {
-    Facebook: '/fakeNonExistentLink',
-    LinkedIn: linkedinProfile
+    LinkedIn: linkedinProfile,
+    Facebook: '/fakeNonExistentLink'
 }
 
 export default baseUrl;

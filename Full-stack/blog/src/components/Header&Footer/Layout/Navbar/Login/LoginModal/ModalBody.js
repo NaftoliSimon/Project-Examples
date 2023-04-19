@@ -25,7 +25,7 @@ export default function ModalBody(params) {
     };
 
     return (
-        <Modal.Body className='bgColor-primaryLight'>
+        <Modal.Body className='bgColor-primaryLight backgroundImage-primary'>
             <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Email address {invalidEmail}</Form.Label>

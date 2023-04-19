@@ -29,10 +29,10 @@ export default function AddEditComment({ unSelectComment, comment, setLoggedIn, 
         // setLoggedIn(savedLoggedIn);
     }
 
-    const textInputStyle = `input w-100 bgColor-primaryLight rounded border-0`;
+    const textInputStyle = `w-100 bgColor-primaryLight rounded border-0 backgroundImage-primary edit-hover`;
     return (
-        <div className='border p-2 rounded edit'>
-            <div className={`bgColor-primaryLight rounded`}>
+        <div className='border p-2 rounded borderColor-primary backgroundImage-primary'>
+            <div className={`bgColor-primaryLight rounded backgroundImage-primary`}>
                 <textarea className={textInputStyle} placeholder="Comment goes here..." value={commentBody} onChange={e => setCommentBody(e.target.value)} autoFocus />
                 <input className={textInputStyle} placeholder='name' value={commentName} onChange={e => setCommentName(e.target.value)}></input>
             </div>

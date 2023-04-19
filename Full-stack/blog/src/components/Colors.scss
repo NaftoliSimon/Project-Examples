@@ -1,4 +1,4 @@
-/*Color related CSS in this file*/
+/*Color (& background image) related CSS in this file*/ 
 /*This file displays the color scheme for the entire website (that can't be done by just bootstrap default colors)*/
 /*For all non-color related CSS see App.scss*/
 
@@ -16,6 +16,7 @@ $cyan: #0dcaf0;
 //PrimaryLight colors:
 $lightBlue: #b6d1fa;
 $lightIndigo: #c8b4ee;
+$lighterIndigo:#ffdcf7; //#f8ceee;
 $lightOrange: #ffd8bb;
 $lightYellow: #f0e7cc;
 $lightGreen: #defcee;
@@ -27,21 +28,34 @@ $black: black;
 
 //Darker primary colors need $secondary to be a dark color (ie dark grey). Lighter primary colors need $secondary to be a light color (ie white)
 $primary: $indigo;
-$primaryLight: $lightIndigo;
+$primaryLight: $lighterIndigo;
 $secondary: $darkGrey; //swap this color with secondary-reverse's color (see above comment)
 $secondary-reverse: $white; //swap this color with secondary's color (see above comment)
 $dark: $black; //if primary color is a dark color set $dark to $primary, else set it to black
 
+//Background Images - background images are chosen based on color theme. (ie pink/purple related photos when primary color is indigo)
+$lightBackgroundRGBA: rgba(255,255,255,0.25); //sets background image to be lighter - In this case 2.5 (the higher the number - the lighter the background)
+$lighterBackgroundRGBA: rgba(255,255,255,0.75);//set background image to be even lighter
+$defaultBackgroundImage: '../../public/Images/pinkTriangleBackground.jpg';
+
 :export {
     navbarColor: $secondary;
 }
-// body, * {
-//     color: $primaryLight !important;
-// }
 
+body, .backgroundImage-primary {
+    background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
+}
+.bg-welcome {
+    background-size: cover;
+    background-image: linear-gradient($lightBackgroundRGBA, $lightBackgroundRGBA), url('../../public/Images/natureBackground.jpg');
+}
+.borderColor-primary {
+    border-color: $primary;
+}
 .bgColor-primary {
     background-color: $primary;
 }
+
 .color-primary {
     color: $primary;
 }
@@ -50,29 +64,54 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
     color: $secondary;
 }
 
-.color-secondary-reverse, .blog {
-    color: $secondary-reverse;
-}
-
 .dark {
     color: $dark;
 }
 
-.blog:hover {
-    opacity: 85%;
+.color-secondary-reverse,
+.blog {
     color: $secondary-reverse;
+}
+
+.blog:hover {
+    opacity: 90%; //a little bit of opacity is removed to slightly lighten the element's background color, dynamically (no matter what color the primary color is set to)
+    color: $secondary-reverse;
+}
+.edit-hover:hover {
+    border: 1px solid $primary;
+    // background-color: white !important;
 }
 
 .footer {
     background-color: $secondary;
     color: $secondary-reverse;
 }
+
 .icon {
     opacity: 80%;
     color: $white;
 }
-.bgColor-primaryLight, body, .dropdown:hover{
+
+.bgColor-primaryLight,
+body {
     background-color: $primaryLight;
+}
+.dropdown{
+    // border-top: 1px solid transparent;
+    // border-bottom: 1px solid transparent;
+}
+#dropdown-basic:hover, #dropdown-basic:active, #dropdown-basic:focus {
+border-color: transparent;
+border-radius: 0px;
+}
+#dropdown-basic {
+    color: black;
+}
+.dropdown:hover {
+    background-color: $primary;
+    color: $secondary-reverse;
+    background-image: $defaultBackgroundImage;
+    // border-color: $primary;
 }
 
 .input {
@@ -84,18 +123,18 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
 .input:active {
     border-color: $black !important;
 }
-.edit {
-    border-color: $primary;
-}
+
 .inputGroup {
     // background-color: rgb(232, 240, 254);
     background-color: white;
 }
 
 //Links
-.nav-link, .nav-link:hover{
+.nav-link,
+.nav-link:hover {
     color: $secondary-reverse;
 }
+
 .nav-link:hover {
     // opacity: 80%;
     color: $primaryLight;
@@ -111,22 +150,29 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
 }
 
 //buttons
-.button,  .button:hover, .button:focus {
+.button,
+.button:hover,
+.button:focus {
     background-color: $primary; //dark colored button (edit & delete comment buttons)
     color: $secondary-reverse;
     border-color: $primaryLight;
 }
+
 .button:disabled {
     background-color: $primaryLight;
     border-color: $secondary-reverse;
     opacity: 75%;
 }
+
 .header-button {
     background-color: $primary;
     color: $secondary-reverse;
     // border-color: $secondary-reverse;
 }
-.header-button:hover, .header-button:active, .header-button:focus {
+
+.header-button:hover,
+.header-button:active,
+.header-button:focus {
     background-color: $primary;
 }
 
@@ -137,7 +183,8 @@ $dark: $black; //if primary color is a dark color set $dark to $primary, else se
 
 .post-btn,
 .post-btn:active,
-.post-btn:focus, .post-btn:hover {
+.post-btn:focus,
+.post-btn:hover {
     color: $black; //light colored button (show/hide & add commnents btn)
     background-color: $primaryLight;
 }

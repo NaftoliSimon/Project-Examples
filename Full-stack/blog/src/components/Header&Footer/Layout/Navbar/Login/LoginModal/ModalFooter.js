@@ -20,7 +20,7 @@ export default function ModalFooter({ handleClose, handleOpenSignUp, handleLogin
         //         </div>
         //     </div>
         // </Modal.Footer>
-        <Modal.Footer className='bgColor-primaryLight d-flex flex-row-reverse'>
+        <Modal.Footer className='bgColor-primaryLight d-flex flex-row-reverse backgroundImage-primary'>
             <Button className={'button order-3'} onClick={handleLogin}>
                 Log In
             </Button>

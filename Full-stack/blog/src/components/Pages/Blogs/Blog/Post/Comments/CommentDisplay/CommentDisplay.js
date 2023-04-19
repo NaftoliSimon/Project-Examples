@@ -5,11 +5,11 @@ import Dropdown from './Dropdown'
 export default function CommentDisplay({ comment, changeSelectedComment, loggedIn }) {
     const { id, postId, body, name, userId } = comment;
     return (<>
-        <div className="col p-0 m-0">
+        <div className="col p-0 m-0 bg-transparent">
             <CommentLayout body={body} name={name} />
         </div>
         {loggedIn && loggedIn.userId === userId && 
-        <div className="col-auto p-0 m-0"> {/*only show dropdown if the logged in user id is the same as the comment's userId */}
+        <div className="col-auto p-0 m-0 bg-transparent"> {/*only show dropdown if the logged in user id is the same as the comment's userId */}
             <Dropdown commentId={id} postId={postId} changeSelectedComment={changeSelectedComment} />
         </div>}
     </>)

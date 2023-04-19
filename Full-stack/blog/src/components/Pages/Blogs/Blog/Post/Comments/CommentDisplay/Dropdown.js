@@ -10,13 +10,13 @@ function BasicExample({ commentId, postId, changeSelectedComment }) {
 
   return (<>
     <Dropdown>
-      <Dropdown.Toggle variant="" id="dropdown-basic" className='ps-2' > {/*variant="" removes default react bootstrap color (bootstrap primary) */}
-
+      <Dropdown.Toggle variant="" id="dropdown-basic" className='ps-2 backgroundImage-primary' > {/*variant="" removes default react bootstrap color (bootstrap primary) */}
+        Edit
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        <Dropdown.Item className='dropdown' onClick={() => changeSelectedComment(commentId)}>Edit</Dropdown.Item>
-        <Dropdown.Item className='dropdown' onClick={() => setModalShow(true)}>Delete</Dropdown.Item>
+      <Dropdown.Menu className='backgroundImage-primary'>
+        <Dropdown.Item className='dropdown ' onClick={() => changeSelectedComment(commentId)}>Edit</Dropdown.Item>
+        <Dropdown.Item className='dropdown ' onClick={() => setModalShow(true)}>Delete</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
 

@@ -3,17 +3,16 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 import center from '../../data/Bootstrap/center';
 import { links, socialMediaLinks } from '../../data/URLpaths';
-import LinksList from '../Header&Footer/Layout/Navbar/LinksList';
-import SocialMediaLinkItem from './Layout/Navbar/SocialMediaLinkItem';
+import { FaHome, FaInfoCircle, FaReadme } from 'react-icons/fa';
+import NavLink from './Layout/Navbar/NavLink';
 
 const aboutUsMessage = `Designed and built with half the love in the world, without the help of any other human developers or contributors.`
 
 export default function Footer() {
     const { Facebook, LinkedIn } = socialMediaLinks;
-    // const justify = "d-flex justify-content-start";
-    const justify = 'd-flex align-items-center'
+    const justify = 'd-flex align-items-center mb-0'
     return (
-        <footer className="bgColor-primary color-secondary-reverse py-5 mt-5">
+        <footer className="bgColor-primary color-secondary-reverse py-5">
             <Container>
                 <Row>
                     <Col md={3}>
@@ -21,14 +20,19 @@ export default function Footer() {
                         <p className={center}>{aboutUsMessage}</p>
                     </Col>
                     <Col md={2}>
-                        <h5 className={justify}>Quick Links</h5>
-                        <ul className={``}><LinksList links={links} /></ul>
+                        <h5 className={justify}>Links</h5>
+                        <ul className={`list-group  mb-3`}>
+                            {/* <LinksList links={links} /> */}
+                            <NavLink text={'Home'} link={links.Home} icon={<FaHome/>} />
+                            <NavLink text={"Blogs"} link={links.Blogs} icon={<FaReadme/>}/>
+                            <NavLink text={'About'} link={links.About} icon={<FaInfoCircle/>}/>
+                        </ul>
                     </Col>
                     <Col md={2}>
                         <h5 className={justify}>Follow Us</h5>
-                        <ul className={`list-group mb-2`}>
-                            <SocialMediaLinkItem link={Facebook} name={'Facebook'} icon={<BsFacebook/>}/>
-                            <SocialMediaLinkItem link={LinkedIn} name={'LinkedIn'} icon={<BsLinkedin/>}/> 
+                        <ul className={`list-group mb-3`}>
+                            <NavLink link={LinkedIn} text={'LinkedIn'} icon={<BsLinkedin />} />
+                            <NavLink link={Facebook} text={'Facebook'} icon={<BsFacebook />} />
                         </ul>
                     </Col>
                     <Col md={2}>

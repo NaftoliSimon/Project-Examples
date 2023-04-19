@@ -3,7 +3,7 @@ import ButtonLink from '../ButtonLink';
 import { linkedinProfile, links } from '../../data/URLpaths';
 
 export default function About() {
-    const li = `list-group-item bgColor-primaryLight dark border-0 pt-0`;
+    const li = `list-group-item bg-transparent dark border-0 pt-0`;
     return (
         <div className={`text-center dark`}>
             <h3>About This Website</h3>

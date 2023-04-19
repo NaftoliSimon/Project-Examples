@@ -21,6 +21,16 @@ function App() {
   const [blogsArr, setBlogsArr] = useState([]); //state with an array of blogs to display to the user
   const [loggedIn, setLoggedIn] = useState(loggedInUser); //Registered website user logged in or not: If user is logged out 'loggedIn' is set to false. If user is logged in 'loggedIn' is set to an object with the user's info/data from the users table from the database (sign up data)
   const [showLogin, setShowLogin] = useState(false); //Shows login popup modal form. If not showing, set to false, if showing set to modalTitle string (or true)
+//   const [loggedInUserBlog, setLoggedInUserBlog] = useState(null); //id of logged in user's blog
+//  useEffect(() => {
+//   if (loggedIn) {
+//     if(blogsArr) {
+//       setLoggedInUserBlog(blogsArr.find(blog => blog.userId === loggedIn.userId));
+//     }
+//   } else {
+//     setLoggedInUserBlog(null)
+//   }
+//  },[loggedIn]);
   //TODO: move showSign up here as well and add "set show sign up" to bottom of terms and conditions page?
   //TODO: Automatically log user out after x time (ie remove user from localStorage if not logged in)
   //https://dev.to/eons/detect-page-refresh-tab-close-and-route-change-with-react-router-v5-3pd
@@ -56,7 +66,7 @@ function App() {
   const { Blogs: home, About: about } = links;
   return (
     <BrowserRouter>
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} />
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} blogsArr={blogsArr}/>
       <Routes>
         <Route path="/" element={<Navigate replace to={home} />}></Route> {/*this is a redirect*/}
 
