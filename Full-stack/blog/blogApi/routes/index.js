@@ -1,3 +1,27 @@
+// const express = require('express');
+// const origin = 'http://localhost:3001' //Server runs on port 3000 (default). React runs on port 3001 (default since 3000 is taken)
+// const router = express.Router();
+// const blogsRouter = require('./blogs');
+// const postsRouter = require('./posts');
+// const commentsRouter = require('./comments');
+// const signUpRouter = require('./signUp');
+// const loginRouter = require('./login');
+// const blogInfoRouter = require('./blogInfo');
+
+// //Allow CORS
+// router.use(require('cors')({
+//   origin: origin
+// }));
+
+// router.use('/blogs', blogsRouter);
+// router.use('/posts', postsRouter);
+// router.use('/comments', commentsRouter);
+// router.use('/signUp', signUpRouter);
+// router.use('/login', loginRouter);
+
+// router.use('/blogInfo', blogInfoRouter);
+
+// module.exports = router;
 const express = require('express');
 const router = express.Router();
 const pool = require('../pool')
@@ -27,8 +51,8 @@ router.route('/blogs')
     })
   })
   .post((req, res, next) => {
-    pool.query('INSERT INTO blogs(name, website, companyName) VALUES (?,?,?)',
-      [req.body.name, req.body.website, req.body.companyName]),
+    pool.query('INSERT INTO blogs(name, website, companyName, shortSummary) VALUES (?,?,?,?)',
+      [req.body.name, req.body.website, req.body.companyName, shortSummary]),
       (error, results, fields) => {
         if (error) {
           return res.sendStatus(500);
@@ -140,8 +164,8 @@ router.route('/login/:email')
   })
 router.route('/blogInfo')
   .post((req, res, next) => {
-    pool.query('INSERT INTO blogs(website, companyName, name, userId) VALUES (?,?,?,?)',
-      [req.body.website, req.body.companyName, req.body.name, req.body.userId],
+    pool.query('INSERT INTO blogs(website, companyName, name, shortSummary, userId) VALUES (?,?,?,?,?)',
+      [req.body.website, req.body.companyName, req.body.name, req.body.shortSummary, req.body.userId],
       (error, results, fields) => {
         if (error) {
           console.log(`Unable to create blog - ${error.message}`)
@@ -153,8 +177,8 @@ router.route('/blogInfo')
   });
 router.route('/blogInfo/edit')
   .post((req, res, next) => {
-    pool.query('Update blogs SET website = ?, companyName = ? WHERE userId = ?',
-      [req.body.website, req.body.companyName, req.body.userId],
+    pool.query('Update blogs SET website = ?, companyName = ?, shortSummary = ? WHERE userId = ?',
+      [req.body.website, req.body.companyName, req.body.shortSummary, req.body.userId],
       (error, results, fields) => {
         if (error) {
           console.log(`Unable to update blog info - ${error.message}`)
@@ -167,6 +191,7 @@ router.route('/blogInfo/edit')
 
   router.route('/postInfo')
   .post((req, res, next) => {
+    console.log('postInfo: post info sent');
     pool.query('INSERT INTO posts(title, body, userId) VALUES (?,?,?)',
       [req.body.title, req.body.body, req.body.userId],
       (error, results, fields) => {
@@ -180,8 +205,9 @@ router.route('/blogInfo/edit')
   });
 router.route('/postInfo/edit')
   .post((req, res, next) => {
-    pool.query('Update posts SET title = ?, body = ? WHERE userId = ?',
-      [req.body.title, req.body.body, req.body.userId],
+    console.log('userId:', req.body.userId);
+    pool.query('Update posts SET title = ?, body = ? WHERE id = ?',
+      [req.body.title, req.body.body, req.body.postId],
       (error, results, fields) => {
         if (error) {
           console.log(`Unable to update post info - ${error.message}`)
@@ -191,6 +217,19 @@ router.route('/postInfo/edit')
       }
     )
   });
+  router.route('/postInfo/delete/:blogId/:postId')
+  .get(function (req, res, next) {
+    pool.query('DELETE FROM post WHERE id = ?', [req.params.postId], (error, results, fields) => {
+      if (error) {
+        return res.sendStatus(500);//TODO: create a more specific error for user
+      }
+      if (!results.affectedRows) {
+        return res.sendStatus(404)
+      }
+      // res.redirect(`${origin}/blogs/${req.params.blogID}/${req.params.postID}`) //postID is added to url only for re-selecting the selected posts to open the comments after deleting one of its comments (see PostsList.js)
+      res.redirect(`${origin}/blogs/${req.params.blogId}`);
+    })
+  })
 
 /*TODO: 
 Posts: add Update features

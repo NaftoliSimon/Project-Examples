@@ -1,0 +1,148 @@
+/* Layout related CSS for the entire website is in this file */
+/*This file displays layout features that can't be done by just bootstrap*/
+/*For all color related CSS see Colors.scss (this also includes background images and opacity)*/
+
+//TODO: fix bloglist display size on smaller screen
+
+$inputZindex: 4; //if input index is set to less than 4 it messes up the password input display
+
+body {
+    font-size: small; //small font size for small screens. Medium font size for bigger screens
+}
+
+.card {
+    min-width: 200px;
+}
+
+.blog {
+    min-width: 470px;
+}
+
+.post {
+    width: 100%; //Post List on 'blogs/id' page
+}
+
+.postDropdownToggle {
+    border: none;
+}
+
+.list-group {
+    list-style-type: none;
+}
+
+.nav-link {
+    padding-left: 0em;
+    padding-right: 0em;
+    text-decoration: none;
+    font-style: italic; //for nav-link colors see Colors.scss
+    border: none;
+    border-radius: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link:hover,
+.nav-link:active {
+    border: none; //for nav-link colors see Colors.scss
+    cursor: pointer;
+    //text-decoration: underline;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.cursor-text {
+    cursor: text;
+}
+
+.input,
+.button {
+    border-width: 1px !important;
+    border-style: solid !important; //for border-color see Colors.scss
+}
+
+.edit-hover:hover {
+    border: 1px solid;
+
+}
+
+.text-truncate-container p {
+    //truncates long text with 3 dots ... after -webkit-line-clamp amount of lines (see blogItemDisplay)
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.blogListItemLayout {
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 250px;
+    max-height: 250px;
+}
+
+// sign up & login forms - input icons
+.input-parent {
+    position: relative; //Log in and sign up form input parents
+}
+
+.input-parent .input-icon {
+    position: absolute; //sets position for all form input icons at the beginning of the input
+    top: 32px;
+    left: 21px;
+    z-index: $inputZindex;
+    font-size: large;
+}
+
+.login-parent .input-icon {
+    left: 10px;
+}
+
+.password-input {
+    background-image: none !important; //removes default valid/invalid icons after submit attempt, because eye icon is in its place (see SignUpModal/Row3.js)
+}
+
+.eye-icon {
+    position: absolute;
+    right: 11px;
+    top: 7px;
+    z-index: $inputZindex;
+}
+
+.inputPadding {
+    padding-left: 2em; //Adds empty space for input icon. ( bootstrap sizes ps-4 and ps-5 are both wrong lengths, need in between)
+}
+
+.password-msg {
+    position: absolute;
+    margin-top: -15px;
+}
+
+@media screen and (min-width: 576px) {
+    body {
+        font-size: medium;
+    }
+
+    .input-icon {
+        top: 36px !important;
+    }
+
+    .eye-icon {
+        top: 5px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .blog {
+        width: 46%; //Blog List on 'blogs' page: Width is set for two column layout, and 50% bootstrap default + padding & margin is too big. Therefore width is set here at 46%. (Padding + Margin = 4px)
+    }
+
+    .post {
+        width: 75%;
+    }
+}
