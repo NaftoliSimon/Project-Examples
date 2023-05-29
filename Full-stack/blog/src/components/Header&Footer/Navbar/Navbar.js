@@ -6,7 +6,7 @@ import LinksList from './LinksList';
 export default function Navbar() {
     return (
         <>
-            <ul className={`col col-sm nav p-0`}>
+            <ul className={`col col-sm nav p-0 pt-1`}>
                 <Icon />
                 <LinksList links={links}/>
             </ul>

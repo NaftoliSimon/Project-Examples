@@ -82,6 +82,7 @@ other: next and prev(arrows) for when fetching limited data at a time(if no auto
     TODO: fix error where page extends with horizontal scrollbar on the 'blogs/id' page(remove scrollbar) * /}
 
  Additional possible features to add(Do all the things above first): 
+ Add a loggedIn user account info to loggedIn dropdown that will show account data that is not blog data (such as email, password change option)
 Add Edit Your Info to loggedIn icon dropdown 
 Add auto load when scrolling down to(fetch and) show more blogs, posts, or comments ?
     Add Categories to blogs 
@@ -90,4 +91,6 @@ Add comment replies ?
         Add change password(& logged in account info) 
 Add a go to top of page button / link at bottom of page 
 Add likes to posts & comments(look at linkedin feed on home page for example) 
-Make edited posts / comments say edited */
+Make edited posts / comments say edited 
+
+*/

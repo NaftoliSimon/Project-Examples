@@ -11,13 +11,15 @@ export default function Icon({ style }) {
     // const color = 'white';
     // const color = 'black';
     const color = 'blue';
-
+    // const image = `../Icons/blog-icon-${color}.png`;
+    const image = `../Icons/blogIcon.png` //`../Icons/blog-icon-${color}.png`
+    const imgStyle = `img-thumbnail bgColor-primary border-0 mr-3 p-0`;
     return (<>
         <a className={`me-3 ${center} pointer ${style} ${show.lg_xl}`} href={`${navBaseUrl}${links.blogs}`}> {/* onClick={() => navigate(`${links.blogs}`) */}
-            <img src={`../Icons/blog-icon-${color}.png`} alt="Blog-Logo" width="50" height="50" className='img-thumbnail bgColor-primary border-0 mr-3 p-0' />
+            <img src={image} alt="Blog-Logo" width="55" height="55" className={imgStyle} />
         </a>
         <a className={`col m-0 p-0 pointer ${hide.lg_xl}`} href={`${navBaseUrl}${links.blogs}`}>
-            <img src={`../Icons/blog-icon-${color}.png`} alt="Blog-Logo" width="50" height="50" className='img-thumbnail bgColor-primary border-0 m-0 p-0' />
+            <img src={image} alt="Blog-Logo" width="55" height="55" className={imgStyle} />
         </a>
     </>)
 }
