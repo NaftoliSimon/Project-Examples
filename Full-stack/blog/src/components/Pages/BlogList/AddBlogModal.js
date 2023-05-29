@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import baseUrl from '../../../data/URLpaths';
 import myPostFetch from '../../../functions/myPostFetch';
-import focusOn from '../../../functions/focusOn';
 import { pillButtonSolid } from '../../../data/Bootstrap/pillButton';
 
 export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData = false }) { //Add or edit Blog data Modal. For edit - pass the preexisting data to update, into the "savedUpdateData" object. For add - just leave it out of the props
@@ -24,7 +23,8 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
-                { companyName: companyName, website: website, shortSummary: shortSummary, name: `${firstName} ${lastName}`, userId: userId }
+                // { companyName: companyName, website: website, shortSummary: shortSummary, name: `${firstName} ${lastName}`, userId: userId }
+                { companyName, website, shortSummary, name: `${firstName} ${lastName}`, userId }
             )
         };
         const handleClose = () => setShow(false);

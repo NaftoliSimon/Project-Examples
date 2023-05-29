@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import pillButton, { pillButtonSolid } from '../../../../data/Bootstrap/pillButton';
+import { pillButtonSolid } from '../../../../data/Bootstrap/pillButton';
 
 export default function CommentsBtn({ text, handleClick }) {
     const defaultShadow = 'shadow-sm';

@@ -12,7 +12,7 @@ export default function ModalFooter({ handleClose, handleOpenSignUp, handleLogin
             <Button className={`button order-2 ${pillButtonSolid}`} onClick={handleClose}>
                 Cancel
             </Button>
-            <div className='ps-5 order-1'>Don't have an account? <a className='link pointer' onClick={handleOpenSignUp}>Sign Up</a></div>
+            <div className='ps-5 order-1'>Don't have an account? <span className='link link-color pointer' onClick={handleOpenSignUp}>Sign Up</span></div>
         </Modal.Footer>
     );
 }

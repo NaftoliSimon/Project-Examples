@@ -1,5 +1,5 @@
-import { FaComment, FaCommentAlt, FaHome, FaInfoCircle, FaReadme } from "react-icons/fa";
-import {BsChatLeftTextFill} from "react-icons/bs";
+import { BsFacebook, BsGithub, BsLinkedin } from "react-icons/bs";
+import { FaComment, FaHome, FaInfoCircle } from "react-icons/fa";
 
 //Url path for fetching data from blogApi
 const baseUrl = `http://localhost:3000`; //server's base url
@@ -24,8 +24,13 @@ const linkedinProfile = 'https://www.linkedin.com/in/naftoli-simon-174b20206/';
 const socialMediaLinks = {
     linkedIn: linkedinProfile,
     github:    `https://github.com/NaftoliSimon/Project-Examples/tree/main/Full-stack/blog`,
-    facebook: '/fakeNonExistentLink'
+    // facebook: '/fakeNonExistentLink'
+}
+const socialMediaLinkIcons = {
+    linkedIn: <BsLinkedin />,
+    github: <BsGithub />,
+    facebook: <BsFacebook />
 }
 
 export default baseUrl;
-export { links, socialMediaLinks, linkedinProfile, navBaseUrl, linkIcons };
+export { links, socialMediaLinks, linkedinProfile, navBaseUrl, linkIcons, socialMediaLinkIcons };

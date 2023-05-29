@@ -9,9 +9,9 @@ export default function ButtonLink({ text, link, large = false }) { //for a larg
     const [shadow, setShadow] = useState(defaultShadow);
     const navigate = useCustomNav();
     let size = 'm-2'
-    if (large) {
-        size = 'm-3 btn-lg'
-    }
+    // if (large) {
+    //     size = 'm-3 btn-lg'
+    // }
     const scrollToHeight = text === 'Return to Blogs' ? blogListLocation : null; //null defaults to top of page
     return (
         <div className={`pb-3 container ${center}`}>

@@ -1,4 +1,3 @@
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import center from '../../../data/Bootstrap/center';
 import pillButton from '../../../data/Bootstrap/pillButton';

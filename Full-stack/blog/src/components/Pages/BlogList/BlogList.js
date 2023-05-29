@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import center from '../../../data/Bootstrap/center';
-import { show } from '../../../data/Bootstrap/hide';
-import { links } from '../../../data/URLpaths';
 import AddBlog from './AddBlog';
 import BlogItemLayout from './BlogItemLayout';
 import Welcome from '../welcome/Welcome'; 
@@ -29,6 +27,6 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
   </>)
 }
 
-      {/* {blogsArr.length <= 2 && <div className={`m-4 p-4 invisible ${show.lg_xl} color-secondary`}> .</div>}
-      {blogsArr.length > 2 && blogsArr.length <= 4 && <div className={` invisible ${show.lg_xl} color-secondary`}> .</div>} */}
-      {/* the 2 line above are to fill up space with content so that footer reaches bottom of page */}
+      /* {blogsArr.length <= 2 && <div className={`m-4 p-4 invisible ${show.lg_xl} color-secondary`}> .</div>}
+      {blogsArr.length > 2 && blogsArr.length <= 4 && <div className={` invisible ${show.lg_xl} color-secondary`}> .</div>} */
+      /* the 2 line above are to fill up space with content so that footer reaches bottom of page */

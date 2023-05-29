@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap';
-import BlogItemLayout from '../BlogList/BlogItemLayout';
 import AddBlogModal from '../BlogList/AddBlogModal';
 import DefaultCard from './Card';
 import { links } from '../../../data/URLpaths';
@@ -26,7 +24,7 @@ export default function WriteABlogCard({ loggedIn, setShowLogin, blogsArr }) {
         if (loggedIn) {
             setLoggedInUserBlog(blogsArr.find(blog => blog.userId === loggedIn.userId));
         }
-    }, [loggedIn])
+    }, [loggedIn, blogsArr])
 
     //TODO: Add ability to edit logged in user's blog details (ie website, ect)
 

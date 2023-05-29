@@ -2,25 +2,25 @@ import React, { useState } from 'react'
 import { links } from '../../../data/URLpaths';
 import useCustomNav from '../../../hooks/navigate';
 import { Card } from 'react-bootstrap';
-import { BsBuildingFill, BsDisplayFill, BsPcDisplayHorizontal, BsPersonFill, BsWindowFullscreen } from 'react-icons/bs';
+import { BsBuildingFill, BsPersonFill } from 'react-icons/bs';
 import ListIcon from './ListIcon';
 
-export default function BlogItemLayout({ blog, style = '' }) {
+export default function BlogItemLayout({ blog, bsStyle = '' }) { //bootstrap style in optional
   const navigate = useCustomNav();
   const defaultShadow = `shadow-sm `;//border borderColor
   const [shadow, setShadow] = useState(defaultShadow); //state used to control shadow on hover to get bootstrap's shadow value. Easily change shadow type (see https://getbootstrap.com/docs/5.3/utilities/shadows/#examples)
 
   
   const onHover = ` border borderColor backgroundColor`;
-  const liStyle = `list-group  bgColor-primary bg-transparent p-0 m-0  color-secondary-reverse pointer ${style}`;
+  const liStyle = `list-group bgColor-primary bg-transparent p-0 m-0  color-secondary-reverse pointer ${bsStyle}`;
   const { id, name, website, companyName, userId, shortSummary } = blog;
   const blogUrl = `${links.blogs}/${userId}`;
   // const defaultImage = '../../../../public/Images/noImage.png';
-  const defaultImage = 'Images/noImage.png';
+  // const defaultImage = 'Images/noImage.png';
   const defaultShortSummary = `${name} has not put in a blog introduction yet. 
   `;
   return (
-    <li className={liStyle} key={id} onClick={() => navigate(blogUrl)}> {/*links to Blog.js */} {/*className={liStyle} */}
+    <li className={liStyle} key={id} onClick={() => navigate(blogUrl)}> {/*links to Blog.js */}
       <Card className={`m-2 bgColor-primary pointer ${shadow} blogListItemLayout`}
         onMouseOver={() => setShadow(`shadow ${onHover}`)} onMouseLeave={() => setShadow(defaultShadow)}
       >

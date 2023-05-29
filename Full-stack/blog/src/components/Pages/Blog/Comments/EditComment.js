@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import center from '../../../../data/Bootstrap/center';
-import baseUrl, { links } from '../../../../data/URLpaths';
+import baseUrl from '../../../../data/URLpaths';
 import myPostFetch from '../../../../functions/myPostFetch';
 import EditCommentBtn from './EditCommentBtn';
 

@@ -43,10 +43,7 @@ $borderColor-light: $lightBlue; //used for buttons & input shadow
 $lightBackgroundRGBA: rgba(255, 255, 255, 0.25); //sets background image to be lighter - In this case 2.5 (the higher the number - the lighter the background)
 $lighterBackgroundRGBA: rgba(255, 255, 255, 0.75); //set background image to be even lighter
 $defaultBackgroundImage: '';
-
-:export {
-    navbarColor: $secondary;
-}
+$welcomeBackgroundImage: '../../public/Images/stlBackground4.jpg'; //1,4, 7, 8, 9,11, 
 
 body,
 .backgroundImage-primary,
@@ -57,13 +54,15 @@ body,
 
 .bg-welcome {
     background-size: cover;
-    // background-image: linear-gradient($lightBackgroundRGBA, $lightBackgroundRGBA), url('../../public/Images/whiteBackground4.jpg');
-    background-image: url('../../public/Images/whiteBackground4.jpg');
+    background-image: linear-gradient($lightBackgroundRGBA, $lightBackgroundRGBA), url($welcomeBackgroundImage);
+    // background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($welcomeBackgroundImage);
+    background-image: url($welcomeBackgroundImage); 
 }
 
 .welcome-card {
     // background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
-    background-color: $primaryLight !important;
+    // background-color: $primaryLight !important;
+    opacity: 85%;
 }
 
 .borderColor-primary,

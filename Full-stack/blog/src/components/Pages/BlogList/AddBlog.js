@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap';
 import center from '../../../data/Bootstrap/center';
 import BlogItemLayout from './BlogItemLayout';
 import AddBlogModal from './AddBlogModal';
@@ -8,21 +7,21 @@ export default function AddBlog({ loggedIn, setShowLogin, blogsArr }) {
     const [loggedInUserBlog, setLoggedInUserBlog] = useState(null);
     const [show, setShow] = useState(null); //show add blog modal
 
-    const openLoginModal = () => setShowLogin('You Must Log In To View Your Blog');
+    // const openLoginModal = () => setShowLogin('You Must Log In To View Your Blog');
     function openAddBlog() {
         setShow(true);
         //TODO: open add Blog Modal form to add blog to database (companyName, website, ect, see db for details)
     }
-    const openModal = loggedIn ? openAddBlog : openLoginModal;
+    // const openModal = loggedIn ? openAddBlog : openLoginModal;
 
     useEffect(() => {
         if (loggedIn) {
             setLoggedInUserBlog(blogsArr.find(blog => blog.userId === loggedIn.userId));
         }
-    }, [loggedIn])
+    }, [loggedIn, blogsArr])
 
     const blogDisplay = <BlogItemLayout blog={loggedInUserBlog} />;
-    const invisibleBlogDisplay = <BlogItemLayout style={'invisible'} blog={blogsArr[0]}/>; //when no blog to display, this component takes up the space and keeps the page the same length (without this link to blog's height would be off, see scrollToHeight.js)
+    const invisibleBlogDisplay = <BlogItemLayout bsStyle={'invisible'} blog={blogsArr[0]}/>; //when no blog to display, this component takes up the space and keeps the page the same length (without this link to blog's height would be off, see scrollToHeight.js)
     return (<>
         {/* <h4 className='text-center p-0 m-0 mt-2'>Log In / Sign Up to View Your Blog</h4> */}
        {loggedIn && !loggedInUserBlog && <AddBlogModal show={show} setShow={setShow} loggedIn={loggedIn}/>} {/*if you are logged in but you don't have a blog yet */}

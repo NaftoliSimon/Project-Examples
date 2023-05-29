@@ -4,8 +4,19 @@ import InputIcon from './InputIcon'
 import Eye from './Eye'
 import { BsLockFill } from 'react-icons/bs';
 
-export default function Row4({handleRetypedPasswordChange, validated, retypedPassword}) {
+export default function Row4({ validated, retypedPassword, setField, password }) {
     const [retypedPasswordVisible, setRetypedPasswordVisible] = useState(false);
+
+    const handleRetypedPasswordChange = (event) => {
+        const retypedPasswordValue = event.target.value;
+        setField('retypedPassword', retypedPasswordValue)
+        if (retypedPasswordValue.length > 0 && password !== retypedPasswordValue) {
+            event.target.setCustomValidity('Passwords do not match.');
+        } else {
+            event.target.setCustomValidity('');
+        }
+    }
+    
     return (
         <Row className="mb-3">
             <Form.Group as={Col} md="12" controlId="validationSignUp05" className='input-parent'>

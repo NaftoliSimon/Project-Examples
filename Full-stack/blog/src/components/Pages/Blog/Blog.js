@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import center from '../../../data/Bootstrap/center';
 import baseUrl, { links } from '../../../data/URLpaths';
 import myFetch from '../../../functions/myFetch';
 import ButtonLink from '../../ButtonLink';
-// import AddPost from './AddPost';
-// import AddPostModal from './AddPostModal';
 import NoData from './NoData';
 import PostsList from './PostsList';
 import SelectedBlog from './SelectedBlog';
@@ -29,7 +27,7 @@ export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) 
       myFetch(postsUrl, setPostsArr)
       hasFetchedData.current = true;
     }
-  }, [url_id])
+  }, [postsUrl])
   function openAddPost() {
     setShow(true)
   }

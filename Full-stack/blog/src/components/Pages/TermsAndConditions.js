@@ -15,7 +15,7 @@ export default function TermsAndConditions() {
                 <h2>3. User Conduct</h2>
                 <p>By accessing or using this website, you agree to use it only for lawful purposes and in accordance with these Terms and Conditions. You may not use this website for any illegal or unauthorized purpose, nor may you, in the use of this website, violate any laws in your jurisdiction.</p>
                 <h2>4. Limitation of Liability</h2>
-                <p>{websiteName} shall not be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of this website or with the delay or inability to use this website.</p>
+                <p>{websiteName} shall not be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of this website or with the delay or inability to use this website. You are responsible for your own words on our website.</p>
                 <h2>5. Indemnification</h2>
                 <p>You agree to indemnify and hold {websiteName}, its affiliates, officers, agents, and other partners and employees, harmless from any loss, liability, claim, or demand, including reasonable attorneys' fees, made by any third party due to or arising out of your use of this website.</p>
                 <h2>6. Modifications</h2>

@@ -3,15 +3,13 @@ import myFetch from '../../../functions/myFetch';
 import Comments from './Comments/Comments';
 import center from '../../../data/Bootstrap/center';
 import baseUrl from '../../../data/URLpaths';
-import { Dropdown } from 'react-bootstrap';
 import AddPost from './AddPost';
-import { BsThreeDotsVertical } from 'react-icons/bs';
-import pillButton, { pillButtonSolid } from '../../../data/Bootstrap/pillButton';
+import  { pillButtonSolid } from '../../../data/Bootstrap/pillButton';
 import PostDropdown from './PostDropdown';
 
 export default function Post({ post, selectedPostId, changeSelectedPost, loggedIn, setShowLogin, setLoggedIn }) {
   const [commentsArr, setCommentsArr] = useState([]);
-  const [btnText, changebtnText] = useState();
+  const [buttonText, changeButtonText] = useState();
   const [showEditPost, setShowEditPost] = useState(false);
   const defaultShadow = 'shadow-sm';
   const [shadow, setShadow] = useState(defaultShadow);
@@ -20,9 +18,9 @@ export default function Post({ post, selectedPostId, changeSelectedPost, loggedI
   useEffect(() => { //when selectedPostId changes
     if (selectedPostId == postId) { //postId is the id of the post from postsArr which we are mapping through
       fetchComments(selectedPostId);
-      changebtnText('Hide Comments');
+      changeButtonText('Hide Comments');
     } else {
-      changebtnText('Show Comments');
+      changeButtonText('Show Comments');
     }
   }, [selectedPostId]); //when Comments button is clicked selectedPostId changes
 
@@ -45,7 +43,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost, loggedI
     className: `${commentsBtnStyle}`, onMouseOver: () => setShadow('shadow'),
     onMouseLeave: () => setShadow(defaultShadow), onClick: () => handleButtonClick(postId)
   };
-  const showHideBtn = <div className={`${center} p-2`}><button {...showHideBtnProps}>{btnText}</button></div>;
+  const showHideBtn = <div className={`${center} p-2`}><button {...showHideBtnProps}>{buttonText}</button></div>;
   return (<>
     {!showEditPost && <li className={`${liStyle}`} id={`post-${postId}`}>
       <div className='w-100'>
