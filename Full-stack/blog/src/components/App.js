@@ -14,44 +14,50 @@ import Footer from './Header&Footer/Footer';
 import TermsAndConditions from './Pages/TermsAndConditions';
 
 function App() {
-  //Get initial logged in user from Session Storage so that user stays logged in on page reloads (if logged in)
-  const ssKey = 'loggedInUser'; //Session storage key
-  const loggedInUser = JSON.parse(sessionStorage.getItem(ssKey));
+  const [blogsArr, setBlogsArr] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useState(null); // loggedInUser is either an object (with the logged in user's info) or null/false
+  const [showLogin, setShowLogin] = useState(false) //shows the login pop up modal
 
-  const [blogsArr, setBlogsArr] = useState([]); //state with an array of blogs to display to the user
-  const [loggedIn, setLoggedIn] = useState(loggedInUser); //Registered website user logged in or not: If user is logged out 'loggedIn' is set to false. If user is logged in 'loggedIn' is set to an object with the user's info/data from the users table from the database (sign up data)
-  const [showLogin, setShowLogin] = useState(false); //Shows login popup modal form. If not showing, set to false, if showing set to modalTitle string (or true)
-  //TODO: move showSign up here as well and add "set show sign up" to bottom of terms and conditions page?
+  const blogsLink = `${baseUrl}/blogs`;
+  const ssKey = 'loggedInUser'; // session storage key
 
-  const blogsLink = `${baseUrl}/blogs`; //My API: (see \Project Examples\Full-stack\blog\blogApi)
-  
-  const hasFetchedData = useRef(false); //useRef to only fetch data once instead of twice (see https://stackoverflow.com/questions/72252358/useeffect-fetch-request-is-pulling-data-twice)
+  const hasFetchedData = useRef(false);
   const hasSetSessionStorage = useRef(false);
+
   useEffect(() => {
-    if (!hasFetchedData.current) {
-      myFetch(blogsLink, setBlogsArr);
+    if (!hasFetchedData.current) { 
+      myFetch(blogsLink, setBlogsArr);  //sets the initial blogsArr data
       hasFetchedData.current = true;
     }
-  
-    if (loggedIn && !hasSetSessionStorage.current) {
-      sessionStorage.setItem(ssKey, JSON.stringify(loggedIn));
+
+    if (!hasSetSessionStorage.current) {
+      const storedUser = JSON.parse(sessionStorage.getItem(ssKey));
+      if (storedUser) {
+        setLoggedInUser(storedUser); //sets the initial logged In user to the stored user, if the user is saved in session storage (so that users stay logged in on page reloads)
+      }
       hasSetSessionStorage.current = true;
     }
-  }, []);
-  
+  }, [blogsLink, ssKey]);
 
-  const blogElem = <Blog blogsArr={blogsArr} loggedIn={loggedIn} setShowLogin={setShowLogin} setLoggedIn={setLoggedIn} />
+  useEffect(() => {
+    if (loggedInUser) { //saves the logged in user to session storage or removes
+      sessionStorage.setItem(ssKey, JSON.stringify(loggedInUser));
+    } else {
+      sessionStorage.removeItem(ssKey);
+    }
+  }, [loggedInUser, ssKey]);
 
-  //sets all of the routs for the url
+  const blogElem = <Blog blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} setLoggedIn={setLoggedInUser} />
+
   const { blogs: home, about } = links;
   return (
     <BrowserRouter>
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} blogsArr={blogsArr} />
+      <Header loggedIn={loggedInUser} setLoggedIn={setLoggedInUser} showLogin={showLogin} setShowLogin={setShowLogin} blogsArr={blogsArr} />
       <Routes>
         <Route path="/" element={<Navigate replace to={home} />} />
 
         <Route path="/">
-          <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedIn} setShowLogin={setShowLogin} />} />
+          <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} />} />
           <Route path={`${home}/:blogId/`} element={blogElem} />
           <Route path={`${home}/:blogId/:postId`} element={blogElem} />
           <Route path={about} element={<About />} />

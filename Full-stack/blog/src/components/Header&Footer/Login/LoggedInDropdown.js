@@ -19,7 +19,6 @@ function IconDropdown({ setLoggedIn, blogsArr, loggedIn, setShowLogin }) { //Log
     }, [loggedIn, blogsArr]);
     function logOut() {
         setShowLogin(false); //stops log in modal from popping up
-        sessionStorage.removeItem('loggedInUser');
         // sessionStorage.removeItem('SelectedPostId');
         setLoggedIn(false);
         window.location.reload(false);//reloads page (to remove all elements that should only show when logged in) 

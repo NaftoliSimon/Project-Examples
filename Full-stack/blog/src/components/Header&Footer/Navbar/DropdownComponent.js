@@ -21,7 +21,6 @@ const DropdownComponent = ({ loggedIn, setLoggedIn, setShowLogin, showLogin, set
 
   function logOut() {
     setShowLogin(false); //stops log in modal from popping up
-    sessionStorage.removeItem('loggedInUser');
     setLoggedIn(false);
     window.location.reload(false);//reloads page (to remove all elements that should only show when logged in) 
   }

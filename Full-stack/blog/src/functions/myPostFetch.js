@@ -1,4 +1,4 @@
-//Simple basic POST fetch
+//Simple basic POST fetch (see postFetch.js for an updated version of this simple function)
 async function myPostFetch(url, headers, errorCallback = false) {
     try {
         const response = await fetch(url, headers);

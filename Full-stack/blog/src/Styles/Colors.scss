@@ -42,7 +42,7 @@ $borderColor-light: $lightBlue; //used for buttons & input shadow
 //Background Images - background images are chosen based on color theme. (ie pink/purple related photos when primary color is indigo)
 $lightBackgroundRGBA: rgba(255, 255, 255, 0.25); //sets background image to be lighter - In this case 2.5 (the higher the number - the lighter the background)
 $lighterBackgroundRGBA: rgba(255, 255, 255, 0.75); //set background image to be even lighter
-$defaultBackgroundImage: '';
+// $defaultBackgroundImage: '../../public/Images/blogBackground.jpg';
 $welcomeBackgroundImage: '../../public/Images/stlBackground4.jpg'; //1,4, 7, 8, 9,11, 
 
 body,

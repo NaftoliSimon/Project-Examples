@@ -79,6 +79,7 @@ other: next and prev(arrows) for when fetching limited data at a time(if no auto
                     welcome card ?
     Blog list card display
                     Add aside card(see linkedin for examples)
+                    Either fix smaller screen logged in dropdown searchbar to filter properly or remove searchbar completely
     TODO: fix error where page extends with horizontal scrollbar on the 'blogs/id' page(remove scrollbar) * /}
 
  Additional possible features to add(Do all the things above first): 
