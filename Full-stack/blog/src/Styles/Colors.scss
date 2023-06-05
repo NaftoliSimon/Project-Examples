@@ -147,6 +147,9 @@ input:hover {
     background-color: $secondary;
     color: $secondary-reverse;
 }
+.smallScreenDropdown:hover { //header dropdown (see DropdownComponent.js)
+    background-color: transparent;
+}
 
 .icon {
     opacity: 80%;

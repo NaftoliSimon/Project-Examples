@@ -3,7 +3,6 @@ import center from '../../../data/Bootstrap/center';
 import pillButton from '../../../data/Bootstrap/pillButton';
 
 function DefaultCard({ header, text, buttonText, onButtonClick }) {
-    //borderColor
     return (
         <Card className={`bgColor-primary  shadow-lg welcome-card`} style={{ width: '18em' }}>
             <Card.Header className='bgColor-primary fw-bold color-secondary-reverse'>{header}</Card.Header>

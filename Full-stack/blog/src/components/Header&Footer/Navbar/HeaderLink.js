@@ -8,6 +8,9 @@ export default function HeaderLink({ text, link, icon, style = '' }) { //style i
     const navigate = useCustomNav();
     const scrollToHeight = text.toLowerCase() === 'blogs' ? blogListLocation : null; //null defaults to top of page
     // const scrollToElem = text.toLowerCase() === 'blogs' ? scrollToBlogList : null;
+    if(!icon) {
+        console.error(`No icon found with url "${link}". See "URLpaths.js" for links and their icons`)
+    }
 
     return (
         <li className={`nav-item d-flex fs-6 fw-lighter ${style}`}>

@@ -5,14 +5,15 @@ import { FaComment, FaHome, FaInfoCircle } from "react-icons/fa";
 const baseUrl = `http://localhost:3000`; //server's base url
 
 //Internal links for navigating the website
-const navBaseUrl = `http://localhost:3001`;
+const runLocally = true;
+const navBaseUrl = runLocally ? `http://localhost:3001` : `https://blogspotstl`;
 const links = {
-    home: `/blogs`, //TODO: switch keys to be lowercase (ie Home: becomes home:) use styling to change  key displayed for links/button texts
+    home: `/blogs`, 
     blogs: `/blogs`,
     about: `/about`,
     // Contact: `/fakeNonexistentLink`,
 };
-const linkIcons = {
+const linkIcons = { //Keep the keys the same name as the 'links' keys, to match the icon with the url path
     home: <FaHome />,
     blogs: <FaComment/>,
     about: <FaInfoCircle/>,

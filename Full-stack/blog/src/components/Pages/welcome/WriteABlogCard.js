@@ -10,23 +10,13 @@ export default function WriteABlogCard({ loggedIn, setShowLogin, blogsArr }) {
     const navigate = useCustomNav();
 
     const openLoginModal = () => setShowLogin('You Must Log In To Blog');
-    function openAddBlog() {
-        if (loggedInUserBlog) {
-            navigate(`${links.blogs}/${loggedInUserBlog.userId}`);
-        } else {
-            setShow(true);
-        }
-
-        //TODO: open add Blog Modal form to add blog to database (companyName, website, ect, see db for details)
-    }
+    const openAddBlog = loggedInUserBlog ? () => navigate(`${links.blogs}/${loggedInUserBlog.userId}`) : () =>  setShow(true);
     const handleClick = loggedIn ? openAddBlog : openLoginModal;
     useEffect(() => {
         if (loggedIn) {
             setLoggedInUserBlog(blogsArr.find(blog => blog.userId === loggedIn.userId));
         }
     }, [loggedIn, blogsArr])
-
-    //TODO: Add ability to edit logged in user's blog details (ie website, ect)
 
     const writeText = 'Write your own personal Blog for other users to read. All you need to do is simply sign up or log in to your account to begin.'
     return (<>

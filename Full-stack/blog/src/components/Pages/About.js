@@ -75,6 +75,7 @@ Make edited comment immediately reload/change to new edited comment after submit
                     Add shadow to any card, button, or box of any kind (except for modals) 
 Icon's to add: 
                     any list in the website
+                    in buttons (see linkedin connect button)
 other: next and prev(arrows) for when fetching limited data at a time(if no auto - scrolling)
                     welcome card ?
     Blog list card display
