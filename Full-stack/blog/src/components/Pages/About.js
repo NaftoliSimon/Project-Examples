@@ -10,7 +10,7 @@ export default function About() {
     const card = `m-4`;
 
     return (<>
-        <div className={`text-center dark`}>
+        <div className={`text-center dark opacity-85 about`}>
             <Card className={card}><Card.Body>
                 <h3>About This Website</h3>
             </Card.Body></Card>

@@ -9,7 +9,7 @@ export default function AddCommentBtn({ openAddComment, loggedIn, setShowLogin }
   }
   const handleClick = loggedIn ? openAddComment : openLoginModal;
   return (
-    <div className={`pb-3 container ${center}`}>
+    <div className={`py-1 pb-3 container ${center}`}>
       <CommentsBtn text={'Add Comment'} handleClick={handleClick}></CommentsBtn>
     </div>
   )

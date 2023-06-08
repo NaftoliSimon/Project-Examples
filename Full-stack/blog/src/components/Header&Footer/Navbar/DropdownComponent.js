@@ -32,7 +32,7 @@ const DropdownComponent = ({ loggedIn, setLoggedIn, setShowLogin, showLogin, set
     <Dropdown className='smallScreenDropdown'>
       <Dropdown.Toggle as={CustomToggle} id="dropdown-basic" />
 
-      <Dropdown.Menu as={CustomMenu} className='backgroundImage-primary'>
+      <Dropdown.Menu as={CustomMenu}>
         <Dropdown.Header>Links</Dropdown.Header>
         <DropdownItem onClick={() => navigate(home)} icon={homeIcon} text={'Home'} />
         <DropdownItem onClick={() => navigate(blogs, blogListLocation)} icon={blogsIcon} text={'Blogs'} />

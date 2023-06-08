@@ -35,7 +35,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost, loggedI
   }
 
   //bootstrap style
-  const liStyle = ` bgColor-primary color-secondary-reverse p-3 m-2 rounded border ${center} w-100 shadow-lg`;
+  const liStyle = `bgColor-primary color-secondary-reverse p-3 m-2 ${center} w-100 rounded border shadow-lg`;
   const titleStyle = `h6 text-capitalize text-decoration-underline`;
   const commentsBtnStyle = `d-block btn post-btn color-primaryLight border ${shadow} ${pillButtonSolid}`;
 
@@ -45,7 +45,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost, loggedI
   };
   const showHideBtn = <div className={`${center} p-2`}><button {...showHideBtnProps}>{buttonText}</button></div>;
   return (<>
-    {!showEditPost && <li className={`${liStyle}`} id={`post-${postId}`}>
+    {!showEditPost && <li className={`${liStyle} opacity-85`} id={`post-${postId}`}>
       <div className='w-100'>
         {loggedIn && loggedIn.userId === userId && <PostDropdown setShowEditPost={setShowEditPost} />}
         <span className={`d-block text-center ${titleStyle}`}>{title}</span>

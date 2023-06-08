@@ -69,7 +69,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         }
         setValidated(true);
     };
-    const bgColor = 'bgColor-primary backgroundImage-primary'
+    const bgColor = 'bgColor-primary'
     return (
         <>
             <Modal show={show} onHide={handleClose}> {/* className='backgroundImage-primary' */}

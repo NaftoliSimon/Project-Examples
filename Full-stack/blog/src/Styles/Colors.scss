@@ -42,13 +42,22 @@ $borderColor-light: $lightBlue; //used for buttons & input shadow
 //Background Images - background images are chosen based on color theme. (ie pink/purple related photos when primary color is indigo)
 $lightBackgroundRGBA: rgba(255, 255, 255, 0.25); //sets background image to be lighter - In this case 2.5 (the higher the number - the lighter the background)
 $lighterBackgroundRGBA: rgba(255, 255, 255, 0.75); //set background image to be even lighter
-// $defaultBackgroundImage: '../../public/Images/blogBackground.jpg';
+$defaultBackgroundImage: '../../public/Images/stlBackground3.jpg'; //businessmanBackground nature stlBackground3 stlBackground8
 $welcomeBackgroundImage: '../../public/Images/stlBackground4.jpg'; //1,4, 7, 8, 9,11, 
-
 body,
-.backgroundImage-primary,
-.bgColor-primaryLight {
+.backgroundImage-primary {
     // background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
+    background: url(($defaultBackgroundImage)) no-repeat center fixed; 
+    background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
+    background-size: cover;
+    
+}
+// .about {
+//     background: url(('../../public/Images/stlBackground8.jpg')) no-repeat center fixed; 
+//     background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url('../../public/Images/stlBackground8.jpg');
+//     background-size: cover;
+// }
+.bgColor-primaryLight {
     background-color: $primaryLight;
 }
 
@@ -56,13 +65,18 @@ body,
     background-size: cover;
     background-image: linear-gradient($lightBackgroundRGBA, $lightBackgroundRGBA), url($welcomeBackgroundImage);
     // background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($welcomeBackgroundImage);
-    background-image: url($welcomeBackgroundImage); 
+    background-image: url('../../public/Images/businessmanBackground.jpg'); 
 }
 
 .welcome-card {
     // background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
     // background-color: $primaryLight !important;
     opacity: 85%;
+}
+.yourBlog {
+    background: url(($defaultBackgroundImage)) no-repeat center center fixed; 
+    background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
+    background-size: cover;
 }
 
 .borderColor-primary,
@@ -83,18 +97,19 @@ input:hover {
     background-color: $borderColor-light !important;
 }
 
+$basePaddingX: 6px;
+$basePaddingY: 12px;
 .borderColorHover {
     color: $borderColor !important;
     font-weight: bold;
-    //default top & bottom padding is 6px
+    padding: $basePaddingX $basePaddingY;
 }
 
 .borderColorHover:hover {
     background-color: $borderColor-light !important;
     opacity: 90%;
     border-width: 2px !important; //makes border thicker
-    padding-top: 5px; //removes 2px (total, from top & bottom) to offset added border width
-    padding-bottom: 5px; //default top & bottom padding not on hover is 6px
+    padding: calc($basePaddingX - 1px) calc($basePaddingY - 1px);
 }
 
 .borderColorSolid {
@@ -108,6 +123,9 @@ input:hover {
     background-color: $borderColor;
     color: $borderColor-light;
     opacity: 100% !important;
+}
+.opacity-85 {
+    opacity: 85%;
 }
 
 .color-primary {
@@ -144,7 +162,7 @@ input:hover {
 
 .footer,
 .dropdown:hover {
-    background-color: $secondary;
+    // background-color: $secondary;
     color: $secondary-reverse;
 }
 .smallScreenDropdown:hover { //header dropdown (see DropdownComponent.js)
@@ -166,7 +184,7 @@ input:hover {
 
 #editCommentToggle {
     border: none;
-    background-color: $primaryLight;
+    background-color: $primary;
 }
 
 #editCommentToggle:hover,
@@ -182,23 +200,24 @@ input:hover {
 textarea {
     /*'input' can be found in the EditComment.js file in the Comments folder*/
     border-color: $primaryLight !important;
+    background-color: transparent;
 }
 
 input:active,
 input:focus,
 textarea:active,
 textarea:focus {
-    // outline: red !important;
     outline: none !important;
     border-color: none !important;
     -webkit-box-shadow: none !important;
-    // box-shadow: none !important;
-    box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px -3px $borderColor-light !important;
+    // box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px -3px $borderColor-light !important;
+    box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px $borderColor-light !important;
+    border-color: $borderColor !important;
 }
 
 .input:hover,
 .input:active {
-    border-color: $black !important;
+    border-color: $borderColor !important;
 }
 
 //Links
@@ -231,11 +250,12 @@ textarea:focus {
 }
 
 .link-color:hover {
-    // color: $primary;
-    // color: $secondary-reverse;
     text-decoration: underline;
     color: $borderColor;
     opacity: 85%;
+}
+.textBorder {
+    -webkit-text-stroke: 2px black;
 }
 
 //buttons

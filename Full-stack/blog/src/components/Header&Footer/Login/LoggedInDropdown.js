@@ -1,7 +1,7 @@
 /* This file uses react-bootstrap instead of regular bootstrap. */
 import React, { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { BsPencil, BsPencilFill, BsPersonCircle } from 'react-icons/bs';
+import {  BsPencilFill, BsPersonCircle } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi'
 import { links } from '../../../data/URLpaths';
 import useCustomNav from '../../../hooks/navigate';
@@ -23,8 +23,8 @@ function IconDropdown({ setLoggedIn, blogsArr, loggedIn, setShowLogin }) { //Log
     const addBlogText = !loggedInUserBlog ? 'Start Blogging' : 'Your Blog';
     return (<>
         <Dropdown className='loggedInIcon'>
-            <Dropdown.Toggle as={'div'} className='rounded-circle pointer'><BsPersonCircle size={35} /></Dropdown.Toggle>
-            <Dropdown.Menu className='backgroundImage-primary'>
+            <Dropdown.Toggle as={'div'} className='rounded-circle pointer'><BsPersonCircle size={45} /></Dropdown.Toggle>
+            <Dropdown.Menu>
                 <DropdownItem onClick={openAddBlog} icon={<BsPencilFill />} text={addBlogText} />
                 <DropdownItem onClick={() => logOut(setShowLogin, setLoggedIn)} icon={<FiLogOut />} text={'Log Out'} />
             </Dropdown.Menu>

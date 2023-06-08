@@ -13,9 +13,10 @@ export default function Welcome({ loggedIn, setShowLogin, blogsArr }) {
   const goToAboutPage = () => navigate('/about');
   const readText = 'Read one (or several) of our many blogs by other users. Simply Click the button below or scroll down the page and select a blog.'
   const aboutText = 'Do you want to know what this website is made of? You can find out by simply clicking the button below.';
+  const titleStyle = 'text-center py-4 text-white fs-1 fw-bolder text-uppercase textBorder';
   return (<>
     <div className={`bg-welcome vh-100 ${show.lg_xl}`}>
-      <h2 className='text-center py-4'>Welcome To {websiteName}</h2>
+      <h2 className={titleStyle}>Welcome To {websiteName}</h2>
       <div className={`${center} gap-4`}>
         <DefaultCard header={'Read A Blog'} text={readText} buttonText={'Read A Blog'} onButtonClick={scrollToBlogList} />
         <WriteABlogCard loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
@@ -24,7 +25,7 @@ export default function Welcome({ loggedIn, setShowLogin, blogsArr }) {
     </div>
 
     <div className={` bg-welcome vh-100 ${hide.lg_xl}`}>
-      <h2 className='text-center pt-4'>Welcome To {websiteName}</h2>
+      <h2 className={titleStyle}>Welcome To {websiteName}</h2>
       <div className={`${center} flex-column gap-2`}>
         <div className={`${center} gap-2 `}>
         <DefaultCard header={'Read A Blog'} text={readText} buttonText={'Find A Blog'} onButtonClick={scrollToBlogList} />

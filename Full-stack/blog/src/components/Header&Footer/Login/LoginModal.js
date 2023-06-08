@@ -56,7 +56,7 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
     const disabled = !email || !password; // Define disabled
     return (
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton className='bgColor-primary backgroundImage-primary'><Modal.Title>{modalTitle}</Modal.Title></Modal.Header>
+            <Modal.Header closeButton className='bgColor-primary'><Modal.Title>{modalTitle}</Modal.Title></Modal.Header>
 
             <ModalBody invalidEmail={invalidEmail} email={email} setEmail={setEmail} invalidPassword={invalidPassword} 
                 setPassword={setPassword} password={password} handleLogin={handleLogin} 

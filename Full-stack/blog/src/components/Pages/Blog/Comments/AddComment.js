@@ -22,15 +22,16 @@ export default function AddComment({ closeAddComment, postId, loggedIn }) {
         closeAddComment();
     }
 
-    const textInputStyle = `input w-100 bgColor-primaryLight rounded border-0`;
+    const textInputStyle = `input w-100 rounded border-0`;
+    //border p-2 rounded
     return (
-        <div className='border p-2 rounded'>
-            <div className={`bgColor-primaryLight comment p-2 m-3 rounded`}>
+        <div className='border-top'>
+            <div className={`comment p-2 m-3`}>
                 <textarea className={textInputStyle} placeholder="Comment goes here..." value={commentBody}
                     onChange={e => setCommentBody(e.target.value)} autoFocus></textarea>
-                <input className={textInputStyle} placeholder='name' value={commentName} onChange={e => setCommentName(e.target.value)}></input>
+                <input className={`${textInputStyle} d-none`} placeholder='name' value={commentName} onChange={e => setCommentName(e.target.value)}></input>
             </div>
-            <div className={`container ${center}`}>
+            <div className={`container pb-3 ${center}`}>
                 <CommentsBtn text={'Add'} handleClick={submitComment}></CommentsBtn>
                 <CommentsBtn text={'Cancel'} handleClick={closeAddComment}></CommentsBtn>
             </div>

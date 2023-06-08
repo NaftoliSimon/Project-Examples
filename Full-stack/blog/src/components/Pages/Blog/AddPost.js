@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import center from '../../../data/Bootstrap/center';
 import Form from 'react-bootstrap/Form';
-import myPostFetch from '../../../functions/myPostFetch';
 import { useParams } from 'react-router-dom';
 import baseUrl from '../../../data/URLpaths';
 import { CloseButton } from 'react-bootstrap';
 import pillButton from '../../../data/Bootstrap/pillButton';
+import postFetch from '../../../functions/postFetch';
 
 //This file is used for both Adding a new post and Editing an existing post.
 export default function AddPost({ show, setShow, savedData = null }) { //savedData is the post data for editing a post
@@ -14,13 +14,6 @@ export default function AddPost({ show, setShow, savedData = null }) { //savedDa
     const [body, setBody] = useState(savedData?.title || '');
     
     const addOrEditData = !savedData ? { title, body, userId: url_id } : { title, body, postId: savedData.id }
-    const postData = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(addOrEditData)
-    };
     const closeAddPost = (e) => {
         e.preventDefault();
         setShow(false)
@@ -28,11 +21,11 @@ export default function AddPost({ show, setShow, savedData = null }) { //savedDa
     const submitPost = (e) => {
         e.preventDefault();
         if (savedData) {
-            myPostFetch(`${baseUrl}/postInfo/edit`, postData);
+            postFetch(`${baseUrl}/postInfo/edit`, addOrEditData)
             window.location.reload();
         } else {
             if (title !== '' && body !== '') {
-                myPostFetch(`${baseUrl}/postInfo`, postData);
+                postFetch(`${baseUrl}/postInfo`, addOrEditData)
                 window.location.reload();
             }
         }
@@ -42,9 +35,9 @@ export default function AddPost({ show, setShow, savedData = null }) { //savedDa
     const liStyle = ` bgColor-primary color-secondary-reverse p-3 m-2 rounded border ${center} w-100`;
     const postButtonStyle = `d-block btn post-btn btn-sm me-2 ${pillButton}`;
     const editStyle = savedData ? 'w-100' : '';
-    const textInputStyle = `backgroundImage-primary`;
+    const textInputStyle = ``;
     return (<>
-        {show && <div className={`${editStyle} list-group post d-flex flex-row flex-wrap ${center}`}>
+        {show && <div className={`${editStyle} list-group post d-flex flex-row flex-wrap ${center} opacity-85`}>
             <div className={`${liStyle}`}>
                 <Form className={`w-100`}>
                     <Form.Group controlId="exampleForm.ControlInput1" className={`mb-3`}> {/*onSubmit={e => e.preventDefault()} */}

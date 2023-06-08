@@ -21,7 +21,7 @@ export default function ModalBody(props) {
     const eyeIconContainerProps = { className: `eye-icon pointer`, onMouseOver: () => setEyeFill(true), onMouseLeave: () => setEyeFill(false), onClick: () => setShowPassword(!showPassword) };
 
     return (
-        <Modal.Body className='bgColor-primary backgroundImage-primary'>
+        <Modal.Body className='bgColor-primary'>
             <Form>
             <DismissibleAlert heading={'Invalid Email'} text={'The email you have entered does not exist'} show={invalidEmail} setShow={setInvalidEmail}/>
             <DismissibleAlert heading={'Incorrect Password'} text={'The password you have entered is incorrect'} show={invalidPassword} setShow={setInvalidPassword}/>
