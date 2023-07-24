@@ -19,7 +19,7 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
           <div className={`text-center p-4 pb-2 fs-1`}>NO BLOGS</div>
           <div className='text-center m-4 fs-1'>Server Is Not Connected</div> */}
           {/* <Card.Title>Website Under Construction</Card.Title> */}
-          <div className={`text-center fs-1 text-underline text-uppercase`}>Website Under Construction</div>
+          <h4 className={`text-center fs-1 text-decoration-underline text-uppercase`}>Website Under Construction</h4>
           <div className='text-center fs-1 text-capitalize'>There is currently no access to the server at this time</div>
           <div className='pb-5 mb-3'></div> {/*This empty div is added to take up space so that footer appears at bottom, since no data (from server) is taking up space  */}
         </div>
