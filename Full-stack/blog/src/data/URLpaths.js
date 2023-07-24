@@ -5,8 +5,12 @@ import { FaComment, FaHome, FaInfoCircle } from "react-icons/fa";
 const baseUrl = `http://localhost:3000`; //server's base url
 
 //Internal links for navigating the website
-const runLocally = true;
-const navBaseUrl = runLocally ? `http://localhost:3001` : `https://blogspotstl`;
+
+const runLocally = false;
+const developmentUrl = `http://localhost:3001`;
+const deploymentUrl = `http://blogspotstl.com`; //domain name
+const navBaseUrl = runLocally ? developmentUrl : deploymentUrl; 
+
 const links = {
     home: `/blogs`, 
     blogs: `/blogs`,
