@@ -7,7 +7,7 @@ import AddPost from './AddPost';
 import  { pillButtonSolid } from '../../../data/Bootstrap/pillButton';
 import PostDropdown from './PostDropdown';
 
-export default function Post({ post, selectedPostId, changeSelectedPost, loggedIn, setShowLogin, setLoggedIn }) {
+export default function Post({ post, selectedPostId, setSelectedPost, loggedIn, setShowLogin, setLoggedIn }) {
   const [commentsArr, setCommentsArr] = useState([]);
   const [buttonText, changeButtonText] = useState();
   const [showEditPost, setShowEditPost] = useState(false);
@@ -31,7 +31,7 @@ export default function Post({ post, selectedPostId, changeSelectedPost, loggedI
 
   function handleButtonClick(postId) {                           //Remember, we are mapping through every post
     const selected = (selectedPostId == postId) ? null : postId; //Sets all non selected posts to null. This will hide the comments of a previously selected post, whether a new post is selected, or if the same post is unselected. Sets the currently selected post.
-    changeSelectedPost(selected);
+    setSelectedPost(selected);
   }
 
   //bootstrap style

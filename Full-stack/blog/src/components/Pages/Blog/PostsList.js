@@ -4,24 +4,24 @@ import center from '../../../data/Bootstrap/center';
 import AddPost from './AddPost';
 
 export default function PostsList({ postsArr, loggedIn, setShowLogin, setLoggedIn, show, setShow }) {
-  const lsKey = 'selectedPostId'; //local storage key
-  let startingSelectedPostId = null; //if loading for first time there is no selected postId. If reloading it will be set with previous postId (from sessionStorage)
-  startingSelectedPostId = sessionStorage.getItem(lsKey);
 
-  const [selectedPostId, changeSelectedPost] = useState(startingSelectedPostId);
+  const ssKey = 'selectedPostId'; // session storage key
+  const startingSelectedPostId = sessionStorage.getItem(ssKey) || null; //if loading for first time there is no selected postId. If reloading it will be set with previous postId (from sessionStorage)
+
+  const [selectedPostId, setSelectedPost] = useState(startingSelectedPostId);
 
   useEffect(() => {
-    sessionStorage.setItem(lsKey, selectedPostId)
+    sessionStorage.setItem(ssKey, selectedPostId)
   }, [selectedPostId])
 
   return (<div className='container'>
     <div className={`row ${center}`}>
       <AddPost show={show} setShow={setShow} />
       <ul className={`list-group post d-flex flex-row flex-wrap ${center}`}>
-        {postsArr.map(post => {
-          return <Post post={post} selectedPostId={selectedPostId} loggedIn={loggedIn} setShowLogin={setShowLogin}
-            changeSelectedPost={changeSelectedPost} key={`${post.id}`} setLoggedIn={setLoggedIn} />
-        })}
+        {postsArr.map(post => (
+           <Post post={post} selectedPostId={selectedPostId} loggedIn={loggedIn} setShowLogin={setShowLogin}
+            setSelectedPost={setSelectedPost} key={post.id} setLoggedIn={setLoggedIn} />
+        ))}
       </ul>
     </div>
   </div>

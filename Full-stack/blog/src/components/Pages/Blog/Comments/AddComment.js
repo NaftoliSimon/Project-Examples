@@ -20,20 +20,21 @@ export default function AddComment({ closeAddComment, postId, loggedIn }) {
     const submitComment = () => {
         myPostFetch(url, headers);
         closeAddComment();
+        window.location.reload(false); //Page reloads to load new comment from db. TODO: make page scroll to edited comment, or update page without needing to reload
     }
 
     const textInputStyle = `input w-100 rounded border-0`;
     //border p-2 rounded
     return (
-        <div className='border-top'>
-            <div className={`comment p-2 m-3`}>
+        <div className=''>
+            <div className={`comment p-2 border border-top-0 border-2`}>
                 <textarea className={textInputStyle} placeholder="Comment goes here..." value={commentBody}
                     onChange={e => setCommentBody(e.target.value)} autoFocus></textarea>
                 <input className={`${textInputStyle} d-none`} placeholder='name' value={commentName} onChange={e => setCommentName(e.target.value)}></input>
-            </div>
-            <div className={`container pb-3 ${center}`}>
-                <CommentsBtn text={'Add'} handleClick={submitComment}></CommentsBtn>
-                <CommentsBtn text={'Cancel'} handleClick={closeAddComment}></CommentsBtn>
+                <div className={`container pb-1 ${center}`}>
+                    <CommentsBtn text={'Add'} handleClick={submitComment}></CommentsBtn>
+                    <CommentsBtn text={'Cancel'} handleClick={closeAddComment}></CommentsBtn>
+                </div>
             </div>
         </div>
     )

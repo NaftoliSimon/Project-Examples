@@ -42,10 +42,10 @@ export default function About() {
                     <ul className='d-block pt-3 pb-0 list-group list-group-flush'>
                         <h5><u>FUTURE UPDATES</u></h5>
                         <li className={li}>Delete features for Blogs and Posts</li>
-                        <li className={li}>Launch Website - (use aws or azure for database) </li>
+                        <li className={li}>Launch Website - (domain & database) </li>
                         <li className={li}>Add joi validation, display to user limits (ie character length) for ALL input fields</li>
                         <li className={li}>Fetch and display limited amount of data at one time</li>
-                        {/* <li className={li}>Test on other device types (after launching website)</li> */}
+                        <li className={li}>Test on other device types (after launching website)</li>
                     </ul>
                 </Card.Body></Card>
             </div>
@@ -61,6 +61,7 @@ Improve pre-existing code (use chat GPT)
 Make code easy to read and understand 
  remove old unnecessary code (like bootstrap style)
  remove unused images & background images
+ Make password storage secure
 
 TODO: switch data passed in to only be object in body, and pass in Method to MyFetch & myPostFetch (make method defaults?) 
  make blog list link scroll move to exact location for all screen heights 
@@ -94,5 +95,7 @@ Add comment replies ?
 Add a go to top of page button / link at bottom of page 
 Add likes to posts & comments(look at linkedin feed on home page for example) 
 Make edited posts / comments say edited 
+Add a conformation email that works
+Make password storage secure
 
 */

@@ -43,40 +43,25 @@ $borderColor-light: $lightBlue; //used for buttons & input shadow
 $lightBackgroundRGBA: rgba(255, 255, 255, 0.25); //sets background image to be lighter - In this case 2.5 (the higher the number - the lighter the background)
 $lighterBackgroundRGBA: rgba(255, 255, 255, 0.75); //set background image to be even lighter
 $defaultBackgroundImage: '../../public/Images/stlBackground3.jpg'; //businessmanBackground nature stlBackground3 stlBackground8
-$welcomeBackgroundImage: '../../public/Images/stlBackground4.jpg'; //1,4, 7, 8, 9,11, 
+$welcomeBackgroundImage: '../../public/Images/stlBackground4.jpg'; //stlBackground: 1,4, 7, 8, 9,11, 
 body,
 .backgroundImage-primary {
-    // background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
-    background: url(($defaultBackgroundImage)) no-repeat center fixed; 
-    background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
+    background: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage) no-repeat center fixed; 
     background-size: cover;
     
 }
-// .about {
-//     background: url(('../../public/Images/stlBackground8.jpg')) no-repeat center fixed; 
-//     background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url('../../public/Images/stlBackground8.jpg');
-//     background-size: cover;
-// }
+
 .bgColor-primaryLight {
     background-color: $primaryLight;
 }
 
 .bg-welcome {
     background-size: cover;
-    background-image: linear-gradient($lightBackgroundRGBA, $lightBackgroundRGBA), url($welcomeBackgroundImage);
-    // background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($welcomeBackgroundImage);
-    background-image: url('../../public/Images/businessmanBackground.jpg'); 
+    background-image: url('../../public/Images/businessmanBackground.jpg');
 }
 
 .welcome-card {
-    // background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
-    // background-color: $primaryLight !important;
     opacity: 85%;
-}
-.yourBlog {
-    background: url(($defaultBackgroundImage)) no-repeat center center fixed; 
-    background-image: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage);
-    background-size: cover;
 }
 
 .borderColor-primary,
@@ -210,9 +195,11 @@ textarea:focus {
     outline: none !important;
     border-color: none !important;
     -webkit-box-shadow: none !important;
-    // box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px -3px $borderColor-light !important;
-    box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px $borderColor-light !important;
+    box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px -3px $borderColor-light !important;
+    // box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px $borderColor-light !important;
     border-color: $borderColor !important;
+    // -moz-box-shadow: 0 0 5px 2px #fff;
+    box-shadow:  0 0 10px $borderColor-light !important;
 }
 
 .input:hover,

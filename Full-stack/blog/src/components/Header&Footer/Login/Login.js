@@ -7,8 +7,7 @@ import DropdownComponent from '../Navbar/DropdownComponent';
 import hide, { show } from '../../../data/Bootstrap/hide';
 import { Button } from 'react-bootstrap';
 
-export default function Login({ loggedIn, setLoggedIn, showLogin, setShowLogin, blogsArr }) {
-  const [showSignUp, setShowSignUp] = useState(false);
+export default function Login({ loggedIn, setLoggedIn, showLogin, setShowLogin, showSignUp, setShowSignUp, blogsArr }) {
   const [loggedInUserBlog, setLoggedInUserBlog] = useState(null);
   useEffect(() => {
     if (loggedIn) {

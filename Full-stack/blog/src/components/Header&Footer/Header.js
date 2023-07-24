@@ -5,7 +5,7 @@ import Title from '../Header&Footer/Title';
 import Icon from './Navbar/Icon.js';
 import center from '../../data/Bootstrap/center.js';
 
-export default function Header({ loggedIn, setLoggedIn, showLogin, setShowLogin, blogsArr }) {
+export default function Header({ loggedIn, setLoggedIn, showLogin, showSignUp, setShowSignUp, setShowLogin, blogsArr }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const largeBreakpoint = 992;
   const smallerScreenWidthMax = largeBreakpoint;
@@ -18,7 +18,7 @@ export default function Header({ loggedIn, setLoggedIn, showLogin, setShowLogin,
     };
   }, []);
 
-  const login = <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} blogsArr={blogsArr} />;
+  const login = <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} showSignUp={showSignUp} blogsArr={blogsArr} />;
 const headerStyle = 'sticky-top ps-3 pe-3 bgColor-primary color-secondary-reverse  shadow';
   return (
     <>

@@ -12,9 +12,10 @@ export default function Checkbox({handleClose}) {
         <Form.Group className="mb-3">
             <Form.Check
                 required
-                label={<div>I accept and have not read the <span
+                label={<div>I accept the <span
                     className='tac-link fst-italic text-decoration-underline pointer'
                     onClick={goToTermsAndConditionsPage}>terms and conditions</span>
+                    {/* , even if I have not read them */}
                 </div>}
                 feedback="You must accept before submitting"
                 feedbackType="invalid"

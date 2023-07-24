@@ -16,7 +16,8 @@ import TermsAndConditions from './Pages/TermsAndConditions';
 function App() {
   const [blogsArr, setBlogsArr] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState(null); // loggedInUser is either an object (with the logged in user's info) or null/false
-  const [showLogin, setShowLogin] = useState(false) //shows the login pop up modal
+  const [showLogin, setShowLogin] = useState(false); //shows the login pop up modal
+  const [showSignUp, setShowSignUp] = useState(false);
 
   const blogsLink = `${baseUrl}/blogs`;
   const ssKey = 'loggedInUser'; // session storage key
@@ -52,7 +53,7 @@ function App() {
   const { blogs: home, about } = links;
   return (
     <BrowserRouter>
-      <Header loggedIn={loggedInUser} setLoggedIn={setLoggedInUser} showLogin={showLogin} setShowLogin={setShowLogin} blogsArr={blogsArr} />
+      <Header loggedIn={loggedInUser} setLoggedIn={setLoggedInUser} showLogin={showLogin} showSignUp={showSignUp} setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} blogsArr={blogsArr} />
       <Routes>
         <Route path="/" element={<Navigate replace to={home} />} />
 
@@ -61,7 +62,7 @@ function App() {
           <Route path={`${home}/:blogId/`} element={blogElem} />
           <Route path={`${home}/:blogId/:postId`} element={blogElem} />
           <Route path={about} element={<About />} />
-          <Route path="/termsandconditions" element={<TermsAndConditions />} />
+          <Route path="/termsandconditions" element={<TermsAndConditions setShowSignUp={setShowSignUp} loggedIn={loggedInUser}/>} />
           <Route path="*" element={<FourOhFour />} />
         </Route>
       </Routes>
