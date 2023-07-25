@@ -6,10 +6,10 @@ import Welcome from '../welcome/Welcome';
 import { Card } from 'react-bootstrap';
 
 export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
-  // const [yourBlog, setYourBlog] = useState();
-  const variant = 'info'; //TODO: switch this to 'danger' once database and server are fully working on development mode
+  const variant = 'info'; //TODO: switch this to 'danger' once database and server are fully working on development mode, also switch card text below
   if (!blogsArr.length) {
     return (<div className='pb-5 mb-5'>
+       <Welcome loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
       <Card className='m-3 opacity-75 shadow' bg={variant.toLowerCase()}
         key={variant}
         text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}

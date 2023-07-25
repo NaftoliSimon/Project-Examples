@@ -14,6 +14,7 @@ import Checkbox from './Checkbox';
 import postFetch from '../../../../functions/postFetch';
 import Alert from '../../../Alert';
 import SuccessAlert from './SuccessAlert';
+import DismissibleAlert from '../../../Alert';
 
 export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }) {
     const emptyFormFields = { firstName: '', lastName: '', email: '', password: '', retypedPassword: '' }
@@ -24,6 +25,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
     const [validated, setValidated] = useState(false);
     const [attemptedSubmit, setAttemptedSubmit] = useState(false)
     const [successfulSubmit, setSuccessfulSubmit] = useState(false)
+    const [showError, setShowError] = useState(false)
 
     const setField = (fieldKeyAsString, value) => setFields({ ...fields, [fieldKeyAsString]: value })
     const { firstName, lastName, email, password, retypedPassword } = fields;
@@ -39,19 +41,36 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         setShowLogin(true);
     }
 
-
-    const handleSubmit = (event) => {
+    function isObjectEmpty(obj) {
+        return Object.keys(obj).length === 0;
+      }
+      function stopDefaults(e) {
+        e.preventDefault();
+            e.stopPropagation();
+      }
+    const handleSubmit = (e) => {
         setAttemptedSubmit(true);
-        const form = event.currentTarget;
+        const form = e.currentTarget;
         if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+            stopDefaults(e);
         } else {
             //check if data already exists in server (ie email already exists in server)
+            if(isObjectEmpty(savedEmails)) { //check if there is access to database
+                stopDefaults(e);
+                console.log('no access to server (or no emails saved in server yet)');
+                if(showError === true) {
+                    setShowError(false);
+                    setTimeout(() => {
+                        setShowError(true)
+                      }, 250); // Pause for 1/4 of a second
+                } else {
+                    setShowError(true);
+                }
+                
+            }
             const emailAlreadyExists = savedEmails.some(obj => obj.email === email);
             if (emailAlreadyExists) {
-                event.preventDefault();
-                event.stopPropagation();
+                stopDefaults(e);
                 setTakenEmail(<span className='text-danger ps-3 '> Email is already taken</span>)
             } else {
                 //Log in requirements met - send sign up data to database
@@ -76,6 +95,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
                 <Modal.Header closeButton className={bgColor}>
                     <Modal.Title>Create an Account</Modal.Title>
                 </Modal.Header>
+                <DismissibleAlert heading={'Error'} text={'No Access To The Server'} show={showError} setShow={setShowError}/>
                 <Modal.Footer className={bgColor}>
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <Row1 firstName={firstName} lastName={lastName} setField={setField} />

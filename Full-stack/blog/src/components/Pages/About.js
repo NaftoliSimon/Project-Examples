@@ -17,10 +17,13 @@ export default function About() {
             <div className='d-block'>
                 <Card className={card}><Card.Body>
                     <span className='d-block'>
-                        This Project, is a full stack blog website with node.js back-end & CRUD features. I have built my own blog Api that fetches SQL data from my local machine.
+                        This Project, is a full stack blog website with node.js back-end & CRUD features. I have built my own blog Api that fetched SQL data from my local machine, but am now in the process of updating to AWS server. 
                     </span>
                     <span className='d-block'>
                         This website is built with React, React Router, and Functional Components with hooks.
+                    </span>
+                    <span className='d-block'>
+                        This website was launched with Amazon Web Services - including Route 53, EC2, & more.
                     </span>
                     <span className='d-block'>
                         Was built with a PC & Google Chrome (not yet tested on other device types).
