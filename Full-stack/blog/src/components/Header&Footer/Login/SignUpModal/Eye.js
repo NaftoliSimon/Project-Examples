@@ -9,13 +9,13 @@ export default function Eye({ setVisible, visible }) {
 
     const eyeNoSlashIcon = (
         isMobile ? 
-        <BsEyeFill size={20} className={`pointer`} onClick={hide}/> : 
+        <BsEyeFill size={20} className={`pointer`} onClick={show}/> : 
         <BsEyeFill size={20} className={`pointer`} onMouseDown={show} onMouseUp={hide} onMouseLeave={hide} />
     );
 
     const eyeSlashIcon = (
         isMobile ? 
-        <BsEyeSlashFill size={20} className={`pointer`} onClick={show}/> : 
+        <BsEyeSlashFill size={20} className={`pointer`} onClick={hide}/> : 
         <BsEyeSlashFill size={20} className={`pointer`} onMouseDown={show} onMouseUp={hide} onMouseLeave={hide} />
     );
 
