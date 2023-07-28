@@ -5,7 +5,7 @@ import pillButton from '../../../data/Bootstrap/pillButton';
 function DefaultCard({ header, text, buttonText, onButtonClick }) {
     return (
         <>
-        <Card className={`bgColor-primary  shadow-lg welcome-card d-block d-sm-none`} style={{ width: '35em' }}>
+        <Card className={`bgColor-primary shadow-lg welcome-card d-block d-sm-none`} style={{ width: '27em' }}>
             <Card.Header className='bgColor-primary fw-bold color-secondary-reverse'>{header}</Card.Header>
             <Card.Body className='bgColor-primary'>
                 {/* <Card.Title className='bgColor-primary fw-bold color-secondary-reverse'>{header}</Card.Title> */}
