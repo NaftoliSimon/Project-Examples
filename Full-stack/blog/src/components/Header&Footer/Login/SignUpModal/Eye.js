@@ -8,32 +8,24 @@ export default function Eye({ setVisible, visible }) {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
     const eyeNoSlashIcon = (
-        <BsEyeFill
-            size={20}
-            className={`pointer`}
-            onMouseDown={show}
-            onMouseUp={hide}
-            onMouseLeave={hide}
-            onClick={isMobile ? () => setVisible(!visible) : undefined}
-        />
+        isMobile ? 
+        <BsEyeFill size={20} className={`pointer`} onClick={hide}/> : 
+        <BsEyeFill size={20} className={`pointer`} onMouseDown={show} onMouseUp={hide} onMouseLeave={hide} />
     );
 
     const eyeSlashIcon = (
-        <BsEyeSlashFill
-            size={20}
-            className={`pointer`}
-            onMouseDown={show}
-            onMouseUp={hide}
-            onMouseLeave={hide}
-            onClick={isMobile ? () => setVisible(!visible) : undefined}
-        />
+        isMobile ? 
+        <BsEyeSlashFill size={20} className={`pointer`} onClick={show}/> : 
+        <BsEyeSlashFill size={20} className={`pointer`} onMouseDown={show} onMouseUp={hide} onMouseLeave={hide} />
     );
 
     return (<>
-        {isMobile && <div className={`eye-icon pointer`}>
+        {/* {!isMobile &&  */}
+        <div className={`eye-icon pointer`}>
             <div className={`eye-signUp bg-transparent`}>
                 {visible ? eyeSlashIcon : eyeNoSlashIcon}
             </div>
-        </div>}
+        </div>
+        {/* } */}
     </>);
 }
