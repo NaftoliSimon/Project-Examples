@@ -19,14 +19,14 @@ export default function Header({ loggedIn, setLoggedIn, showLogin, showSignUp, s
   }, []);
 
   const login = <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} showSignUp={showSignUp} blogsArr={blogsArr} />;
-const headerStyle = 'sticky-top ps-3 pe-3 bgColor-primary color-secondary-reverse  shadow';
+const headerStyle = 'sticky-top ps-3 pe-3 bgColor-primary color-secondary-reverse shadow';
   return (
     <>
       {/* Header for smaller screen sizes */}
       {isSmallScreen && (
         <header className={headerStyle}>
-          <div className="row pb-1 ps-2 pe-2">
-            <Icon />
+          <div className="row ps-2 pe-2">
+            <Icon style={`pb-1`}/>
             <Title />
             {login}
           </div>

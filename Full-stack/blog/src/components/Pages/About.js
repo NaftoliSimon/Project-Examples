@@ -77,6 +77,7 @@ Make edited comment immediately reload/change to new edited comment after submit
                     Add icons to blog list item display layout card
                     Add image to blog display card 
                     Add shadow to any card, button, or box of any kind (except for modals) 
+                    Icons display (login & sign up forms) for small screens are slightly off
 Icon's to add: 
                     any list in the website
                     in buttons (see linkedin connect button)

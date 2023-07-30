@@ -9,8 +9,8 @@ export default function TwoColLayout({loggedIn, setShowLogin, blogsArr, goToAbou
   return (
     <>
     <h2 className={titleStyle}>Welcome To {websiteName}</h2>
-        <div className={`${center} flex-column gap-2`}>
-          <div className={`${center} gap-2 `}>
+        <div className={`${center} flex-column gap-4`}>
+          <div className={`${center} gap-4 `}>
             <DefaultCard header={'Read A Blog'} text={readText} buttonText={'Find A Blog'} onButtonClick={scrollToBlogList} />
             <WriteABlogCard loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
           </div>

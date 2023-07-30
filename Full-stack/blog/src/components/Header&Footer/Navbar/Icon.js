@@ -18,7 +18,7 @@ export default function Icon({ style }) {
         <a className={`me-3 pointer ${style} ${show.lg_xl} logoLink`} href={`${navBaseUrl}${links.blogs}`}> {/* onClick={() => navigate(`${links.blogs}`) */}
            <img src={image} alt="Blog-Spot-Logo" width="50" height="50" className={imgStyle} />
         </a>
-        <a className={`col m-0 p-0 pointer ${hide.lg_xl}`} href={`${navBaseUrl}${links.blogs}`}>
+        <a className={`col m-0 p-0 pointer ${style} ${hide.lg_xl}`} href={`${navBaseUrl}${links.blogs}`}>
             <img src={image} alt="Blog-Spot-Logo" width="50" height="50" className={`${imgStyle} mt-1`} />
         </a>
     </>)

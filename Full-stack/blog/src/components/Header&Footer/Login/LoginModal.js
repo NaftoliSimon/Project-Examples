@@ -76,7 +76,7 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
 
   return (<>
     <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton className='bgColor-primary'>
+      <Modal.Header closeButton className='bgColor-primary border-0'>
         <Modal.Title>{modalTitle}</Modal.Title>
       </Modal.Header>
       <DismissibleAlert heading={'Error'} text={'No Access To The Server'} show={showError} setShow={setShowError} />

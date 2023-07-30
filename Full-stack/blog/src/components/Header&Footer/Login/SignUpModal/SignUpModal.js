@@ -15,6 +15,7 @@ import postFetch from '../../../../functions/postFetch';
 import Alert from '../../../Alert';
 import SuccessAlert from './SuccessAlert';
 import DismissibleAlert from '../../../Alert';
+import hide, { show as showSize } from '../../../../data/Bootstrap/hide';
 
 export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }) {
     const emptyFormFields = { firstName: '', lastName: '', email: '', password: '', retypedPassword: '' }
@@ -43,11 +44,11 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
 
     function isObjectEmpty(obj) {
         return Object.keys(obj).length === 0;
-      }
-      function stopDefaults(e) {
+    }
+    function stopDefaults(e) {
         e.preventDefault();
-            e.stopPropagation();
-      }
+        e.stopPropagation();
+    }
     const handleSubmit = (e) => {
         setAttemptedSubmit(true);
         const form = e.currentTarget;
@@ -55,18 +56,18 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
             stopDefaults(e);
         } else {
             //check if data already exists in server (ie email already exists in server)
-            if(isObjectEmpty(savedEmails)) { //check if there is access to database
+            if (isObjectEmpty(savedEmails)) { //check if there is access to database
                 stopDefaults(e);
                 console.log('no access to server (or no emails saved in server yet)');
-                if(showError === true) {
+                if (showError === true) {
                     setShowError(false);
                     setTimeout(() => {
                         setShowError(true)
-                      }, 250); // Pause for 1/4 of a second
+                    }, 250); // Pause for 1/4 of a second
                 } else {
                     setShowError(true);
                 }
-                
+
             }
             const emailAlreadyExists = savedEmails.some(obj => obj.email === email);
             if (emailAlreadyExists) {
@@ -88,34 +89,36 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         }
         setValidated(true);
     };
-    const bgColor = 'bgColor-primary'
+    const modalSection = 'bgColor-primary border-0';
     return (
         <>
             <Modal show={show} onHide={handleClose}> {/* className='backgroundImage-primary' */}
-                <Modal.Header closeButton className={bgColor}>
+                <Modal.Header closeButton className={modalSection}>
                     <Modal.Title>Create an Account</Modal.Title>
                 </Modal.Header>
-                <DismissibleAlert heading={'Error'} text={'No Access To The Server'} show={showError} setShow={setShowError}/>
-                <Modal.Footer className={bgColor}>
+                <DismissibleAlert heading={'Error'} text={'No Access To The Server'} show={showError} setShow={setShowError} />
+                <Modal.Footer className={modalSection}>
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <Row1 firstName={firstName} lastName={lastName} setField={setField} />
                         <Row2 email={email} takenEmail={takenEmail} setField={setField} />
-                        <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} />
+                        <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} retypedPassword={retypedPassword} />
                         <Row4 retypedPassword={retypedPassword} validated={validated} setField={setField} password={password} />
                         <Checkbox handleClose={handleClose} />
 
                         <div className='ms-1 d-flex'>
                             <Button type="submit" className={`button ${pillButtonSolid}`}>Sign Up</Button>
                             <Button className={`button mx-2 ${pillButtonSolid}`} onClick={handleClose}>Cancel</Button>
-                            <div className='me-4 ms-3'> Already have an account?
+                            <div className={`me-4 ms-3 ${hide.xs}`}> Already have an account?
+                                <span className='link link-color pointer ms-1' href='#' onClick={handleOpenLogin}>Sign In</span>
+                            </div>
+                            <div className={`me-4 ms-3 pt-1 ${showSize.xs} fs-7`}> Already have an account?
                                 <span className='link link-color pointer ms-1' href='#' onClick={handleOpenLogin}>Sign In</span>
                             </div>
                         </div>
-
                     </Form>
                 </Modal.Footer>
             </Modal>
-            <SuccessAlert name={`${firstName} ${lastName}`} show={successfulSubmit} hide={()=>setSuccessfulSubmit(false)}/>
+            <SuccessAlert name={`${firstName} ${lastName}`} show={successfulSubmit} hide={() => setSuccessfulSubmit(false)} />
         </>
     );
 }

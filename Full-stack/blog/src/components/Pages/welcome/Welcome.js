@@ -1,9 +1,5 @@
 import React from 'react';
-import center from '../../../data/Bootstrap/center';
-import websiteName from '../../../data/websiteName';
-import DefaultCard from './Card';
 import blogListLocation from '../../../data/scrollToHeight';
-import WriteABlogCard from './WriteABlogCard';
 import useCustomNav from '../../../hooks/navigate';
 import ThreeColLayout from './ThreeColLayout';
 import TwoColLayout from './TwoColLayout';
@@ -11,7 +7,7 @@ import OneColLayout from './OneColLayout';
 
 export default function Welcome({ loggedIn, setShowLogin, blogsArr }) {
   const navigate = useCustomNav();
-  const scrollToBlogList = () => window.scrollTo(0, blogListLocation);
+  // const scrollToBlogList = () => window.scrollTo(0, blogListLocation);
   const goToAboutPage = () => navigate('/about');
   // const readText = 'Read one (or several) of our many blogs by other users. Simply Click the button below or scroll down the page and select a blog.';
   // const aboutText = 'Do you want to know what this website is made of? You can find out by simply clicking the button below.';
