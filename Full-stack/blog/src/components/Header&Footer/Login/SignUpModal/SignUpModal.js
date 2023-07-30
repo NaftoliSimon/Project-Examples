@@ -111,7 +111,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
                             <div className={`me-4 ms-3 ${hide.xs}`}> Already have an account?
                                 <span className='link link-color pointer ms-1' href='#' onClick={handleOpenLogin}>Sign In</span>
                             </div>
-                            <div className={`me-4 ms-3 pt-1 ${showSize.xs} fs-7`}> Already have an account?
+                            <div className={`me-4 ms-3 pt-1 ${showSize.xs} fs-7 text-end`}> Already have an account?
                                 <span className='link link-color pointer ms-1' href='#' onClick={handleOpenLogin}>Sign In</span>
                             </div>
                         </div>
