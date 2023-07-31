@@ -31,8 +31,7 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
     return Object.keys(obj).length === 0;
   }
   function handleLogin() {
-    if (isObjectEmpty(savedUser)) {
-      //TODO: show pop up error message
+    if (isObjectEmpty(savedUser)) { //Show pop up error message - see SignUpModal
       if (showError === true) {
         setShowError(false);
         setTimeout(() => {

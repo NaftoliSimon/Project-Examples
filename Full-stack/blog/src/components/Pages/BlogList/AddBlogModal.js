@@ -3,6 +3,7 @@ import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import baseUrl from '../../../data/URLpaths';
 import myPostFetch from '../../../functions/myPostFetch';
 import { pillButtonSolid } from '../../../data/Bootstrap/pillButton';
+import postFetch from '../../../functions/postFetch';
 
 export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData = false }) { //Add or edit Blog data Modal. For edit - pass the preexisting data to update, into the "savedUpdateData" object. For add - just leave it out of the props
     const text = !savedUpdateData ? 'Add' : 'Update';
@@ -17,16 +18,7 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
         const { userId, firstName, lastName } = loggedIn;
 
         //TODO: switch data passed in to only be object in body, and pass in Method to MyFetch & myPostFetch (make method defaults?)
-        const blogData = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(
-                // { companyName: companyName, website: website, shortSummary: shortSummary, name: `${firstName} ${lastName}`, userId: userId }
-                { companyName, website, shortSummary, name: `${firstName} ${lastName}`, userId }
-            )
-        };
+        const blogData = JSON.stringify({ companyName, website, shortSummary, name: `${firstName} ${lastName}`, userId })
         const handleClose = () => setShow(false);
         // const handleShow = () => setShow(true);
 
@@ -37,7 +29,7 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
         }
 
         const handleSubmit = (e) => {
-            console.log('e', e);
+            // console.log('e', e);
             const form = e.currentTarget;
             if (form.checkValidity() === false) {
                 e.preventDefault();
@@ -45,7 +37,8 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
                 console.log('blog data NOT sent to server');
             } else {
                 console.log('blog data sent to server');
-                myPostFetch(url, blogData)
+                // myPostFetch(url, blogData)
+                postFetch(url, blogData)
                 clearFields();
                 handleClose();
 
@@ -54,7 +47,7 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
             }
             // setValidated(true)
         }
-        const onKeyDownInput1 = ({ key }) => {
+        const onKeyDownInput1 = ({ key }) => { //TODO: either get the onkeydowns to focus on proper element or remove them
             if (key === 'Enter') {
                 // focusOn('input2');
             }

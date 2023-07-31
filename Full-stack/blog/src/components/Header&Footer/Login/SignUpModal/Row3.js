@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Form, InputGroup, Row } from 'react-bootstrap'
 import { BsLockFill } from 'react-icons/bs'
 import InputIcon from './InputIcon';
 import Eye from './Eye';
 
 export default function Row3({ password, attemptedSubmit, setField, retypedPassword, setPasswordMatch }) {
-    //TODO: fix error with retype password where if you match it to an improper password (that doesn't meet written requierments), then if you change the password without changing the retyped password it considers the retyped password valid and submits to the server
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [passwordValidated, setPasswordValidated] = useState(false);
+    const [extraSmallScreen, setExtraSmallScreen] = useState(window.innerWidth < 576); //<576px is bootstraps extra small screen size
+
+    useEffect(() => {
+        // Add or remove class based on the window width
+        const handleResize = () => setExtraSmallScreen(window.innerWidth < 576);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [])
 
     const passwordMsg = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
 
@@ -42,7 +49,7 @@ export default function Row3({ password, attemptedSubmit, setField, retypedPassw
     }
 
     return (
-        <Row className="mb-3">
+        <Row className={extraSmallScreen ? 'mb-4' : 'mb-2'}>
             <Form.Group as={Col} md="12" controlId="validationSignUp04" className='mb-4 input-parent'>
                 <Form.Label>Password</Form.Label>
                 <InputIcon name={'password'} icon={<BsLockFill />} />

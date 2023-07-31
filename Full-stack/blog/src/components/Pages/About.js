@@ -26,7 +26,7 @@ export default function About() {
                         This website was launched with Amazon Web Services - including Route 53, EC2, & more.
                     </span>
                     <span className='d-block'>
-                        Was built with a PC & Google Chrome (not yet tested on other device types).
+                        Was built with a PC & Google Chrome. Tested on phone & tablet (but with no access to the server yet).
                     </span>
                     <span className='d-block'>
                         Was built using Visual Studio Code.
@@ -48,7 +48,7 @@ export default function About() {
                         <li className={li}>Launch Website - (domain & database) </li>
                         <li className={li}>Add joi validation, display to user limits (ie character length) for ALL input fields</li>
                         <li className={li}>Fetch and display limited amount of data at one time</li>
-                        <li className={li}>Test on other device types (after launching website)</li>
+                        <li className={li}>Test on other device types (after launching website with server)</li>
                     </ul>
                 </Card.Body></Card>
             </div>
@@ -65,6 +65,7 @@ Make code easy to read and understand
  remove old unnecessary code (like bootstrap style)
  remove unused images & background images
  Make password storage secure
+ Fix sign up Modal error: No server access error displays based on if there are any saved emails in an object which we try to popylate from the db. Switch to check if we have access to db directly, as the first user to sign up for the website will get this error (since there are no saved emails yet in the db)
 
 TODO: switch data passed in to only be object in body, and pass in Method to MyFetch & myPostFetch (make method defaults?) 
  make blog list link scroll move to exact location for all screen heights 

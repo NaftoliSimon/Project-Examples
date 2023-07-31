@@ -44,11 +44,11 @@ $lightBackgroundRGBA: rgba(255, 255, 255, 0.25); //sets background image to be l
 $lighterBackgroundRGBA: rgba(255, 255, 255, 0.75); //set background image to be even lighter
 $defaultBackgroundImage: '../../public/Images/stlBackground3.jpg'; //businessmanBackground nature stlBackground3 stlBackground8
 $welcomeBackgroundImage: '../../public/Images/stlBackground4.jpg'; //stlBackground: 1,4, 7, 8, 9,11, 
+
 body,
 .backgroundImage-primary {
-    background: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage) no-repeat center fixed; 
+    background: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage) no-repeat center fixed;
     background-size: cover;
-    
 }
 
 .bgColor-primaryLight {
@@ -84,6 +84,7 @@ input:hover {
 
 $basePaddingX: 6px;
 $basePaddingY: 12px;
+
 .borderColorHover {
     color: $borderColor !important;
     font-weight: bold;
@@ -109,6 +110,7 @@ $basePaddingY: 12px;
     color: $borderColor-light;
     opacity: 100% !important;
 }
+
 .opacity-85 {
     opacity: 85%;
 }
@@ -150,7 +152,9 @@ $basePaddingY: 12px;
     // background-color: $secondary;
     color: $secondary-reverse;
 }
-.smallScreenDropdown:hover { //header dropdown (see DropdownComponent.js)
+
+.smallScreenDropdown:hover {
+    //header dropdown (see DropdownComponent.js)
     background-color: transparent;
 }
 
@@ -197,7 +201,7 @@ textarea:focus {
     -webkit-box-shadow: none !important;
     // box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px -3px $borderColor-light;
     border-color: $borderColor-light;
-    box-shadow:  0 0 10px lightgray !important;
+    box-shadow: 0 0 10px lightgray !important;
 }
 
 .input:hover,
@@ -210,17 +214,12 @@ textarea:focus {
 .nav-link-header,
 .nav-link:hover,
 .nav-link-header:hover {
-    // color: $secondary-reverse;
     color: $darkGrey;
-    // opacity: 80%;
-
 }
 
 .nav-link:hover,
 .nav-link-header:hover {
-    // opacity: 100%;
     color: $black;
-    // color: $borderColor;
     cursor: pointer;
 }
 
@@ -239,6 +238,7 @@ textarea:focus {
     color: $borderColor;
     opacity: 85%;
 }
+
 .textBorder {
     -webkit-text-stroke: 2px black;
 }

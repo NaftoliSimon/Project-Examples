@@ -15,7 +15,7 @@ export default function MyVerticallyCenteredModal(props) { //rename to DeleteCom
     function deleteComment() {
         props.onHide();
         // window.location.reload();
-        //TODO: log back in (page refreshes from href, and refreshing page logs out) or don't refresh page 
+        //TODO: make sure user stays logged in after deleting comment
     }
     return (
         <Modal

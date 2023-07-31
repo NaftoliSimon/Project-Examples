@@ -3,14 +3,12 @@
 /*For all color related CSS see Colors.scss (this also includes background images and opacity)*/
 
 //TODO: fix bloglist display size on smaller screen
+//TODO: reorganize css & switch unnecessary css to bootstrap when possible
 
 $inputZindex: 4; //if input index is set to less than 4 it messes up the password input display
 
-// body {
-//     font-size: small; //small font size for small screens. Medium font size for bigger screens
-// }
 .fs-7 {
-    font-size: xx-small//.86em;
+    font-size: xx-small
 }
 .card {
     min-width: 200px;
@@ -118,7 +116,7 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
 .eye-icon {
     position: absolute;
     right: 11px;
-    top: 7px;
+    top: 5px;
     z-index: $inputZindex;
 }
 
@@ -131,16 +129,10 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
     margin-top: -15px;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 576px) { //extra small bootstrap screen size
     .input-icon {
         top: 36px !important;
     }
-
-    .eye-icon {
-        top: 5px;
-    }
-}
-@media screen and (min-width: 576px) { //extra small bootstrap screen size
     .input-parent .input-icon {
         top: 32px;//all screen sizes other than extra small need -4px (from 36px, see above)
     }
