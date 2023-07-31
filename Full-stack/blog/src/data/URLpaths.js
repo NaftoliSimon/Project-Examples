@@ -6,7 +6,7 @@ const baseUrl = `http://localhost:3000`; //server's base url
 
 //Internal links for navigating the website
 
-const runLocally = true;
+const runLocally = false;
 const developmentUrl = `http://localhost:3001`;
 const deploymentUrl = `http://blogspotstl.com`; //domain name
 const navBaseUrl = runLocally ? developmentUrl : deploymentUrl; 

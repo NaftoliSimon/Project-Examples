@@ -195,11 +195,9 @@ textarea:focus {
     outline: none !important;
     border-color: none !important;
     -webkit-box-shadow: none !important;
-    box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px -3px $borderColor-light !important;
-    // box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px $borderColor-light !important;
-    border-color: $borderColor !important;
-    // -moz-box-shadow: 0 0 5px 2px #fff;
-    box-shadow:  0 0 10px $borderColor-light !important;
+    // box-shadow: 2px 2px 2px 2px $borderColor-light, -3px -3px -3px $borderColor-light;
+    border-color: $borderColor-light;
+    box-shadow:  0 0 10px lightgray !important;
 }
 
 .input:hover,

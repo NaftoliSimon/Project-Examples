@@ -6,7 +6,6 @@ import { BsLockFill } from 'react-icons/bs';
 
 export default function Row4({ validated, retypedPassword, setField, password, passwordMatch, setPasswordMatch, attemptedSubmit }) {
     const [retypedPasswordVisible, setRetypedPasswordVisible] = useState(false);
-    // const [passwordMatch, setPasswordMatch] = useState(true);
 
     const handleRetypedPasswordChange = (event) => {
         const retypedPasswordValue = event.target.value;
@@ -18,7 +17,8 @@ export default function Row4({ validated, retypedPassword, setField, password, p
             setPasswordMatch(true);
         }
     };
-
+    const successOrFailColor = passwordMatch ? 'border-success' : 'border-danger';
+    const borderColor = attemptedSubmit ? successOrFailColor : '';
     return (
         <Row className="mb-3">
             <Form.Group as={Col} md="12" controlId="validationSignUp05" className="input-parent">
@@ -32,9 +32,7 @@ export default function Row4({ validated, retypedPassword, setField, password, p
                         required
                         value={retypedPassword}
                         onChange={(e) => handleRetypedPasswordChange(e)}
-                        className={`inputPadding password-input rounded`}
-                        isInvalid={!passwordMatch && attemptedSubmit}
-                        isValid={passwordMatch && retypedPassword.length > 0 && attemptedSubmit}
+                        className={`inputPadding password-input rounded ${borderColor}`}
                     />
                     <Eye setVisible={setRetypedPasswordVisible} visible={retypedPasswordVisible} />
                 </InputGroup>

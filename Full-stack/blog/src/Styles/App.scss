@@ -101,7 +101,7 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
 
 .input-parent .input-icon {
     position: absolute; //sets position for all form input icons at the beginning of the input
-    top: 32px;
+    top: 36px; //extra small screen (ie phones) need +4px (see below)
     left: 21px;
     z-index: $inputZindex;
     font-size: large;
@@ -132,10 +132,6 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
 }
 
 @media screen and (min-width: 576px) {
-    // body {
-    //     font-size: medium;
-    // }
-
     .input-icon {
         top: 36px !important;
     }
@@ -144,7 +140,11 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
         top: 5px;
     }
 }
-
+@media screen and (min-width: 576px) { //extra small bootstrap screen size
+    .input-parent .input-icon {
+        top: 32px;//all screen sizes other than extra small need -4px (from 36px, see above)
+    }
+}
 @media screen and (min-width: 1200px) {
     .blog {
         width: 46%; //Blog List on 'blogs' page: Width is set for two column layout, and 50% bootstrap default + padding & margin is too big. Therefore width is set here at 46%. (Padding + Margin = 4px)

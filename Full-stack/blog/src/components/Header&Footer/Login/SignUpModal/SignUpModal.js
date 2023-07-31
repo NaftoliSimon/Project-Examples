@@ -51,21 +51,18 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.stopPropagation(); // Stop event propagation to prevent further validation checks
-            setShowError(true); // Show the error message for form validation failure
             return; // Exit the function, as form validation failed
         }
     
         // Check if data already exists in server (i.e., email already exists in the server)
-        if (isObjectEmpty(savedEmails)) {
-            console.log('No access to server (or no emails saved in the server yet)');
+        if (isObjectEmpty(savedEmails)) {//check if we have any saved emails from database. TODO: switch to check if we have access to db, as the first user to sign up for the website will get this error (since there are no saved emails yet in the db)
+            // console.log('No access to server (or no emails saved in the server yet)');
             setShowError(true); // Show the error message for no access to the server
             return; // Exit the function, as no further actions are needed
         }
-    
         const emailAlreadyExists = savedEmails.some(obj => obj.email === email);
         if (emailAlreadyExists) {
             setTakenEmail(<span className='text-danger ps-3 '>Email is already taken</span>);
-            setShowError(true); // Show the error message for email already taken
             return; // Exit the function, as no further actions are needed
         }
     
