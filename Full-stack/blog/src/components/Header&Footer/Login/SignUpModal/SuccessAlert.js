@@ -1,10 +1,11 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { pillButtonSolid } from '../../../../data/Bootstrap/pillButton';
 
 const SuccessAlert = ({ name, show, hide }) => {
   const closeModal = () => hide(false);
-  const bgColor = 'bgColor-primary';
+  const bgColor = 'bgColor-primary border-0';
 
   return (
     <Modal show={show} onHide={closeModal} backdrop="static" keyboard={false}>
@@ -17,7 +18,7 @@ const SuccessAlert = ({ name, show, hide }) => {
         </p>
       </Modal.Body>
       <Modal.Footer className={bgColor}>
-        <Button variant="success" onClick={closeModal}>
+        <Button className={pillButtonSolid} onClick={closeModal}>
           Close
         </Button>
       </Modal.Footer>

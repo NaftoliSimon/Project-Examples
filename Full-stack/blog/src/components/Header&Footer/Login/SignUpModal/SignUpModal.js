@@ -6,13 +6,11 @@ import Row1 from './Row1';
 import Row2 from './Row2';
 import baseUrl from '../../../../data/URLpaths';
 import myFetch from '../../../../functions/myFetch';
-import myPostFetch from '../../../../functions/myPostFetch'
 import Row3 from './Row3';
 import { pillButtonSolid } from '../../../../data/Bootstrap/pillButton';
 import Row4 from './Row4';
 import Checkbox from './Checkbox';
 import postFetch from '../../../../functions/postFetch';
-import Alert from '../../../Alert';
 import SuccessAlert from './SuccessAlert';
 import DismissibleAlert from '../../../Alert';
 import hide, { show as showSize } from '../../../../data/Bootstrap/hide';
@@ -27,6 +25,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
     const [attemptedSubmit, setAttemptedSubmit] = useState(false)
     const [successfulSubmit, setSuccessfulSubmit] = useState(false)
     const [showError, setShowError] = useState(false)
+    const [passwordMatch, setPasswordMatch] = useState(true);
 
     const setField = (fieldKeyAsString, value) => setFields({ ...fields, [fieldKeyAsString]: value })
     const { firstName, lastName, email, password, retypedPassword } = fields;
@@ -45,50 +44,39 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
     function isObjectEmpty(obj) {
         return Object.keys(obj).length === 0;
     }
-    function stopDefaults(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    }
     const handleSubmit = (e) => {
+        e.preventDefault(); // Prevent default form submission behavior
         setAttemptedSubmit(true);
+        setValidated(true);
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
-            stopDefaults(e);
-        } else {
-            //check if data already exists in server (ie email already exists in server)
-            if (isObjectEmpty(savedEmails)) { //check if there is access to database
-                stopDefaults(e);
-                console.log('no access to server (or no emails saved in server yet)');
-                if (showError === true) {
-                    setShowError(false);
-                    setTimeout(() => {
-                        setShowError(true)
-                    }, 250); // Pause for 1/4 of a second
-                } else {
-                    setShowError(true);
-                }
-
-            }
-            const emailAlreadyExists = savedEmails.some(obj => obj.email === email);
-            if (emailAlreadyExists) {
-                stopDefaults(e);
-                setTakenEmail(<span className='text-danger ps-3 '> Email is already taken</span>)
-            } else {
-                //Log in requirements met - send sign up data to database
-                postFetch(url, fields);
-                //close sign up modal
-                clearFields();
-                handleClose();
-
-                setLoggedIn(fields); //logs user into account
-
-                //TODO: make nice user display message
-                // setSuccessfulSubmit(true);
-                alert(`Account Created Successfully!!! Welcome ${firstName} ${lastName}! Click on the person icon in the top right corner of the website for your account details.`)
-            }
+            e.stopPropagation(); // Stop event propagation to prevent further validation checks
+            setShowError(true); // Show the error message for form validation failure
+            return; // Exit the function, as form validation failed
         }
-        setValidated(true);
+    
+        // Check if data already exists in server (i.e., email already exists in the server)
+        if (isObjectEmpty(savedEmails)) {
+            console.log('No access to server (or no emails saved in the server yet)');
+            setShowError(true); // Show the error message for no access to the server
+            return; // Exit the function, as no further actions are needed
+        }
+    
+        const emailAlreadyExists = savedEmails.some(obj => obj.email === email);
+        if (emailAlreadyExists) {
+            setTakenEmail(<span className='text-danger ps-3 '>Email is already taken</span>);
+            setShowError(true); // Show the error message for email already taken
+            return; // Exit the function, as no further actions are needed
+        }
+    
+        // Sign up requirements met:
+        postFetch(url, fields); // Send sign-up data to the database
+        clearFields();
+        handleClose(); // Close the sign-up modal
+        setLoggedIn(fields); // Log the user into the new account
+        setSuccessfulSubmit(true); // Show SuccessAlert (see component below)
     };
+    
     const modalSection = 'bgColor-primary border-0';
     return (
         <>
@@ -101,8 +89,8 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <Row1 firstName={firstName} lastName={lastName} setField={setField} />
                         <Row2 email={email} takenEmail={takenEmail} setField={setField} />
-                        <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} retypedPassword={retypedPassword} />
-                        <Row4 retypedPassword={retypedPassword} validated={validated} setField={setField} password={password} />
+                        <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} retypedPassword={retypedPassword} setPasswordMatch={setPasswordMatch} />
+                        <Row4 retypedPassword={retypedPassword} validated={validated} setField={setField} password={password} passwordMatch={passwordMatch} setPasswordMatch={setPasswordMatch} attemptedSubmit={attemptedSubmit} />
                         <Checkbox handleClose={handleClose} />
 
                         <div className='ms-1 d-flex'>
