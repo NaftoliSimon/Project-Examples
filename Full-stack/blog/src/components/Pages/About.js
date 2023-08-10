@@ -65,6 +65,7 @@ Make code easy to read and understand
  remove old unnecessary code (like bootstrap style)
  remove unused images & background images
  Make password storage secure
+ Update the use cases for the useCustomNav (navigate) hook function now with a boolean value for the second param input (see hooks/navigate.js)
  Fix sign up Modal error: No server access error displays based on if there are any saved emails in an object which we try to popylate from the db. Switch to check if we have access to db directly, as the first user to sign up for the website will get this error (since there are no saved emails yet in the db)
 
 TODO: switch data passed in to only be object in body, and pass in Method to MyFetch & myPostFetch (make method defaults?) 

@@ -1,8 +1,8 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { BsFacebook, BsGithub, BsLinkedin } from 'react-icons/bs';
+// import { BsFacebook, BsGithub, BsLinkedin } from 'react-icons/bs';
 import center from '../../data/Bootstrap/center';
 import { linkIcons, links, socialMediaLinks, socialMediaLinkIcons } from '../../data/URLpaths';
-import NavLink from './Navbar/NavLink';
+// import NavLink from './Navbar/NavLink';
 import FooterList from './FooterList';
 
 export default function Footer() {

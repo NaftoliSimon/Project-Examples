@@ -4,13 +4,14 @@ import AddBlog from './AddBlog';
 import BlogItemLayout from './BlogItemLayout';
 import Welcome from '../welcome/Welcome';
 import { Card } from 'react-bootstrap';
+import { scrollToBlogsId } from '../../../data/scrollToHeight'; //id for scrolling to (see hooks/navigate.js)
 
 export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
   const variant = 'info'; //TODO: switch this to 'danger' once database and server are fully working on development mode, also switch card text below
   if (!blogsArr.length) {
     return (<div className='pb-5 mb-5'>
        <Welcome loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
-      <Card className='m-3 opacity-75 shadow' bg={variant.toLowerCase()}
+      <Card className='m-3 opacity-75 shadow' id={scrollToBlogsId} bg={variant.toLowerCase()}
         key={variant}
         text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
       >
@@ -29,7 +30,7 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
   return (<>
     <Welcome loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
 
-    <div className='bg-blogsList pb-4 yourBlog'>
+    <div className='bg-blogsList pb-4 yourBlog' id={scrollToBlogsId}>
       <AddBlog loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
       <h4 className={`text-center dark`} id='blogList'>Please Select A Blog To Read</h4>
       <ul className={`list-group d-flex flex-row flex-wrap color-secondary-reverse ${center} pb-4`}>
