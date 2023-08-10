@@ -1,8 +1,6 @@
 import React from 'react';
 import useCustomNav from '../../../hooks/navigate';
 import blogListLocation from '../../../data/scrollToHeight';
-import { Link } from 'react-scroll';
-import { navBaseUrl } from '../../../data/URLpaths';
 
 export default function NavLink2({ key, text, link, icon }) { //style is for any additional bootstrap styling to add to the class
     const navigate = useCustomNav();
@@ -24,7 +22,7 @@ export default function NavLink2({ key, text, link, icon }) { //style is for any
     return (
         <li className={`nav-item d-flex pt-1`} key={key}>
             {link.startsWith('https://') ? externalLink : internalLink}
-            {/* {link.startsWith(navBaseUrl) ? internalLink : externalLink} */}
+            {/* {link.startsWith(navBaseUrl) ? internalLink : externalLink} */} {/* TODO: switch out the above line for this line after the website is launched with 'https://' */}
         </li>
     )
 }
