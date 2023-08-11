@@ -30,9 +30,9 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
   return (<>
     <Welcome loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
 
-    <div className='bg-blogsList pb-4 yourBlog' id={scrollToBlogsId}>
+    <div className='bg-blogsList pb-4 yourBlog'>
       <AddBlog loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
-      <h4 className={`text-center dark`} id='blogList'>Please Select A Blog To Read</h4>
+      <h4 className={`text-center dark`} id={scrollToBlogsId} >Please Select A Blog To Read</h4>
       <ul className={`list-group d-flex flex-row flex-wrap color-secondary-reverse ${center} pb-4`}>
         {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id} />)}
       </ul>

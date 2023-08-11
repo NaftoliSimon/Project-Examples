@@ -1,6 +1,7 @@
 /*Color (& background image) related CSS in this file (this includes slightly lightening opacity)*/
 /*This file displays the color scheme for the entire website (that can't be done by just bootstrap default colors)*/
 /*For all non-color related CSS see App.scss*/
+//TODO: reorganize css to make easier to find where it is being used (whether in one or many places throughout the website)
 
 //Indigo Colors
 $indigo: #6610f2;
@@ -295,7 +296,8 @@ textarea:focus {
 }
 
 .loggedInIcon .rounded-circle:hover {
-    background-color: $secondary;
+    // background-color: $secondary;
+    background-color: $borderColor-light;
 }
 
 .tac-link:hover {

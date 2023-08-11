@@ -51,6 +51,9 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
 .pointer {
     cursor: pointer;
 }
+.modal-content div {
+    border: none; //removes the border that separates different sections in all pop up modals of the website (bootstrap modals defaults to having header, body, & footer borders)
+}
 
 .cursor-text {
     cursor: text;

@@ -67,6 +67,7 @@ Make code easy to read and understand
  Make password storage secure
  Update the use cases for the useCustomNav (navigate) hook function now with a boolean value for the second param input (see hooks/navigate.js)
  Fix sign up Modal error: No server access error displays based on if there are any saved emails in an object which we try to popylate from the db. Switch to check if we have access to db directly, as the first user to sign up for the website will get this error (since there are no saved emails yet in the db)
+Add landscape and portrait separate view layout (ie for phones turned sideways)
 
 TODO: switch data passed in to only be object in body, and pass in Method to MyFetch & myPostFetch (make method defaults?) 
  make blog list link scroll move to exact location for all screen heights 
@@ -74,6 +75,7 @@ Make edited comment immediately reload/change to new edited comment after submit
 
  Front-end nicer display improvements:  
                     Use animations to make website look nicer
+                    Add landscape and portrait separate view layout (ie for phones turned sideways)
                     Add date/time to posts & comments 
                     Add date/time to login (user logged in at x time, user created at x date, ect)?
                     Add icons to blog list item display layout card

@@ -1,5 +1,5 @@
 //Simple Basic standard fetch
-async function myFetch(url, successCallback, errorCallback = false) {
+async function myFetch(url, successCallback, errorCallback = null) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -11,7 +11,7 @@ async function myFetch(url, successCallback, errorCallback = false) {
     return data;
   }
   catch (error) {
-    console.error(`${error}. Could not get data from ${url}`);
+    // console.error(`${error}. Could not get data from ${url}`);
     if (errorCallback) {
       errorCallback(error);
     }

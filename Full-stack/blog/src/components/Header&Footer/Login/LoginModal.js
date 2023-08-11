@@ -24,8 +24,10 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
   }
   const url = `${baseUrl}/signUp`;
   useEffect(() => {
-    myFetch(url, setSavedUser);
-  }, []);
+    if (show) {
+      myFetch(url, setSavedUser);
+    }
+  }, [show, url]);
 
   function isObjectEmpty(obj) {
     return Object.keys(obj).length === 0;

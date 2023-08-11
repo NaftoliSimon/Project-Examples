@@ -28,7 +28,12 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
 
     const { firstName, lastName, email, password, retypedPassword } = fields;
 
-    useEffect(() => { myFetch(signUpUrl, setSavedEmails)}, []);
+    useEffect(() => { 
+        if(show) {
+            myFetch(signUpUrl, setSavedEmails)
+        }
+    }, [show]);
+    // useEffect(() => { myFetch(signUpUrl, setSavedEmails)}, []);
 
     const setField = (fieldKeyAsString, value) => setFields({ ...fields, [fieldKeyAsString]: value });
     const isObjectEmpty = (obj) => Object.keys(obj).length === 0;
@@ -48,6 +53,10 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
             e.stopPropagation();
             return;
         }
+        // myFetch(signUpUrl, setSavedEmails, () => setShowError(true));
+        // if(showError && isObjectEmpty(savedEmails)) { //if there are no save emails and failed to fetch saved emails (both are needed, saved emails because the user could be the first user signing up, and show error to stop the next line of code form executing 'savedEmails.some' if savedEmails is undefined )
+        //     return
+        // }
         if (isObjectEmpty(savedEmails)) {
             setShowError(true);
             return;
@@ -62,26 +71,27 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         clearFields();
         handleClose();
         setLoggedIn(fields);
-        setSuccessfulSubmit(true);
+        // setSuccessfulSubmit(true); //TODO: make SuccessAlert (see below) appear instead of the following alert:
+        alert(`Welcome ${firstName} ${lastName}! Click on the person icon in the top right corner of the website for your account details. You can now comment on any post.`)
     };
 
     return (<>
-            <Bootstrap.Modal show={show} onHide={handleClose}>
-                <Bootstrap.Modal.Header closeButton className={modalSection}>
-                    <Bootstrap.Modal.Title>Create an Account</Bootstrap.Modal.Title>
-                </Bootstrap.Modal.Header>
-                <DismissibleAlert heading='Error' text='No Access To The Server' show={showError} setShow={setShowError} />
-                <Bootstrap.Modal.Footer className={modalSection}>
-                    <Bootstrap.Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Bootstrap.Modal show={show} onHide={handleClose}>
+            <Bootstrap.Modal.Header closeButton className={modalSection}>
+                <Bootstrap.Modal.Title>Create an Account</Bootstrap.Modal.Title>
+            </Bootstrap.Modal.Header>
+            <DismissibleAlert heading='Error' text='No Access To The Server' show={showError} setShow={setShowError} />
+            <Bootstrap.Modal.Footer className={modalSection}>
+                <Bootstrap.Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Row1 firstName={firstName} lastName={lastName} setField={setField} />
-                        <Row2 email={email} takenEmail={takenEmail} setField={setField} />
-                        <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} retypedPassword={retypedPassword} setPasswordMatch={setPasswordMatch} />
-                        <Row4 retypedPassword={retypedPassword} validated={validated} setField={setField} password={password} passwordMatch={passwordMatch} setPasswordMatch={setPasswordMatch} attemptedSubmit={attemptedSubmit} />
-                        <Checkbox handleClose={handleClose} />
-                        <SignUpModalFooter handleClose={handleClose} handleOpenLogin={handleOpenLogin} />
-                    </Bootstrap.Form>
-                </Bootstrap.Modal.Footer>
-            </Bootstrap.Modal>
-            <SuccessAlert name={`${firstName} ${lastName}`} show={successfulSubmit} hide={() => setSuccessfulSubmit(false)} />
-        </>);
+                    <Row2 email={email} takenEmail={takenEmail} setField={setField} />
+                    <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} retypedPassword={retypedPassword} setPasswordMatch={setPasswordMatch} />
+                    <Row4 retypedPassword={retypedPassword} validated={validated} setField={setField} password={password} passwordMatch={passwordMatch} setPasswordMatch={setPasswordMatch} attemptedSubmit={attemptedSubmit} />
+                    <Checkbox handleClose={handleClose} />
+                    <SignUpModalFooter handleClose={handleClose} handleOpenLogin={handleOpenLogin} />
+                </Bootstrap.Form>
+            </Bootstrap.Modal.Footer>
+        </Bootstrap.Modal>
+        <SuccessAlert name={`${firstName} ${lastName}`} show={successfulSubmit} hide={() => setSuccessfulSubmit(false)} />
+    </>);
 }
