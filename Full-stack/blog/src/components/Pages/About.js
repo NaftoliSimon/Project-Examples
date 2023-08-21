@@ -1,8 +1,9 @@
 import React from 'react'
 import ButtonLink from '../ButtonLink';
 import { linkedinProfile, links, socialMediaLinks } from '../../data/URLpaths';
-import { Card } from 'react-bootstrap';
+import { Button, Card, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 import ExternalLink from '../ExternalLink';
+import LinkWithTooltip from '../LinkWithTooltip';
 
 export default function About() {
     //Bootstrap Styles
@@ -26,7 +27,10 @@ export default function About() {
                     <p>While this website is currently under construction, it is a reflection of my dedication to growth and innovation. As I continue to enhance this platform, I'm excited to introduce exciting improvements and features. For more details see then Future Updates list below.</p>
                     <p>Thank you for visiting my portfolio project. I invite you to explore the evolving nature of this website as I strive to create a dynamic and impactful online presence.</p>
                     <p><span className='d-block'>Best regards,</span>
-                        <span className='d-block'><ExternalLink link={linkedinProfile} text={'Naftoli Simon'} /></span>
+                        <span className='d-block'>
+                            <LinkWithTooltip linkText={`Naftoli Simon`} linkTo={socialMediaLinks.linkedIn}
+                                tooltipText={`My LinkedIn Page`} externalLink={true} tooltipDirection={'right'}/>
+                        </span>
                         <span className='d-block pt-2'><ExternalLink link={socialMediaLinks.github} text={'Check out the Github'} /></span></p>
                 </Card.Body></Card>
 
