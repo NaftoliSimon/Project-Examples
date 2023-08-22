@@ -11,6 +11,7 @@ export default function About() {
     const h6 = `pb-0 mb-0`;
     const card = `m-4 text-start`;
     const pathToAboutComponent = `/src/components/Pages/About.js`;
+    const githubLink = <ExternalLink link={socialMediaLinks.github} text={'Check out the Github'} />;
 
     return (<>
         <div className={`text-center dark opacity-85 about`}>
@@ -20,18 +21,23 @@ export default function About() {
             </Card.Body></Card>
             <div className='d-block'>
                 <Card className={card}><Card.Body>
+                    <h4>Full-Stack</h4>
                     <p>This project exemplifies my proficiency with cutting-edge technologies. The backend is powered by Node.js, leveraging its versatility and performance capabilities. I've implemented comprehensive CRUD features, ensuring seamless interaction with the data. Initially, I developed a custom blog API to retrieve data from my local SQL database. However, I'm currently in the process of elevating the project by migrating to an AWS server, taking advantage of the scalability and reliability it offers.</p>
                     <p>On the frontend, I've harnessed the power of React, utilizing both React Router and Functional Components with hooks. This choice reflects my commitment to crafting efficient and maintainable code that delivers a smooth user experience. Throughout the development process, I've prioritized responsiveness and compatibility, meticulously testing the website on various devices including phones and tablets.</p>
+                    <h4>Web Hosting</h4>
                     <p>The launch of this website was made possible through Amazon Web Services. By leveraging services like Route 53 and EC2, I've ensured a robust and accessible online presence. The collaborative synergy between frontend and backend technologies harmoniously comes to life, offering a seamless and immersive user journey.</p>
-                    <p>I meticulously developed this project using Visual Studio Code, a testament to my dedication to modern and effective development environments. This website is not just the culmination of code and design; it represents a journey of exploration, learning, and creativity.</p>
-                    <p>While this website is currently under construction, it is a reflection of my dedication to growth and innovation. As I continue to enhance this platform, I'm excited to introduce exciting improvements and features. For more details see then Future Updates list below.</p>
+                    <h4>Software Tools</h4>
+                    <p>I meticulously developed this project using Visual Studio Code and uploaded it to Github, a testament to my dedication to modern and effective development environments. This website is not just the culmination of code and design; it represents a journey of exploration, learning, and creativity. {githubLink}</p>
+                    <h4>The Future of This Website</h4>
+                    <p>While this website is currently under construction, it is a reflection of my dedication to growth and innovation. As I continue to enhance this platform, I'm excited to introduce exciting improvements and features. For more details see the "Future Updates" list below.</p>
+                    {/* <h4></h4> */}
                     <p>Thank you for visiting my portfolio project. I invite you to explore the evolving nature of this website as I strive to create a dynamic and impactful online presence.</p>
                     <p><span className='d-block'>Best regards,</span>
                         <span className='d-block'>
                             <LinkWithTooltip linkText={`Naftoli Simon`} linkTo={socialMediaLinks.linkedIn}
                                 tooltipText={`My LinkedIn Page`} externalLink={true} tooltipDirection={'right'}/>
                         </span>
-                        <span className='d-block pt-2'><ExternalLink link={socialMediaLinks.github} text={'Check out the Github'} /></span></p>
+                        <span className='d-block pt-2'>{githubLink}</span></p>
                 </Card.Body></Card>
 
                 <Card className={card}><Card.Body>
