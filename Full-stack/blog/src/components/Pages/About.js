@@ -11,7 +11,7 @@ export default function About() {
     const h6 = `pb-0 mb-0`;
     const card = `m-4 text-start`;
     const pathToAboutComponent = `/src/components/Pages/About.js`;
-    const githubLink = <ExternalLink link={socialMediaLinks.github} text={'Check out the Github'} />;
+    const githubLink = <ExternalLink link={socialMediaLinks.github} text={'Github'} />;
 
     return (<>
         <div className={`text-center dark opacity-85 about`}>
@@ -34,10 +34,14 @@ export default function About() {
                     <p>Thank you for visiting my portfolio project. I invite you to explore the evolving nature of this website as I strive to create a dynamic and impactful online presence.</p>
                     <p><span className='d-block'>Best regards,</span>
                         <span className='d-block'>
-                            <LinkWithTooltip linkText={`Naftoli Simon`} linkTo={socialMediaLinks.linkedIn}
-                                tooltipText={`My LinkedIn Page`} externalLink={true} tooltipDirection={'right'}/>
+                            {/* <LinkWithTooltip linkText={`Naftoli Simon`} linkTo={socialMediaLinks.linkedIn}
+                                tooltipText={`My LinkedIn Page`} externalLink={true} tooltipDirection={'right'}/> */}
+                                Naftoli Simon
                         </span>
-                        <span className='d-block pt-2'>{githubLink}</span></p>
+                        <span className='d-block pt-2'>
+                        <ExternalLink link={socialMediaLinks.linkedIn} text={'LinkedIn'} />
+                            <span className='d-block'>{githubLink}</span>
+                            </span></p>
                 </Card.Body></Card>
 
                 <Card className={card}><Card.Body>
