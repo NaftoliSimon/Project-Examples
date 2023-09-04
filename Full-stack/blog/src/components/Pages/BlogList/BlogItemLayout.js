@@ -5,15 +5,16 @@ import { Card } from 'react-bootstrap';
 import { BsBuildingFill, BsPersonFill } from 'react-icons/bs';
 import ListIcon from './ListIcon';
 import PopUpAlert from '../../PopUpAlert';
+import isMobile from '../../../data/isMobile';
 
-export default function BlogItemLayout({ blog, setShowAlert, bsStyle = '' }) { //bootstrap style in optional
+export default function BlogItemLayout({ blog, setShowAlert }) { //bootstrap style in optional
   const navigate = useCustomNav();
   const defaultShadow = `shadow-sm `;//border borderColor
   const [shadow, setShadow] = useState(defaultShadow); //state used to control shadow on hover to get bootstrap's shadow value. Easily change shadow type (see https://getbootstrap.com/docs/5.3/utilities/shadows/#examples)
   // const [showAlert, setShowAlert] = useState(false);
 
   const onHover = ` border borderColor backgroundColor`;
-  const liStyle = `list-group bgColor-primary bg-transparent p-0 m-0  color-secondary-reverse pointer ${bsStyle}`;
+  const liStyle = `list-group bgColor-primary bg-transparent p-0 m-0  color-secondary-reverse pointer`;
   const { id, name, website, companyName, userId, shortSummary } = blog;
   const noBlogs = userId === 'noBlogsFound' ? true : false;
   const blogUrl = `${links.blogs}/${userId}`;
@@ -33,9 +34,10 @@ export default function BlogItemLayout({ blog, setShowAlert, bsStyle = '' }) { /
       })
     }
   }
+  const mobileStyle = isMobile ? '' : '';
   return (
     <li className={liStyle} key={id} onClick={onBlogDisplayClick}> {/*links to Blog.js */}
-      <Card className={`m-2 bgColor-primary pointer ${shadow} blogListItemLayout`}
+      <Card className={`m-2 bgColor-primary pointer ${shadow} blogListItemLayout ${mobileStyle}`}
         onMouseOver={() => setShadow(`shadow ${onHover}`)} onMouseLeave={() => setShadow(defaultShadow)}
       >
         {/* <Card.Header as="h5">{name}</Card.Header> */}

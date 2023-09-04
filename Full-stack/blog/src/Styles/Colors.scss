@@ -64,7 +64,10 @@ body,
 .welcome-card {
     opacity: 85%;
 }
-
+.bsAlert {
+    border-color: #842029; //bootstrap alert color
+    border-width: 2px;
+}
 .borderColor-primary,
 .edit-hover:hover {
     border-color: $primary;

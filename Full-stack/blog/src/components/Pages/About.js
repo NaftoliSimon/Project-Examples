@@ -36,12 +36,12 @@ export default function About() {
                         <span className='d-block'>
                             {/* <LinkWithTooltip linkText={`Naftoli Simon`} linkTo={socialMediaLinks.linkedIn}
                                 tooltipText={`My LinkedIn Page`} externalLink={true} tooltipDirection={'right'}/> */}
-                                Naftoli Simon
+                            Naftoli Simon
                         </span>
                         <span className='d-block pt-2'>
-                        <ExternalLink link={socialMediaLinks.linkedIn} text={'LinkedIn'} />
+                            <ExternalLink link={socialMediaLinks.linkedIn} text={'LinkedIn'} />
                             <span className='d-block'>{githubLink}</span>
-                            </span></p>
+                        </span></p>
                 </Card.Body></Card>
 
                 <Card className={card}><Card.Body>
@@ -72,6 +72,7 @@ Make code easy to read and understand
  Update the use cases for the useCustomNav (navigate) hook function now with a boolean value for the second param input (see hooks/navigate.js)
  Fix sign up Modal error: No server access error displays based on if there are any saved emails in an object which we try to popylate from the db. Switch to check if we have access to db directly, as the first user to sign up for the website will get this error (since there are no saved emails yet in the db)
 Add landscape and portrait separate view layout (ie for phones turned sideways)
+fix the top comment from list of comments on posts so that the corners are rounded properly so that the border is not being covered by the unrounded comments corner (zoom in to see)
 
 TODO: switch data passed in to only be object in body, and pass in Method to MyFetch & myPostFetch (make method defaults?) 
  make blog list link scroll move to exact location for all screen heights 

@@ -21,12 +21,13 @@ export default function AddBlog({ loggedIn, setShowLogin, blogsArr }) {
     }, [loggedIn, blogsArr])
 
     const blogDisplay = <BlogItemLayout blog={loggedInUserBlog} />;
-    const invisibleBlogDisplay = <BlogItemLayout bsStyle={'invisible'} blog={blogsArr[0]}/>; //when no blog to display, this component takes up the space and keeps the page the same length (without this link to blog's height would be off, see scrollToHeight.js)
+    // const invisibleBlogDisplay = <BlogItemLayout bsStyle={'invisible'} blog={blogsArr[0]}/>; //when no blog to display, this component takes up the space and keeps the page the same length (without this link to blog's height would be off, see scrollToHeight.js)
     return (<>
         {/* <h4 className='text-center p-0 m-0 mt-2'>Log In / Sign Up to View Your Blog</h4> */}
        {loggedIn && !loggedInUserBlog && <AddBlogModal show={show} setShow={setShow} loggedIn={loggedIn}/>} {/*if you are logged in but you don't have a blog yet */}
         <div className={`${center} p-3`}>
-            {loggedInUserBlog ?  blogDisplay : invisibleBlogDisplay}
+            {/* {loggedInUserBlog ?  blogDisplay : invisibleBlogDisplay} */}
+            {loggedInUserBlog &&  blogDisplay }
         </div>
     </>
     )

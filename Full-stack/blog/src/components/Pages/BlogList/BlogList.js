@@ -9,9 +9,9 @@ import DismissibleAlert from '../../Alert';
 import isMobile from '../../../data/isMobile';
 
 export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
-  const [showAlert, setShowAlert] = useState(true);
-  // const variant = 'danger'; //TODO: switch this to 'danger' once database and server are fully working on development mode, also switch card text below
+  const [showAlert, setShowAlert] = useState(false);
   const mxSize = isMobile ? '3' : '5';
+  // const variant = 'danger'; //TODO: switch this to 'danger' once database and server are fully working on development mode, also switch card text below
   const emptyBlog = { id: 'id', name: 'Person', website: 'website.com', companyName: 'Company', userId: 'noBlogsFound', shortSummary: 'This is a placeholder. No Data Found. This is a placeholder. No Data Found. This is a placeholder. No Data Found. ' }
   const createEmptyBlogs = (numBlogs) => Array.from({ length: numBlogs }, (_, index) => ({
     ...emptyBlog,
@@ -20,11 +20,19 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
   const numberOfBlogs = 6;
 
   if (!blogsArr.length) {
-    // setShowAlert(true)
     blogsArr = createEmptyBlogs(numberOfBlogs);
-
-  } else {
-    setShowAlert(false)
+    return (<>
+      <Welcome loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
+      
+      <div className={`mx-${mxSize} mt-4`} id='noBlogsAlert'>
+        <DismissibleAlert heading={'Website Under Construction'} text={'There is currently no access to the server at this time. The blogs displayed below are just placeholders.'}
+      show={showAlert} setShow={setShowAlert}/>
+      </div>
+      <h4 className={`text-center dark`} id={scrollToBlogsId} >Please Select A Blog To Read</h4>
+      <ul className={`list-group d-flex flex-row flex-wrap color-secondary-reverse ${center} pb-4`}>
+        {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id} setShowAlert={setShowAlert}/>)}
+      </ul>
+    </>)
   };
 
   return (<>
@@ -32,13 +40,9 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
 
     <div className='bg-blogsList pb-4 yourBlog'>
       <AddBlog loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
-      <div className={`mx-${mxSize} mb-3`} id='noBlogsAlert'>
-        <DismissibleAlert heading={'Website Under Construction'} text={'There is currently no access to the server at this time. All of the blogs below are just placeholders.'}
-          show={showAlert} setShow={setShowAlert} />
-      </div>
       <h4 className={`text-center dark`} id={scrollToBlogsId} >Please Select A Blog To Read</h4>
       <ul className={`list-group d-flex flex-row flex-wrap color-secondary-reverse ${center} pb-4`}>
-        {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id} setShowAlert={setShowAlert} />)}
+        {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id} />)}
       </ul>
     </div>
   </>)

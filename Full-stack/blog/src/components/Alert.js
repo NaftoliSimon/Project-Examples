@@ -4,7 +4,7 @@ import { Alert, Button } from 'react-bootstrap';
 export default function DismissibleAlert({ heading, text, show, setShow, variant = `danger` }) {//show, setShow,
     
     return (<>
-        {show && <Alert variant={variant} onClose={() => setShow(false)} dismissible className='m-2'>
+        {show && <Alert variant={variant} onClose={() => setShow(false)} dismissible className='m-2 bsAlert'>
             <Alert.Heading>{heading}</Alert.Heading>
             <p>
                 {text}

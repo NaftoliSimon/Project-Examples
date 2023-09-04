@@ -85,8 +85,8 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
 }
 
 .blogListItemLayout {
-    min-width: 400px;
-    max-width: 400px;
+    min-width: 350px;
+    max-width: 350px;
     min-height: 250px;
     max-height: 250px;
 }
@@ -130,13 +130,24 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
     position: absolute;
     margin-top: -15px;
 }
-
+body {
+    font-weight: 600;
+}
 @media screen and (min-width: 576px) { //extra small bootstrap screen size
+    body {
+        font-weight: 400;
+    }
     .input-icon {
         top: 36px !important;
     }
     .input-parent .input-icon {
         top: 32px;//all screen sizes other than extra small need -4px (from 36px, see above)
+    }
+    .blogListItemLayout {
+        min-width: 400px;
+        max-width: 400px;
+        min-height: 250px;
+        max-height: 250px;
     }
 }
 @media screen and (min-width: 1200px) {
