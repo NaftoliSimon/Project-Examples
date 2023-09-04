@@ -15,11 +15,11 @@ export default function Welcome({ loggedIn, setShowLogin, blogsArr }) {
         <ThreeColLayout loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} goToAboutPage={goToAboutPage} />
       </div>
 
-      <div className={`bg-welcome  vh-100 d-none d-md-block d-sm-block d-lg-none`}> {/*This element should only show for medium screens*/}
+      <div className={`bg-welcome d-none d-md-block d-sm-block d-lg-none pb-3`}> {/*This element should only show for medium screens*/}
         <TwoColLayout loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} goToAboutPage={goToAboutPage} />
       </div>
 
-      <div className={`bg-welcome vh-100 d-block d-sm-none`}> {/*This element should only show for extra small screens*/}
+      <div className={`bg-welcome d-block d-sm-none pb-3`}> {/*This element should only show for extra small screens*/}
         <OneColLayout loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} goToAboutPage={goToAboutPage} />
       </div>
     </>

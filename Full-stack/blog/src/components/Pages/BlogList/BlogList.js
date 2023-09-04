@@ -1,30 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import center from '../../../data/Bootstrap/center';
 import AddBlog from './AddBlog';
 import BlogItemLayout from './BlogItemLayout';
 import Welcome from '../welcome/Welcome';
 import { Card } from 'react-bootstrap';
 import { scrollToBlogsId } from '../../../data/scrollToHeight'; //id for scrolling to (see hooks/navigate.js)
+import DismissibleAlert from '../../Alert';
+import isMobile from '../../../data/isMobile';
 
 export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
-  const variant = 'info'; //TODO: switch this to 'danger' once database and server are fully working on development mode, also switch card text below
+  const [showAlert, setShowAlert] = useState(true);
+  // const variant = 'danger'; //TODO: switch this to 'danger' once database and server are fully working on development mode, also switch card text below
+  const mxSize = isMobile ? '3' : '5';
+  const emptyBlog = { id: 'id', name: 'Person', website: 'website.com', companyName: 'Company', userId: 'noBlogsFound', shortSummary: 'This is a placeholder. No Data Found. This is a placeholder. No Data Found. This is a placeholder. No Data Found. ' }
+  const createEmptyBlogs = (numBlogs) => Array.from({ length: numBlogs }, (_, index) => ({
+    ...emptyBlog,
+    id: index.toString(), // Use the index as the blog ID (this removes reacts warning about duplicate IDs)
+  }));
+  const numberOfBlogs = 6;
+
   if (!blogsArr.length) {
-    return (<div className='pb-5 mb-5'>
-       <Welcome loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
-      <Card className='m-3 opacity-75 shadow' id={scrollToBlogsId} bg={variant.toLowerCase()}
-        key={variant}
-        text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
-      >
-        <div className={`text-center p-4 pb-2 fs-1`}>
-          {/* <Card.Title>CONNECTION ERROR</Card.Title>
-          <div className={`text-center p-4 pb-2 fs-1`}>NO BLOGS</div>
-          <div className='text-center m-4 fs-1'>Server Is Not Connected</div> */}
-          {/* <Card.Title>Website Under Construction</Card.Title> */}
-          <h4 className={`text-center fs-1 text-decoration-underline text-uppercase`}>Website Under Construction</h4>
-          <div className='text-center fs-1 text-capitalize'>There is currently no access to the server at this time</div>
-          <div className='pb-5 mb-3'></div> {/*This empty div is added to take up space so that footer appears at bottom, since no data (from server) is taking up space  */}
-        </div>
-      </Card></div>)
+    // setShowAlert(true)
+    blogsArr = createEmptyBlogs(numberOfBlogs);
+
+  } else {
+    setShowAlert(false)
   };
 
   return (<>
@@ -32,9 +32,13 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
 
     <div className='bg-blogsList pb-4 yourBlog'>
       <AddBlog loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
+      <div className={`mx-${mxSize} mb-3`} id='noBlogsAlert'>
+        <DismissibleAlert heading={'Website Under Construction'} text={'There is currently no access to the server at this time. All of the blogs below are just placeholders.'}
+          show={showAlert} setShow={setShowAlert} />
+      </div>
       <h4 className={`text-center dark`} id={scrollToBlogsId} >Please Select A Blog To Read</h4>
       <ul className={`list-group d-flex flex-row flex-wrap color-secondary-reverse ${center} pb-4`}>
-        {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id} />)}
+        {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id} setShowAlert={setShowAlert} />)}
       </ul>
     </div>
   </>)
