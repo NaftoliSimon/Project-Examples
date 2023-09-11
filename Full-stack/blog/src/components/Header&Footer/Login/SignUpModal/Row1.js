@@ -6,9 +6,6 @@ import InputIcon from './InputIcon'
 export default function Row1({ firstName, lastName, setField }) {
     return (
         <Row className="mb-3">
-            {/* <div className='outer'>outer
-                <div className='inner'>inner</div>
-            </div> */}
             <Form.Group as={Col} md="6" className='input-parent' controlId="validationSignUp01">
                 <Form.Label>First Name</Form.Label>
                 <InputIcon name={'firstName'} icon={<BsPersonFill />} />

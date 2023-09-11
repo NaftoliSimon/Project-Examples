@@ -64,10 +64,16 @@ body,
 .welcome-card {
     opacity: 85%;
 }
+
 .bsAlert {
-    border-color: #842029; //bootstrap alert color
-    border-width: 2px;
+    border-color: #842029 !important; //bootstrap alert color
+    border-width: 2px !important;
 }
+
+.bsAlert button:focus {
+    box-shadow: none; //removes bootstrap's default blue box shadow that appears when you click on the X to close the alert
+}
+
 .borderColor-primary,
 .edit-hover:hover {
     border-color: $primary;
@@ -266,6 +272,14 @@ textarea:focus {
     background-color: $primary;
     color: $secondary-reverse;
     // border-color: $secondary-reverse;
+
+}
+
+.btn:disabled,
+button:disabled {
+    opacity: 75% !important;
+    cursor: not-allowed;
+    pointer-events: all !important;
 }
 
 .header-button:hover,

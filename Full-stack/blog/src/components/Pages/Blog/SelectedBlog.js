@@ -11,8 +11,11 @@ export default function SelectedBlog({ selectedBlog, loggedIn }) {
     const editInfoToggleStyle = `link text-decoration-none link-color fs-6 pointer p-0 m-0 ${visibility}`
     const editInfoModal = <AddBlogModal show={show} setShow={setShow} loggedIn={loggedIn} savedUpdateData={{ website, companyName, shortSummary }} />;
     const editInfoToggle = <div className={editInfoToggleStyle} onClick={() => setShow(true)} >Edit Your Info</div>
+    
+    const noVisibleCard = 'm-5 backgroundImage-primary border-0';
+    const visibleCard = 'm-2 opacity-75'
     return (<>
-        <Card className='m-5 backgroundImage-primary border-0'>
+        <Card className={visibleCard}>
             <Card.Body>
                 <div className={`h3 text-center block p-2 bgColor-primaryLight color-primary-reverse bg-transparent`}>
                     {editInfoToggle}

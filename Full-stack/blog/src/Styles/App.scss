@@ -131,11 +131,17 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
     margin-top: -15px;
 }
 body {
-    font-weight: 600;
+    font-weight: 500;
+}
+.header-button {
+    padding-top: 2px;
 }
 @media screen and (min-width: 576px) { //extra small bootstrap screen size
     body {
         font-weight: 400;
+    }
+    .header-button {
+        padding-top: 5px;
     }
     .input-icon {
         top: 36px !important;

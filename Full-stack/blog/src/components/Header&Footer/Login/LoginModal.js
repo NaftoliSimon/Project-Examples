@@ -6,6 +6,7 @@ import ModalBody from './LoginModalBody';
 import ModalFooter from './LoginModalFooter';
 import DismissibleAlert from '../../Alert';
 import PopUpAlert from '../../PopUpAlert';
+import scrollToElem from '../../../functions/scrollToElem';
 
 export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, showLogin: title }) {
   const modalTitle = typeof title === 'string' ? title : "Account Log In"; //showLogin (or title) is either true or a string.
@@ -41,6 +42,7 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
         }, 250); // Pause for 1/4 of a second
       } else {
         setShowError(true);
+        // scrollToElem('noBlogsAlertSignUp');
       }
       console.log('No Access to server');
     }
@@ -80,7 +82,9 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
       <Modal.Header closeButton className='bgColor-primary border-0'>
         <Modal.Title>{modalTitle}</Modal.Title>
       </Modal.Header>
-      <DismissibleAlert heading={'Error'} text={'No Access To The Server'} show={showError} setShow={setShowError} />
+      <div id='noBlogsAlertSignUp'>
+        <DismissibleAlert heading={'Error'} text={'No Access To The Server'} show={showError} setShow={setShowError} />
+      </div>
       <ModalBody
         invalidEmail={invalidEmail}
         email={email}

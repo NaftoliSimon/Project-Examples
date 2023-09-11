@@ -6,6 +6,7 @@ import { BsBuildingFill, BsPersonFill } from 'react-icons/bs';
 import ListIcon from './ListIcon';
 import PopUpAlert from '../../PopUpAlert';
 import isMobile from '../../../data/isMobile';
+import scrollToElem from '../../../functions/scrollToElem';
 
 export default function BlogItemLayout({ blog, setShowAlert }) { //bootstrap style in optional
   const navigate = useCustomNav();
@@ -23,15 +24,11 @@ export default function BlogItemLayout({ blog, setShowAlert }) { //bootstrap sty
   const defaultShortSummary = `${name} has not put in a blog introduction yet. 
   `;
   const onBlogDisplayClick = () => {
-    const offset = -80; //offsets the height of the fixed header
     if (!noBlogs) {
       navigate(blogUrl)
     } else {
-      // alert('THIS IS A PLACEHOLDER. NO ACCESS TO THE SERVER')
       setShowAlert(true);
-      window.scrollTo({
-        top: document.getElementById('noBlogsAlert').offsetTop + offset
-      })
+      scrollToElem('noBlogsAlert'); 
     }
   }
   const mobileStyle = isMobile ? '' : '';

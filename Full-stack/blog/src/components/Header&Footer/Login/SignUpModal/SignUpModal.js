@@ -25,12 +25,13 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
     const [successfulSubmit, setSuccessfulSubmit] = useState(false);
     const [showError, setShowError] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(true);
+    const [checked, setChecked] = useState(false); //for the terms and conditions checkbox
 
     const { firstName, lastName, email, password, retypedPassword } = fields;
 
     useEffect(() => { 
         if(show) {
-            myFetch(signUpUrl, setSavedEmails)
+            myFetch(signUpUrl, setSavedEmails);
         }
     }, [show]);
     // useEffect(() => { myFetch(signUpUrl, setSavedEmails)}, []);
@@ -85,10 +86,10 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
                 <Bootstrap.Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Row1 firstName={firstName} lastName={lastName} setField={setField} />
                     <Row2 email={email} takenEmail={takenEmail} setField={setField} />
-                    <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} retypedPassword={retypedPassword} setPasswordMatch={setPasswordMatch} />
+                    <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} retypedPassword={retypedPassword} setPasswordMatch={setPasswordMatch} passwordMatch={passwordMatch}/>
                     <Row4 retypedPassword={retypedPassword} validated={validated} setField={setField} password={password} passwordMatch={passwordMatch} setPasswordMatch={setPasswordMatch} attemptedSubmit={attemptedSubmit} />
-                    <Checkbox handleClose={handleClose} />
-                    <SignUpModalFooter handleClose={handleClose} handleOpenLogin={handleOpenLogin} />
+                    <Checkbox handleClose={handleClose} checked={checked} setChecked={setChecked}/>
+                    <SignUpModalFooter handleClose={handleClose} handleOpenLogin={handleOpenLogin} showError={showError}/>
                 </Bootstrap.Form>
             </Bootstrap.Modal.Footer>
         </Bootstrap.Modal>

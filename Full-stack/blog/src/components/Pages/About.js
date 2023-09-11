@@ -68,7 +68,7 @@ Improve pre-existing code (use chat GPT)
 Make code easy to read and understand 
  remove old unnecessary code (like bootstrap style)
  remove unused images & background images
- Make password storage secure
+ Make password storage secure (also disable react dev tools for deployment, see https://youtu.be/3QaFEu-KkR8?si=HUfCwMoqssrN81kf)
  Update the use cases for the useCustomNav (navigate) hook function now with a boolean value for the second param input (see hooks/navigate.js)
  Fix sign up Modal error: No server access error displays based on if there are any saved emails in an object which we try to popylate from the db. Switch to check if we have access to db directly, as the first user to sign up for the website will get this error (since there are no saved emails yet in the db)
 Add landscape and portrait separate view layout (ie for phones turned sideways)

@@ -51,6 +51,7 @@ function App() {
   const blogElem = <Blog blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} setLoggedIn={setLoggedInUser} />
 
   const { blogs: home, about } = links;
+  // console.log('environment:', process.env.NODE_ENV);
   return (
     <BrowserRouter>
       <Header loggedIn={loggedInUser} setLoggedIn={setLoggedInUser} showLogin={showLogin} showSignUp={showSignUp} setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} blogsArr={blogsArr} />

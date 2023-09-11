@@ -4,9 +4,9 @@ import pillButton from '../../../data/Bootstrap/pillButton';
 import isMobile from '../../../data/isMobile';
 import subtractPixelsFromString from '../../../functions/subtractPixelsFromString';
 
-function DefaultCard({ header, text, buttonText, onButtonClick, width = '20em' }) {
+function DefaultCard({ header, text, buttonText, onButtonClick, width = '18em' }) {
     if(isMobile) {
-        width = subtractPixelsFromString(width, 2);
+        width = subtractPixelsFromString(width, 2); //TODO: use css instead of javascript for different screen sizes
     }
     return (
         <>

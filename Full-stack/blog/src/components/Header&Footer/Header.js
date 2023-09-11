@@ -25,8 +25,8 @@ const headerStyle = 'sticky-top ps-3 pe-3 bgColor-primary color-secondary-revers
       {/* Header for smaller screen sizes */}
       {isSmallScreen && (
         <header className={headerStyle}>
-          <div className="row ps-2 pe-2">
-            <Icon style={`pb-1`}/>
+          <div className="row ps-0 pe-0">
+            <Icon style={`mb-1`}/>
             <Title />
             {login}
           </div>
@@ -38,7 +38,7 @@ const headerStyle = 'sticky-top ps-3 pe-3 bgColor-primary color-secondary-revers
       <header className={headerStyle}>
           <div className="row pb-1 ps-2 pe-2">
             <div className={`col ${center}`}><Navbar /></div>
-            <div className={`col ${center}`}><Title /></div>
+            <div className={`col-5 ${center}`}><Title /></div>
             <div className={`col ${center}`}>{login}</div>
           </div>
         </header>

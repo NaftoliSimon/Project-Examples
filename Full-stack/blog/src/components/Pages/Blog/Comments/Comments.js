@@ -31,7 +31,7 @@ export default function Comments({ commentsArr, postId, loggedIn, setShowLogin, 
       {commentsArr.map(comment => {
         const { id, postId } = comment;
         const addBorder = comment !== commentsArr.at(-1) ? 'border-bottom' : ''; //adds a border to bottom of each comment, excluding the last comment
-        return <li className={`bgColor-primary text-dark comment px-3 ${addBorder}`} key={`${postId}/${id}`} id={`comment-${id}`}>
+        return <li className={`bgColor-primary text-dark comment px-3 ${addBorder} rounded-top`} key={`${postId}/${id}`} id={`comment-${id}`}>
           <div className={`container`}>
             <div className="row">
               {id !== selectedComment && <CommentDisplay comment={comment} changeSelectedComment={changeSelectedComment} loggedIn={loggedIn}/>} {/* If comment is NOT selected, then show comment display */}

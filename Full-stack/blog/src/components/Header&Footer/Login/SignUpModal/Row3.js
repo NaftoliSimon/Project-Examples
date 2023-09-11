@@ -4,9 +4,14 @@ import { BsLockFill } from 'react-icons/bs'
 import InputIcon from './InputIcon';
 import Eye from './Eye';
 
-export default function Row3({ password, attemptedSubmit, setField, retypedPassword, setPasswordMatch }) {
+export default function Row3({ password, attemptedSubmit, setField, retypedPassword, setPasswordMatch, passwordMatch }) {
+    const validatePassword = (password) => { // Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character
+        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+        return passwordRegex.test(password);
+    }
+
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const [passwordValidated, setPasswordValidated] = useState(false);
+    const [passwordValidated, setPasswordValidated] = useState(validatePassword(password));
     const [extraSmallScreen, setExtraSmallScreen] = useState(window.innerWidth < 576); //<576px is bootstraps extra small screen size
 
     useEffect(() => {
@@ -20,11 +25,6 @@ export default function Row3({ password, attemptedSubmit, setField, retypedPassw
 
     const dangerOrSuccess = !passwordValidated ? 'border-danger text-danger' : 'border-success text-success';
     const submittedDisplayColor = attemptedSubmit ? dangerOrSuccess : ''; //if you have not tried to submit border/text shouldn't be colored, if you have clicked submit border will be either red or green depending on if the password is valid
-
-    const validatePassword = (password) => { // Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character
-        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
-        return passwordRegex.test(password);
-    }
 
     const handlePasswordChange = (event) => {
         const passwordValue = event.target.value;
