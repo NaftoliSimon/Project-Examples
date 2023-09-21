@@ -1,7 +1,7 @@
 import React from 'react';
 import { show } from '../../data/Bootstrap/hide';
 import { links } from '../../data/URLpaths';
-import ButtonLink from '../ButtonLink';
+import ButtonLink from '../reuseable/ButtonLink';
 import { BsExclamationTriangleFill } from 'react-icons/bs';
 
 export default function FourOhFour() {

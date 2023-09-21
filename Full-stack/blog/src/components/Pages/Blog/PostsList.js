@@ -17,7 +17,7 @@ export default function PostsList({ postsArr, loggedIn, setShowLogin, setLoggedI
   return (<div className='container'>
     <div className={`row ${center}`}>
       <AddPost show={show} setShow={setShow} />
-      <ul className={`list-group post d-flex flex-row flex-wrap ${center}`}>
+      <ul className={`list-group w-100 d-flex flex-row flex-wrap ${center}`}>
         {postsArr.map(post => (
            <Post post={post} selectedPostId={selectedPostId} loggedIn={loggedIn} setShowLogin={setShowLogin}
             setSelectedPost={setSelectedPost} key={post.id} setLoggedIn={setLoggedIn} />

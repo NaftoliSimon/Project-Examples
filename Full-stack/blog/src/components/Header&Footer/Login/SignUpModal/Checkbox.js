@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import useCustomNav from '../../../../hooks/navigate';
 
-export default function Checkbox({ handleClose, checked, setChecked }) {
+export default function Checkbox({ handleClose, checked, setChecked, attemptedSubmit }) {
+    const style = !attemptedSubmit ? 'checkbox' : '';
     const navigate = useCustomNav()
     function goToTermsAndConditionsPage() {
         handleClose();
@@ -21,6 +22,7 @@ export default function Checkbox({ handleClose, checked, setChecked }) {
                 feedbackType="invalid"
                 onChange={(e) => setChecked(e.target.checked)}
                 checked={checked}
+                className={`${style}`}
             />
         </Form.Group>
     )

@@ -22,6 +22,7 @@
 // router.use('/blogInfo', blogInfoRouter);
 
 // module.exports = router;
+const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();
 const pool = require('../pool')
@@ -62,7 +63,7 @@ router.route('/blogs')
   })
 router.route('/posts/:postID')
   .get(function (req, res, next) {
-    console.log(req.params.postID);
+    // console.log(req.params.postID);
     pool.query('SELECT * FROM posts WHERE userId = ? ORDER BY id DESC;', [req.params.postID], (error, results, fields) => { //posts are fetched in descending order so that the newest post is displayed (first) on top
       if (error) {
         return res.sendStatus(500);//TODO: create a more specific error for user
@@ -130,9 +131,11 @@ router.route('/editComment/:commentID')
   });
 
 router.route('/signUp')
-  .post((req, res, next) => {
+  .post(async (req, res, next) => {
+    const rawPassword = req.body.password;
+    // const hashedPassword = await bcrypt.hash(rawPassword, 10);
     pool.query('INSERT INTO users(firstName, lastName, email, password) VALUES (?,?,?,?)',
-      [req.body.firstName, req.body.lastName, req.body.email, req.body.password],
+      [req.body.firstName, req.body.lastName, req.body.email, rawPassword],
       (error, results, fields) => {
         if (error) {
           console.error(`User account failed to be created: ${error}`);
@@ -152,13 +155,23 @@ router.route('/signUp')
       return res.send(results);
     })
   })
-router.route('/login/:email')
-  .get(function (req, res, next) {
+  // async function bcryptCompare(dbPassword, password) {
+  //   const match = await bcrypt.compare(dbPassword, password);
+  //   return match;
+  // }
+router.route('/login/:email/:password')
+  .get(async function (req, res, next) {
     pool.query('SELECT password FROM users WHERE email = ?', [req.params.email], (error, results, fields) => {
       if (error) {
         console.error("Failed to fetch user password: ", error);
         return res.status(500).json({ error: "Failed to fetch user password" });
       }
+      // console.log('results:', results);
+      // const [db] = JSON.parse(JSON.stringify(results));
+      // const match = bcryptCompare(db.password, req.params.password);
+      // console.log('dbPassword:', db.password);
+      
+      // console.log('match:', match);
       return res.json(results);
     })
   })
@@ -189,7 +202,7 @@ router.route('/blogInfo/edit')
     )
   });
 
-  router.route('/postInfo')
+router.route('/postInfo')
   .post((req, res, next) => {
     console.log('postInfo: post info sent');
     pool.query('INSERT INTO posts(title, body, userId) VALUES (?,?,?)',
@@ -205,7 +218,7 @@ router.route('/blogInfo/edit')
   });
 router.route('/postInfo/edit')
   .post((req, res, next) => {
-    console.log('userId:', req.body.userId);
+    // console.log('userId:', req.body.userId);
     pool.query('Update posts SET title = ?, body = ? WHERE id = ?',
       [req.body.title, req.body.body, req.body.postId],
       (error, results, fields) => {
@@ -217,7 +230,7 @@ router.route('/postInfo/edit')
       }
     )
   });
-  router.route('/postInfo/delete/:blogId/:postId')
+router.route('/postInfo/delete/:blogId/:postId')
   .get(function (req, res, next) {
     pool.query('DELETE FROM post WHERE id = ?', [req.params.postId], (error, results, fields) => {
       if (error) {

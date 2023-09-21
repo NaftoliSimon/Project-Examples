@@ -4,7 +4,7 @@ import baseUrl from '../../../../data/URLpaths';
 import myFetch from '../../../../functions/myFetch';
 import SignUpModalFooter from './SignUpModalFooter';
 import SuccessAlert from './SuccessAlert';
-import DismissibleAlert from '../../../Alert';
+import DismissibleAlert from '../../../reuseable/Alert';
 import Checkbox from './Checkbox';
 import postFetch from '../../../../functions/postFetch';
 import Row1 from './Row1';
@@ -76,6 +76,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         alert(`Welcome ${firstName} ${lastName}! Click on the person icon in the top right corner of the website for your account details. You can now comment on any post.`)
     };
 
+    const inputsStyle = attemptedSubmit ? 'exclude' : ''; //see Colors.scss "Form fields - inputs & textarea", adding 'signUp' here excludes the default input styles for all sign Up form input fields, so that the validation css takes effect
     return (<>
         <Bootstrap.Modal show={show} onHide={handleClose}>
             <Bootstrap.Modal.Header closeButton className={modalSection}>
@@ -83,12 +84,12 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
             </Bootstrap.Modal.Header>
             <DismissibleAlert heading='Error' text='No Access To The Server' show={showError} setShow={setShowError} />
             <Bootstrap.Modal.Footer className={modalSection}>
-                <Bootstrap.Form noValidate validated={validated} onSubmit={handleSubmit}>
-                    <Row1 firstName={firstName} lastName={lastName} setField={setField} />
+                <Bootstrap.Form noValidate validated={validated} onSubmit={handleSubmit} className={inputsStyle}>
+                    <Row1 firstName={firstName} lastName={lastName} setField={setField} attemptedSubmit={attemptedSubmit}/>
                     <Row2 email={email} takenEmail={takenEmail} setField={setField} />
                     <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} retypedPassword={retypedPassword} setPasswordMatch={setPasswordMatch} passwordMatch={passwordMatch}/>
                     <Row4 retypedPassword={retypedPassword} validated={validated} setField={setField} password={password} passwordMatch={passwordMatch} setPasswordMatch={setPasswordMatch} attemptedSubmit={attemptedSubmit} />
-                    <Checkbox handleClose={handleClose} checked={checked} setChecked={setChecked}/>
+                    <Checkbox handleClose={handleClose} checked={checked} setChecked={setChecked} attemptedSubmit={attemptedSubmit}/>
                     <SignUpModalFooter handleClose={handleClose} handleOpenLogin={handleOpenLogin} showError={showError}/>
                 </Bootstrap.Form>
             </Bootstrap.Modal.Footer>

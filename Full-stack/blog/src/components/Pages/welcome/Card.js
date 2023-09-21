@@ -10,7 +10,7 @@ function DefaultCard({ header, text, buttonText, onButtonClick, width = '18em' }
     }
     return (
         <>
-        <Card className={`bgColor-primary shadow-lg welcome-card`} style={{ width:  width}}>{/* d-block d-sm-none '27em' */}
+        <Card className={`bgColor-primary shadow-lg opacity-85`} style={{ width:  width}}>{/* d-block d-sm-none '27em' */}
             <Card.Header className='bgColor-primary fw-bold color-secondary-reverse'>{header}</Card.Header>
             <Card.Body className='bgColor-primary rounded'>
                 {/* <Card.Title className='bgColor-primary fw-bold color-secondary-reverse'>{header}</Card.Title> */}

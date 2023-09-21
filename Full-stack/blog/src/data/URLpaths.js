@@ -1,5 +1,6 @@
 import { BsFacebook, BsGithub, BsLinkedin } from "react-icons/bs";
 import { FaComment, FaHome, FaInfoCircle } from "react-icons/fa";
+//Url paths and link icons for all static links across the website.
 
 //Url path for fetching data from blogApi
 const baseUrl = `http://localhost:3000`; //server's base url

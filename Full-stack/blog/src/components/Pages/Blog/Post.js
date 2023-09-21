@@ -37,7 +37,7 @@ export default function Post({ post, selectedPostId, setSelectedPost, loggedIn, 
   //bootstrap style
   const liStyle = `bgColor-primary color-secondary-reverse p-3 m-2 ${center} w-100 rounded border shadow-lg`;
   const titleStyle = `h6 text-capitalize text-decoration-underline`;
-  const commentsBtnStyle = `d-block btn post-btn color-primaryLight border ${shadow} ${pillButtonSolid}`;
+  const commentsBtnStyle = `btn ${shadow} ${pillButtonSolid}`;
 
   const showHideBtnProps = {
     className: `${commentsBtnStyle}`, onMouseOver: () => setShadow('shadow'),

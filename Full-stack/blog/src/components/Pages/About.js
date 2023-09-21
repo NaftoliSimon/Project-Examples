@@ -1,9 +1,9 @@
 import React from 'react'
-import ButtonLink from '../ButtonLink';
+import ButtonLink from '../reuseable/ButtonLink';
 import { linkedinProfile, links, socialMediaLinks } from '../../data/URLpaths';
 import { Button, Card, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
-import ExternalLink from '../ExternalLink';
-import LinkWithTooltip from '../LinkWithTooltip';
+import ExternalLink from '../reuseable/ExternalLink';
+// import LinkWithTooltip from '../reuseable/LinkWithTooltip';
 
 export default function About() {
     //Bootstrap Styles
@@ -23,7 +23,7 @@ export default function About() {
                 <Card className={card}><Card.Body>
                     <h4>Full-Stack</h4>
                     <p>This project exemplifies my proficiency with cutting-edge technologies. The backend is powered by Node.js, leveraging its versatility and performance capabilities. I've implemented comprehensive CRUD features, ensuring seamless interaction with the data. Initially, I developed a custom blog API to retrieve data from my local SQL database. However, I'm currently in the process of elevating the project by migrating to an AWS server, taking advantage of the scalability and reliability it offers.</p>
-                    <p>On the frontend, I've harnessed the power of React, utilizing both React Router and Functional Components with hooks. This choice reflects my commitment to crafting efficient and maintainable code that delivers a smooth user experience. Throughout the development process, I've prioritized responsiveness and compatibility, meticulously testing the website on various devices including phones and tablets.</p>
+                    <p>On the frontend, I've harnessed the power of React, utilizing both React Router and Functional Components with hooks. To ensure a polished and visually appealing user interface, I utilized both Bootstrap (React Bootstrap) and custom CSS for styling. This choice reflects my commitment to crafting efficient and maintainable code that delivers a smooth user experience. Throughout the development process, I've prioritized responsiveness and compatibility, meticulously testing the website on various devices including phones and tablets.</p>
                     <h4>Web Hosting</h4>
                     <p>The launch of this website was made possible through Amazon Web Services. By leveraging services like Route 53 and EC2, I've ensured a robust and accessible online presence. The collaborative synergy between frontend and backend technologies harmoniously comes to life, offering a seamless and immersive user journey.</p>
                     <h4>Software Tools</h4>
@@ -52,6 +52,7 @@ export default function About() {
                         <li className={li}><h6 className={h6}>Add joi validation and display to user limits for ALL input fields</h6> - when the user fills out any form sent to the server, certain requirements (such as character length min and max) are set in the server, these requirements need to be displayed to the user</li>
                         <li className={li}><h6 className={h6}>Fetch and display limited amount of data at one time</h6> - when loading the blogs list, instead of loading all of them, instead fetch and show only x amout at a time</li>
                         <li className={li}><h6 className={h6}>Test on other device types</h6> - make sure everything looks nice for all device types, including adding both landscape and portrait view (after launching website with server access)</li>
+                        <li className={li}><h6 className={h6}>Secure Passwords</h6> - Passwords are not encrypted, and are stored as plain text in the database. This needs to change, especially when the db is upgraded from local db to aws</li>
                         <p className='fst-italic'>There are many more internal updates and improvements not listed here. The ones listed above are the most important ones. For the full list of improvements see the <ExternalLink link={`${socialMediaLinks.github}${pathToAboutComponent}`} text={'Github code'} />.</p>
                     </ul>
                 </Card.Body></Card>

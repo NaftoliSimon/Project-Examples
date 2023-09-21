@@ -5,7 +5,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 export default function PostDropdown({ setShowEditPost }) {
     return (
         <Dropdown>
-            <Dropdown.Toggle variant="" id="dropdown-basic" className='postDropdownToggle float-end position-relative p-0 m-0' > {/*variant="" removes default react bootstrap color (bootstrap primary) */}
+            <Dropdown.Toggle className='float-end position-relative p-0 m-0 dropdown-toggle' > {/*variant="" removes default react bootstrap color (bootstrap primary) */}
                 <BsThreeDotsVertical size={20} />
             </Dropdown.Toggle>
             <Dropdown.Menu>

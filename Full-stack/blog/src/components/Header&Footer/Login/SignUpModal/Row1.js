@@ -3,7 +3,8 @@ import { Col, Form, InputGroup, Row } from 'react-bootstrap'
 import { BsEnvelopeFill, BsPersonFill } from 'react-icons/bs'
 import InputIcon from './InputIcon'
 
-export default function Row1({ firstName, lastName, setField }) {
+export default function Row1({ firstName, lastName, setField, attemptedSubmit }) {
+    const borderStyle = attemptedSubmit ? 'attemptedSubmit' : '';
     return (
         <Row className="mb-3">
             <Form.Group as={Col} md="6" className='input-parent' controlId="validationSignUp01">
@@ -17,7 +18,7 @@ export default function Row1({ firstName, lastName, setField }) {
                     placeholder="First Name"
                     value={firstName}
                     onChange={e => setField('firstName', e.target.value)}
-                    className={`inputPadding`}
+                    className={`inputPadding ${borderStyle}`}
                 />
 
             </Form.Group>

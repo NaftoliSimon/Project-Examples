@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import center from '../../../data/Bootstrap/center';
 import baseUrl, { links } from '../../../data/URLpaths';
 import myFetch from '../../../functions/myFetch';
-import ButtonLink from '../../ButtonLink';
+import ButtonLink from '../../reuseable/ButtonLink';
 import NoData from './NoData';
 import PostsList from './PostsList';
 import SelectedBlog from './SelectedBlog';
@@ -39,7 +39,7 @@ export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) 
   return (
     <>
       {selectedBlog && <SelectedBlog selectedBlog={selectedBlog} loggedIn={loggedIn} />}
-      {addPost}
+      {!show && addPost}
       {!postsArr.length && <NoData selectedBlog={selectedBlog} />}
       <PostsList postsArr={postsArr} loggedIn={loggedIn} setShowLogin={setShowLogin}
         setLoggedIn={setLoggedIn} show={show} setShow={setShow} />

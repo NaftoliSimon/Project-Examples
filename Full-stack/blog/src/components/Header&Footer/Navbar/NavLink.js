@@ -4,13 +4,12 @@ import useCustomNav from '../../../hooks/navigate';
 export default function NavLink({ text, link, icon }) { //style is for any additional bootstrap styling to add to the class
     const navigate = useCustomNav();
     const linkStyle = `pointer nav-link text-capitalize`;
-    const scrollToBlogs = text.toLowerCase() === 'blogs' ? true : false;
 
     const textDisplay = <span>{text}</span>
     const iconDisplay = <span className='pe-2'>{icon}</span>
     const display = icon ? <>{iconDisplay}{textDisplay}</> : textDisplay;
 
-    const internalLink = <div className={linkStyle} onClick={() => navigate(link, scrollToBlogs)}>{display}</div>;
+    const internalLink = <div className={linkStyle} onClick={() => navigate(link, text)}>{display}</div>;
     const externalLink = <a className={linkStyle} href={link} target="_blank" rel="noreferrer">{display}</a>;
     
     return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AddBlogModal from '../BlogList/AddBlogModal';
 import { Card } from 'react-bootstrap';
-import ExternalLink from '../../ExternalLink';
+import ExternalLink from '../../reuseable/ExternalLink';
 
 export default function SelectedBlog({ selectedBlog, loggedIn }) {
     const [show, setShow] = useState(null); //show update blog modal

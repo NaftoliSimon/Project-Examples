@@ -10,7 +10,7 @@ function BasicExample({ commentId, postId, changeSelectedComment }) {
 
   return (<>
     <Dropdown>
-      <Dropdown.Toggle variant="" id="editCommentToggle" className='ps-2 smallScreenDropdown' > {/*variant="" removes default react bootstrap color (bootstrap primary) */}
+      <Dropdown.Toggle id="editCommentToggle" className='ps-2 dropdown-toggle' > {/*variant="" removes default react bootstrap color (bootstrap primary) */}
         Edit
       </Dropdown.Toggle>
 

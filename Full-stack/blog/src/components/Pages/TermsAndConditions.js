@@ -3,7 +3,7 @@ import websiteName from "../../data/websiteName";
 import { pillButtonSolid } from "../../data/Bootstrap/pillButton";
 import CommentsBtn from "./Blog/Comments/CommentsBtn";
 import center from "../../data/Bootstrap/center";
-import ButtonLink from "../ButtonLink";
+import ButtonLink from "../reuseable/ButtonLink";
 import { links } from "../../data/URLpaths";
 
 export default function TermsAndConditions({ setShowSignUp, loggedIn }) {

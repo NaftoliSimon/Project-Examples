@@ -5,7 +5,7 @@ import BlogItemLayout from './BlogItemLayout';
 import Welcome from '../welcome/Welcome';
 import { Card } from 'react-bootstrap';
 import { scrollToBlogsId } from '../../../data/scrollToHeight'; //id for scrolling to (see hooks/navigate.js)
-import DismissibleAlert from '../../Alert';
+import DismissibleAlert from '../../reuseable/Alert';
 import isMobile from '../../../data/isMobile';
 
 export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {

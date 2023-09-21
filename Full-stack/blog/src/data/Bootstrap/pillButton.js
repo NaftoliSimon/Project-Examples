@@ -1,5 +1,5 @@
 
-const pillButton = `border rounded-pill borderColor borderColorHover`;
-const pillButtonSolid = `border rounded-pill borderColorSolid borderColorSolidHover`;
+const pillButton = `border rounded-pill hoverLighten pillBtn`;
+const pillButtonSolid = `border rounded-pill hoverDarken pillBtnSolid`;
 export default pillButton;
 export {pillButtonSolid};

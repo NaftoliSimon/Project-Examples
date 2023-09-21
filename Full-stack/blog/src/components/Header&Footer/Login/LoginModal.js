@@ -4,8 +4,8 @@ import baseUrl from '../../../data/URLpaths';
 import myFetch from '../../../functions/myFetch';
 import ModalBody from './LoginModalBody';
 import ModalFooter from './LoginModalFooter';
-import DismissibleAlert from '../../Alert';
-import PopUpAlert from '../../PopUpAlert';
+import DismissibleAlert from '../../reuseable/Alert';
+import PopUpAlert from '../../reuseable/PopUpAlert';
 import scrollToElem from '../../../functions/scrollToElem';
 
 export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, showLogin: title }) {
@@ -14,6 +14,7 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [savedUser, setSavedUser] = useState({});
+  const [passwordMatch, setPasswordMatch] = useState(false);
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -23,10 +24,10 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
     handleClose();
     setShowSignUp(true);
   }
-  const url = `${baseUrl}/signUp`;
+  const url = `${baseUrl}/login`;
   useEffect(() => {
     if (show) {
-      myFetch(url, setSavedUser);
+      myFetch(`${baseUrl}/signUp`, setSavedUser);
     }
   }, [show, url]);
 
@@ -34,6 +35,8 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
     return Object.keys(obj).length === 0;
   }
   function handleLogin() {
+    // myFetch(`${url}/${email}/${password}`, setPasswordMatch);
+    // console.log('passwordMatch:', passwordMatch);
     if (isObjectEmpty(savedUser)) { //Show pop up error message - see SignUpModal
       if (showError === true) {
         setShowError(false);

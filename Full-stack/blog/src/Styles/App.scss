@@ -1,55 +1,18 @@
-/* Layout related CSS for the entire website is in this file */
+/* Layout related CSS for the entire website was in this file - Currently Splitting into seperate files for organizational purposes, including: Buttons, Links, INputIcons .scss files */
 /*This file displays layout features that can't be done by just bootstrap*/
 /*For all color related CSS see Colors.scss (this also includes background images and opacity)*/
 
 //TODO: fix bloglist display size on smaller screen
 //TODO: reorganize css & switch unnecessary css to bootstrap when possible
 
-$inputZindex: 4; //if input index is set to less than 4 it messes up the password input display
-
-.fs-7 {
-    font-size: xx-small
-}
-.card {
-    min-width: 200px;
-}
-
-.blog {
-    min-width: 470px;
-}
-
-.post {
-    width: 100%; //Post List on 'blogs/id' page
-}
-
-.postDropdownToggle {
-    border: none;
-}
-
 .list-group {
     list-style-type: none;
-}
-.nav-link {
-    padding-left: 0em;
-    padding-right: 0em;
-    text-decoration: none;
-    font-style: italic; //for nav-link colors see Colors.scss
-    border: none;
-    border-radius: 50px;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-link:hover,
-.nav-link:active {
-    border: none; //for nav-link colors see Colors.scss
-    cursor: pointer;
-    //text-decoration: underline;
 }
 
 .pointer {
     cursor: pointer;
 }
+
 .modal-content div {
     border: none; //removes the border that separates different sections in all pop up modals of the website (bootstrap modals defaults to having header, body, & footer borders)
 }
@@ -58,15 +21,8 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
     cursor: text;
 }
 
-.input,
-.button {
-    border-width: 1px !important;
-    border-style: solid !important; //for border-color see Colors.scss
-}
-
-.edit-hover:hover {
-    border: 1px solid;
-
+.input {
+    border-width: 1px !important; //for border-color see Colors.scss
 }
 
 .text-truncate-container p {
@@ -78,10 +34,17 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
 }
 
 .dropdown-toggle::after {
+    //removes default dropdown arrow from login image icon from the header
     display: none;
 }
-.fs-xxl {
-    font-size: 5em !important;
+
+.bsAlert {
+    //see reusable/popUpAlert.js
+    border-width: 2px !important;
+}
+
+.bsAlert button:focus, .modal-header button:focus {
+    box-shadow: none; //removes bootstrap's default blue box shadow that appears when you click on the X to close any pop up modal
 }
 
 .blogListItemLayout {
@@ -90,65 +53,28 @@ $inputZindex: 4; //if input index is set to less than 4 it messes up the passwor
     min-height: 250px;
     max-height: 250px;
 }
-.logoLink {
-   margin-top: 2px;
-}
 
-// sign up & login forms - input icons
-.input-parent {
-    position: relative; //Log in and sign up form input parents
-}
-
-.input-parent .input-icon {
-    position: absolute; //sets position for all form input icons at the beginning of the input
-    top: 36px; //extra small screen (ie phones) need +4px (see below)
-    left: 21px;
-    z-index: $inputZindex;
-    font-size: large;
-}
-
-.login-parent .input-icon {
-    left: 10px;
-}
-
-.password-input {
-    background-image: none !important; //removes default valid/invalid icons after submit attempt, because eye icon is in its place (see SignUpModal/Row3.js)
-}
-
-.eye-icon {
-    position: absolute;
-    right: 11px;
-    top: 5px;
-    z-index: $inputZindex;
-}
-
-.inputPadding {
-    padding-left: 2em; //Adds empty space for input icon. ( bootstrap sizes ps-4 and ps-5 are both wrong lengths, need in between)
-}
-
-.password-msg {
-    position: absolute;
-    margin-top: -15px;
-}
 body {
+    //regular font weight is 400, font is made slightly bolder for smaller screens (ie phones)
     font-weight: 500;
 }
-.header-button {
-    padding-top: 2px;
-}
-@media screen and (min-width: 576px) { //extra small bootstrap screen size
+
+@media screen and (min-width: 576px) {
+
+    //extra small bootstrap screen size
     body {
+        //regular font weight is 400, font is made slightly bolder for smaller screens (ie phones)
         font-weight: 400;
     }
-    .header-button {
-        padding-top: 5px;
-    }
+
     .input-icon {
         top: 36px !important;
     }
+
     .input-parent .input-icon {
-        top: 32px;//all screen sizes other than extra small need -4px (from 36px, see above)
+        top: 32px; //all screen sizes other than extra small need -4px (from 36px, see above)
     }
+
     .blogListItemLayout {
         min-width: 400px;
         max-width: 400px;
@@ -156,12 +82,9 @@ body {
         max-height: 250px;
     }
 }
+
 @media screen and (min-width: 1200px) {
     .blog {
         width: 46%; //Blog List on 'blogs' page: Width is set for two column layout, and 50% bootstrap default + padding & margin is too big. Therefore width is set here at 46%. (Padding + Margin = 4px)
-    }
-
-    .post {
-        width: 75%;
     }
 }

@@ -3,7 +3,7 @@ import { BsEnvelope, BsEnvelopeFill, BsEye, BsEyeFill, BsEyeSlash, BsEyeSlashFil
 import { InputGroup, Modal } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import focusOn from '../../../functions/focusOn';
-import DismissibleAlert from '../../Alert';
+import DismissibleAlert from '../../reuseable/Alert';
 
 export default function ModalBody(props) {
     const { invalidEmail, email, setEmail, invalidPassword, setPassword, password, handleLogin, setInvalidPassword, setInvalidEmail } = props;
@@ -23,8 +23,8 @@ export default function ModalBody(props) {
     return (
         <Modal.Body className='bgColor-primary border-0 pb-0'>
             <Form>
-            <DismissibleAlert heading={'Invalid Email'} text={'The email you have entered does not exist'} show={invalidEmail} setShow={setInvalidEmail}/>
-            <DismissibleAlert heading={'Incorrect Password'} text={'The password you have entered is incorrect'} show={invalidPassword} setShow={setInvalidPassword}/>
+                <DismissibleAlert heading={'Invalid Email'} text={'The email you have entered does not exist'} show={invalidEmail} setShow={setInvalidEmail} />
+                <DismissibleAlert heading={'Incorrect Password'} text={'The password you have entered is incorrect'} show={invalidPassword} setShow={setInvalidPassword} />
                 <Form.Group className="mb-3 input-parent login-parent" controlId="loginForm.ControlInput1">
                     <Form.Label>Email address </Form.Label>
                     <div className='input-icon cursor-text' onClick={() => focusOn(`email`)}><BsEnvelopeFill /></div>

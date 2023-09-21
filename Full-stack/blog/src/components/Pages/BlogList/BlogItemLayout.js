@@ -4,7 +4,7 @@ import useCustomNav from '../../../hooks/navigate';
 import { Card } from 'react-bootstrap';
 import { BsBuildingFill, BsPersonFill } from 'react-icons/bs';
 import ListIcon from './ListIcon';
-import PopUpAlert from '../../PopUpAlert';
+import PopUpAlert from '../../reuseable/PopUpAlert';
 import isMobile from '../../../data/isMobile';
 import scrollToElem from '../../../functions/scrollToElem';
 
@@ -28,13 +28,13 @@ export default function BlogItemLayout({ blog, setShowAlert }) { //bootstrap sty
       navigate(blogUrl)
     } else {
       setShowAlert(true);
-      scrollToElem('noBlogsAlert'); 
+      scrollToElem('noBlogsAlert');
     }
   }
   const mobileStyle = isMobile ? '' : '';
   return (
     <li className={liStyle} key={id} onClick={onBlogDisplayClick}> {/*links to Blog.js */}
-      <Card className={`m-2 bgColor-primary pointer ${shadow} blogListItemLayout ${mobileStyle}`}
+      <Card className={`m-2 bgColor-primary pointer ${shadow} blogListItemLayout hoverDarken ${mobileStyle}`}
         onMouseOver={() => setShadow(`shadow ${onHover}`)} onMouseLeave={() => setShadow(defaultShadow)}
       >
         {/* <Card.Header as="h5">{name}</Card.Header> */}
