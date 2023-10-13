@@ -22,6 +22,7 @@ $lighterBlue: #619ffb;
 $lightBlue: #b6d1fa;
 
 $bsAlert: #842029; //bootstrap alert color
+$bsAlertLight: #f8d7da; //bootstrap alert background color
 
 //Secondary colors:
 $lightGrey: #dddddd;
@@ -81,14 +82,13 @@ $borderColor-light: $lightBlue; //used for buttons & input shadow
 .inputGroup {
     background-color: $primary;
 }
+.bgAlert {
+    background-color: $bsAlertLight;
+}
 
 //Border Color
 .borderColor {
     border-color: $borderColor !important;
-}
-
-.bsAlert {
-    border-color: $bsAlert !important; //bootstrap alert color
 }
 
 .borderColor-primary,
@@ -154,6 +154,24 @@ $borderColor-light: $lightBlue; //used for buttons & input shadow
 
 .pillBtnSolid:hover {
     color: $borderColor-light;
+}
+.pillBtnSolidDanger {
+    //add to pillBtnSolid, to change color from primary to danger
+    background-color: $bsAlert !important;
+    border-color: $bsAlert !important;
+    color: $primary !important;
+}
+.pillBtnSolidDanger:hover {
+    color: $bsAlertLight;
+    border-color: $bsAlert !important;
+}
+.pillBtnDanger {
+    color: $bsAlert !important;
+    border-color: $bsAlert !important;
+}
+
+.pillBtnDanger:hover {
+    background-color: $bsAlertLight !important;
 }
 
 .header-button:hover,
@@ -305,6 +323,10 @@ textarea:focus {
 //Miscellaneous CSS
 .textBorder {
     -webkit-text-stroke: 2px black; // adds a thin border to text (see Welcome page title)
+}
+.bsAlert {
+    border-color: $bsAlert !important; //bootstrap alert color
+    color: $bsAlert;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

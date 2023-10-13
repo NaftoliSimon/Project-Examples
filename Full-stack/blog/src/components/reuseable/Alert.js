@@ -7,7 +7,7 @@ export default function DismissibleAlert({ heading, text, show, setShow, variant
     return (<>
         {show && <div className={border}>
             <Alert variant={variant} onClose={() => setShow(false)} dismissible className='mb-0'>
-            <Alert.Heading>{heading}</Alert.Heading>
+            <Alert.Heading className='text-uppercase'>{heading}</Alert.Heading>
             <p>
                 {text}
             </p>

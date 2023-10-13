@@ -1,0 +1,299 @@
+{
+    "blogs": [
+        {
+            "id": 0,
+            "name": "Jason Data",
+            "website": "jsonData.com",
+            "companyName": "Failed to Get Server Data",
+            "shortSummary": "The website failed to get the data from the server and is showing default values from a local JSON file",
+            "userId": -1
+        },
+        {
+            "id": 1,
+            "name": "Joseph Shmoe",
+            "website": "cookiesforu.com",
+            "companyName": "Cookies For U",
+            "shortSummary": "We sell cookies!",
+            "userId": 7
+        },
+        {
+            "id": 2,
+            "name": "Jonathan Doe",
+            "website": "jonsjelly.com",
+            "companyName": "Jon's Jelly",
+            "shortSummary": null,
+            "userId": 8
+        },
+        {
+            "id": 17,
+            "name": "new user",
+            "website": "smellysock.com",
+            "companyName": "Smelly Socks",
+            "shortSummary": "We sell fancy cheeses.",
+            "userId": 22
+        }
+    ],
+    "posts": [
+        {
+            "id": -1,
+            "userId": -1,
+            "title": "What is JSON data?",
+            "body": "Since there is no access to the server, the website fetches a limited amount of data from a local JSON file located within the website's files, it is only there for viewing purposes to see how the website looks when there is no server access."
+        },
+        {
+            "id": 1,
+            "userId": 7,
+            "title": "What is Cookies For U?",
+            "body": "Twelve years ago, my 7 year old daughter told me I..."
+        },
+        {
+            "id": 0,
+            "userId": 7,
+            "title": "Who wants a Cookie?",
+            "body": "Cookies For U..."
+        },
+        {
+            "id": 4,
+            "userId": 8,
+            "title": "What's Purple, Slimy, and Delicious?",
+            "body": "Jonh's Jelly - Coming Soon. See out site for detai..."
+        },
+        {
+            "id": 5,
+            "userId": 9,
+            "title": "How to find the right books",
+            "body": "Book Hunters can help you! My website is a FREE re..."
+        },
+        {
+            "id": 7,
+            "userId": 9,
+            "title": "How to look for a book",
+            "body": "The secret to finding a great book is a challange ..."
+        },
+        {
+            "id": 8,
+            "userId": 2,
+            "title": "Post Title Goes Here",
+            "body": "Test post 3"
+        },
+        {
+            "id": 19,
+            "userId": 2,
+            "title": "Post Title Goes Here",
+            "body": "Test post 1"
+        },
+        {
+            "id": 20,
+            "userId": 23,
+            "title": "New post",
+            "body": "post goes here"
+        }
+    ],
+    "comments": [
+        {
+            "id": 0,
+            "postId": -1,
+            "name": "Jonathan Doe",
+            "body": "Hi Jason! I don't understand what you are talking about.",
+            "userId": -1
+        },
+        {
+            "id": -1,
+            "postId": -1,
+            "name": "Jason Data",
+            "body": "Jason Data = JSON data",
+            "userId": -1
+        },
+        {
+            "id": 1,
+            "postId": 1,
+            "name": "Jonathan Doe",
+            "body": "Great to hear about your company, Joseph - orderin...",
+            "userId": 8
+        },
+        {
+            "id": 2,
+            "postId": 1,
+            "name": "Joseph Shmoe",
+            "body": "Thanks Jonathan!",
+            "userId": 7
+        },
+        {
+            "id": 3,
+            "postId": 5,
+            "name": "bob",
+            "body": "Book Hunters is great! Highly recommend",
+            "userId": 0
+        },
+        {
+            "id": 4,
+            "postId": 5,
+            "name": "Andrew",
+            "body": "The hunt is on!",
+            "userId": 0
+        },
+        {
+            "id": 11,
+            "postId": 1,
+            "name": "Developer Test",
+            "body": "This comment was added from the website",
+            "userId": 0
+        },
+        {
+            "id": 12,
+            "postId": 1,
+            "name": "Developer Test",
+            "body": "This comment is a long comment by the developer, t...",
+            "userId": 0
+        },
+        {
+            "id": 20,
+            "postId": 7,
+            "name": "BookNerd87",
+            "body": "I found some great books on the most infamous croo...",
+            "userId": 0
+        },
+        {
+            "id": 26,
+            "postId": 6,
+            "name": "agsdasd",
+            "body": "sadgadsf",
+            "userId": 0
+        },
+        {
+            "id": 36,
+            "postId": 5,
+            "name": "A Troll",
+            "body": "Book hunting is fun. Books are wonderful and delic...",
+            "userId": 0
+        },
+        {
+            "id": 46,
+            "postId": 7,
+            "name": "Developer",
+            "body": "This is a test comment",
+            "userId": 0
+        },
+        {
+            "id": 48,
+            "postId": 5,
+            "name": "speler wizerd",
+            "body": "This website very bad Do not reed is bad for yu be...",
+            "userId": 0
+        },
+        {
+            "id": 50,
+            "postId": 5,
+            "name": "developer",
+            "body": "This is a test comment",
+            "userId": 0
+        },
+        {
+            "id": 67,
+            "postId": 7,
+            "name": "beta tester",
+            "body": "what are you cooking?",
+            "userId": 0
+        },
+        {
+            "id": 69,
+            "postId": 5,
+            "name": "Bob Jones",
+            "body": "I am writing this comment to tell you that reading...",
+            "userId": 2
+        },
+        {
+            "id": 75,
+            "postId": 7,
+            "name": "Bob Jones",
+            "body": "\"Um I don't know. No don't write that\"",
+            "userId": 2
+        },
+        {
+            "id": 77,
+            "postId": 20,
+            "name": "user lastname",
+            "body": "body",
+            "userId": 23
+        },
+        {
+            "id": 79,
+            "postId": 19,
+            "name": "Bob Jones",
+            "body": "No comment",
+            "userId": 2
+        },
+        {
+            "id": 83,
+            "postId": 19,
+            "name": "Bob Jones",
+            "body": "Thank you for reading my post",
+            "userId": 2
+        },
+        {
+            "id": 84,
+            "postId": 19,
+            "name": "Bob Jones",
+            "body": "Thank you, Bob Jones, for your kind comments",
+            "userId": 2
+        },
+        {
+            "id": 86,
+            "postId": 5,
+            "name": "new user",
+            "body": "me is want to read book. and me is needed not to l...",
+            "userId": 0
+        },
+        {
+            "id": 99,
+            "postId": 19,
+            "name": "Bob Jones",
+            "body": "",
+            "userId": 2
+        },
+        {
+            "id": 101,
+            "postId": 19,
+            "name": "Bob Jones",
+            "body": "TODO: Delete all the above comments that are empty",
+            "userId": 2
+        },
+        {
+            "id": 102,
+            "postId": 7,
+            "name": "hashed password",
+            "body": "test comment",
+            "userId": 0
+        }
+    ],
+        "xsignUp": [
+          {
+            "firstName": "Bob",
+            "lastName": "Jones",
+            "email": "bobjones@gmail.com",
+            "password": "Bobjones123!",
+            "userId": 2
+          },
+          {
+            "firstName": "Joseph",
+            "lastName": "Shmoe",
+            "email": "joesephdoe@gmail.com",
+            "password": "Josephdoe123!",
+            "userId": 7
+          },
+          {
+            "firstName": "Jonathan",
+            "lastName": "Doe",
+            "email": "jonathandoe@gmail.com",
+            "password": "Jdoe123!",
+            "userId": 8
+          },
+          {
+            "firstName": "Janet",
+            "lastName": "Doe",
+            "email": "janetdoe@gmail.com",
+            "password": "Janetdoe123!",
+            "userId": 9
+          }
+        ]
+}

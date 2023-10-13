@@ -25,7 +25,7 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin }) {
       <Welcome loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
       
       <div className={`mx-${mxSize} mt-4`} id='noBlogsAlert'>
-        <DismissibleAlert heading={'Website Under Construction'} text={'There is currently no access to the server at this time. The blogs displayed below are just placeholders.'}
+        <DismissibleAlert heading={'No Connection to the server'} text={'The blog you clicked on is just a placeholder'}
       show={showAlert} setShow={setShowAlert}/>
       </div>
       <h4 className={`text-center dark`} id={scrollToBlogsId} >Please Select A Blog To Read</h4>
