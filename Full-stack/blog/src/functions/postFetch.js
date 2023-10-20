@@ -1,4 +1,4 @@
-//Simple basic POST fetch
+//Simple basic reusable POST fetch
 async function postFetch(url, data, errorCallback = false) {
     try {
         const response = await fetch(url, {

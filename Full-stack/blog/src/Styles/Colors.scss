@@ -40,6 +40,10 @@ $secondary: $lightGrey; //swap this color with secondary-reverse's color (see ab
 $secondary-reverse: $black; //$white; //swap this color with secondary's color (see above comment)
 
 //Border & Button colors
+// $borderColor: $indigo; //color of buttons, links, & colored borders throughout the entire website
+// $borderColor-medium: $lighterIndigo;
+// $borderColor-light: $lightIndigo; //used for buttons & input shadow
+
 $borderColor: $blue; //color of buttons, links, & colored borders throughout the entire website
 $borderColor-medium: $lighterBlue;
 $borderColor-light: $lightBlue; //used for buttons & input shadow
@@ -82,6 +86,7 @@ $borderColor-light: $lightBlue; //used for buttons & input shadow
 .inputGroup {
     background-color: $primary;
 }
+
 .bgAlert {
     background-color: $bsAlertLight;
 }
@@ -155,16 +160,19 @@ $borderColor-light: $lightBlue; //used for buttons & input shadow
 .pillBtnSolid:hover {
     color: $borderColor-light;
 }
+
 .pillBtnSolidDanger {
     //add to pillBtnSolid, to change color from primary to danger
     background-color: $bsAlert !important;
     border-color: $bsAlert !important;
     color: $primary !important;
 }
+
 .pillBtnSolidDanger:hover {
     color: $bsAlertLight;
     border-color: $bsAlert !important;
 }
+
 .pillBtnDanger {
     color: $bsAlert !important;
     border-color: $bsAlert !important;
@@ -319,12 +327,30 @@ textarea:focus {
     border-color: $borderColor !important;
     opacity: 65%;
 }
+//Pagination (see Paginator.js)
+.active span {
+    background-color: $borderColor !important;
+    // border-color: $borderColor !important;
+    border: none !important;
+}
+
+.page-item a {
+    color: $borderColor !important;
+}
+
+.page-item a:active,
+.page-item a:focus {
+    box-shadow: none !important;
+}
+
 
 //Miscellaneous CSS
 .textBorder {
     -webkit-text-stroke: 2px black; // adds a thin border to text (see Welcome page title)
 }
+
 .bsAlert {
+    // background-color: $bsAlertLight;
     border-color: $bsAlert !important; //bootstrap alert color
     color: $bsAlert;
 }

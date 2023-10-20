@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as Bootstrap from 'react-bootstrap';
 import baseUrl from '../../../../data/URLpaths';
 import myFetch from '../../../../functions/myFetch';
@@ -26,6 +26,8 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
     const [showError, setShowError] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [checked, setChecked] = useState(false); //for the terms and conditions checkbox
+
+    const alertRef = useRef();
 
     const { firstName, lastName, email, password, retypedPassword } = fields;
 
@@ -60,7 +62,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         // }
         if (!savedEmails || isObjectEmpty(savedEmails)) {
             setShowError(true);
-            // window.scrollTo(0, 0);
+            alertRef.current?.scrollIntoView({ block: 'nearest' }); //scrolls the alert error message into view, and the block: 'nearest' ensures it scrolls the modal and not the window (this line is only needed for small screens, ie phones)
             return;
         }
         const emailAlreadyExists = savedEmails.some(obj => obj.email === email);
@@ -70,7 +72,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         }
         // Sign up requirements met:
         postFetch(signUpUrl, fields);
-        clearFields();
+        // clearFields();
         handleClose();
 
         // setLoggedIn(fields); //loggin in the user directly this way causes the successAlert pop up message to not show, therefore the user is logged in by setting the session storage instead
@@ -86,7 +88,9 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
             <Bootstrap.Modal.Header closeButton className={modalSection}>
                 <Bootstrap.Modal.Title>Create an Account</Bootstrap.Modal.Title>
             </Bootstrap.Modal.Header>
-            <DismissibleAlert heading='Error' text='No Access To The Server' show={showError} setShow={setShowError} />
+            <div ref={alertRef}>
+                <DismissibleAlert heading='Error' text='No Access To The Server' show={showError} setShow={setShowError} />
+            </div>
             <Bootstrap.Modal.Footer className={modalSection}>
                 <Bootstrap.Form noValidate validated={validated} onSubmit={handleSubmit} className={inputsStyle}>
                     <Row1 firstName={firstName} lastName={lastName} setField={setField} attemptedSubmit={attemptedSubmit} />
@@ -98,6 +102,6 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
                 </Bootstrap.Form>
             </Bootstrap.Modal.Footer>
         </Bootstrap.Modal>
-        <SuccessAlert name={`${firstName} ${lastName}`} show={successfulSubmit} hide={() => setSuccessfulSubmit(false)} />
+        <SuccessAlert name={`${firstName} ${lastName}`} show={successfulSubmit} hide={() => setSuccessfulSubmit(false)} clearFields={clearFields} />
     </>);
 }

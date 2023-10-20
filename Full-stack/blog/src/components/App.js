@@ -22,22 +22,31 @@ function App() {
   const blogsLink = `${baseUrl}/blogs`;
   const ssKey = 'loggedInUser'; // session storage key
   const { blogs: home, about } = links;
-  const alertMsg = 'For full features of the website please connect to the server. The website will be limited in its functions. Limited Data will be displayed for viewing purposes only. The log in/sign up features, as well as as addding or manipulating any data from the website, will not be available. Data may take a few extra seconds to load as well.';
-
+  const alertMsgHeading = 'For full features of the website please connect to the server.'
+  const alertMsg = 'The website will be limited in its functions. Limited Data will be displayed for viewing purposes only. The log in/sign up features, the paginator, and adding or manipulating any data from the website, will not be available.';
+  const alertMsgComponent = <span>{alertMsgHeading}<span className='d-block'>{alertMsg}</span></span>
   // State and Refs
   const [blogsArr, setBlogsArr] = useState([]); //list of blogs data (to be) populated from the server
   const [loggedInUser, setLoggedInUser] = useState(null); //loggedInUser is either an object (with user's info) or null
   const [showLogin, setShowLogin] = useState(false); //boolean to show/hide the login pop up modal
   const [showSignUp, setShowSignUp] = useState(false); //boolean to show/hide the signUp pop up modal
   const [showError, setShowError] = useState(false); //if failed to fetch blogs, show pop up error message
+  const [page, setPage] = useState(1); //the current blogs being displayed on the page (see index.js in the backend) 
+  const [totalPages, setTotalPages] = useState(3);//blogPages = 3; //the total number of blog pages displayed 
   const hasFetchedData = useRef(false);
   const hasSetSessionStorage = useRef(false);
 
   // Effects
   useEffect(() => {
+    // myFetch(`blogsTotal`, (data) => setTotalPages(Number(data)));
+    myFetch(`${baseUrl}/blogsTotal`, setTotalPages);
+  }, [page]);
+
+  useEffect(() => {
+    // myFetch(`blogsTotal`, setTotalPages);
     // Fetch blog data if it hasn't been fetched already
     if (!hasFetchedData.current) { //current is used to make the code run once instead of twice
-      myFetch(blogsLink, setBlogsArr, setShowError);
+      myFetch(`${blogsLink}?page=${page}`, setBlogsArr, setShowError);
       hasFetchedData.current = true;
     }
 
@@ -63,6 +72,7 @@ function App() {
   // Blog element
   const blogElem = <Blog blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} setLoggedIn={setLoggedInUser} />;
 
+  // console.log('blogsArr:', blogsArr);
   return (
     <BrowserRouter>
       <Header loggedIn={loggedInUser} setLoggedIn={setLoggedInUser} showLogin={showLogin} showSignUp={showSignUp}
@@ -71,7 +81,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate replace to={home} />} />
         <Route path="/">
-          <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} />} />
+          <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} page={page} setPage={setPage} setBlogsArr={setBlogsArr} blogPages={totalPages}/>} />
           <Route path={`${home}/:blogId/`} element={blogElem} />
           <Route path={`${home}/:blogId/:postId`} element={blogElem} />
           <Route path={about} element={<About />} />
@@ -79,7 +89,7 @@ function App() {
           <Route path="*" element={<FourOhFour />} />
         </Route>
       </Routes>
-      <PopUpAlert show={showError} setShow={setShowError} title={'No Connection to the Server'} text={alertMsg} variant='danger'/>
+      <PopUpAlert show={showError} setShow={setShowError} title={'No Connection to the Server'} text={alertMsgComponent} variant='danger'/>
       <Footer />
     </BrowserRouter>
   );

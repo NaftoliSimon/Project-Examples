@@ -7,7 +7,7 @@ import center from '../../data/Bootstrap/center';
 export default function PopUpAlert({ show, setShow, title, text, variant = 'primary' }) { //varient = 'danger', for danger alert
   const danger = variant === 'danger';
   const bgColor = danger ? 'bgAlert' : `bgColor-primary`;
-  const border = danger ? 'border border-5 p-0 m-0 rounded bsAlert' : '';
+  const border = danger ? 'bgAlert border border-5 p-0 m-0 rounded bsAlert' : '';
   const dangerColor = danger ? 'pillBtnSolidDanger' : ``;
   return (
     <Modal show={show} onHide={() => setShow(false)} size="lg">
