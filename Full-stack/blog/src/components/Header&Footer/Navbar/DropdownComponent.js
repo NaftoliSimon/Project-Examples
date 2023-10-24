@@ -10,14 +10,14 @@ import DropdownItem from './DropdownItem';
 import AddBlogModal from '../../Pages/BlogList/AddBlogModal';
 import logOut from '../../../functions/logOut';
 
-const DropdownComponent = ({ loggedIn, setLoggedIn, setShowLogin, showLogin, setShowSignUp, loggedInUserBlog }) => { //TODO: add dark mode to dropdown?
+const DropdownComponent = ({ loggedIn, setLoggedIn, setShowLogin, showLogin, setShowSignUp, loggedInBlog }) => { //TODO: add dark mode to dropdown?
   const { home, blogs, about } = links;
   const { home: homeIcon, blogs: blogsIcon, about: aboutIcon } = linkIcons;
   const navigate = useCustomNav();
 
   const [show, setShow] = useState(false); //set modal show
 
-  const openAddBlog = loggedInUserBlog ? () => navigate(`${blogs}/${loggedIn.userId}`) : () => setShow(true); //if logged in user has already created his blog page then navigate to that page, else show the modal to enter the new blog page info
+  const openAddBlog = loggedInBlog ? () => navigate(`${blogs}/${loggedIn.userId}`) : () => setShow(true); //if logged in user has already created his blog page then navigate to that page, else show the modal to enter the new blog page info
   const iconSize = 20;
   const toggleIconSize = 30;
 

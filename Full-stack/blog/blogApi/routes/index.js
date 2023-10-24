@@ -66,7 +66,6 @@ router.route('/blogsTotal')
 
     const blogsPerPage = 6; // Number of blogs to display per page
     const totalPages = Math.ceil(totalBlogs / blogsPerPage);
-    console.log('totalPages:', totalPages);
     return res.send(totalPages.toString());
     })
   });
@@ -88,7 +87,7 @@ router.route('/blogs')
     let page = req.query.page;
     page = (page <= totalPages) && (page > 0) ? page : 1; // Default to the first page if not between 1 and totalPage amount
 
-    console.log('totalBlogs:', totalBlogs, 'totalPages:', totalPages, 'page:', page);
+    // console.log('totalBlogs:', totalBlogs, 'totalPages:', totalPages, 'page:', page);
     // Calculate the offset based on the page number
     const offset = (page - 1) * blogsPerPage;
 
@@ -112,6 +111,21 @@ router.route('/blogs')
         }
         return res.sendStatus(201);
       }
+  })
+  router.route('/blog/:userID') //route to get a single specific blog based on the user id (or check if such a blog exists)
+  .get(function (req, res, next) {
+    // console.log(req.params.postID);
+    pool.query('SELECT * FROM blogs WHERE userId = ?;', [req.params.userID], (error, results, fields) => { //posts are fetched in descending order so that the newest post is displayed (first) on top
+      if (error) {
+        return res.sendStatus(500);//TODO: create a more specific error for user
+      }
+      [results] = results;
+      // if(!results) {
+      //   results = null; //if no blog found return null (instead of undefined to be more acuate)
+      // }
+      console.log('getBlogByUserId:', results);
+      return res.send(results); //spread results because we only want to return one blog object, not an array of objects
+    })
   })
 router.route('/posts/:postID')
   .get(function (req, res, next) {

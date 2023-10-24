@@ -6,6 +6,7 @@ import '../Styles/Colors.scss';
 import '../Styles/Links.scss';
 import '../Styles/InputIcons.scss';
 import '../Styles/Buttons.scss';
+import '../Styles/animations.scss';
 import BlogList from './Pages/BlogList/BlogList';
 import Header from './Header&Footer/Header';
 import Blog from './Pages/Blog/Blog';
@@ -25,25 +26,28 @@ function App() {
   const alertMsgHeading = 'For full features of the website please connect to the server.'
   const alertMsg = 'The website will be limited in its functions. Limited Data will be displayed for viewing purposes only. The log in/sign up features, the paginator, and adding or manipulating any data from the website, will not be available.';
   const alertMsgComponent = <span>{alertMsgHeading}<span className='d-block'>{alertMsg}</span></span>
+  const savedPage = sessionStorage.getItem('pageNum');
   // State and Refs
   const [blogsArr, setBlogsArr] = useState([]); //list of blogs data (to be) populated from the server
   const [loggedInUser, setLoggedInUser] = useState(null); //loggedInUser is either an object (with user's info) or null
+  const [loggedInUserBlog, setLoggedInUserBlog] = useState(null); //loggedInUser's blog info 
   const [showLogin, setShowLogin] = useState(false); //boolean to show/hide the login pop up modal
   const [showSignUp, setShowSignUp] = useState(false); //boolean to show/hide the signUp pop up modal
   const [showError, setShowError] = useState(false); //if failed to fetch blogs, show pop up error message
-  const [page, setPage] = useState(1); //the current blogs being displayed on the page (see index.js in the backend) 
-  const [totalPages, setTotalPages] = useState(3);//blogPages = 3; //the total number of blog pages displayed 
+  const [page, setPage] = useState(Number(savedPage)); //the current blogs being displayed on the page (see index.js in the backend) 
+  const [totalPages, setTotalPages] = useState(1);//the total number of blog pages displayed 
   const hasFetchedData = useRef(false);
   const hasSetSessionStorage = useRef(false);
+  const hasSetPage = useRef(false)
 
   // Effects
   useEffect(() => {
     // myFetch(`blogsTotal`, (data) => setTotalPages(Number(data)));
     myFetch(`${baseUrl}/blogsTotal`, setTotalPages);
-  }, [page]);
+  }, []);
 
   useEffect(() => {
-    // myFetch(`blogsTotal`, setTotalPages);
+    // myFetch(`${baseUrl}/blogsTotal`, setTotalPages);
     // Fetch blog data if it hasn't been fetched already
     if (!hasFetchedData.current) { //current is used to make the code run once instead of twice
       myFetch(`${blogsLink}?page=${page}`, setBlogsArr, setShowError);
@@ -60,10 +64,22 @@ function App() {
     }
   }, [blogsLink, ssKey]);
 
+  
+  useEffect(() => {
+    // Save the page number to session storage
+    // if (!hasSetPage.current) {
+      sessionStorage.setItem('pageNum', page);
+      // hasSetPage.current = true;
+    // }
+  }, [page]);
+
+
   useEffect(() => {
     // Save or remove the logged-in user to/from session storage
     if (loggedInUser) {
       sessionStorage.setItem(ssKey, JSON.stringify(loggedInUser));
+      // console.log('loggedINUser:', loggedInUser);
+      myFetch(`${baseUrl}/blog/${loggedInUser.userId}`, setLoggedInUserBlog); //get the loggedInUser's blog from the server (returns null/undefined if not found)
     } else {
       sessionStorage.removeItem(ssKey);
     }
@@ -75,21 +91,22 @@ function App() {
   // console.log('blogsArr:', blogsArr);
   return (
     <BrowserRouter>
-      <Header loggedIn={loggedInUser} setLoggedIn={setLoggedInUser} showLogin={showLogin} showSignUp={showSignUp}
+      <Header loggedIn={loggedInUser} setLoggedIn={setLoggedInUser} loggedInBlog={loggedInUserBlog} showLogin={showLogin} showSignUp={showSignUp}
         setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} blogsArr={blogsArr} />
-
-      <Routes>
-        <Route path="/" element={<Navigate replace to={home} />} />
-        <Route path="/">
-          <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} page={page} setPage={setPage} setBlogsArr={setBlogsArr} blogPages={totalPages}/>} />
-          <Route path={`${home}/:blogId/`} element={blogElem} />
-          <Route path={`${home}/:blogId/:postId`} element={blogElem} />
-          <Route path={about} element={<About />} />
-          <Route path="/termsandconditions" element={<TermsAndConditions setShowSignUp={setShowSignUp} loggedIn={loggedInUser} />} />
-          <Route path="*" element={<FourOhFour />} />
-        </Route>
-      </Routes>
-      <PopUpAlert show={showError} setShow={setShowError} title={'No Connection to the Server'} text={alertMsgComponent} variant='danger'/>
+      <main>
+        <Routes>
+          <Route path="/" element={<Navigate replace to={home} />} />
+          <Route path="/">
+            <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} page={page} setPage={setPage} setBlogsArr={setBlogsArr} blogPages={totalPages} />} />
+            <Route path={`${home}/:blogId/`} element={blogElem} />
+            <Route path={`${home}/:blogId/:postId`} element={blogElem} />
+            <Route path={about} element={<About />} />
+            <Route path="/termsandconditions" element={<TermsAndConditions setShowSignUp={setShowSignUp} loggedIn={loggedInUser} />} />
+            <Route path="*" element={<FourOhFour />} />
+          </Route>
+        </Routes>
+        <PopUpAlert show={showError} setShow={setShowError} title={'No Connection to the Server'} text={alertMsgComponent} variant='danger' />
+      </main>
       <Footer />
     </BrowserRouter>
   );

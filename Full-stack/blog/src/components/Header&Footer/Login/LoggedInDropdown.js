@@ -9,18 +9,13 @@ import AddBlogModal from '../../Pages/BlogList/AddBlogModal';
 import DropdownItem from '../Navbar/DropdownItem';
 import logOut from '../../../functions/logOut';
 
-function IconDropdown({ setLoggedIn, blogsArr, loggedIn, setShowLogin }) { //Logged in dropdown for larger screens (smaller screen dropdown can be found in Navbar/Dropdown/DropdownComponent.js)
-    const [loggedInUserBlog, setLoggedInUserBlog] = useState(null);
+function IconDropdown({ setLoggedIn, blogsArr, loggedIn, setShowLogin, loggedInBlog }) { //Logged in dropdown for larger screens (smaller screen dropdown can be found in Navbar/Dropdown/DropdownComponent.js)
+    
     const [show, setShow] = useState(false); //set modal show
-    useEffect(() => {
-        if (loggedIn) {
-            setLoggedInUserBlog(blogsArr.find(blog => blog.userId === loggedIn.userId));
-        }
-    }, [loggedIn, blogsArr]);
 
     const navigate = useCustomNav()
-    const openAddBlog =  loggedInUserBlog ? () => navigate(`${links.blogs}/${loggedInUserBlog.userId}`) : () => setShow(true); //if logged in user has already created his blog page then navigate to that page, else show the modal to enter the new blog page info
-    const addBlogText = !loggedInUserBlog ? 'Start Blogging' : 'Your Blog';
+    const openAddBlog =  loggedInBlog ? () => navigate(`${links.blogs}/${loggedInBlog.userId}`) : () => setShow(true); //if logged in user has already created his blog page then navigate to that page, else show the modal to enter the new blog page info
+    const addBlogText = !loggedInBlog ? 'Start Blogging' : 'Your Blog';
     return (<>
         <Dropdown className='loggedInIcon'>
             <Dropdown.Toggle as={'div'} className='rounded-circle pointer'><BsPersonCircle size={45} /></Dropdown.Toggle>

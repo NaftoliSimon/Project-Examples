@@ -27,7 +27,7 @@ export default function Paginator({ page, setPage, setBlogsArr, blogPages }) {
     }
     
     return (
-        <Pagination className={`${center}`}>
+        <Pagination className={`${center} m-1 p-1`}>
             <Pagination.Prev onClick={prev} />
             <Pagination.Item active>{page}</Pagination.Item>
             <Pagination.Next onClick={next} />

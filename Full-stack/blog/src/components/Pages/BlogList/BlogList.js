@@ -41,7 +41,8 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin, page, setPa
 
     <div className='bg-blogsList pb-4 yourBlog'>
       <AddBlog loggedIn={loggedIn} setShowLogin={setShowLogin} blogsArr={blogsArr} />
-      <h4 className={`text-center dark`} id={scrollToBlogsId} >Please Select A Blog To Read</h4>
+      <h4 className={`text-center dark mb-0`} id={scrollToBlogsId} >Please Select A Blog To Read</h4>
+      {blogPages > 1 && <Paginator page={page} setPage={setPage} setBlogsArr={setBlogsArr} blogPages={blogPages}/>}
       <ul className={`list-group d-flex flex-row flex-wrap color-secondary-reverse ${center} pb-0`}>
         {blogsArr.map(blog => <BlogItemLayout blog={blog} key={blog.id} />)}
       </ul>

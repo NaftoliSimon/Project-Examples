@@ -4,9 +4,10 @@ import hide, { show } from '../../data/Bootstrap/hide'
 
 export default function Title() {
   //TODO: make sure title is centered for all screen devices (phone, tablet, ect)
+  const h1 = 'text-center m-0'
   return (<>
-    <h1 className={`text-center p-1 m-0 w-75 ${hide.lg_xl}`} >{websiteTitle}</h1>
-    <h1 className={` row text-center p-0 pb-1 m-0 ${show.lg_xl}`} >{websiteTitle}</h1>
+    <h1 className={`${h1} p-1 w-75 ${hide.lg_xl}`}>{websiteTitle}</h1>
+    <h1 className={`${h1} row p-0 pb-1 ${show.lg_xl}`}>{websiteTitle}</h1>
   </>
   )
 }

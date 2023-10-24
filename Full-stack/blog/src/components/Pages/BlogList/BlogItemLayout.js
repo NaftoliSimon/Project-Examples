@@ -34,7 +34,7 @@ export default function BlogItemLayout({ blog, setShowAlert }) { //bootstrap sty
   const mobileStyle = isMobile ? '' : '';
   return (
     <li className={liStyle} key={id} onClick={onBlogDisplayClick}> {/*links to Blog.js */}
-      <Card className={`m-2 bgColor-primary pointer ${shadow} blogListItemLayout hoverDarken ${mobileStyle}`}
+      <Card className={`m-2 bgColor-primary pointer ${shadow} blogListItemLayout hoverDarken borderColor ${mobileStyle}`}
         onMouseOver={() => setShadow(`shadow ${onHover}`)} onMouseLeave={() => setShadow(defaultShadow)}
       >
         {/* <Card.Header as="h5">{name}</Card.Header> */}

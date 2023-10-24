@@ -11,6 +11,7 @@ import pillButton from '../../../data/Bootstrap/pillButton';
 
 export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) { //This component is linked from BlogList.js
   const [show, setShow] = useState(null); //show add post modal
+  const [selectedBlog, setSelectedBlog] = useState();
 
   //Posts are fetched from the url id (see App.js). 
   //Web page is not reliant on button click to fetch data. Link can be shared and will fetch the data.
@@ -18,7 +19,7 @@ export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) 
   const { blogId: url_id } = params;
 
   const [postsArr, setPostsArr] = useState([]);
-  let selectedBlog = blogsArr.find(blog => blog.userId == url_id)
+  // let selectedBlog = blogsArr.find(blog => blog.userId == url_id)
 
   const postsUrl = `${baseUrl}/posts/${url_id}`;
   const hasFetchedData = useRef(false);
@@ -28,6 +29,12 @@ export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) 
       hasFetchedData.current = true;
     }
   }, [postsUrl])
+  useEffect(() => {
+    setSelectedBlog(blogsArr.find(blog => blog.userId == url_id)); //sets the selected blog from the currenly already fetched blogs
+    if (!selectedBlog || selectedBlog === -1) { //if blog isn't found from the already fetched group of blogs 
+      myFetch(`${baseUrl}/blog/${url_id}`, setSelectedBlog); //fetch spacific blog from the server
+    }
+  }, [url_id])
   function openAddPost() {
     setShow(true)
   }

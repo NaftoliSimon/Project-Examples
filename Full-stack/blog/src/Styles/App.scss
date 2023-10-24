@@ -43,7 +43,8 @@
     border-width: 2px !important;
 }
 
-.bsAlert button:focus, .modal-header button:focus {
+.bsAlert button:focus,
+.modal-header button:focus {
     box-shadow: none; //removes bootstrap's default blue box shadow that appears when you click on the X to close any pop up modal
 }
 
@@ -54,7 +55,14 @@
     max-height: 250px;
 }
 
+.btn-close {
+    position: relative;
+    top: -20px;
+}
+
 body {
+    font-family: Arial, Helvetica, sans-serif;
+    // font-size: 1.25 em;
     //regular font weight is 400, font is made slightly bolder for smaller screens (ie phones)
     font-weight: 500;
 }
@@ -80,6 +88,13 @@ body {
         max-width: 400px;
         min-height: 250px;
         max-height: 250px;
+    }
+}
+
+@media screen and (min-width: 476px) {
+    .btn-close {
+        top: -15px;
+        // position: static;
     }
 }
 

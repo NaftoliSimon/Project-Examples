@@ -327,6 +327,7 @@ textarea:focus {
     border-color: $borderColor !important;
     opacity: 65%;
 }
+
 //Pagination (see Paginator.js)
 .active span {
     background-color: $borderColor !important;
@@ -355,6 +356,17 @@ textarea:focus {
     color: $bsAlert;
 }
 
+// .shadow-bc {
+//     //shadow border color - sets the shadow's color to the border color
+//     // box-shadow: -5px -5px 0px 0px $borderColor !important;
+//     // box-shadow: 0px 0px 5px $borderColor !important;
+//     border-color: $borderColor;
+//     // box-shadow: 0 .5rem 1rem rgba($borderColor, .25) !important;
+// }
+// .shadow-bc:hover {
+//     box-shadow: 0 .5rem 1rem rgba($borderColor-medium, .25) !important;
+// }
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -375,4 +387,5 @@ body,
     //welcome page's background image
     background-size: cover;
     background-image: url('../../public/Images/businessmanBackground.jpg');
+    background-position: right;
 }

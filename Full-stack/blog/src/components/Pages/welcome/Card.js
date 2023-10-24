@@ -10,9 +10,9 @@ function DefaultCard({ header, text, buttonText, onButtonClick, width = '18em' }
     }
     return (
         <>
-        <Card className={`bgColor-primary shadow-lg opacity-85`} style={{ width:  width}}>{/* d-block d-sm-none '27em' */}
-            <Card.Header className='bgColor-primary fw-bold color-secondary-reverse'>{header}</Card.Header>
-            <Card.Body className='bgColor-primary rounded'>
+        <Card className={`bgColor-primary shadow-lg borderColor opacity-85 text-center slide-in-left`} style={{ width:  width}}>{/* d-block d-sm-none '27em' */}
+            <Card.Header className='bgColor-primary fw-bold color-secondary-reverse border-0 pb-1'>{header}</Card.Header>
+            <Card.Body className='bgColor-primary rounded pt-1'>
                 {/* <Card.Title className='bgColor-primary fw-bold color-secondary-reverse'>{header}</Card.Title> */}
                 <Card.Text>
                     {text}

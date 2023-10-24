@@ -7,7 +7,7 @@ async function myFetch(url, successCallback, errorCallback = null) {
 
   // Check if session storage flag is set for 'blogs' type to be from JSON data (instead of from server)
   const sessionFlag = sessionStorage.getItem('blogsFromJSON');
-  if (sessionFlag === 'true' && type !== 'blogs') { //if the blogs data has been fetched from the local JSON file (and current data being fetched isn't the blogs)
+  if ((sessionFlag === 'true' && type !== 'blogs') && type !== 'blogsTotal') { //if the blogs data has been fetched from the local JSON file (and current data being fetched isn't the blogs (and isn't the blogs total))
     // Load data from JSON file directly and avoid fetching from server
     let results = jsonData[type];
     if (typeof type !== "string") {
@@ -48,7 +48,10 @@ async function myFetch(url, successCallback, errorCallback = null) {
     // Load limited data from JSON file (since it failed to get data from the server)
     if (type === 'blogs') {
       sessionStorage.setItem('blogsFromJSON', 'true'); // Set session storage flag if type is 'blogs'
-    }
+    } 
+    // else if (type === 'blogsTotal') {
+    //   return 1;
+    // }
 
     console.log(`${type} data fetched from JSON file`);
     let results = jsonData[type];
@@ -61,7 +64,9 @@ async function myFetch(url, successCallback, errorCallback = null) {
         results = jsonData[type].filter((post) => post.id === +postId);
       }
     }
-    successCallback(results);
+    if(type !== 'blogsTotal') {
+      successCallback(results);
+    }
   }
 }
 
