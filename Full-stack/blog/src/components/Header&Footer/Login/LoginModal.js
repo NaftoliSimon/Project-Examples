@@ -36,6 +36,7 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
   }
   function handleLogin() {
     // myFetch(`${url}/${email}/${password}`, setPasswordMatch);
+    // myFetch(`${url}/${email}/${password}`, setPasswordMatch);
     // console.log('passwordMatch:', passwordMatch);
     if (!savedUser || isObjectEmpty(savedUser)) { //Show pop up error message - see SignUpModal
       if (showError === true) {

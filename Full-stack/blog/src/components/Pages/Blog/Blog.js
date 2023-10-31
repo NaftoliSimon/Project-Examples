@@ -16,10 +16,10 @@ export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) 
   //Posts are fetched from the url id (see App.js). 
   //Web page is not reliant on button click to fetch data. Link can be shared and will fetch the data.
   const params = useParams(); //url parameters
-  const { blogId: url_id } = params;
+  let { blogId: url_id } = params;
+  url_id = +(url_id);
 
   const [postsArr, setPostsArr] = useState([]);
-  // let selectedBlog = blogsArr.find(blog => blog.userId == url_id)
 
   const postsUrl = `${baseUrl}/posts/${url_id}`;
   const hasFetchedData = useRef(false);
@@ -29,12 +29,19 @@ export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) 
       hasFetchedData.current = true;
     }
   }, [postsUrl])
+  
   useEffect(() => {
-    setSelectedBlog(blogsArr.find(blog => blog.userId == url_id)); //sets the selected blog from the currenly already fetched blogs
-    if (!selectedBlog || selectedBlog === -1) { //if blog isn't found from the already fetched group of blogs 
-      myFetch(`${baseUrl}/blog/${url_id}`, setSelectedBlog); //fetch spacific blog from the server
+    const selectBlog = blogsArr.find(blog => blog.userId === url_id); //search the current displayed blogs 
+
+    if (!selectBlog || selectBlog === -1) {
+      myFetch(`${baseUrl}/blog/${url_id}`, data => {
+        setSelectedBlog(data);
+      });
+    } else {
+      setSelectedBlog(selectBlog);
     }
-  }, [url_id])
+  }, [url_id, blogsArr]);
+
   function openAddPost() {
     setShow(true)
   }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import AddBlogModal from '../BlogList/AddBlogModal';
 import DefaultCard from './Card';
-import { links } from '../../../data/URLpaths';
+import baseUrl, { links } from '../../../data/URLpaths';
 import useCustomNav from '../../../hooks/navigate';
+import myFetch from '../../../functions/myFetch';
 
 export default function WriteABlogCard({ loggedIn, setShowLogin, blogsArr, width }) { //default width for DefaultCard is 18em (see Card,js)
     const [loggedInUserBlog, setLoggedInUserBlog] = useState(null);
@@ -13,8 +14,11 @@ export default function WriteABlogCard({ loggedIn, setShowLogin, blogsArr, width
     const openAddBlog = loggedInUserBlog ? () => navigate(`${links.blogs}/${loggedInUserBlog.userId}`) : () =>  setShow(true);
     const handleClick = loggedIn ? openAddBlog : openLoginModal;
     useEffect(() => {
-        if (loggedIn) {
+        if (loggedIn) { //TODO: get the loggedInUserBlog from the parent state in App.js, instead of fetching it again here
             setLoggedInUserBlog(blogsArr.find(blog => blog.userId === loggedIn.userId));
+            if(loggedInUserBlog === -1 || !loggedInUserBlog) {
+                myFetch(`${baseUrl}/blog/${loggedIn.userId}`, setLoggedInUserBlog);
+            }
         }
     }, [loggedIn, blogsArr])
 

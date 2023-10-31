@@ -11,7 +11,7 @@ export default function HeaderLink({ text, link, icon, style = '' }) { //style i
 
     return (
         <li className={`nav-item d-flex fs-6 fw-lighter ${style}`}>
-            <div className="nav-link-header text-capitalize px-2" onClick={() => navigate(link, text)}>
+            <div className="container nav-link-header text-capitalize px-2" onClick={() => navigate(link, text)}>
                 <Col>
                     <Row>
                         <div className={`${center} fs-5`}>

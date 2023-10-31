@@ -23,7 +23,7 @@ async function myFetch(url, successCallback, errorCallback = null) {
     successCallback(results);
     return results;
   }
-  //if blogs data has not been previously fetched from the JSON file (or blogs data is currently being fetched), then attempt to fetch data from the server:
+  //if blogs data has not been previously fetched from the JSON file (or blogs data is currently being fetched), then attempt to fetch data from the server, (or fetching other data):
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -54,14 +54,16 @@ async function myFetch(url, successCallback, errorCallback = null) {
     // }
 
     console.log(`${type} data fetched from JSON file`);
+    // console.log('postId:', type[1], 'type:', type);
     let results = jsonData[type];
     if (typeof type !== "string") {
       const postId = type[1];
       type = type[0];
       if (type === 'comments') {
-        results = jsonData[type].filter((comment) => comment.postId === +postId);
+        results = jsonData[type].filter(comment => comment.postId === +postId);
       } else if (type === 'posts') {
-        results = jsonData[type].filter((post) => post.id === +postId);
+        // jsonData[type].forEach((post) => console.log('post.userId:', post.userId, 'postId:', postId));
+        results = jsonData[type].filter(post => post.userId === +postId);
       }
     }
     if(type !== 'blogsTotal') {

@@ -12,7 +12,8 @@ import Paginator from './Paginator';
 export default function BlogList({ blogsArr, loggedIn, setShowLogin, page, setPage, setBlogsArr, blogPages }) {
   const [showAlert, setShowAlert] = useState(false);
   const mxSize = isMobile ? '3' : '5';
-  const blogRows = blogsArr.length / 3; //Three blogs are displayed per row
+  const blogsPerRow = 3; //Three blogs are displayed per row
+  const blogRows = blogsArr.length / blogsPerRow;
   const emptyBlog = { id: 'id', name: 'Person', website: 'website.com', companyName: 'Company', userId: 'noBlogsFound', shortSummary: 'This is a placeholder. No Data Found. This is a placeholder. No Data Found. This is a placeholder. No Data Found. ' }
   const createEmptyBlogs = (numBlogs) => Array.from({ length: numBlogs }, (_, index) => ({
     ...emptyBlog,
@@ -51,7 +52,3 @@ export default function BlogList({ blogsArr, loggedIn, setShowLogin, page, setPa
     </div>
   </>)
 }
-
-/* {blogsArr.length <= 2 && <div className={`m-4 p-4 invisible ${show.lg_xl} color-secondary`}> .</div>}
-{blogsArr.length > 2 && blogsArr.length <= 4 && <div className={` invisible ${show.lg_xl} color-secondary`}> .</div>} */
-/* the 2 line above are to fill up space with content so that footer reaches bottom of page */

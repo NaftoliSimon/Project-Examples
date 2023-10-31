@@ -28,7 +28,7 @@ function App() {
   const alertMsgComponent = <span>{alertMsgHeading}<span className='d-block'>{alertMsg}</span></span>
   const savedPage = sessionStorage.getItem('pageNum');
   // State and Refs
-  const [blogsArr, setBlogsArr] = useState([]); //list of blogs data (to be) populated from the server
+  const [blogsArr, setBlogsArr] = useState([]); //list of blogs data (to be) populated from the server, only populates 6 at a time prt page (see )
   const [loggedInUser, setLoggedInUser] = useState(null); //loggedInUser is either an object (with user's info) or null
   const [loggedInUserBlog, setLoggedInUserBlog] = useState(null); //loggedInUser's blog info 
   const [showLogin, setShowLogin] = useState(false); //boolean to show/hide the login pop up modal
@@ -78,8 +78,12 @@ function App() {
     // Save or remove the logged-in user to/from session storage
     if (loggedInUser) {
       sessionStorage.setItem(ssKey, JSON.stringify(loggedInUser));
-      // console.log('loggedINUser:', loggedInUser);
-      myFetch(`${baseUrl}/blog/${loggedInUser.userId}`, setLoggedInUserBlog); //get the loggedInUser's blog from the server (returns null/undefined if not found)
+      
+      // sets the logged in user's blog,
+      setLoggedInUserBlog(blogsArr.find(blog => blog.userId === loggedInUser.userId));//first it attempts to find the user's blog from the already fetched blogs
+      if(loggedInUserBlog === -1 || !loggedInUserBlog) { //if blog was not found in the already fetched blogs array (meaning the (6) current blogs being displayed on the page)
+          myFetch(`${baseUrl}/blog/${loggedInUser.userId}`, setLoggedInUserBlog);
+      }
     } else {
       sessionStorage.removeItem(ssKey);
     }

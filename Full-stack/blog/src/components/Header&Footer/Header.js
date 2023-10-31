@@ -18,15 +18,15 @@ export default function Header({ loggedIn, setLoggedIn, showLogin, showSignUp, s
     };
   }, []);
 
-  const login = <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} showSignUp={showSignUp} blogsArr={blogsArr} loggedInBlog={loggedInBlog}/>;
-const headerStyle = 'sticky-top ps-3 pe-3 bgColor-primary color-secondary-reverse shadow';
+  const login = <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} showSignUp={showSignUp} blogsArr={blogsArr} loggedInBlog={loggedInBlog} />;
+  const headerStyle = 'container-fluid sticky-top ps-3 pe-3 bgColor-primary color-secondary-reverse shadow';
   return (
     <>
       {/* Header for smaller screen sizes */}
       {isSmallScreen && (
         <header className={headerStyle}>
           <div className="row ps-0 pe-0">
-            <Icon style={`mb-1`}/>
+            <Icon style={`mb-1`} />
             <Title />
             {login}
           </div>
@@ -35,12 +35,12 @@ const headerStyle = 'sticky-top ps-3 pe-3 bgColor-primary color-secondary-revers
 
       {/* Header for bigger screen sizes */}
       {!isSmallScreen && (
-      <header className={headerStyle}>
-          <div className="row pb-1 ps-2 pe-2">
-            <div className={`col ${center}`}><Navbar /></div>
-            <div className={`col-5 ${center}`}><Title /></div>
-            <div className={`col ${center}`}>{login}</div>
-          </div>
+        <header className={headerStyle}>
+            <div className="row pb-1 ps-2 pe-2">
+              <div className={`col ${center}`}><Navbar /></div>
+              <div className={`col-5 ${center}`}><Title /></div>
+              <div className={`col ${center}`}>{login}</div>
+            </div>
         </header>
       )}
     </>

@@ -119,12 +119,11 @@ router.route('/blogs')
       if (error) {
         return res.sendStatus(500);//TODO: create a more specific error for user
       }
-      [results] = results;
+      [results] = results; //destructure results because we only want to return one blog object, not an array of objects
       // if(!results) {
       //   results = null; //if no blog found return null (instead of undefined to be more acuate)
       // }
-      console.log('getBlogByUserId:', results);
-      return res.send(results); //spread results because we only want to return one blog object, not an array of objects
+      return res.send(results); 
     })
   })
 router.route('/posts/:postID')
@@ -226,19 +225,21 @@ router.route('/signUp')
 //   return match;
 // }
 router.route('/login/:email/:password')
-  .get(async function (req, res, next) {
-    pool.query('SELECT password FROM users WHERE email = ?', [req.params.email], (error, results, fields) => {
+  .get(async (req, res, next) => {
+    console.log('email:', req.params.email, 'password:', req.params.password);
+    pool.query('SELECT * FROM users WHERE email = ?', [req.params.email], (error, results, fields) => {
       if (error) {
         console.error("Failed to fetch user password: ", error);
         return res.status(500).json({ error: "Failed to fetch user password" });
       }
-      // console.log('results:', results);
+      
+      console.log('results:', results);
       // const [db] = JSON.parse(JSON.stringify(results));
       // const match = bcryptCompare(db.password, req.params.password);
       // console.log('dbPassword:', db.password);
 
       // console.log('match:', match);
-      return res.json(results);
+      return res.send(results);
     })
   })
 router.route('/blogInfo')

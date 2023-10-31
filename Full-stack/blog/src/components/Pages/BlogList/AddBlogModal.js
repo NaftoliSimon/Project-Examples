@@ -71,7 +71,7 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
                     </Modal.Header>
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <Modal.Body className='bgColor-primary'>
-
+                            
                             <Row>
                                 <Form.Group as={Col} md="6" controlId="validationCustom01">
                                     <Form.Label className='mb-1 pt-2'>Company Name</Form.Label>
