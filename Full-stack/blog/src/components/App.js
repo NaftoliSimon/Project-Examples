@@ -17,6 +17,7 @@ import Footer from './Header&Footer/Footer';
 import TermsAndConditions from './Pages/TermsAndConditions';
 import baseUrl, { links } from '../data/URLpaths';
 import PopUpAlert from './reuseable/PopUpAlert';
+import noShow from '../data/storageKeys';
 
 function App() {
   // Constants
@@ -36,22 +37,30 @@ function App() {
   const [showError, setShowError] = useState(false); //if failed to fetch blogs, show pop up error message
   const [page, setPage] = useState(Number(savedPage)); //the current blogs being displayed on the page (see index.js in the backend) 
   const [totalPages, setTotalPages] = useState(1);//the total number of blog pages displayed 
-  const hasFetchedData = useRef(false);
+  const hasFetchedBlogsData = useRef(false);
   const hasSetSessionStorage = useRef(false);
+  const hasFetchedBlogsTotal = useRef(false);
   const hasSetPage = useRef(false)
 
   // Effects
   useEffect(() => {
     // myFetch(`blogsTotal`, (data) => setTotalPages(Number(data)));
-    myFetch(`${baseUrl}/blogsTotal`, setTotalPages);
+    if (!hasFetchedBlogsTotal.current) {
+      myFetch(`${baseUrl}/blogsTotal`, setTotalPages);
+      hasFetchedBlogsTotal.current = true;
+    }
   }, []);
 
   useEffect(() => {
     // myFetch(`${baseUrl}/blogsTotal`, setTotalPages);
     // Fetch blog data if it hasn't been fetched already
-    if (!hasFetchedData.current) { //current is used to make the code run once instead of twice
-      myFetch(`${blogsLink}?page=${page}`, setBlogsArr, setShowError);
-      hasFetchedData.current = true;
+    if (!hasFetchedBlogsData.current) { //current is used to make the code run once instead of twice
+      if (localStorage.getItem(noShow)) {
+        myFetch(`${blogsLink}?page=${page}`, setBlogsArr);
+      } else {
+        myFetch(`${blogsLink}?page=${page}`, setBlogsArr, setShowError);
+      }
+      hasFetchedBlogsData.current = true;
     }
 
     // Retrieve the logged-in user from session storage if available
@@ -64,12 +73,12 @@ function App() {
     }
   }, [blogsLink, ssKey]);
 
-  
+
   useEffect(() => {
     // Save the page number to session storage
     // if (!hasSetPage.current) {
-      sessionStorage.setItem('pageNum', page);
-      // hasSetPage.current = true;
+    sessionStorage.setItem('pageNum', page);
+    // hasSetPage.current = true;
     // }
   }, [page]);
 
@@ -78,11 +87,11 @@ function App() {
     // Save or remove the logged-in user to/from session storage
     if (loggedInUser) {
       sessionStorage.setItem(ssKey, JSON.stringify(loggedInUser));
-      
+
       // sets the logged in user's blog,
       setLoggedInUserBlog(blogsArr.find(blog => blog.userId === loggedInUser.userId));//first it attempts to find the user's blog from the already fetched blogs
-      if(loggedInUserBlog === -1 || !loggedInUserBlog) { //if blog was not found in the already fetched blogs array (meaning the (6) current blogs being displayed on the page)
-          myFetch(`${baseUrl}/blog/${loggedInUser.userId}`, setLoggedInUserBlog);
+      if (loggedInUserBlog === -1 || !loggedInUserBlog) { //if blog was not found in the already fetched blogs array (meaning the (6) current blogs being displayed on the page)
+        myFetch(`${baseUrl}/blog/${loggedInUser.userId}`, setLoggedInUserBlog);
       }
     } else {
       sessionStorage.removeItem(ssKey);

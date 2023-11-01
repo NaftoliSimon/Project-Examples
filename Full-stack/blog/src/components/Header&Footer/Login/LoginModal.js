@@ -48,7 +48,7 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
         setShowError(true);
         // scrollToElem('noBlogsAlertSignUp');
       }
-      console.log('No Access to server');
+      // console.log('No Access to server');
     }
     else if (invalidPassword || invalidEmail) {
       // Execute with a delay if either invalidPassword or invalidEmail is false
