@@ -11,7 +11,7 @@ import postFetch from '../../../functions/postFetch';
 export default function AddPost({ show, setShow, savedData = null }) { //savedData is the post data for editing a post
     const { blogId: url_id } = useParams(); //url parameters
     const [title, setTitle] = useState(savedData?.title || '');
-    const [body, setBody] = useState(savedData?.title || '');
+    const [body, setBody] = useState(savedData?.body || '');
     
     const addOrEditData = !savedData ? { title, body, userId: url_id } : { title, body, postId: savedData.id }
     const closeAddPost = (e) => {

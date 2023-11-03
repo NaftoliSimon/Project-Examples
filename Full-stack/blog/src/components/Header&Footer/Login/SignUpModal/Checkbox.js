@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap'
 import useCustomNav from '../../../../hooks/navigate';
 
 export default function Checkbox({ handleClose, checked, setChecked, attemptedSubmit }) {
-    const style = !attemptedSubmit ? 'checkbox' : '';
+    const style = !attemptedSubmit ? 'checkbox-signUp' : '';
     const navigate = useCustomNav()
     function goToTermsAndConditionsPage() {
         handleClose();

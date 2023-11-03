@@ -292,8 +292,8 @@ button:disabled {
     background-color: transparent;
 }
 
-input:active:not(.exclude div div input),
-input:focus:not(.exclude div div input),
+input:active:not(.exclude div div input, .popUpCheckbox input),
+input:focus:not(.exclude div div input, .popUpCheckbox input),
 textarea:active,
 textarea:focus {
     //all inputs except for the sign up form inputs
@@ -313,17 +313,17 @@ textarea:focus {
 }
 
 //Checkbox (see SignUpModal/Checkbox.js)
-.checkbox input:checked {
+.checkbox-signUp input:checked {
     //React Bootstrap default checkbox is blue (this css changes the checkbox color dynamically based on the borderColor, to match the rest of the form inputs)
     background-color: $borderColor;
     opacity: 100%;
 }
 
-.checkbox input:hover {
+.checkbox-signUp input:hover {
     opacity: 100%;
 }
 
-.checkbox input {
+.checkbox-signUp input {
     border-color: $borderColor !important;
     opacity: 65%;
 }
@@ -354,6 +354,29 @@ textarea:focus {
     // background-color: $bsAlertLight;
     border-color: $bsAlert !important; //bootstrap alert color
     color: $bsAlert;
+}
+
+// .popUpCheckbox .checkbox, .popUpCheckbox .checkbox:checked {
+//     //TODO: the other checkbox css (above) seems to be interfering with this checkbox's css 
+//     background-color: $bsAlert !important;
+//     border-color: $bsAlert !important;
+// }
+.popUpCheckbox input:checked {
+    //React Bootstrap default checkbox is blue (this css changes the checkbox color dynamically based on the borderColor, to match the rest of the form inputs)
+    background-color: $bsAlert;
+    opacity: 100%;
+}
+
+.popUpCheckbox input:hover {
+    opacity: 100%;
+}
+
+.popUpCheckbox input {
+    border-color: $bsAlert !important;
+    opacity: 65%;
+}
+.form-check-input:focus {
+    box-shadow: none;//0 0 0 0.25rem $bsAlertLight
 }
 
 // .shadow-bc {

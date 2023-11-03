@@ -24,7 +24,7 @@ export default function PopUpAlert({ show, setShow, title, text, variant = 'prim
   
   const checkbox = <Form.Check type={'checkbox'}
     label={`Don't Show this message again`}
-    className='fst-italic pt-1 mb-0'
+    className='popUpCheckbox fst-italic pt-1 mb-0'
     onChange={e => saveChecked(e)}
   />
 

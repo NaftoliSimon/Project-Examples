@@ -18,16 +18,17 @@ import TermsAndConditions from './Pages/TermsAndConditions';
 import baseUrl, { links } from '../data/URLpaths';
 import PopUpAlert from './reuseable/PopUpAlert';
 import noShow from '../data/storageKeys';
+import { loggedInUser as ssLoggedInUser } from '../data/storageKeys';
 
 function App() {
   // Constants
   const blogsLink = `${baseUrl}/blogs`;
-  const ssKey = 'loggedInUser'; // session storage key
+  const ssKey = ssLoggedInUser; // session storage key
   const { blogs: home, about } = links;
   const alertMsgHeading = 'For full features of the website please connect to the server.'
   const alertMsg = 'The website will be limited in its functions. Limited Data will be displayed for viewing purposes only. The log in/sign up features, the paginator, and adding or manipulating any data from the website, will not be available.';
   const alertMsgComponent = <span>{alertMsgHeading}<span className='d-block'>{alertMsg}</span></span>
-  const savedPage = sessionStorage.getItem('pageNum');
+  const savedPage = Number(sessionStorage.getItem('pageNum'));
   // State and Refs
   const [blogsArr, setBlogsArr] = useState([]); //list of blogs data (to be) populated from the server, only populates 6 at a time prt page (see )
   const [loggedInUser, setLoggedInUser] = useState(null); //loggedInUser is either an object (with user's info) or null
@@ -35,27 +36,25 @@ function App() {
   const [showLogin, setShowLogin] = useState(false); //boolean to show/hide the login pop up modal
   const [showSignUp, setShowSignUp] = useState(false); //boolean to show/hide the signUp pop up modal
   const [showError, setShowError] = useState(false); //if failed to fetch blogs, show pop up error message
-  const [page, setPage] = useState(Number(savedPage)); //the current blogs being displayed on the page (see index.js in the backend) 
+  const [page, setPage] = useState(savedPage || 1); //the current blogs being displayed on the page (see index.js in the backend) 
   const [totalPages, setTotalPages] = useState(1);//the total number of blog pages displayed 
   const hasFetchedBlogsData = useRef(false);
   const hasSetSessionStorage = useRef(false);
   const hasFetchedBlogsTotal = useRef(false);
-  const hasSetPage = useRef(false)
+  // const hasSetPage = useRef(false)
 
   // Effects
   useEffect(() => {
-    // myFetch(`blogsTotal`, (data) => setTotalPages(Number(data)));
     if (!hasFetchedBlogsTotal.current) {
-      myFetch(`${baseUrl}/blogsTotal`, setTotalPages);
+      myFetch(`${baseUrl}/blogsTotal`, setTotalPages); //Sets the total number of pages (see Paginator.js)
       hasFetchedBlogsTotal.current = true;
     }
   }, []);
 
   useEffect(() => {
-    // myFetch(`${baseUrl}/blogsTotal`, setTotalPages);
     // Fetch blog data if it hasn't been fetched already
     if (!hasFetchedBlogsData.current) { //current is used to make the code run once instead of twice
-      if (localStorage.getItem(noShow)) {
+      if (localStorage.getItem(noShow)) { //the user has an option to not show the error message again (see PopUpAlert.js)
         myFetch(`${blogsLink}?page=${page}`, setBlogsArr);
       } else {
         myFetch(`${blogsLink}?page=${page}`, setBlogsArr, setShowError);

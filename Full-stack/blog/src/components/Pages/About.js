@@ -49,7 +49,7 @@ export default function About() {
                         <h5 className='text-center'><u>FUTURE UPDATES</u></h5>
                         <li className={li}><h6 className={h6}>Delete features for Blogs and Posts</h6> - add the ability to remove/delete both blogs and posts (similar to how comments can already be deleted)</li>
                         <li className={li}><h6 className={h6}>Add joi validation and display to user limits for ALL input fields</h6> - when the user fills out any form sent to the server, certain requirements (such as character length min and max) are set in the server, these requirements need to be displayed to the user</li>
-                        <li className={li}><h6 className={h6}>Pagination for smaller screen sizes</h6> - the current set up with the pagination was optimally built for 3 column view, 2 and 1 column view needs to be optimized</li>
+                        <li className={li}><h6 className={h6}>Pagination for smaller screen sizes</h6> - the current set up with the pagination was built for 3 column view (2 and 1 column view needs to be optimized)</li>
                         <li className={li}><h6 className={h6}>Secure Passwords</h6> - Passwords are not encrypted, and are stored as plain text in the database. This needs to change, especially when the db is upgraded from local db to aws</li>
                         <p className='fst-italic'>There are many more internal updates and improvements not listed here. The ones listed above are the most important ones. For the full list of improvements see the <ExternalLink link={`${socialMediaLinks.github}${pathToAboutComponent}`} text={'Github code'} />.</p>
                     </ul>

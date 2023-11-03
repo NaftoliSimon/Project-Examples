@@ -11,6 +11,7 @@ import Row1 from './Row1';
 import Row2 from './Row2';
 import Row3 from './Row3';
 import Row4 from './Row4';
+import { loggedInUser } from '../../../../data/storageKeys';
 
 const modalSection = 'bgColor-primary border-0';
 const emptyFormFields = { firstName: '', lastName: '', email: '', password: '', retypedPassword: '' };
@@ -76,8 +77,8 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
         handleClose();
 
         // setLoggedIn(fields); //loggin in the user directly this way causes the successAlert pop up message to not show, therefore the user is logged in by setting the session storage instead
-        const ssKey = 'loggedInUser'; // session storage key
-        sessionStorage.setItem(ssKey, JSON.stringify(fields)) //logs the user in while still displaying successAlert
+
+        sessionStorage.setItem(loggedInUser, JSON.stringify(fields)) //logs the user in while still displaying successAlert
 
         setSuccessfulSubmit(true); //shows a pop up success alert message (see SuccessAlert below)
     };
