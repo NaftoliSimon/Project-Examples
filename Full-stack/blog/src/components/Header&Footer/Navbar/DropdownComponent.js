@@ -9,6 +9,7 @@ import CustomMenu from './CustomMenu';
 import DropdownItem from './DropdownItem';
 import AddBlogModal from '../../Pages/BlogList/AddBlogModal';
 import logOut from '../../../functions/logOut';
+import bgLightOrDark from '../../../data/Bootstrap/colors';
 
 const DropdownComponent = ({ loggedIn, setLoggedIn, setShowLogin, showLogin, setShowSignUp, loggedInBlog }) => { //TODO: add dark mode to dropdown?
   const { home, blogs, about } = links;
@@ -22,7 +23,7 @@ const DropdownComponent = ({ loggedIn, setLoggedIn, setShowLogin, showLogin, set
   const toggleIconSize = 30;
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-    <button className='btn' ref={ref} onClick={e => { e.preventDefault(); onClick(e); }}>
+    <button className={`btn `} ref={ref} onClick={e => { e.preventDefault(); onClick(e); }}>
       {loggedIn ? <BsPersonLinesFill size={toggleIconSize} /> : <IoReorderFourOutline size={toggleIconSize} />}
     </button>
   ));

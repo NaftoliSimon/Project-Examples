@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap'
 import useCustomNav from '../../../../hooks/navigate';
 
 export default function Checkbox({ handleClose, checked, setChecked, attemptedSubmit }) {
-    const style = !attemptedSubmit ? 'checkbox-signUp' : '';
+    const style = !attemptedSubmit ? 'checkbox-primary' : '';
     const navigate = useCustomNav()
     function goToTermsAndConditionsPage() {
         handleClose();
@@ -18,12 +18,15 @@ export default function Checkbox({ handleClose, checked, setChecked, attemptedSu
                     onClick={goToTermsAndConditionsPage}>terms and conditions</span>
                     {/* , even if I have not read them */}
                 </div>}
-                feedback="You must accept before submitting"
+                // feedback="You must accept before submitting"
                 feedbackType="invalid"
                 onChange={(e) => setChecked(e.target.checked)}
                 checked={checked}
                 className={`${style}`}
             />
+            <Form.Text type="invalid" className={`ps-4 text-danger-emphasis`}>
+                    {attemptedSubmit && !checked && 'You must accept before submitting'}
+                </Form.Text>
         </Form.Group>
     )
 }

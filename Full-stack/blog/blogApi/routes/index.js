@@ -30,7 +30,9 @@ const origin = 'http://localhost:3001' //Server runs on port 3000 (default). Rea
 
 //Allow CORS
 router.use(require('cors')({
-  origin: origin
+  origin: origin,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
 }));
 
 /* GET home page. */
@@ -60,13 +62,13 @@ router.route('/blogsTotal')
       if (error) {
         return console.error(`Blogs Count Error: ${error}`)
       }
-  
+
       // Extract the totalBlogs count from the results
       const totalBlogs = results[0].totalBlogs;
 
-    const blogsPerPage = 6; // Number of blogs to display per page
-    const totalPages = Math.ceil(totalBlogs / blogsPerPage);
-    return res.send(totalPages.toString());
+      const blogsPerPage = 6; // Number of blogs to display per page
+      const totalPages = Math.ceil(totalBlogs / blogsPerPage);
+      return res.send(totalPages.toString());
     })
   });
 
@@ -77,30 +79,30 @@ router.route('/blogs')
       if (error) {
         return console.error(`Blogs Count Error: ${error}`)
       }
-  
+
       // Extract the totalBlogs count from the results
       const totalBlogs = results[0].totalBlogs;
 
-    // Rest of your code to handle pagination with totalBlogs
-    const blogsPerPage = 6;
-    const totalPages = Math.ceil(totalBlogs / blogsPerPage);
-    let page = req.query.page;
-    page = (page <= totalPages) && (page > 0) ? page : 1; // Default to the first page if not between 1 and totalPage amount
+      // Rest of your code to handle pagination with totalBlogs
+      const blogsPerPage = 6;
+      const totalPages = Math.ceil(totalBlogs / blogsPerPage);
+      let page = req.query.page;
+      page = (page <= totalPages) && (page > 0) ? page : 1; // Default to the first page if not between 1 and totalPage amount
 
-    // console.log('totalBlogs:', totalBlogs, 'totalPages:', totalPages, 'page:', page);
-    // Calculate the offset based on the page number
-    const offset = (page - 1) * blogsPerPage;
+      // console.log('totalBlogs:', totalBlogs, 'totalPages:', totalPages, 'page:', page);
+      // Calculate the offset based on the page number
+      const offset = (page - 1) * blogsPerPage;
 
-    pool.query('SELECT * FROM blogs LIMIT ? OFFSET ?', [blogsPerPage, offset], (error, results, fields) => {
-      if (error) {
-        return res.sendStatus(500); // TODO: Create a more specific error for the user
-      }
+      pool.query('SELECT * FROM blogs LIMIT ? OFFSET ?', [blogsPerPage, offset], (error, results, fields) => {
+        if (error) {
+          return res.sendStatus(500); // TODO: Create a more specific error for the user
+        }
 
-      // Return the totalBlogs count and the blog data
-      return res.send(results);
-      // });
-    });
-  })
+        // Return the totalBlogs count and the blog data
+        return res.send(results);
+        // });
+      });
+    })
   })
   .post((req, res, next) => {
     pool.query('INSERT INTO blogs(name, website, companyName, shortSummary) VALUES (?,?,?,?)',
@@ -112,7 +114,7 @@ router.route('/blogs')
         return res.sendStatus(201);
       }
   })
-  router.route('/blog/:userID') //route to get a single specific blog based on the user id (or check if such a blog exists)
+router.route('/blog/:userID') //route to get a single specific blog based on the user id (or check if such a blog exists)
   .get(function (req, res, next) {
     // console.log(req.params.postID);
     pool.query('SELECT * FROM blogs WHERE userId = ?;', [req.params.userID], (error, results, fields) => { //posts are fetched in descending order so that the newest post is displayed (first) on top
@@ -123,7 +125,7 @@ router.route('/blogs')
       // if(!results) {
       //   results = null; //if no blog found return null (instead of undefined to be more acuate)
       // }
-      return res.send(results); 
+      return res.send(results);
     })
   })
 router.route('/posts/:postID')
@@ -232,7 +234,7 @@ router.route('/login/:email/:password')
         console.error("Failed to fetch user password: ", error);
         return res.status(500).json({ error: "Failed to fetch user password" });
       }
-      
+
       console.log('results:', results);
       // const [db] = JSON.parse(JSON.stringify(results));
       // const match = bcryptCompare(db.password, req.params.password);

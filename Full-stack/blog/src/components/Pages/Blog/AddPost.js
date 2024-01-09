@@ -3,7 +3,7 @@ import center from '../../../data/Bootstrap/center';
 import Form from 'react-bootstrap/Form';
 import { useParams } from 'react-router-dom';
 import baseUrl from '../../../data/URLpaths';
-import { CloseButton } from 'react-bootstrap';
+import { Card, CloseButton } from 'react-bootstrap';
 import pillButton from '../../../data/Bootstrap/pillButton';
 import postFetch from '../../../functions/postFetch';
 
@@ -32,13 +32,13 @@ export default function AddPost({ show, setShow, savedData = null }) { //savedDa
 
     }
 
-    const liStyle = ` bgColor-primary color-secondary-reverse p-3 m-2 rounded border ${center} w-100`;
-    const postButtonStyle = `d-block btn post-btn btn-sm me-2 ${pillButton}`;
+    const liStyle = `p-3 m-2 rounded border ${center} w-100`;
+    const postButtonStyle = `btn btn-primary d-block btn-sm me-2`;
     const editStyle = savedData ? 'w-100' : '';
     const textInputStyle = ``;
     return (<>
-        {show && <div className={`${editStyle} list-group post d-flex flex-row flex-wrap ${center} opacity-85`}>
-            <div className={`${liStyle}`}>
+        {show && <Card className={`${editStyle} p-3 pt-4`}>
+            {/* <div className={`${liStyle}`}> */}
                 <Form className={`w-100`}>
                     <Form.Group controlId="exampleForm.ControlInput1" className={`mb-3`}> {/*onSubmit={e => e.preventDefault()} */}
                         <div className='d-flex justify-content-between'>
@@ -58,8 +58,8 @@ export default function AddPost({ show, setShow, savedData = null }) { //savedDa
                         <button aria-label="Hide" className={postButtonStyle} onClick={(e) => closeAddPost(e)}> Cancel </button>
                     </div>
                 </Form>
-            </div>
-        </div>}
+            {/* </div> */}
+        </Card>}
     </>
     )
 }

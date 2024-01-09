@@ -47,7 +47,7 @@ export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) 
   }
   const visibility = loggedIn && url_id == loggedIn.userId ? 'visible' : 'invisible';
   const addPost = <div className={`pb-3 container ${center}`}>
-    <div className={`btn button  ${center} ${pillButton} ${visibility}`} onClick={openAddPost} role="button">Add A Post</div>
+    <div className={`btn btn-primary ${center} ${visibility}`} onClick={openAddPost} role="button">Add A Post</div>
   </div>
   //TODO: make sure NoData error display component is good (ie correct size, ect) 
   return (

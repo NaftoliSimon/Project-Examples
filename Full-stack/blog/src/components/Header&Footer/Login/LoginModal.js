@@ -7,6 +7,8 @@ import ModalFooter from './LoginModalFooter';
 import DismissibleAlert from '../../reuseable/Alert';
 import PopUpAlert from '../../reuseable/PopUpAlert';
 import scrollToElem from '../../../functions/scrollToElem';
+import bgLightOrDark from '../../../data/Bootstrap/colors';
+import usePopOut from '../../../hooks/popOut';
 
 export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, showLogin: title }) {
   const modalTitle = typeof title === 'string' ? title : "Account Log In"; //showLogin (or title) is either true or a string.
@@ -18,6 +20,9 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [showError, setShowError] = useState(false);
+  const { getPopClass, handlePopOut } = usePopOut();
+  const { getPopClass: getPopPassword, handlePopOut: handlePopPassword } = usePopOut();
+  const { getPopClass: getPopEmail, handlePopOut: handlePopEmail } = usePopOut();
 
   const handleClose = () => setShow(false);
   const handleOpenSignUp = () => {
@@ -36,29 +41,14 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
   }
   function handleLogin() {
     // myFetch(`${url}/${email}/${password}`, setPasswordMatch);
-    // myFetch(`${url}/${email}/${password}`, setPasswordMatch);
-    // console.log('passwordMatch:', passwordMatch);
+
     if (!savedUser || isObjectEmpty(savedUser)) { //Show pop up error message - see SignUpModal
       if (showError === true) {
-        setShowError(false);
-        setTimeout(() => {
-          setShowError(true)
-        }, 250); // Pause for 1/4 of a second
+        handlePopOut();
       } else {
         setShowError(true);
-        // scrollToElem('noBlogsAlertSignUp');
       }
-      // console.log('No Access to server');
-    }
-    else if (invalidPassword || invalidEmail) {
-      // Execute with a delay if either invalidPassword or invalidEmail is false
-      setInvalidEmail(false);
-      setInvalidPassword(false);
-      setTimeout(() => {
-        executeLogin();
-      }, 250); // Pause for 1/4 of a second
     } else {
-      // Execute immediately if both invalidPassword and invalidEmail are true
       executeLogin();
     }
   }
@@ -72,42 +62,36 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
         setInvalidPassword(false);
         setShow(false);
       } else {
+        if (invalidPassword) { //only do pop out effect if alert is already showing
+          handlePopPassword();
+        }
         setInvalidPassword(true);
       }
     } else {
+      if (invalidEmail) {
+        handlePopEmail();
+      }
+      setInvalidPassword(false) //this line makes it so that both error alerts don't show at the same time (ie, if the incorrect email alert is showing, and then the email is changed to incorrect as well)
       setInvalidEmail(true);
     }
   }
 
   const disabled = !email || !password;
+  const theme = JSON.parse(localStorage.getItem('theme'));
 
   return (<>
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton className='bgColor-primary border-0'>
+    <Modal show={show} onHide={handleClose} data-bs-theme={theme}>
+      <Modal.Header closeButton className='border-0'>
         <Modal.Title>{modalTitle}</Modal.Title>
       </Modal.Header>
-      <div id='noBlogsAlertSignUp'>
-        <DismissibleAlert heading={'Error'} text={'No Access To The Server'} show={showError} setShow={setShowError} />
-      </div>
-      <ModalBody
-        invalidEmail={invalidEmail}
-        email={email}
-        setEmail={setEmail}
-        invalidPassword={invalidPassword}
-        setPassword={setPassword}
-        password={password}
-        handleLogin={handleLogin}
-        setInvalidPassword={setInvalidPassword}
-        setInvalidEmail={setInvalidEmail}
-      />
-      <ModalFooter
-        handleClose={handleClose}
-        handleOpenSignUp={handleOpenSignUp}
-        handleLogin={handleLogin}
-        disabled={disabled}
-      />
+
+      <DismissibleAlert heading={'Error'} text={'No Access To The Server'} show={showError} setShow={setShowError} getPopClass={getPopClass} />
+      <DismissibleAlert heading={'Invalid Email'} text={'The email you have entered does not exist'} show={invalidEmail} setShow={setInvalidEmail} getPopClass={getPopEmail} />
+      <DismissibleAlert heading={'Incorrect Password'} text={'The password you have entered is incorrect'} show={invalidPassword} setShow={setInvalidPassword} getPopClass={getPopPassword} />
+      
+      <ModalBody email={email} setEmail={setEmail} password={password} setPassword={setPassword} handleLogin={handleLogin}/>
+      <ModalFooter handleClose={handleClose} handleOpenSignUp={handleOpenSignUp} handleLogin={handleLogin} />
     </Modal>
-    {/* <PopUpAlert show={showError} onHide={() => setShowError(false)} /> */}
   </>
   );
 }

@@ -5,7 +5,7 @@ export default function CommentsBtn({ text, handleClick }) {
     const defaultShadow = 'shadow-sm';
     const [shadow, setShadow] = useState(defaultShadow);
     return (
-        <button className={`d-block btn button post-btn btn-sm m-1 ${shadow} ${pillButton}`}
+        <button className={`btn btn-primary d-block btn-sm m-1 ${shadow}`}
             onClick={handleClick}
             onMouseOver={() => setShadow('shadow')}
             onMouseLeave={() => setShadow(defaultShadow)}

@@ -23,11 +23,11 @@ export default function AddComment({ closeAddComment, postId, loggedIn }) {
         window.location.reload(false); //Page reloads to load new comment from db. TODO: make page scroll to edited comment, or update page without needing to reload
     }
 
-    const textInputStyle = `input w-100 rounded border-0`;
+    const textInputStyle = `w-100 rounded border-0 p-1 ps-2`;
     //border p-2 rounded
     return (
-        <div className=''>
-            <div className={`comment p-2 border border-top-0 border-2`}>
+        <div className='w-100 z-n1'>
+            <div className={`p-2 border border-top-0 border-2`}>
                 <textarea className={textInputStyle} placeholder="Comment goes here..." value={commentBody}
                     onChange={e => setCommentBody(e.target.value)} autoFocus></textarea>
                 <input className={`${textInputStyle} d-none`} placeholder='name' value={commentName} onChange={e => setCommentName(e.target.value)}></input>

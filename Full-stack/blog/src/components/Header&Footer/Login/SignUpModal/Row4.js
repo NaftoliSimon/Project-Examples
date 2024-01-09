@@ -3,21 +3,22 @@ import { Col, Form, InputGroup, Row } from 'react-bootstrap';
 import InputIcon from './InputIcon';
 import Eye from './Eye';
 import { BsLockFill } from 'react-icons/bs';
+import bgLightOrDark from '../../../../data/Bootstrap/colors';
 
-export default function Row4({ validated, retypedPassword, setField, password, passwordMatch, setPasswordMatch, attemptedSubmit }) {
+export default function Row4({ validated, retypedPassword, setField, password, passwordMatch, setPasswordMatch, attemptedSubmit, autoFill }) {
     const [retypedPasswordVisible, setRetypedPasswordVisible] = useState(false);
 
     const handleRetypedPasswordChange = (event) => {
         const retypedPasswordValue = event.target.value;
         setField('retypedPassword', retypedPasswordValue);
 
-        if (password !== retypedPasswordValue) {//retypedPasswordValue.length > 0 && 
+        if (password !== retypedPasswordValue && retypedPasswordValue.length > 0) {//retypedPasswordValue.length > 0 && 
             setPasswordMatch(false);
         } else {
             setPasswordMatch(true);
         }
     };
-    const successOrFailColor = !passwordMatch ? 'border-danger text-danger shadow-red' : 'border-success text-success shadow-green';
+    const successOrFailColor = !passwordMatch ? 'border-danger shadow-red' : 'border-success shadow-green';
     const borderColor = attemptedSubmit ? successOrFailColor : '';
 
     // const dangerOrSuccess = !passwordValidated ? 'border-danger text-danger' : 'border-success text-success';
@@ -35,13 +36,13 @@ export default function Row4({ validated, retypedPassword, setField, password, p
                         required
                         value={retypedPassword}
                         onChange={(e) => handleRetypedPasswordChange(e)}
-                        className={`inputPadding ${borderColor} password-input text-dark rounded`}
+                        className={`inputPadding ${autoFill} ${borderColor} password-input text-dark rounded`}
                     />
                     <Eye setVisible={setRetypedPasswordVisible} visible={retypedPasswordVisible} />
                 </InputGroup>
                 {attemptedSubmit && (!passwordMatch ? 
-                    <Form.Text className="text-danger">Passwords do not match.</Form.Text>
-                 :  <Form.Text className="text-success">Passwords match!</Form.Text> )}
+                    <Form.Text className="text-danger-emphasis">Passwords do not match.</Form.Text>
+                 :  <Form.Text className="text-success-emphasis">Passwords match!</Form.Text> )}
             </Form.Group>
         </Row>
     );

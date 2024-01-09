@@ -1,414 +1,271 @@
-/*Color (& background image) related CSS in this file (this includes slightly lightening opacity)*/
-/*This file displays the color scheme for the entire website (that can't be done by just bootstrap default colors)*/
-//TODO: reorganize css to make easier to find where it is being used (whether in one or many places throughout the website)
-
-/* The css in this file is sorted as follows: 
-Colors, Text Colors, Background Color, Border Color, Border color Hover, Opacity, Icons, Buttons, Link Colors
-Dropdowns, Form Fields - inputs & textarea, Checkbox, Miscellaneous, Background Images
-*/
-
-//Colors (define all used colored variables (see listOfColors.scss for more color options)
-//green
-$green: #198754;
-$lighterGreen: #7bc1a1;
-$lightGreen: #defcee;
-//indigo
-$indigo: #6610f2;
-$lightIndigo: #c8b4ee;
-$lighterIndigo: #ffdcf7;
-//blue
-$blue: #0d6efd;
-$lighterBlue: #619ffb;
-$lightBlue: #b6d1fa;
-
-$bsAlert: #842029; //bootstrap alert color
-$bsAlertLight: #f8d7da; //bootstrap alert background color
-
-//Secondary colors:
-$lightGrey: #dddddd;
-$darkGrey: #535868; //#343a40
-$white: white;
-$black: black;
-$lighterWhite: rgb(243, 242, 242);
-$lighterDark: $darkGrey;
-$dark: $black; //if primary color is a dark color set $dark to $primary, else set it to black
-
-//Light Mode Colors:
-$primary: $white;
-$primaryLight: $lighterWhite;
-$secondary: $lightGrey; //swap this color with secondary-reverse's color (see above comment)
-$secondary-reverse: $black; //$white; //swap this color with secondary's color (see above comment)
-
-//Border & Button colors
-// $borderColor: $indigo; //color of buttons, links, & colored borders throughout the entire website
-// $borderColor-medium: $lighterIndigo;
-// $borderColor-light: $lightIndigo; //used for buttons & input shadow
-
-$borderColor: $blue; //color of buttons, links, & colored borders throughout the entire website
-$borderColor-medium: $lighterBlue;
-$borderColor-light: $lightBlue; //used for buttons & input shadow
-////////////////////////////////////////////////////////////////////////////////
-
-//Text Color
-.color-primary {
-    color: $primary;
-}
-
-.color-secondary {
-    color: $secondary;
-}
-
-.dark {
-    color: $dark;
-}
-
-.color-secondary-reverse {
-    color: $secondary-reverse;
-}
-
-.footer,
-.dropdown:hover {
-    color: $secondary-reverse;
-}
-
-//Background Color
-.backgroundColor {
-    background-color: $borderColor-light !important;
-}
-
-.bgColor-primaryLight {
-    background-color: $primaryLight;
-}
-
-.inputGroup,
-.bgColor-primary,
-.dropdown-menu,
-.inputGroup {
-    background-color: $primary;
-}
-
-.bgAlert {
-    background-color: $bsAlertLight;
-}
-
-//Border Color
-.borderColor {
-    border-color: $borderColor !important;
-}
-
-.borderColor-primary,
-.edit-hover:hover {
-    border-color: $primary;
-}
+ /*Color (& background image) related CSS in this file (this includes slightly lightening opacity)*/
+ // /*This file displays the color scheme for the entire website (that can't be done by just bootstrap default colors)*/
+ // //TODO: reorganize css to make easier to find where it is being used (whether in one or many places throughout the website)
 
 
-//Border Color Hover
-.bch:hover,
-.pillBtnSolid:hover {
-    border-color: $borderColor !important;
-}
+ // //Colors (define all used colored variables (see listOfColors.scss for more color options)
+ $blue: #0d6efd;
+ $indigo: #6610f2;
 
-.bchLight:hover {
-    border-color: $borderColor-light !important;
-}
+ //////////////////////////////////////////////////////////////////////////////////
+ :root {
+     --background: white;
+     --background-secondary: #f8f9fa;
+     --background-tertiary: #f8f9fa;
+     --text-primary: black;
+     --border: #212529;
+     --primary: $blue;
+     --welcomeBackgroundImg: url('../../public/Images/businessmanBackgroundLight2.jpg');
+     --defaultBackgroundImg: url('../../public/Images/stlBackground4.jpg'); //4.7, (9),11
+ }
 
-//Opacity - change the opacity slightly to dynamically lighten or darken the element's color on hover
-.hoverDarken {
-    opacity: 90%;
-}
+ //TODO: add sucess and danger colors to light/dark themes so that sign up form inputs look nicer
+ [data-theme='dark'],
+ [data-bs-theme='dark'] {
+     --background: #343a40;
+     --background-secondary: #212529;
+     --background-tertiary: #495057;
+     --text-primary: white;
+     --border: #adb5bd;
+     --welcomeBackgroundImg: url('../../public/Images/businessmanBackgroundDark.jpg');
+     --defaultBackgroundImg: url('../../public/Images/stlBackground4Dark.jpg');
+     --primary: white;
+ }
 
-.hoverDarken:hover {
-    //opacity +10%
-    opacity: 100%;
-}
+ /////////////////////////////////////////////////////////////////////////////////////
 
-.hoverLighten:hover {
-    //opacity -10%
-    opacity: 90%;
-}
+ $primary: $blue; //sets bootstrap default primary color //preferably keep this color as a darker color
+ $lightOrDark: white; //if $primary color is dark, set this variable to a light color (ie white), else set it to a dark color.
+ // $darkOrLight: black; //this should be the reverse of the 'lightOrDark' variable (see the above line)
+ @import "node_modules/bootstrap/scss/bootstrap";
 
-.opacity-85 {
-    opacity: 85%;
-}
+ //////////////////////////////////////////////////////////////////////////////////////
+ body:not(.alert-danger h4, .alert-danger h2),
+ h2:not(.alert-danger h2),
+ h4:not(.alert-danger h4, .modal-title.h4) {
+     color: var(--text-primary) !important;
+ }
 
-//Icons
-.icon {
-    opacity: 80%;
-    color: $white;
-}
+ .model-content :not(div:has(> div[role="alert"])) {
+     color: var(--text-primary);
+ }
 
-.loggedInIcon .rounded-circle:hover {
-    background-color: $borderColor-light; //$secondary
-}
+ .bgAlert {
+     color: #dc3545 !important;
+ }
 
-//Buttons
-.pillBtn {
-    color: $borderColor !important;
-    border-color: $borderColor !important;
-}
+ .btn-danger {
+     background-color: var(--bs-danger-text-emphasis) !important;
+     border-color: var(--bs-danger-text-emphasis) !important;
+ }
 
-.pillBtn:hover {
-    background-color: $borderColor-light !important;
-}
+ .btn-danger:hover {
+     filter: brightness(1.2);
+     /* The higher the number the more bright the button gets */
+ }
 
-.pillBtnSolid {
-    background-color: $borderColor !important;
-    border-color: $borderColor !important;
-    color: $primary !important;
-}
+ header,
+ .btn-primary,
+ header .btn,
+ .logoStyle {
+     color: $lightOrDark !important;
+ }
 
-.pillBtnSolid:hover {
-    color: $borderColor-light;
-}
+ .img-thumbnail {
+     background-color: $lightOrDark;
+ }
 
-.pillBtnSolidDanger {
-    //add to pillBtnSolid, to change color from primary to danger
-    background-color: $bsAlert !important;
-    border-color: $bsAlert !important;
-    color: $primary !important;
-}
+ .dropdown-menu {
+     background-color: var(--background);
+     color: var(--text-primary);
+     border-color: var(--border);
+ }
 
-.pillBtnSolidDanger:hover {
-    color: $bsAlertLight;
-    border-color: $bsAlert !important;
-}
+ .dropdown-menu ul a:hover,
+ .dropdown-menu a:hover {
+     background-color: $primary !important;
+     color: $lightOrDark !important;
+ }
 
-.pillBtnDanger {
-    color: $bsAlert !important;
-    border-color: $bsAlert !important;
-}
+ .dropdown-header {
+     color: var(--text-primary);
+     opacity: 70%;
+ }
 
-.pillBtnDanger:hover {
-    background-color: $bsAlertLight !important;
-}
+ .text-border {
+     -webkit-text-stroke: 1px var(--background);
+     font-size: 2.5rem;
+ }
 
-.header-button:hover,
-.header-button:active,
-.header-button:focus {
-    background-color: $primary;
-}
+ .btn-outline-primary {
+     color: var(--text-primary);
+     border-color: var(--border);
+ }
 
-.button,
-.button:hover,
-.button:focus {
-    background-color: $primary; //dark colored button (edit & delete comment buttons)
-    color: $secondary-reverse;
-    border-color: $primaryLight;
-}
+ .btn-outline-primary:hover {
+     color: $primary;
+     border-color: $primary;
+     background-color: $primary;
+     color: $lightOrDark;
+ }
 
-.header-button {
-    background-color: $primary;
-    color: $secondary-reverse;
-    // border-color: $secondary-reverse;
+ .btn-primary:hover {
+     opacity: 90%;
+     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+ }
 
-}
+ .page-item>*:not(.active>*) {
+     background-color: var(--background-tertiary);
+     color: var(--text-primary);
+ }
 
-.btn:disabled,
-button:disabled {
-    opacity: 75% !important;
-}
+ .nav-link:hover,
+ .nav-link-header:hover {
+     opacity: 75% !important;
+ }
 
-.post-btn,
-.post-btn:active,
-.post-btn:focus,
-.post-btn:hover {
-    color: $black; //light colored button (show/hide & add commnents btn)
-    background-color: $primaryLight;
-    opacity: 100%;
-    border: none;
-}
+ .link-primary {
+     color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)) !important;
+     text-decoration: underline !important;
+ }
 
-.postDropdownToggle {
-    background-image: none;
-    color: $secondary-reverse !important;
-    background-color: $primary;
-}
+ .link-primary:hover {
+     color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 9)) !important;
+     text-decoration: none !important;
+ }
 
-//Link colors
-.nav-link,
-.nav-link-header,
-.nav-link:hover,
-.nav-link-header:hover {
-    color: $darkGrey;
-}
+ .input-parent input,
+ .input-parent input:active,
+ .input-parent input:focus,
+ .login-parent input,
+ .login-parent input:focus,
+ .login-parent input:active {
+     color: var(--text-primary) !important;
+     background-color: var(--background-secondary) !important;
+ }
 
-.nav-link:hover,
-.nav-link-header:hover {
-    color: $black;
-    cursor: pointer;
-}
+ .input-parent input,
+ .bg-color {
+     background-color: var(--background);
+ }
 
-.nav-link-header {
+ input:-webkit-autofill,
+ input:-webkit-autofill:hover,
+ input:-webkit-autofill:focus,
+ input:-webkit-autofill:active {
+     transition: background-color 5000s ease-in-out 0s;
+     box-shadow: inset 0 0 20px 20px inherit;
+     -webkit-text-fill-color: inherit;
+     background-color: var(--background-tertiary) !important;
+     -webkit-box-shadow: 0 0 0 30px var(--background-tertiary) inset !important; //without this line autofill background inputs will remain the same color as non autofill input (--background-secondary)
+ }
+
+ input::placeholder {
+     color: grey !important;
+     font-style: italic;
+ }
+
+ footer {
+     background-color: var(--background-tertiary);
+     color: var(--text-primary);
+ }
+
+ .card-red {
+     box-shadow: rgba($red, 0.4) -5px 5px, rgba($red, 0.3) -10px 10px, rgba($red, 0.2) -15px 15px, rgba($red, 0.1) -20px 20px, rgba($red, 0.05) -25px 25px !important;
+ }
+
+ .card-yellow {
+     box-shadow: rgba($yellow, 0.4) -5px 5px, rgba($yellow, 0.3) -10px 10px, rgba($yellow, 0.2) -15px 15px, rgba($yellow, 0.1) -20px 20px, rgba($yellow, 0.05) -25px 25px !important;
+ }
+
+ .card-green {
+     box-shadow: rgba($green, 0.4) -5px 5px, rgba($green, 0.3) -10px 10px, rgba($green, 0.2) -15px 15px, rgba($green, 0.1) -20px 20px, rgba($green, 0.05) -25px 25px !important;
+ }
+
+ .shadow-red:active,
+ .shadow-red:focus {
+     //the retype password field had incorrect outline color that is fixed by the css below (see SignUpModal/Row4.js)
+     box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25) !important;
+ }
+
+ .shadow-green:active,
+ .shadow-green:focus {
+     box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25) !important;
+ }
+
+ //  .checkbox-danger .checkbox, .checkbox-danger .checkbox:checked {
+ //     color: red !important;
+ //     border-color: red !important;
+ //     background-color: red !important;
+ // }
+ .loggedInIcon {
+     border: 2px solid transparent;
+ }
+
+ .loggedInIcon:hover {
+     color: $primary;
+     background-color: $lightOrDark;
+     border-radius: 25rem;
+     // border-color: $lightOrDark;
+ }
+
+ .welcome button {
+     background-color: rgba(white, 0.3); //makes the button's background a lighter color version than it's parent card's background color
+     //  background-color: rgba(black, 0.3); //makes the button's background a darker color version than it's parent card's background color
+     color: black !important; //set this to the opposite of the background-color (either black or white)
+     border-color: black;
+     font-weight: bold;
+ }
+
+ .welcome button:hover {
+     background-color: var(--background);
+     color: var(--text-primary) !important;
+     border-color: black;
+     // opacity: 80%;
+ }
+
+ .card:not(.welcome),
+ .card:not(.welcome)>*,
+ .card-body ul li,
+ .blogDisplay>* {
+     background-color: var(--background-secondary) !important; //var(--background-secondary);
+     color: var(--text-primary);
+     opacity: 90%;
+ }
+ .blogDisplay {
     padding: 0;
-}
+ }
 
-.link-color {
-    //dark color link (see SelectedBlog.js for usage)
-    color: $borderColor;
-    text-decoration: none;
-}
+ .modal-content {
+     background-color: var(--background);
+ }
 
-.link-color:hover {
-    text-decoration: underline;
-    color: $borderColor;
-    opacity: 85%;
-}
+ .card-body {
+     border-radius: .375rem;
+ }
 
-.tac-link:hover {
-    opacity: 80%; //link to terms and condition (SignUpModal.js)
-}
-
-//Dropdowns
-.dropdown-toggle,
-.dropdown-toggle:hover,
-.dropdown-toggle:active,
-.dropdown-toggle:focus {
-    //removes the React Bootstrap defaults
-    background-color: transparent;
-    border: none;
-    box-shadow: none !important;
-    color: black;
-}
-
-.dropdown-item:active {
-    // removes the React Bootstrap dropdown item active default of the background color always being dark blue (primary color).
-    background-color: $borderColor-light;
-}
-
-#editCommentToggle {
-    //comment dropdown toggle (for edit/delete dropdown options)
-    border: none;
-}
-
-#editCommentToggle:hover,
-#editCommentToggle:focus {
-    color: $borderColor;
-}
-
-//Form fields - inputs & textarea 
-.input {
-    /*'input' can be found in the EditComment.js file in the Comments folder*/
-    border-color: $primaryLight !important;
-    background-color: transparent;
-}
-
-input:active:not(.exclude div div input, .popUpCheckbox input),
-input:focus:not(.exclude div div input, .popUpCheckbox input),
-textarea:active,
-textarea:focus {
-    //all inputs except for the sign up form inputs
-    outline: solid 4px $borderColor-light !important;
-    border-color: $borderColor-medium !important;
-}
-
-.shadow-red:active,
-.shadow-red:focus {
-    //for some unknown reason the retype password field had incorrect outline color that is fixed by the css below (see SignUpModal/Row4.js)
-    outline: solid 4px pink; //color for react bootstrap danger (ie light red)
-}
-
-.shadow-green:active,
-.shadow-green:focus {
-    outline: solid 4px rgb(189, 218, 189); //color for react bootstrap success (ie light green)
-}
-
-//Checkbox (see SignUpModal/Checkbox.js)
-.checkbox-signUp input:checked {
-    //React Bootstrap default checkbox is blue (this css changes the checkbox color dynamically based on the borderColor, to match the rest of the form inputs)
-    background-color: $borderColor;
-    opacity: 100%;
-}
-
-.checkbox-signUp input:hover {
-    opacity: 100%;
-}
-
-.checkbox-signUp input {
-    border-color: $borderColor !important;
-    opacity: 65%;
-}
-
-//Pagination (see Paginator.js)
-.active span {
-    background-color: $borderColor !important;
-    // border-color: $borderColor !important;
-    border: none !important;
-}
-
-.page-item a {
-    color: $borderColor !important;
-}
-
-.page-item a:active,
-.page-item a:focus {
-    box-shadow: none !important;
-}
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//Miscellaneous CSS
-.textBorder {
-    -webkit-text-stroke: 2px black; // adds a thin border to text (see Welcome page title)
-}
+ //Background Images - background images are chosen based on color theme. (ie pink/purple related photos when primary color is indigo. Current pics are for primary color as blue)
+ [data-bs-theme='dark'],
+ body:not(.bg-welcome),
+ .backgroundImage-primary {
+     //default background image for the entire website
+     background: var(--defaultBackgroundImg) no-repeat center fixed;
+     background-size: cover;
+     background-color: var(--background); //background color if there
+     color: var(--text-primary);
+ }
 
-.bsAlert {
-    // background-color: $bsAlertLight;
-    border-color: $bsAlert !important; //bootstrap alert color
-    color: $bsAlert;
-}
+ .modal-open .modal [data-bs-theme='dark'] {
+     background-image: none !important; //removes background image that borders all modals (while in dark mode)
+     border-radius: .6rem !important; //removes the unrounded corners that show from the (above) mentioned background
+ }
 
-// .popUpCheckbox .checkbox, .popUpCheckbox .checkbox:checked {
-//     //TODO: the other checkbox css (above) seems to be interfering with this checkbox's css 
-//     background-color: $bsAlert !important;
-//     border-color: $bsAlert !important;
-// }
-.popUpCheckbox input:checked {
-    //React Bootstrap default checkbox is blue (this css changes the checkbox color dynamically based on the borderColor, to match the rest of the form inputs)
-    background-color: $bsAlert;
-    opacity: 100%;
-}
-
-.popUpCheckbox input:hover {
-    opacity: 100%;
-}
-
-.popUpCheckbox input {
-    border-color: $bsAlert !important;
-    opacity: 65%;
-}
-.form-check-input:focus {
-    box-shadow: none;//0 0 0 0.25rem $bsAlertLight
-}
-
-// .shadow-bc {
-//     //shadow border color - sets the shadow's color to the border color
-//     // box-shadow: -5px -5px 0px 0px $borderColor !important;
-//     // box-shadow: 0px 0px 5px $borderColor !important;
-//     border-color: $borderColor;
-//     // box-shadow: 0 .5rem 1rem rgba($borderColor, .25) !important;
-// }
-// .shadow-bc:hover {
-//     box-shadow: 0 .5rem 1rem rgba($borderColor-medium, .25) !important;
-// }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//Background Images - background images are chosen based on color theme. (ie pink/purple related photos when primary color is indigo)
-$lightBackgroundRGBA: rgba(255, 255, 255, 0.25); //sets background image to be lighter - In this case 2.5 (the higher the number - the lighter the background)
-$lighterBackgroundRGBA: rgba(255, 255, 255, 0.75); //set background image to be even lighter
-$defaultBackgroundImage: '../../public/Images/stlBackground3.jpg'; //businessmanBackground nature stlBackground3 stlBackground8
-$welcomeBackgroundImage: '../../public/Images/stlBackground4.jpg'; //stlBackground: 1,4, 7, 8, 9,11, 
-
-body,
-.backgroundImage-primary {
-    //default background image for the entire website
-    background: linear-gradient($lighterBackgroundRGBA, $lighterBackgroundRGBA), url($defaultBackgroundImage) no-repeat center fixed;
-    background-size: cover;
-}
-
-.bg-welcome {
-    //welcome page's background image
-    background-size: cover;
-    background-image: url('../../public/Images/businessmanBackground.jpg');
-    background-position: right;
-}
+ .bg-welcome {
+     //welcome page's background image
+     background-size: cover;
+     background-image: var(--welcomeBackgroundImg);
+     background-position: right;
+ }

@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import center from '../../data/Bootstrap/center';
 import useCustomNav from '../../hooks/navigate';
-import pillButton from '../../data/Bootstrap/pillButton';
 
-export default function ButtonLink({ text, link, variant = 'primary'}) {
-    const danger = variant === 'danger' ? 'pillBtnDanger' : '';
-    const defaultShadow = 'shadow-sm';
-    const [shadow, setShadow] = useState(defaultShadow);
+export default function ButtonLink({ text, link, variant = 'primary' }) {
     const navigate = useCustomNav();
-    let size = 'm-2'
     return (
-        <div className={`pb-3 container ${center}`}>
-            <div className={`btn button ${shadow} ${center} ${size} ${pillButton} ${danger}`}
-                onMouseOver={() => setShadow('shadow')}
-                onMouseLeave={() => setShadow(defaultShadow)}
-                onClick={() => navigate(link, text)} role="button">{text}</div>
+        <div className={`my-4 container ${center}`}>
+            <button className={`btn btn-${variant}`}
+                onClick={() => navigate(link, text)}>{text}</button>
         </div>
     )
 }

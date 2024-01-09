@@ -9,7 +9,7 @@ export default function AddCommentBtn({ openAddComment, loggedIn, setShowLogin }
   }
   const handleClick = loggedIn ? openAddComment : openLoginModal;
   return (
-    <div className={`py-1 container ${center}`}>
+    <div className={`py-1 container ${center} z-n1`}> {/* z index is set to -1 otherwise it coves the edit comment dropdown of the bottom comment */}
       <CommentsBtn text={'Add Comment'} handleClick={handleClick}></CommentsBtn>
     </div>
   )

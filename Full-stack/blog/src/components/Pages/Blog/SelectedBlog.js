@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddBlogModal from '../BlogList/AddBlogModal';
 import { Card } from 'react-bootstrap';
 import ExternalLink from '../../reuseable/ExternalLink';
+import bgLightOrDark from '../../../data/Bootstrap/colors';
 
 export default function SelectedBlog({ selectedBlog, loggedIn }) {
     const [show, setShow] = useState(null); //show update blog modal
@@ -13,11 +14,11 @@ export default function SelectedBlog({ selectedBlog, loggedIn }) {
     const editInfoToggle = <div className={editInfoToggleStyle} onClick={() => setShow(true)} >Edit Your Info</div>
     
     const noVisibleCard = 'm-5 backgroundImage-primary border-0';
-    const visibleCard = 'm-2 opacity-75'
+    const visibleCard = `m-2`;
     return (<>
         <Card className={visibleCard}>
             <Card.Body>
-                <div className={`h3 text-center block p-2 bgColor-primaryLight color-primary-reverse bg-transparent`}>
+                <div className={`h3 text-center block p-2`}>
                     {editInfoToggle}
                     <span className='d-block display-1'>{name}</span>
                     <span className='d-block p-1'>{companyName}</span>

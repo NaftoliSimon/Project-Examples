@@ -1,8 +1,7 @@
-/* Layout related CSS for the entire website was in this file - Currently Splitting into seperate files for organizational purposes, including: Buttons, Links, INputIcons .scss files */
+/* Layout related CSS for the entire website was in this file - With the exception of Input Icons (for orginization purposes)*/
 /*This file displays layout features that can't be done by just bootstrap*/
 /*For all color related CSS see Colors.scss (this also includes background images and opacity)*/
 
-//TODO: fix bloglist display size on smaller screen
 //TODO: reorganize css & switch unnecessary css to bootstrap when possible
 
 .list-group {
@@ -13,16 +12,38 @@
     cursor: pointer;
 }
 
-.modal-content div {
-    border: none; //removes the border that separates different sections in all pop up modals of the website (bootstrap modals defaults to having header, body, & footer borders)
-}
-
 .cursor-text {
     cursor: text;
 }
 
+.modal-content div {
+    border: none; //removes the border that separates different sections in all pop up modals of the website (bootstrap modals defaults to having header, body, & footer borders)
+}
+
 .input {
     border-width: 1px !important; //for border-color see Colors.scss
+}
+
+.btn,
+// a,
+footer * a,
+.internal-link {
+    border-radius: 26px !important;
+}
+
+.cardIcon {
+    position: relative; //welcome card icon - padding did not work, therefore we use position relative instead
+    bottom: 1px;
+}
+
+.btn:disabled,
+.btn:disabled:active,
+.btn:disabled:hover {
+    opacity: 75% !important;
+    cursor: not-allowed;
+    pointer-events: all !important;
+    box-shadow: none !important;
+    background-color: var(--bs-btn-disabled-bg); //bootstraps default disabled background color (reset here to stop color change on click
 }
 
 .text-truncate-container p {
@@ -33,35 +54,78 @@
     overflow: hidden;
 }
 
-.dropdown-toggle::after {
-    //removes default dropdown arrow from login image icon from the header
-    display: none;
-}
+// .bsAlert {
+//     border-width: 2px !important; //see reusable/popUpAlert.js
+// }
 
-.bsAlert {
-    //see reusable/popUpAlert.js
-    border-width: 2px !important;
-}
-
-.bsAlert button:focus,
-.modal-header button:focus {
-    box-shadow: none; //removes bootstrap's default blue box shadow that appears when you click on the X to close any pop up modal
-}
+// .bsAlert button:focus,
+// .modal-header button:focus {
+// box-shadow: none; //removes bootstrap's default blue box shadow that appears when you click on the X to close any pop up modal
+// }
 
 .blogListItemLayout {
+    // min-width: 350px;
+    // max-width: 350px;
+    // min-height: 250px;
+    // max-height: 250px;
+
     min-width: 350px;
     max-width: 350px;
-    min-height: 250px;
-    max-height: 250px;
+    min-height: 450px;
+    max-height: 450px;
+    padding-bottom: 1rem;
+}
+.card-image {
+    padding: 0;
+    overflow: hidden;
 }
 
-.btn-close {
-    position: relative;
-    top: -20px;
+.card-image {
+    // display: block;
+    width: 100%;
+    max-height: 190px;
+    // aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    // margin: 10em;
+    // margin-top: .25rem;
+    // border-bottom: 1px solid black;
 }
+
 .form-check-input {
     cursor: pointer;
 }
+
+.pop {
+    transition: .3s all; //add this class to all elements that you want to make pop out (ie on button click). This class should always remain on target element. Use with ".out" class (see below).
+}
+
+.out {
+    transform: scale(1.025) !important; //add this class only during/after user interaction (ie button click). Use with ".pop" class (see above). See LoginModal.js for use case. See also hooks/popOut.js
+}
+
+.popOut {
+    transition: 200ms transform ease-in-out; //add popOut to any element you want to make popOut on hover. For pop out effects caused by other elements (ie button click) see .pop & .out classes above.
+}
+.popOut:hover {
+    transform: scale(1.015) !important
+}
+
+.dropdown-toggle::after {
+    display: none !important; //removes (react bootstrap's) default dropdown arrow from login image icon from the header
+}
+
+.post-dropdown {
+    position: relative; //positions the dropdown (toggle) in the top right of card (see PostDropdown.js)
+    right: -33rem;
+}
+
+.dropdown-toggle:focus,
+.dropdown-toggle:active,
+.dropdown-toggle {
+    border: none !important; //removes borders from all dropdown toggles 
+}
+
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -71,8 +135,8 @@ body {
 }
 
 @media screen and (min-width: 576px) {
-
     //extra small bootstrap screen size
+
     body {
         //regular font weight is 400, font is made slightly bolder for smaller screens (ie phones)
         font-weight: 400;
@@ -87,17 +151,15 @@ body {
     }
 
     .blogListItemLayout {
-        min-width: 400px;
-        max-width: 400px;
-        min-height: 250px;
-        max-height: 250px;
-    }
-}
+        // min-width: 400px;
+        // max-width: 400px;
+        // min-height: 250px;
+        // max-height: 250px;
 
-@media screen and (min-width: 476px) {
-    .btn-close {
-        top: -15px;
-        // position: static;
+        //  min-width: 400px;
+        // max-width: 400px;
+        // min-height: 350px;
+        // max-height: 350px;
     }
 }
 

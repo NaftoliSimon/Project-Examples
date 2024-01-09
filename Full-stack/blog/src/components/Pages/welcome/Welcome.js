@@ -1,5 +1,4 @@
 import React from 'react';
-import blogListLocation from '../../../data/scrollToHeight';
 import useCustomNav from '../../../hooks/navigate';
 import ThreeColLayout from './ThreeColLayout';
 import TwoColLayout from './TwoColLayout';

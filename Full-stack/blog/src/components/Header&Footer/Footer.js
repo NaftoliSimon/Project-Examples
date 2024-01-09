@@ -1,15 +1,13 @@
 import { Container, Row, Col } from 'react-bootstrap';
-// import { BsFacebook, BsGithub, BsLinkedin } from 'react-icons/bs';
 import center from '../../data/Bootstrap/center';
 import { linkIcons, links, socialMediaLinks, socialMediaLinkIcons } from '../../data/URLpaths';
-// import NavLink from './Navbar/NavLink';
 import FooterList from './FooterList';
 
 export default function Footer() {
     const aboutUsMessage = `Designed and built with half the love in the world, without the help of any other human developers or contributors.`
     const justify = 'd-flex align-items-center mb-0';
     return (
-        <footer className="bgColor-primary color-secondary-reverse py-5">
+        <footer className={`py-5`}>
             <Container>
                 <Row>
                     <Col lg={3}>

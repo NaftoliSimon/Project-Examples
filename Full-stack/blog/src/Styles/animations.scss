@@ -1,43 +1,43 @@
-/* Define a class for sliding in from the left */
-@keyframes slideInLeft {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-//   .slide-in-left {
-//     color: red !important;
+// /* Define a class for sliding in from the left */
+// @keyframes slideInLeft {
+//     from {
+//       transform: translateX(-100%);
+//     }
+//     to {
+//       transform: translateX(0);
+//     }
+//   }
+// //   .slide-in-left {
+// //     color: red !important;
+// //   }
+  
+//   /* Define a class for sliding in from the right */
+//   @keyframes slideInRight {
+//     from {
+//       transform: translateX(100%);
+//     }
+//     to {
+//       transform: translateX(0);
+//     }
 //   }
   
-  /* Define a class for sliding in from the right */
-  @keyframes slideInRight {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
+//   /* Define a class for sliding in from the bottom */
+//   @keyframes slideInUp {
+//     from {
+//       transform: translateY(100%);
+//     }
+//     to {
+//       transform: translateY(0);
+//     }
+//   }
   
-  /* Define a class for sliding in from the bottom */
-  @keyframes slideInUp {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-  
-  /* Define a class for sliding in from the top */
-  @keyframes slideInDown {
-    from {
-      transform: translateY(-100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
+//   /* Define a class for sliding in from the top */
+//   @keyframes slideInDown {
+//     from {
+//       transform: translateY(-100%);
+//     }
+//     to {
+//       transform: translateY(0);
+//     }
+//   }
   

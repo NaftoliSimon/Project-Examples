@@ -3,8 +3,9 @@ import { Col, Form, InputGroup, Row } from 'react-bootstrap'
 import { BsLockFill } from 'react-icons/bs'
 import InputIcon from './InputIcon';
 import Eye from './Eye';
+import bgLightOrDark from '../../../../data/Bootstrap/colors';
 
-export default function Row3({ password, attemptedSubmit, setField, retypedPassword, setPasswordMatch, passwordMatch }) {
+export default function Row3({ password, attemptedSubmit, setField, retypedPassword, setPasswordMatch, autoFill }) {
     const validatePassword = (password) => { // Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
         return passwordRegex.test(password);
@@ -23,7 +24,7 @@ export default function Row3({ password, attemptedSubmit, setField, retypedPassw
 
     const passwordMsg = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
 
-    const dangerOrSuccess = !passwordValidated ? 'border-danger text-danger' : 'border-success text-success';
+    const dangerOrSuccess = !passwordValidated ? 'border-danger text-danger-emphasis' : 'border-success text-success-emphasis';
     const submittedDisplayColor = attemptedSubmit ? dangerOrSuccess : ''; //if you have not tried to submit border/text shouldn't be colored, if you have clicked submit border will be either red or green depending on if the password is valid
 
     const handlePasswordChange = (event) => {
@@ -62,7 +63,7 @@ export default function Row3({ password, attemptedSubmit, setField, retypedPassw
                         value={password}
                         onChange={e => handlePasswordChange(e)}
                         aria-describedby="passwordHelpBlock"
-                        className={`inputPadding ${submittedDisplayColor} password-input text-dark`}//rounded-0 rounded-start border-end-0
+                        className={`inputPadding ${autoFill} ${submittedDisplayColor} password-input text-dark`}//rounded-0 rounded-start border-end-0
                     />
                     <Eye setVisible={setPasswordVisible} visible={passwordVisible} />
                 </InputGroup>

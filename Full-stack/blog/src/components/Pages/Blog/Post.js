@@ -6,6 +6,8 @@ import baseUrl from '../../../data/URLpaths';
 import AddPost from './AddPost';
 import  { pillButtonSolid } from '../../../data/Bootstrap/pillButton';
 import PostDropdown from './PostDropdown';
+import bgLightOrDark from '../../../data/Bootstrap/colors';
+import { Card } from 'react-bootstrap';
 
 export default function Post({ post, selectedPostId, setSelectedPost, loggedIn, setShowLogin, setLoggedIn }) {
   const [commentsArr, setCommentsArr] = useState([]);
@@ -31,13 +33,14 @@ export default function Post({ post, selectedPostId, setSelectedPost, loggedIn, 
 
   function handleButtonClick(postId) {                           //Remember, we are mapping through every post
     const selected = (selectedPostId == postId) ? null : postId; //Sets all non selected posts to null. This will hide the comments of a previously selected post, whether a new post is selected, or if the same post is unselected. Sets the currently selected post.
+    // const selected = (selectedPostId == postId) ? null : postId;
     setSelectedPost(selected);
   }
 
   //bootstrap style
-  const liStyle = `bgColor-primary color-secondary-reverse p-3 m-2 ${center} w-100 rounded border shadow-lg`;
+  const liStyle = `card p-3 m-2 ${center} w-100 rounded border shadow-lg`;
   const titleStyle = `h6 text-capitalize text-decoration-underline`;
-  const commentsBtnStyle = `btn ${shadow} ${pillButtonSolid}`;
+  const commentsBtnStyle = `${shadow} btn btn-outline-primary`;
 
   const showHideBtnProps = {
     className: `${commentsBtnStyle}`, onMouseOver: () => setShadow('shadow'),
@@ -45,8 +48,8 @@ export default function Post({ post, selectedPostId, setSelectedPost, loggedIn, 
   };
   const showHideBtn = <div className={`${center} p-2`}><button {...showHideBtnProps}>{buttonText}</button></div>;
   return (<>
-    {!showEditPost && <li className={`${liStyle} opacity-85`} id={`post-${postId}`}>
-      <div className='w-100'>
+    {!showEditPost && //<li className={`${liStyle} opacity-75`} id={`post-${postId}`}>
+      <Card as={'li'} className={`${liStyle}`} id={`post-${postId}`}>
         {loggedIn && loggedIn.userId === userId && <PostDropdown setShowEditPost={setShowEditPost} />}
         <span className={`d-block text-center ${titleStyle}`}>{title}</span>
         <span className='d-block text-center'>{body}</span>
@@ -54,8 +57,9 @@ export default function Post({ post, selectedPostId, setSelectedPost, loggedIn, 
         {postId == selectedPostId && <Comments commentsArr={commentsArr} postId={postId}
           loggedIn={loggedIn} setShowLogin={setShowLogin} setLoggedIn={setLoggedIn} />}
         {selectedPostId == postId && commentsArr.length > 1 && showHideBtn}
-      </div>
-    </li>}
+      </Card>
+    //</li>
+  }
     {showEditPost &&
       <AddPost show={showEditPost} setShow={setShowEditPost} savedData={post} />
     }

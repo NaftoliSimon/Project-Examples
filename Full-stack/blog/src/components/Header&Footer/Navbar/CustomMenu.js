@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import bgLightOrDark from "../../../data/Bootstrap/colors";
 
 // Dropdown needs access to the DOM of the Menu to measure it
 const CustomMenu = React.forwardRef(({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
@@ -12,9 +13,9 @@ const CustomMenu = React.forwardRef(({ children, style, className, 'aria-labelle
     );
 
     return (
-        <div ref={ref} style={style} className={className} aria-labelledby={labeledBy}>
+        <div ref={ref} style={style} className={`${className}`} aria-labelledby={labeledBy}>
         {/* {searchbarFilter} */}
-        <ul className="list-unstyled">
+        <ul className={`list-unstyled`}>
           {React.Children.toArray(children).filter((child) => {
             if (!value) return true;
             if (typeof child !== "undefined" && child.props && typeof child.props.children !== "undefined" && child.props.children !== null) {

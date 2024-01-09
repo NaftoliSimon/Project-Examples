@@ -1,6 +1,8 @@
 //This file is for using the bootstrap hidden display properties. Size combinations can be added if need. 
 //The hide sizes means it is hidden only for that size. The regular show sizes means it is shown only for that size.
 
+/*  https://getbootstrap.com/docs/5.3/utilities/display/#hiding-elements  */
+
 const hide = {
   all: 'd-none',
   xs: 'd-none d-sm-block',

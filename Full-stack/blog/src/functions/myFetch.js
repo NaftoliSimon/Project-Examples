@@ -1,4 +1,4 @@
-//A reusable fetch file to fetch data from the server, but also gets the data from a local JSON file when failed to get it form the server
+//A reusable fetch file to fetch data from the server, but also gets the data from a local JSON file when failed to fetch it from the server
 import jsonData from "../data/data.json";
 import toJson from "./toJson";
 

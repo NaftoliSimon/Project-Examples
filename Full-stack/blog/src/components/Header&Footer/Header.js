@@ -5,7 +5,7 @@ import Title from '../Header&Footer/Title';
 import Icon from './Navbar/Icon.js';
 import center from '../../data/Bootstrap/center.js';
 
-export default function Header({ loggedIn, setLoggedIn, showLogin, showSignUp, setShowSignUp, setShowLogin, blogsArr, loggedInBlog }) {
+export default function Header({ loggedIn, setLoggedIn, showLogin, showSignUp, setShowSignUp, setShowLogin, blogsArr, loggedInBlog, switchTheme, theme }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const largeBreakpoint = 992;
   const smallerScreenWidthMax = largeBreakpoint;
@@ -18,8 +18,8 @@ export default function Header({ loggedIn, setLoggedIn, showLogin, showSignUp, s
     };
   }, []);
 
-  const login = <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} showSignUp={showSignUp} blogsArr={blogsArr} loggedInBlog={loggedInBlog} />;
-  const headerStyle = 'container-fluid sticky-top ps-3 pe-3 bgColor-primary color-secondary-reverse shadow';
+  const login = <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} showLogin={showLogin} setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} showSignUp={showSignUp} blogsArr={blogsArr} loggedInBlog={loggedInBlog} switchTheme={switchTheme} theme={theme}/>;
+  const headerStyle = `container-fluid sticky-top bg-primary ps-3 pe-3 shadow-lg`;
   return (
     <>
       {/* Header for smaller screen sizes */}
@@ -37,9 +37,9 @@ export default function Header({ loggedIn, setLoggedIn, showLogin, showSignUp, s
       {!isSmallScreen && (
         <header className={headerStyle}>
             <div className="row pb-1 ps-2 pe-2">
-              <div className={`col ${center}`}><Navbar /></div>
-              <div className={`col-5 ${center}`}><Title /></div>
-              <div className={`col ${center}`}>{login}</div>
+              <div className={`col ${center} p-0`}><Navbar /></div>
+              <div className={`col-5 ${center} p-0`}><Title /></div>
+              <div className={`col ${center} p-0`}>{login}</div>
             </div>
         </header>
       )}
