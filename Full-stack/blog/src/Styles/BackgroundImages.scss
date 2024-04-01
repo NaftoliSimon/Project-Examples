@@ -1,0 +1,17 @@
+@import './Colors.scss';
+
+//Background Images - background images are chosen based on color theme. (ie pink/purple related photos when primary color is indigo. Current pics are for primary color as blue. There is also a light and dark version of each background image.)
+[data-bs-theme='dark'],
+body:not(.bg-welcome),
+.backgroundImage-primary {
+    //default background image for the entire website
+    background: var(--defaultBackgroundImg) no-repeat center fixed;
+    background-size: cover;
+    background-color: var(--background); //background color if there
+    color: var(--text-primary);
+}
+
+.modal-open .modal [data-bs-theme='dark'] {
+    background-image: none !important; //removes background image that borders all modals (while in dark mode)
+    border-radius: .6rem !important; //removes the unrounded corners that show from the (above) mentioned background
+}

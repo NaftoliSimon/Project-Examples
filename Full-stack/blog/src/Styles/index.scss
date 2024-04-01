@@ -1,0 +1,190 @@
+/* This is the main CSS file for the website. */
+
+/* Most Styling is done via Bootstrap (React Bootstrap). 
+Some styling can't be done through bootstrap and some styling is easier to do via css 
+(i.e. generic styling that applies to many components, such as .dropdown-toggle class, see below) */
+
+/* Component related specific Styles can be found in the same folder that the component is in. 
+Note that most component styling is located in the same folder under the folder's name 
+(even though there is a file with the same name). 
+This ensures easy access to the styling near the component file, 
+while not having too many CSS files with only a few lines of styling. 
+As of now most styling is just regular css (not modules, or locally applied css) 
+and therefore (in React), it applies to the entire website, no matter where the file is located/imported. 
+In all css files, not found in this (Styles) folder, 
+css selector names (class/id) will be given for that specific css file, 
+so that the style will only apply to classes & ids placed in components of that specific folder. 
+(There is one exception to this in Login.scss, the selector input:-webkit-autofill is used, 
+this is because it is the only place that uses autofill in the entire website (sign-up & login forms).
+*/
+
+//Specific Categories of CSS styles imports. More files can be added and imported, instead of all the categories listed below
+@import './button.scss';
+@import './Links&Nav.scss';
+@import './Dropdown.scss';
+@import './PopOut.scss';
+@import './BackgroundImages.scss';
+@import './Colors.scss'; //Colors and Themes (Dark/Light) defined (but not used) in this file
+
+// General and Misc. CSS styles:    
+//TODO: Separate the larger categories below into files to import, just like the buttons.scss above
+
+/*Categories: 
+(Imported) Above: button, Links&Nav, Dropdown, PopOut, BackgroundImages, Colors
+Below: Cursor, Inputs, Footers, Cards, Modals, Misc (color and non color related), Font*/
+
+//Cursor (Mouse icon)
+.pointer,
+.form-check-input {
+    cursor: pointer;
+}
+
+.cursor-text {
+    cursor: text;
+}
+
+//Inputs
+.input {
+    border-width: 1px !important;
+}
+
+input::placeholder {
+    //Style for all input's placeholders throughout the entire website
+    color: grey !important; //grey works in both light and dark modes
+    font-style: italic;
+}
+
+//Footers
+footer {
+    background-color: var(--background-tertiary);
+    color: var(--text-primary);
+}
+
+#copyright-footer {
+    background-color: #343a40; //var(--background);
+    color: white;
+}
+//Cards
+.card:not(.welcome),
+.card:not(.welcome)>*,
+.card-body ul li {
+    background-color: var(--background-secondary) !important; //var(--background-secondary);
+    color: var(--text-primary);
+    opacity: 90%;
+}
+
+.card-body {
+    border-radius: .375rem;
+}
+
+//Modals 
+.modal-content {
+    background-color: var(--background) !important;
+}
+
+.modal-content div {
+    border: none; //removes the border that separates different sections in all pop up modals of the website (bootstrap modals defaults to having header, body, & footer borders)
+}
+
+.model-content :not(div:has(> div[role="alert"])) {
+    color: var(--text-primary);
+}
+
+//Misc Colors - Misc Categories (text colors & background colors for classes not found in the categories above)
+body:not(.alert-danger h4, .alert-danger h2),
+h2:not(.alert-danger h2),
+h4:not(.alert-danger h4, .modal-title.h4) {
+    color: var(--text-primary) !important;
+}
+
+.border-color {
+    border-color: var(--border) !important;
+}
+
+.bgAlert {
+    color: #dc3545 !important;
+}
+
+.bg-color {
+    background-color: var(--background);
+}
+
+.page-item>*:not(.active>*) {
+    background-color: var(--background-tertiary);
+    color: var(--text-primary);
+}
+
+header,
+.btn-primary,
+header .btn,
+.logoStyle {
+    //logoStyle is found in Navbar/Icon.js
+    color: $lightOrDark !important;
+}
+
+.img-thumbnail {
+    background-color: $lightOrDark;
+}
+
+//Misc (non colors)
+.list-group {
+    list-style-type: none;
+}
+
+.text-border {
+    -webkit-text-stroke: 1px var(--background);
+    font-size: 2.5rem;
+}
+
+//Font
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    // font-size: 1.25 em;
+    //regular font weight is 400, font is made slightly bolder for smaller screens (ie phones)
+    font-weight: 500;
+}
+
+.cursive {
+    font-family: cursive !important;
+    font-size: x-large !important;
+}
+
+h1,
+h2 {
+    font-style: italic !important;
+}
+
+@media screen and (min-width: 576px) {
+
+    //extra small bootstrap screen size
+    body {
+        //regular font weight is 400, font is made slightly bolder for smaller screens (ie phones), so that it is easier for the user to read the text
+        font-weight: 400;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .blog {
+        width: 46%; //Blog List on 'blogs' page: Width is set for two column layout, and 50% bootstrap default + padding & margin is too big. Therefore width is set here at 46%. (Padding + Margin = 4px)
+    }
+}
+
+
+
+
+
+
+
+
+// .border-0:hover {
+//     border: none;
+// }
+
+// .bsAlert {
+//     border-width: 2px !important; //see reusable/popUpAlert.js
+// }
+
+// .bsAlert button:focus,
+// .modal-header button:focus {
+// box-shadow: none; //removes bootstrap's default blue box shadow that appears when you click on the X to close any pop up modal
+// }

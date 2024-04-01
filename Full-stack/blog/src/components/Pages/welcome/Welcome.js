@@ -3,6 +3,7 @@ import useCustomNav from '../../../hooks/navigate';
 import ThreeColLayout from './ThreeColLayout';
 import TwoColLayout from './TwoColLayout';
 import OneColLayout from './OneColLayout';
+import './Welcome.scss';
 
 export default function Welcome({ loggedIn, setShowLogin, blogsArr }) {
   const navigate = useCustomNav();

@@ -2,9 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import useLocalStorage from 'use-local-storage';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Styles/App.scss';
-import '../Styles/Colors.scss';
-import '../Styles/InputIcons.scss';
+import '../Styles/index.scss';
 import BlogList from './Pages/BlogList/BlogList';
 import Header from './Header&Footer/Header';
 import Blog from './Pages/Blog/Blog';
@@ -40,11 +38,11 @@ function App() {
   const [showLogin, setShowLogin] = useState(false); //boolean to show/hide the login pop up modal
   const [showSignUp, setShowSignUp] = useState(false); //boolean to show/hide the signUp pop up modal
   const [showError, setShowError] = useState(false); //if failed to fetch blogs, show pop up error message
-  const [page, setPage] = useState(savedPage); //the current blogs being displayed on the page (see index.js in the backend) 
-  const [totalPages, setTotalPages] = useState(1);//the total number of blog pages displayed 
+  const [page, setPage] = useState(savedPage); //the current blogs being displayed on the page (see index.js in the blogApi) 
+  // const [totalPages, setTotalPages] = useState(1);//the total number of blog pages displayed 
   const hasFetchedBlogsData = useRef(false);
   const hasSetSessionStorage = useRef(false);
-  const hasFetchedBlogsTotal = useRef(false);
+  // const hasFetchedBlogsTotal = useRef(false);
 
   //Local Storage Hooks
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -58,17 +56,13 @@ function App() {
     setTheme(newTheme);
   }
 
-
-  // const hasSetPage = useRef(false)
-
-
   // Effects
-  useEffect(() => {
-    if (!hasFetchedBlogsTotal.current) {
-      myFetch(`${baseUrl}/blogsTotal`, setTotalPages); //Sets the total number of pages (see Paginator.js)
-      hasFetchedBlogsTotal.current = true;
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!hasFetchedBlogsTotal.current) {
+  //     myFetch(`${baseUrl}/blogsTotal`, setTotalPages); //Sets the total number of pages (see Paginator.js)
+  //     hasFetchedBlogsTotal.current = true;
+  //   }
+  // }, []);
 
   useEffect(() => {
     // Fetch blog data if it hasn't been fetched already
@@ -135,7 +129,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate replace to={home} />} />
             <Route path="/">
-              <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} page={page} setPage={setPage} setBlogsArr={setBlogsArr} blogPages={totalPages} />} />
+              <Route path={home} element={<BlogList blogsArr={blogsArr} loggedIn={loggedInUser} setShowLogin={setShowLogin} page={page} setPage={setPage} setBlogsArr={setBlogsArr} theme={theme}/>} />
               <Route path={`${home}/:blogId/`} element={blogElem} />
               <Route path={`${home}/:blogId/:postId`} element={blogElem} />
               <Route path={about} element={<About />} />
@@ -143,7 +137,7 @@ function App() {
               <Route path="*" element={<FourOhFour />} />
             </Route>
           </Routes>
-          <PopUpAlert show={showError} setShow={setShowError} title={'No Connection to the Server'} text={alertMsgComponent} variant={'danger'} />
+          <PopUpAlert show={showError} setShow={setShowError} title={'No Connection to the Server'} text={alertMsgComponent} variant={'primary'} />
         </main>
         <div className="flex-grow-1">
           {/* This div will grow and push the footer to the bottom, if there is less content then page size */}

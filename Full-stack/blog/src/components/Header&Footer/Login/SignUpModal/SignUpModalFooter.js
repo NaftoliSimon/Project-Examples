@@ -3,10 +3,11 @@ import Button from 'react-bootstrap/Button';
 import hide, { show } from '../../../../data/Bootstrap/hide';
 import isMobile from '../../../../data/isMobile';
 
-export default function SignUpModalFooter({ handleClose, handleOpenLogin, showError }) {
+export default function SignUpModalFooter({ handleClose, handleOpenLogin, theme, showError }) {
     // const primaryLinkStyle = `link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover`;
     const text = `Already have an account?`;
-    const SignInLink = <a className='link link-primary fw-bold pointer ms-1' href='#' onClick={handleOpenLogin}>Sign In</a>
+    const darkStyle = theme === 'dark' ? 'link-light' : ''; //bg-white rounded-pill px-1 pb-1
+    const SignInLink = <a className={`link link-primary fst-italic ${darkStyle} fw-bold pointer ms-1`} href='#' onClick={handleOpenLogin}>Sign In</a>
     return (<>
         <div className='ms-1 d-flex'>
             {/* {isMobile ?  */}

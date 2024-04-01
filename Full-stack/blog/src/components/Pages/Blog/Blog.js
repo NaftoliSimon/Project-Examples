@@ -7,7 +7,7 @@ import ButtonLink from '../../reuseable/ButtonLink';
 import NoData from './NoData';
 import PostsList from './PostsList';
 import SelectedBlog from './SelectedBlog';
-import pillButton from '../../../data/Bootstrap/pillButton';
+import { Container } from 'react-bootstrap';
 
 export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) { //This component is linked from BlogList.js
   const [show, setShow] = useState(null); //show add post modal
@@ -51,13 +51,13 @@ export default function Blog({ blogsArr, loggedIn, setShowLogin, setLoggedIn }) 
   </div>
   //TODO: make sure NoData error display component is good (ie correct size, ect) 
   return (
-    <>
+    <Container>
       {selectedBlog && <SelectedBlog selectedBlog={selectedBlog} loggedIn={loggedIn} />}
       {!show && addPost}
       {!postsArr.length && <NoData selectedBlog={selectedBlog} />}
       <PostsList postsArr={postsArr} loggedIn={loggedIn} setShowLogin={setShowLogin}
         setLoggedIn={setLoggedIn} show={show} setShow={setShow} />
       <ButtonLink text='Return to Blogs' link={links.blogs} large={true} />
-    </>
+    </Container>
   )
 }

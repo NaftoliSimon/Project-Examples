@@ -1,25 +1,31 @@
- /*Color (& background image) related CSS in this file (this includes slightly lightening opacity)*/
- // /*This file displays the color scheme for the entire website (that can't be done by just bootstrap default colors)*/
- // //TODO: reorganize css to make easier to find where it is being used (whether in one or many places throughout the website)
-
+ /*Colors - Bootstrap colors and Light/Dark mode Colors are defined here.*/
 
  // //Colors (define all used colored variables (see listOfColors.scss for more color options)
  $blue: #0d6efd;
+ $lightBlue: #b6d1fa;
  $indigo: #6610f2;
 
+ $primary: $blue; //sets bootstrap default primary color //preferably keep this color as a darker color
+ $lightOrDark: white; //if $primary color is dark, set this variable to a light color (ie white), else set it to a dark color (ie black).
+ // $darkOrLight: black; //this should be the reverse of the 'lightOrDark' variable (see the above line)
+ @import "node_modules/bootstrap/scss/bootstrap";
+
  //////////////////////////////////////////////////////////////////////////////////
- :root {
+ 
+ :root { // Light Mode colors & Images (Default)
      --background: white;
      --background-secondary: #f8f9fa;
      --background-tertiary: #f8f9fa;
      --text-primary: black;
      --border: #212529;
-     --primary: $blue;
+      --primary: #{$primary};
      --welcomeBackgroundImg: url('../../public/Images/businessmanBackgroundLight2.jpg');
      --defaultBackgroundImg: url('../../public/Images/stlBackground4.jpg'); //4.7, (9),11
+     --opacity: 0.65;
+     --noImage: url('../../public/Images/noImage.png')
  }
 
- //TODO: add sucess and danger colors to light/dark themes so that sign up form inputs look nicer
+ // Dark Mode colors & Images
  [data-theme='dark'],
  [data-bs-theme='dark'] {
      --background: #343a40;
@@ -27,245 +33,14 @@
      --background-tertiary: #495057;
      --text-primary: white;
      --border: #adb5bd;
+     //  --primary: $lightBlue;
      --welcomeBackgroundImg: url('../../public/Images/businessmanBackgroundDark.jpg');
      --defaultBackgroundImg: url('../../public/Images/stlBackground4Dark.jpg');
      --primary: white;
+     --opacity: 0.3;
+     --noImage: url('../../public/Images/noImageBlack.png')
  }
+ //TODO: add success and danger colors to light/dark themes so that sign up form inputs look nicer
 
- /////////////////////////////////////////////////////////////////////////////////////
+ 
 
- $primary: $blue; //sets bootstrap default primary color //preferably keep this color as a darker color
- $lightOrDark: white; //if $primary color is dark, set this variable to a light color (ie white), else set it to a dark color.
- // $darkOrLight: black; //this should be the reverse of the 'lightOrDark' variable (see the above line)
- @import "node_modules/bootstrap/scss/bootstrap";
-
- //////////////////////////////////////////////////////////////////////////////////////
- body:not(.alert-danger h4, .alert-danger h2),
- h2:not(.alert-danger h2),
- h4:not(.alert-danger h4, .modal-title.h4) {
-     color: var(--text-primary) !important;
- }
-
- .model-content :not(div:has(> div[role="alert"])) {
-     color: var(--text-primary);
- }
-
- .bgAlert {
-     color: #dc3545 !important;
- }
-
- .btn-danger {
-     background-color: var(--bs-danger-text-emphasis) !important;
-     border-color: var(--bs-danger-text-emphasis) !important;
- }
-
- .btn-danger:hover {
-     filter: brightness(1.2);
-     /* The higher the number the more bright the button gets */
- }
-
- header,
- .btn-primary,
- header .btn,
- .logoStyle {
-     color: $lightOrDark !important;
- }
-
- .img-thumbnail {
-     background-color: $lightOrDark;
- }
-
- .dropdown-menu {
-     background-color: var(--background);
-     color: var(--text-primary);
-     border-color: var(--border);
- }
-
- .dropdown-menu ul a:hover,
- .dropdown-menu a:hover {
-     background-color: $primary !important;
-     color: $lightOrDark !important;
- }
-
- .dropdown-header {
-     color: var(--text-primary);
-     opacity: 70%;
- }
-
- .text-border {
-     -webkit-text-stroke: 1px var(--background);
-     font-size: 2.5rem;
- }
-
- .btn-outline-primary {
-     color: var(--text-primary);
-     border-color: var(--border);
- }
-
- .btn-outline-primary:hover {
-     color: $primary;
-     border-color: $primary;
-     background-color: $primary;
-     color: $lightOrDark;
- }
-
- .btn-primary:hover {
-     opacity: 90%;
-     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
- }
-
- .page-item>*:not(.active>*) {
-     background-color: var(--background-tertiary);
-     color: var(--text-primary);
- }
-
- .nav-link:hover,
- .nav-link-header:hover {
-     opacity: 75% !important;
- }
-
- .link-primary {
-     color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)) !important;
-     text-decoration: underline !important;
- }
-
- .link-primary:hover {
-     color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 9)) !important;
-     text-decoration: none !important;
- }
-
- .input-parent input,
- .input-parent input:active,
- .input-parent input:focus,
- .login-parent input,
- .login-parent input:focus,
- .login-parent input:active {
-     color: var(--text-primary) !important;
-     background-color: var(--background-secondary) !important;
- }
-
- .input-parent input,
- .bg-color {
-     background-color: var(--background);
- }
-
- input:-webkit-autofill,
- input:-webkit-autofill:hover,
- input:-webkit-autofill:focus,
- input:-webkit-autofill:active {
-     transition: background-color 5000s ease-in-out 0s;
-     box-shadow: inset 0 0 20px 20px inherit;
-     -webkit-text-fill-color: inherit;
-     background-color: var(--background-tertiary) !important;
-     -webkit-box-shadow: 0 0 0 30px var(--background-tertiary) inset !important; //without this line autofill background inputs will remain the same color as non autofill input (--background-secondary)
- }
-
- input::placeholder {
-     color: grey !important;
-     font-style: italic;
- }
-
- footer {
-     background-color: var(--background-tertiary);
-     color: var(--text-primary);
- }
-
- .card-red {
-     box-shadow: rgba($red, 0.4) -5px 5px, rgba($red, 0.3) -10px 10px, rgba($red, 0.2) -15px 15px, rgba($red, 0.1) -20px 20px, rgba($red, 0.05) -25px 25px !important;
- }
-
- .card-yellow {
-     box-shadow: rgba($yellow, 0.4) -5px 5px, rgba($yellow, 0.3) -10px 10px, rgba($yellow, 0.2) -15px 15px, rgba($yellow, 0.1) -20px 20px, rgba($yellow, 0.05) -25px 25px !important;
- }
-
- .card-green {
-     box-shadow: rgba($green, 0.4) -5px 5px, rgba($green, 0.3) -10px 10px, rgba($green, 0.2) -15px 15px, rgba($green, 0.1) -20px 20px, rgba($green, 0.05) -25px 25px !important;
- }
-
- .shadow-red:active,
- .shadow-red:focus {
-     //the retype password field had incorrect outline color that is fixed by the css below (see SignUpModal/Row4.js)
-     box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25) !important;
- }
-
- .shadow-green:active,
- .shadow-green:focus {
-     box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25) !important;
- }
-
- //  .checkbox-danger .checkbox, .checkbox-danger .checkbox:checked {
- //     color: red !important;
- //     border-color: red !important;
- //     background-color: red !important;
- // }
- .loggedInIcon {
-     border: 2px solid transparent;
- }
-
- .loggedInIcon:hover {
-     color: $primary;
-     background-color: $lightOrDark;
-     border-radius: 25rem;
-     // border-color: $lightOrDark;
- }
-
- .welcome button {
-     background-color: rgba(white, 0.3); //makes the button's background a lighter color version than it's parent card's background color
-     //  background-color: rgba(black, 0.3); //makes the button's background a darker color version than it's parent card's background color
-     color: black !important; //set this to the opposite of the background-color (either black or white)
-     border-color: black;
-     font-weight: bold;
- }
-
- .welcome button:hover {
-     background-color: var(--background);
-     color: var(--text-primary) !important;
-     border-color: black;
-     // opacity: 80%;
- }
-
- .card:not(.welcome),
- .card:not(.welcome)>*,
- .card-body ul li,
- .blogDisplay>* {
-     background-color: var(--background-secondary) !important; //var(--background-secondary);
-     color: var(--text-primary);
-     opacity: 90%;
- }
- .blogDisplay {
-    padding: 0;
- }
-
- .modal-content {
-     background-color: var(--background);
- }
-
- .card-body {
-     border-radius: .375rem;
- }
-
- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
- //Background Images - background images are chosen based on color theme. (ie pink/purple related photos when primary color is indigo. Current pics are for primary color as blue)
- [data-bs-theme='dark'],
- body:not(.bg-welcome),
- .backgroundImage-primary {
-     //default background image for the entire website
-     background: var(--defaultBackgroundImg) no-repeat center fixed;
-     background-size: cover;
-     background-color: var(--background); //background color if there
-     color: var(--text-primary);
- }
-
- .modal-open .modal [data-bs-theme='dark'] {
-     background-image: none !important; //removes background image that borders all modals (while in dark mode)
-     border-radius: .6rem !important; //removes the unrounded corners that show from the (above) mentioned background
- }
-
- .bg-welcome {
-     //welcome page's background image
-     background-size: cover;
-     background-image: var(--welcomeBackgroundImg);
-     background-position: right;
- }

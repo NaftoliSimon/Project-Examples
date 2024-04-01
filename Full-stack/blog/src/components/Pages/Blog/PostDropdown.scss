@@ -1,0 +1,7 @@
+.post-dropdown {
+    //This styling moves the post dropdown (toggle) of 3 vertical dots, to the top right corner of the post (Note: the dropdown is only visible on logged in user's posts)
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}

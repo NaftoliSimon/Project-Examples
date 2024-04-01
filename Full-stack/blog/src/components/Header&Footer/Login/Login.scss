@@ -1,0 +1,99 @@
+@import '../../../Styles/Colors.scss';
+
+//Styles in this file are for the entire Login (and SignUpModal) folder(s) and all files within. (This is for easy access to change between files (while not having to many css files in this folder)
+
+.input-parent input,
+.input-parent input:active,
+.input-parent input:focus,
+.login-parent input,
+.login-parent input:focus,
+.login-parent input:active {
+    color: var(--text-primary) !important;
+    background-color: var(--background-secondary) !important;
+}
+
+.input-parent input,
+.bg-color {
+    background-color: var(--background);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px inherit;
+    -webkit-text-fill-color: inherit;
+    background-color: var(--background-tertiary) !important;
+    -webkit-box-shadow: 0 0 0 30px var(--background-tertiary) inset !important; //without this line autofill background inputs will remain the same color as non autofill input (--background-secondary)
+}
+
+.shadow-red:active,
+.shadow-red:focus {
+    //the retype password field had incorrect outline color that is fixed by the css below (see SignUpModal/Row4.js)
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25) !important;
+}
+
+.shadow-green:active,
+.shadow-green:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25) !important;
+}
+
+.loggedInIcon {
+    border: 2px solid transparent;
+}
+
+.loggedInIcon:hover {
+    color: rgba($lightOrDark, .8);
+}
+
+// Input Icons - sign up & login forms
+$inputZindex: 6; //if input index is set to less than 6 it messes up the password input display (when input is selected)
+
+.input-parent {
+    position: relative; //Log in and sign up form input parents
+}
+
+.input-parent .input-icon {
+    position: absolute; //sets position for all form input icons at the beginning of the input
+    top: 36px; //extra small screen (ie phones) need +4px (see below)
+    left: 21px;
+    z-index: $inputZindex;
+    font-size: large;
+}
+
+.login-parent .input-icon {
+    left: 10px;
+}
+
+.password-input {
+    background-image: none !important; //removes default valid/invalid icons after submit attempt, because eye icon is in its place (see SignUpModal/Row3.js)
+}
+
+.eye-icon {
+    position: absolute;
+    right: 11px;
+    top: 5px;
+    z-index: $inputZindex;
+}
+
+.inputPadding {
+    padding-left: 2em !important; //Adds empty space for input icon. ( bootstrap sizes ps-4 and ps-5 are both wrong lengths, therefore we set it here to be a size in between)
+}
+
+.password-msg {
+    position: absolute;
+    margin-top: -15px;
+}
+
+@media screen and (min-width: 576px) {
+    //extra small bootstrap screen size
+
+    .input-icon {
+        top: 36px !important;
+    }
+
+    .input-parent .input-icon {
+        top: 32px; //all screen sizes other than extra small need -4px (from 36px, see above)
+    }
+}

@@ -6,7 +6,7 @@ export default function CommentLayout({body, name}) {
         <figure>
             <h5 className='fs-bold p-0 m-0 pt-1 fst-italic text-capitalize fs-6'>{name}</h5>
             <blockquote className="blockquote">
-                <p className='p-0 m-0'>{body}</p>
+                <p className='p-0 m-0 cursive'>{body}</p>
             </blockquote>
             {/* <figcaption className="blockquote-footer">
                 <cite title="Source Title">{name}</cite>

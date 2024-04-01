@@ -1,0 +1,19 @@
+@import '../../../Styles/Colors.scss'; //import to get and use colors as need
+
+.blogSearchbar {
+    border-left-width: 2px !important;
+}
+
+.blogSearchbar:hover { 
+    border-color: var(--border); //imported from Colors.scss
+    // background-color: var(--background-tertiary);
+}
+
+#searchBtn {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+#searchBtnType {
+    border-radius: 0 !important;
+}

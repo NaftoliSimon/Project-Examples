@@ -9,10 +9,10 @@ const useCustomNav = () => {
     return (to, text = false) => {
         if (text && text.toLowerCase().includes('blogs')) { //If the text parameter contains "blogs", it scroll to the blogsList (ie button text says "Return to Blogs", "Go to Blogs", "Blogs", ect)
                 const offset = -headerHeight;
-                setTimeout(() => window.scrollTo({ //set timeout allows navigating from a different page (ie About page) to the blogsList (home page) and then scrolling to 'scrollToBlogsId', otherwise it cant find an id from a different page
+                setTimeout(() => window.scrollTo({ //set timeout allows navigating from a different page (ie About page) to the blogsList (home page) and then scrolling to 'scrollToBlogsId', otherwise it can't find an id from a different page, and won't scroll
                     top: document.getElementById(scrollToBlogsId).offsetTop + offset,
                     behavior: 'smooth',
-                }), 0);
+                }), 1);
         }
         else { //If no text is given to the function or if the text does not include "blogs", it (default) scrolls to the top of the page.
             window.scrollTo(0, 0) //scroll to top of page

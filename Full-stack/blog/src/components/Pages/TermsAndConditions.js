@@ -7,7 +7,7 @@ import { links } from "../../data/URLpaths";
 export default function TermsAndConditions({ setShowSignUp, loggedIn }) {
     const country_or_state = "the United States of America";
     return (
-        <div className="p-3 bg-opacity-75">
+        <div className="p-3 bg-opacity-75 container">
             <Card><Card.Body>
                 <Card.Title><h1 className="text-uppercase">TERMS AND CONDITIONS OF USE FOR {websiteName}</h1></Card.Title>
                 <p>Welcome to our blog website! By accessing or using this website, you agree to be bound by the following terms and conditions of use ("Terms and Conditions"). Please read these Terms and Conditions carefully before using this website. By using this website, you acknowledge that you have read, understood, and agreed to be bound by these Terms and Conditions.</p>

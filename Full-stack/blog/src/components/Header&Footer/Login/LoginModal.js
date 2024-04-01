@@ -90,7 +90,7 @@ export default function LoginModal({ show, setShow, setShowSignUp, setLoggedIn, 
       <DismissibleAlert heading={'Incorrect Password'} text={'The password you have entered is incorrect'} show={invalidPassword} setShow={setInvalidPassword} getPopClass={getPopPassword} />
       
       <ModalBody email={email} setEmail={setEmail} password={password} setPassword={setPassword} handleLogin={handleLogin}/>
-      <ModalFooter handleClose={handleClose} handleOpenSignUp={handleOpenSignUp} handleLogin={handleLogin} />
+      <ModalFooter handleClose={handleClose} handleOpenSignUp={handleOpenSignUp} handleLogin={handleLogin} theme={theme} />
     </Modal>
   </>
   );

@@ -2,6 +2,7 @@ import React from 'react'
 import CommentLayout from './CommentLayout'
 import Dropdown from './Dropdown'
 import bgLightOrDark from '../../../../data/Bootstrap/colors';
+import center from '../../../../data/Bootstrap/center';
 
 export default function CommentDisplay({ comment, changeSelectedComment, loggedIn }) {
     const { id, postId, body, name, userId } = comment;

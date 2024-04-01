@@ -114,7 +114,7 @@ export default function SignUpModal({ show, setShow, setShowLogin, setLoggedIn }
                         <Row3 password={password} attemptedSubmit={attemptedSubmit} setField={setField} retypedPassword={retypedPassword} setPasswordMatch={setPasswordMatch} passwordMatch={passwordMatch} autoFill={autofillDark} />
                         <Row4 retypedPassword={retypedPassword} validated={validated} setField={setField} password={password} passwordMatch={passwordMatch} setPasswordMatch={setPasswordMatch} attemptedSubmit={attemptedSubmit} autoFill={autofillDark} />
                         <Checkbox handleClose={handleClose} checked={checked} setChecked={setChecked} attemptedSubmit={attemptedSubmit} />
-                        <SignUpModalFooter handleClose={handleClose} handleOpenLogin={handleOpenLogin} showError={showError} />
+                        <SignUpModalFooter handleClose={handleClose} handleOpenLogin={handleOpenLogin} theme={theme} showError={showError} />
                     </Bootstrap.Form>
                 </Bootstrap.Modal.Footer>
             </div>

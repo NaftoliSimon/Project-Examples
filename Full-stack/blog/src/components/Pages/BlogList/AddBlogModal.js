@@ -5,32 +5,29 @@ import myPostFetch from '../../../functions/myPostFetch';
 import postFetch from '../../../functions/postFetch';
 import DismissibleAlert from '../../reuseable/Alert';
 
-export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData = false }) { //Add or edit Blog data Modal. For edit - pass the preexisting data to update, into the "savedUpdateData" object parameter. For add - just leave it out of the props
-    //Todo: fix cors error stopping the edit and update postFetch from working
+export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData = false }) {
     const text = !savedUpdateData ? 'Add' : 'Update';
-    const url = savedUpdateData ? `${baseUrl}/blogInfo/edit` : `${baseUrl}/blogInfo`;
+    const url = savedUpdateData ? `${baseUrl}/blogInfo/edit` : `${baseUrl}/blogInfo/add`;
 
     const [companyName, setCompanyName] = useState(savedUpdateData?.companyName || '');
     const [website, setWebsite] = useState(savedUpdateData?.website || '');
     const [shortSummary, setShortSummary] = useState(savedUpdateData?.shortSummary || '');
+    const [category, setCategory] = useState(savedUpdateData?.category || ''); // New Category field
     const [error, setError] = useState(false);
 
     const [validated, setValidated] = useState(false);
-    // useEffect(() => {
-    //     console.log('error:', error.message);
-    // }, [error])
 
     if (loggedIn) {
         const { userId, firstName, lastName } = loggedIn;
 
-        //TODO: switch data passed in to only be object in body, and pass in Method to MyFetch & myPostFetch (make method defaults?)
-        const blogData = JSON.stringify({ companyName, website, shortSummary, name: `${firstName} ${lastName}`, userId })
+        const blogData = JSON.stringify({ companyName, website, shortSummary, category, name: `${firstName} ${lastName}`, userId });
         const handleClose = () => setShow(false);
 
         const clearFields = () => {
             setCompanyName('');
             setWebsite('');
             setShortSummary('');
+            setCategory('');
         }
 
         const handleSubmit = (e) => {
@@ -41,9 +38,8 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
                 console.log('blog data NOT sent to server');
             } else {
                 console.log('blog data sent to server');
-                postFetch(url, blogData, setError); //Todo: fix cors error stopping the edit and update postFetch from working 
+                postFetch(url, blogData, setError);
                 clearFields();
-                // console.log('error:', error);
                 handleClose();
             }
         }
@@ -87,7 +83,18 @@ export default function AddBlogModal({ show, setShow, loggedIn, savedUpdateData 
                                     </Form.Group>
                                 </Row>
                                 <Row>
-                                    <Form.Group as={Col} md="12" controlId="validationCustom03" >
+                                    <Form.Group as={Col} md="12" controlId="validationCustom04">
+                                        <Form.Label className='mb-1 pt-2'>Category</Form.Label>
+                                        <Form.Control
+                                            required
+                                            name='input4'
+                                            type="text"
+                                            placeholder="Family, Business, Food, ect"
+                                            value={category}
+                                            onChange={e => setCategory(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
                                         <Form.Label className='mb-1 pt-2'>Short Summary</Form.Label>
                                         <Form.Control
                                             name='input3'

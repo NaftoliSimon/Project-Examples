@@ -8,6 +8,7 @@ import hide, { show } from '../../../data/Bootstrap/hide';
 import { Button } from 'react-bootstrap';
 import DarkModeToggle from '../DarkMode';
 import center from '../../../data/Bootstrap/center';
+import './Login.scss';
 
 export default function Login({ loggedIn, setLoggedIn, showLogin, setShowLogin, showSignUp, setShowSignUp, blogsArr, loggedInBlog, switchTheme, theme }) {
   const icon = <IconDropdown setLoggedIn={setLoggedIn} blogsArr={blogsArr} loggedIn={loggedIn} setShowLogin={setShowLogin} loggedInBlog={loggedInBlog}/>

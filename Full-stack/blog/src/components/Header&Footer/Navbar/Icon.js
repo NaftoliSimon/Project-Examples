@@ -17,7 +17,7 @@ export default function Icon({ style }) {
     const image = `../Icons/blogLogo5.png` //`../Icons/blogLogoTitle2.png`//`../Icons/blogIcon.png`
     const imgStyle = `img-thumbnail border-0 mr-3 p-0 ${center} rounded-5`; //TODO: crop image
     return (<>
-        <a className={`me-3 pt-0 pointer ${style} ${show.lg_xl} ${center} logoLink`} href={`${navBaseUrl}${links.blogs}`}> {/* onClick={() => navigate(`${links.blogs}`) */}
+        <a className={`me-3 pt-0 pointer ${style} ${show.lg_xl} ${center}`} href={`${navBaseUrl}${links.blogs}`}> {/* onClick={() => navigate(`${links.blogs}`) */}
             {/* <img src={image} alt="Blog-Spot-Logo" width={size} height={size} className={imgStyle} /> */}
             <TbSquareLetterB size={50} className={`logoStyle`}/>
         </a>

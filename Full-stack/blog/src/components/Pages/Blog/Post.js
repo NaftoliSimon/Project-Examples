@@ -50,9 +50,9 @@ export default function Post({ post, selectedPostId, setSelectedPost, loggedIn, 
   return (<>
     {!showEditPost && //<li className={`${liStyle} opacity-75`} id={`post-${postId}`}>
       <Card as={'li'} className={`${liStyle}`} id={`post-${postId}`}>
-        {loggedIn && loggedIn.userId === userId && <PostDropdown setShowEditPost={setShowEditPost} />}
-        <span className={`d-block text-center ${titleStyle}`}>{title}</span>
-        <span className='d-block text-center'>{body}</span>
+        {loggedIn && loggedIn.userId === userId && <PostDropdown setShowEditPost={setShowEditPost} postId={postId} />}
+        <span className={`d-block text-center cursive ${titleStyle}`}>{title}</span>
+        <span className='d-block text-center cursive z-n1'>{body}</span> {/* z-index is lowered because of post dropdown, on item hover is covered by this span*/}
         {showHideBtn}
         {postId == selectedPostId && <Comments commentsArr={commentsArr} postId={postId}
           loggedIn={loggedIn} setShowLogin={setShowLogin} setLoggedIn={setLoggedIn} />}

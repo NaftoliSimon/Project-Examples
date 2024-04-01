@@ -1,0 +1,24 @@
+@import './Colors.scss';
+
+.dropdown-toggle::after {
+    display: none !important; //removes (react bootstrap's) default dropdown arrow from login image icon from the header
+}
+
+.dropdown-toggle:focus,
+.dropdown-toggle:active,
+.dropdown-toggle {
+    border: none !important; //removes borders from all dropdown toggles 
+}
+
+.dropdown-menu {
+    //dropdown-menu is the div container for all the list items 
+    background-color: var(--background);
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+.dropdown-menu ul a:hover,
+.dropdown-menu a:hover {
+    background-color: $primary !important;
+    color: $lightOrDark !important;
+}

@@ -28,6 +28,8 @@ const router = express.Router();
 const pool = require('../pool')
 const origin = 'http://localhost:3001' //Server runs on port 3000 (default). React runs on port 3001 (default since 3000 is taken)
 
+const blogsPerPage = 6; //amount of blogs to display per page (server will only fetch this amount at a time from the db)
+
 //Allow CORS
 router.use(require('cors')({
   origin: origin,
@@ -71,6 +73,20 @@ router.route('/blogsTotal')
       return res.send(totalPages.toString());
     })
   });
+  router.route('/blogsTotal/:category')
+  .get(function (req, res, next) {
+    pool.query('SELECT COUNT(*) as totalBlogs FROM blogs WHERE category = ?', [req.params.category], (error, results, fields) => {
+      if (error) {
+        return console.error(`Filtered Blogs Count Error: ${error}`)
+      }
+
+      // Extract the totalBlogs count from the results
+      const totalBlogs = results[0].totalBlogs;
+
+      const totalPages = Math.ceil(totalBlogs / blogsPerPage);
+      return res.send(totalPages.toString());
+    })
+  });
 
 router.route('/blogs')
   .get(function (req, res, next) {
@@ -84,7 +100,6 @@ router.route('/blogs')
       const totalBlogs = results[0].totalBlogs;
 
       // Rest of your code to handle pagination with totalBlogs
-      const blogsPerPage = 6;
       const totalPages = Math.ceil(totalBlogs / blogsPerPage);
       let page = req.query.page;
       page = (page <= totalPages) && (page > 0) ? page : 1; // Default to the first page if not between 1 and totalPage amount
@@ -105,15 +120,33 @@ router.route('/blogs')
     })
   })
   .post((req, res, next) => {
-    pool.query('INSERT INTO blogs(name, website, companyName, shortSummary) VALUES (?,?,?,?)',
-      [req.body.name, req.body.website, req.body.companyName, shortSummary]),
+    const { name, website, companyName, shortSummary, category } = req.body;
+    pool.query('INSERT INTO blogs(name, website, companyName, shortSummary, category) VALUES (?,?,?,?,?)',
+      [name, website, companyName, shortSummary, category],
       (error, results, fields) => {
         if (error) {
           return res.sendStatus(500);
         }
         return res.sendStatus(201);
       }
+    );
   })
+  router.route('/blogs/:category/:page')
+  .get(function (req, res, next) {
+    const page = req.params.page || 1; // Default to page 1 if not provided
+    const offset = (page - 1) * blogsPerPage; //Number of blogs to skip over when making the fetch
+
+    pool.query('SELECT * FROM blogs WHERE category = ? LIMIT ? OFFSET ?;', [req.params.category, blogsPerPage, offset], (error, results, fields) => {
+      console.log('category:', req.params.category,'offset:', offset);
+      if (error) {
+        return res.sendStatus(500);//TODO: create a more specific error for user
+      }
+      console.log('results:', results);
+      return res.send(results);
+    });
+  })
+
+
 router.route('/blog/:userID') //route to get a single specific blog based on the user id (or check if such a blog exists)
   .get(function (req, res, next) {
     // console.log(req.params.postID);
@@ -299,16 +332,15 @@ router.route('/postInfo/edit')
       }
     )
   });
-router.route('/postInfo/delete/:blogId/:postId')
+  router.route('/postInfo/delete/:blogId/:postId')
   .get(function (req, res, next) {
-    pool.query('DELETE FROM post WHERE id = ?', [req.params.postId], (error, results, fields) => {
+    pool.query('DELETE FROM posts WHERE id = ?', [req.params.postId], (error, results, fields) => {
       if (error) {
-        return res.sendStatus(500);//TODO: create a more specific error for user
+        return res.sendStatus(500); //TODO: create a more specific error for user
       }
       if (!results.affectedRows) {
         return res.sendStatus(404)
       }
-      // res.redirect(`${origin}/blogs/${req.params.blogID}/${req.params.postID}`) //postID is added to url only for re-selecting the selected posts to open the comments after deleting one of its comments (see PostsList.js)
       res.redirect(`${origin}/blogs/${req.params.blogId}`);
     })
   })

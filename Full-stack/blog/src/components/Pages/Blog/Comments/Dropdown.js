@@ -1,17 +1,21 @@
-/* This file uses react-bootstrap instead of regular bootstrap. */
-import React from 'react';
+import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useParams } from 'react-router-dom';
-import MyVerticallyCenteredModal from './Modal';
+import { BsThreeDots, BsThreeDotsVertical } from 'react-icons/bs';
+import baseUrl from '../../../../data/URLpaths';
+import DeleteModal from '../../../reuseable/DeleteModal';
 
 function BasicExample({ commentId, postId, changeSelectedComment }) {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const { blogId } = useParams();
+  const deleteCommentUrl = `${baseUrl}/${blogId}/deleteComment/${commentId}/${postId}`;
 
   return (<>
     <Dropdown>
-      <Dropdown.Toggle variant='' id="editCommentToggle" className='ps-2' > {/*variant="" removes default react bootstrap color (bootstrap primary) */}
-        Edit
+      <Dropdown.Toggle variant='' id="editCommentToggle" className='ps-2 pe-0' > {/*variant="" removes default react bootstrap color (bootstrap primary) */}
+        {/* Edit */}
+        {/* <BsThreeDots size={20} /> */}
+        <BsThreeDotsVertical size={20} />
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
@@ -20,7 +24,7 @@ function BasicExample({ commentId, postId, changeSelectedComment }) {
       </Dropdown.Menu>
     </Dropdown>
 
-    <MyVerticallyCenteredModal commentId={commentId} blogId={blogId} postId={postId}
+    <DeleteModal deleteUrl={deleteCommentUrl} type={'Comment'}
       show={modalShow}
       onHide={() => setModalShow(false)}
     />

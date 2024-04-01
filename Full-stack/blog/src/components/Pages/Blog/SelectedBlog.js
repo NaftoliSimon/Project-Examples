@@ -6,14 +6,14 @@ import bgLightOrDark from '../../../data/Bootstrap/colors';
 
 export default function SelectedBlog({ selectedBlog, loggedIn }) {
     const [show, setShow] = useState(null); //show update blog modal
-    const { name, website, companyName, shortSummary, userId } = selectedBlog;
+    const { name, website, companyName, shortSummary, category, userId } = selectedBlog;
 
     let visibility = loggedIn && userId === loggedIn.userId ? 'visible' : 'invisible';
-    const editInfoToggleStyle = `link text-decoration-none link-color fs-6 pointer p-0 m-0 ${visibility}`
-    const editInfoModal = <AddBlogModal show={show} setShow={setShow} loggedIn={loggedIn} savedUpdateData={{ website, companyName, shortSummary }} />;
+    const editInfoToggleStyle = `link text-decoration-none fs-6 pointer p-0 m-0 ${visibility}`
+    const editInfoModal = <AddBlogModal show={show} setShow={setShow} loggedIn={loggedIn} savedUpdateData={{ website, companyName, shortSummary, category }} />;
     const editInfoToggle = <div className={editInfoToggleStyle} onClick={() => setShow(true)} >Edit Your Info</div>
     
-    const noVisibleCard = 'm-5 backgroundImage-primary border-0';
+    // const noVisibleCard = 'm-5 border-0';
     const visibleCard = `m-2`;
     return (<>
         <Card className={visibleCard}>

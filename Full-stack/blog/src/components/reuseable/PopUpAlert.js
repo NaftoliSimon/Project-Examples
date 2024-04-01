@@ -48,7 +48,7 @@ export default function PopUpAlert({ show, setShow, title, text, variant = 'prim
           {title === 'No Connection to the Server' && checkbox}
         </Modal.Body>
         <Modal.Footer className={`${bgColor} border-0 pt-1 ${center}`}>
-          <Button autoFocus variant={variant} onClick={() => setShow(false)} className={`btn btn-primary`}>OK</Button> {/* autofocus makes it so that the user can dismiss the alert with Ënter key */}
+          <Button autoFocus variant={variant} onClick={() => setShow(false)} className={`btn border border-color`}>OK</Button> {/* autofocus makes it so that the user can dismiss the alert with Ënter key */}
         </Modal.Footer>
       </Alert>
       {/* </div> */}

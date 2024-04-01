@@ -1,0 +1,52 @@
+@import './Colors.scss';
+
+.btn {
+    border-radius: 26px !important;
+}
+
+.btn:disabled,
+.btn:disabled:active,
+.btn:disabled:hover {
+    opacity: 75% !important;
+    cursor: not-allowed;
+    pointer-events: all !important;
+    box-shadow: none !important;
+    background-color: var(--bs-btn-disabled-bg); //bootstraps default disabled background color (reset here to stop color change on click
+}
+
+.btn-danger {
+    background-color: var(--bs-danger-text-emphasis) !important;
+    border-color: var(--bs-danger-text-emphasis) !important;
+}
+
+.btn-danger:hover,
+.btn-danger:active,
+.btn-danger:focus {
+    filter: brightness(1.2);
+    box-shadow: none !important;
+    /* The higher the number the more bright the button gets */
+}
+
+.btn-outline-primary {
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+    // padding: 7px;
+}
+
+.btn-outline-primary:hover {
+    color: $primary !important;
+    border-color: $primary !important;
+    background-color: $primary !important;
+    color: $lightOrDark !important;
+
+    // background-color: rgba(var(--border), 1) !important;
+    // color: var(--text-primary);
+    // border-width: 2px;
+    // padding: 6px;
+    // border-color: var(--border);
+}
+
+.btn-primary:hover {
+    opacity: 90%;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}

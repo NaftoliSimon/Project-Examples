@@ -1,0 +1,35 @@
+.text-truncate-container p {
+    //truncates long text with 3 dots ... after -webkit-line-clamp amount of lines (see blogItemDisplay)
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blogListItemLayout {
+    // min-width: 350px;
+    // max-width: 350px;
+    // min-height: 250px;
+    // max-height: 250px;
+
+    min-width: 350px;
+    max-width: 350px;
+    min-height: 450px;
+    max-height: 450px;
+    padding-bottom: 1rem;
+}
+
+.card-image { //see BlogItemLayout.js
+    padding: 0;
+    overflow: hidden;
+    
+    // display: block;
+    width: 100%;
+    max-height: 190px;
+    // aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    // margin: 10em;
+    // margin-top: .25rem;
+    // border-bottom: 1px solid black;
+}

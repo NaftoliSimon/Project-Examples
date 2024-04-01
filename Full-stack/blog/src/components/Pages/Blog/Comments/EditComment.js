@@ -28,7 +28,7 @@ export default function AddEditComment({ unSelectComment, comment, setLoggedIn, 
     const textInputStyle = `input w-100 rounded border-0`;
     return (
         <div className=' p-2 mt-3 rounded'>
-            <div className={`bgColor-primary rounded`}>
+            <div className={`rounded`}>
                 <textarea className={textInputStyle} placeholder="Comment goes here..." value={commentBody} onChange={e => setCommentBody(e.target.value)} autoFocus />
                 <input className={`${textInputStyle} d-none`} placeholder='name' value={commentName} onChange={e => setCommentName(e.target.value)}></input>
             </div>

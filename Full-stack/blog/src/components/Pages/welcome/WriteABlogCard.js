@@ -5,6 +5,7 @@ import baseUrl, { links } from '../../../data/URLpaths';
 import useCustomNav from '../../../hooks/navigate';
 import myFetch from '../../../functions/myFetch';
 import { writeIcon } from '../../../data/welcomeCardConsts';
+import Card from './Card';
 
 export default function WriteABlogCard({ loggedIn, setShowLogin, blogsArr, width, cardColor }) { //default width for DefaultCard is 18em (see Card,js)
     const [loggedInUserBlog, setLoggedInUserBlog] = useState(null);
@@ -23,10 +24,11 @@ export default function WriteABlogCard({ loggedIn, setShowLogin, blogsArr, width
         }
     }, [loggedIn, blogsArr])
 
-    const writeText = 'Write your own personal Blog for other users to read. All you need to do is simply sign up or log in to your account to begin.'
+    const writeText = 'Write your own personal Blog for other users to read. All you need to do is simply sign up or log in to your account to begin your very own blog.'
     return (<>
         {loggedIn && !loggedInUserBlog && <AddBlogModal show={show} setShow={setShow} loggedIn={loggedIn} />} {/*if you are logged in but you don't have a blog yet */}
-        <DefaultCard cardColor={cardColor} header={'Write A Blog'} text={writeText} buttonText={'Write A Blog'} icon={writeIcon} width={width} onButtonClick={handleClick} />
+        {/* <DefaultCard cardColor={cardColor} header={'Write A Blog'} text={writeText} buttonText={'Write A Blog'} icon={writeIcon} width={width} onButtonClick={handleClick} /> */}
+        <Card cardColor={cardColor} header={'Write A Blog'} text={writeText} buttonText={'Write A Blog'} icon={writeIcon} width={width} onButtonClick={handleClick} />
     </>
     )
 }

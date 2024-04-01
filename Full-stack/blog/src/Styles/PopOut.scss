@@ -1,0 +1,15 @@
+.pop {
+    transition: .3s all; //add this class to all elements that you want to make pop out (ie on button click). This class should always remain on target element. Use with ".out" class (see below).
+}
+
+.out {
+    transform: scale(1.025) !important; //add this class only during/after user interaction (ie button click). Use with ".pop" class (see above). See LoginModal.js for use case. See also hooks/popOut.js
+}
+
+.popOut {
+    transition: 200ms transform ease-in-out !important; //add popOut to any element you want to make popOut on hover. For pop out effects caused by other elements (ie button click) see .pop & .out classes above.
+}
+
+.popOut:hover {
+    transform: scale(1.015) !important
+}

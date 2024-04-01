@@ -6,7 +6,7 @@ const usePopOut = () => { //Use this hook to add a temporary "pop out" class to 
   const getPopClass = () => (isPopped ? 'pop out' : 'pop'); //pop always needs to be there, otherwise there is no smooth transition in, when pop is removed to make it return to it's original size (see App.scss)
 
   const handlePopOut = () => {
-    setIsPopped(true);
+      setIsPopped(true);
 
     // Reset the pop state after the transition duration (300ms in this case)
     setTimeout(() => {
