@@ -131,7 +131,20 @@ router.route('/blogs')
       }
     );
   })
-  router.route('/blogs/:category/:page')
+  router.route('/blogs/delete/:blogID') //Delete a specific blog
+  .get(function (req, res, next) {
+    pool.query('DELETE FROM blogs WHERE userId = ?', [req.params.blogID], (error, results, fields) => {
+      if (error) {
+        return res.sendStatus(500); //TODO: create a more specific error for user
+      }
+      if (!results.affectedRows) {
+        return res.sendStatus(404)
+      }
+      // Redirect to a relevant page after successful deletion
+      res.redirect(`${origin}/blogs`);
+    })
+  })
+  router.route('/blogs/:category/:page') //Get a specific category of blogs
   .get(function (req, res, next) {
     const page = req.params.page || 1; // Default to page 1 if not provided
     const offset = (page - 1) * blogsPerPage; //Number of blogs to skip over when making the fetch
@@ -147,7 +160,7 @@ router.route('/blogs')
   })
 
 
-router.route('/blog/:userID') //route to get a single specific blog based on the user id (or check if such a blog exists)
+router.route('/blog/:userID') //Get a single specific blog (based on the user id, or check if such a blog exists)
   .get(function (req, res, next) {
     // console.log(req.params.postID);
     pool.query('SELECT * FROM blogs WHERE userId = ?;', [req.params.userID], (error, results, fields) => { //posts are fetched in descending order so that the newest post is displayed (first) on top
@@ -161,6 +174,7 @@ router.route('/blog/:userID') //route to get a single specific blog based on the
       return res.send(results);
     })
   })
+
 router.route('/posts/:postID')
   .get(function (req, res, next) {
     // console.log(req.params.postID);

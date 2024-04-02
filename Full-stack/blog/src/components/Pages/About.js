@@ -110,9 +110,6 @@ export default function About() {
                 <Card className={`${card} mb-0`}><Card.Body>
                     <ul className={`d-block pt-3 pb-0 list-group list-group-flush`}>
                         <h5 className='text-center'><u>FUTURE UPDATES</u></h5>
-                        <li className={li}><h6 className={h6}>Delete features for Blogs (blogger's info)</h6> - add the ability to remove/delete blogs (similar to how comments and posts can already be deleted). 
-                        {/* Add to user's blog with/near the edit button. (Add to loggedIn dropdown?) */}
-                        </li>
                         {/* <li className={li}><h6 className={h6}>Add Joi validation and display to user limits for ALL input fields</h6> - when the user fills out any form sent to the server, certain requirements (such as character length min and max) are set in the server, these requirements need to be displayed to the user</li> */}
                         <li className={li}><h6 className={h6}>Add Images </h6> Each user's blog display's a random image whenever the site loads/reloads. Replace that random image with the user's inputted image</li>
                         <li className={li}><h6 className={h6}>Launch Live </h6> - Launch a live front end only modified version of the website with Amazon Web Services (or another hosting service provider)</li>

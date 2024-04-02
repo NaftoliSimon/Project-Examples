@@ -1,4 +1,5 @@
 export default function lightenOrDarkenColor(color) {
+    //This function returns a new color based on the input parameter color. If it is given a darker color, it will return a lighter version of the same color. If it is given a light color, it will return a darker version of the same color.
     let results;
 
     // Helper function to convert RGB to HEX
@@ -8,7 +9,7 @@ export default function lightenOrDarkenColor(color) {
 
     // Helper function to adjust brightness
     function adjustBrightness(component) {
-        const contrastDifference = 15; // Increased this number to increase the contrast between the input and output colors, (decrease this number to make the colors more clorer and similar to each other)
+        const contrastDifference = 15; // Increased this number to increase the contrast between the input and output colors, (decrease this number to make the colors closer and more similar to each other)
         return Math.round(Math.min(255, component * contrastDifference)); 
     }
 
@@ -56,6 +57,6 @@ export default function lightenOrDarkenColor(color) {
     } else {
         results = `rgb(${r}, ${g}, ${b})`; // Fixed the missing assignment operator
     }
-    console.log(results);
+    // console.log(results);
     return results;
 }

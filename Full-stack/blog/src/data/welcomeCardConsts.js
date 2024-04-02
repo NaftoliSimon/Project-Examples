@@ -17,10 +17,10 @@ const rootStyles = getComputedStyle(document.documentElement);
 const primaryColor = rootStyles.getPropertyValue('--primary'); //gets the primary color from the colors.scss file
 // console.log('primarColor:', primaryColor); // This will log the value of the primary color
 
-const newColor = lightenOrDarkenColor(primaryColor); //newColor is either a lighter or darker version of the primary color, depending on if the primary color is a lighter or darker color
+const newColor = lightenOrDarkenColor(primaryColor); //newColor is either a lighter or darker version of the primary color, depending on if the primary color is a lighter or darker color. This allows us to automatically have the swirl color update by simply changing only the $primary color in Styles/Colors.scss and not needing to also have a second lighter (or darker) version of the (new) color
 // console.log('newColor', newColor);
 
-//Gradient color styles for each card. It is preferable that a string of 2 gradient colors is passed in (ie "blue, yellow" or "rgb(255, 48, 255), rgb(0, 183, 255)")
+//Gradient color styles for each card, border and swirl. It is preferable that a string of 2 gradient colors is passed in (ie "blue, yellow" or "rgb(255, 48, 255), rgb(0, 183, 255)")
 const card1 = `${primaryColor}, ${newColor}`;
 const card2 = `${newColor}, ${primaryColor}`;
 const card3 = `${primaryColor}, ${newColor}`;

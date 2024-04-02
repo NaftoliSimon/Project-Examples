@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AddBlogModal from '../BlogList/AddBlogModal';
 import { Card } from 'react-bootstrap';
 import ExternalLink from '../../reuseable/ExternalLink';
-import bgLightOrDark from '../../../data/Bootstrap/colors';
+import BlogDropdown from './BlogDropdown';
 
 export default function SelectedBlog({ selectedBlog, loggedIn }) {
     const [show, setShow] = useState(null); //show update blog modal
@@ -19,7 +19,8 @@ export default function SelectedBlog({ selectedBlog, loggedIn }) {
         <Card className={visibleCard}>
             <Card.Body>
                 <div className={`h3 text-center block p-2`}>
-                    {editInfoToggle}
+                    {/* {editInfoToggle} */}
+                    <BlogDropdown visibility={visibility} setShowEditBlog={setShow}/>
                     <span className='d-block display-1'>{name}</span>
                     <span className='d-block p-1'>{companyName}</span>
                     <span className='d-block' >
